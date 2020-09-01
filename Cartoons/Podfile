@@ -2,5 +2,7 @@ target 'Cartoons' do
     pod 'SwiftLint'
     pod 'SnapKit'
     pod 'SwiftFormat/CLI'
+    pod 'Firebase/Analytics'
+    pod 'Firebase/Auth'
 end
 
