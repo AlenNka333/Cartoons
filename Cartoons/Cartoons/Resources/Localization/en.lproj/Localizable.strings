@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Cartoons
+
+  Created by Alena Nesterkina on 9/1/20.
+  Copyright © 2020 AlenaNesterkina. All rights reserved.
+*/
+
+sign_in_button_key = "Sign In";
+onBoarding_first_logo_key = "Watch cartoons online and offline";
+onBoarding_second_logo_key = "Find your favourite characters";
