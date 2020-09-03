@@ -14,8 +14,6 @@
 		33B1F08D24FFF7B200DB6BA8 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08C24FFF7B200DB6BA8 /* AuthorizationView.swift */; };
 		33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
-		33B1F09F250024C800DB6BA8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F09E250024C800DB6BA8 /* StringExtension.swift */; };
-		33B1F0A225002BD500DB6BA8 /* VerificationCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F0A125002BD500DB6BA8 /* VerificationCodeTextField.swift */; };
 		33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF60BA24FA45F40077D109 /* AppDelegate.swift */; };
 		33FF60BD24FA45F40077D109 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF60BC24FA45F40077D109 /* SceneDelegate.swift */; };
 		33FF60C424FA45F80077D109 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FF60C324FA45F80077D109 /* Assets.xcassets */; };
@@ -31,8 +29,6 @@
 		33B1F08C24FFF7B200DB6BA8 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		33B1F09E250024C800DB6BA8 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		33B1F0A125002BD500DB6BA8 /* VerificationCodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeTextField.swift; sourceTree = "<group>"; };
 		33FF60B724FA45F40077D109 /* Cartoons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartoons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF60BA24FA45F40077D109 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33FF60BC24FA45F40077D109 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,8 +123,8 @@
 		33B1F08924FFEF0B00DB6BA8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */,
-				33B1F09E250024C800DB6BA8 /* StringExtension.swift */,
+				33B660B92501604000CA562E /* Foundation */,
+				33B660B82501602C00CA562E /* UIKit */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -137,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				33B1F08C24FFF7B200DB6BA8 /* AuthorizationView.swift */,
-				33B1F0A125002BD500DB6BA8 /* VerificationCodeTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -149,6 +144,21 @@
 				33B1F0A025002B9100DB6BA8 /* View */,
 			);
 			path = AuthorizationScreens;
+			sourceTree = "<group>";
+		};
+		33B660B82501602C00CA562E /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		33B660B92501604000CA562E /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		33FF60AE24FA45F40077D109 = {
@@ -378,9 +388,7 @@
 			files = (
 				33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
-				33B1F09F250024C800DB6BA8 /* StringExtension.swift in Sources */,
 				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
-				33B1F0A225002BD500DB6BA8 /* VerificationCodeTextField.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				33B1F08D24FFF7B200DB6BA8 /* AuthorizationView.swift in Sources */,
 				33FF60BD24FA45F40077D109 /* SceneDelegate.swift in Sources */,
