@@ -1,7 +1,7 @@
 import UIKit
 
-class AuthorizationViewController: UIViewController {
-    var authView: AuthorizationView! //! !!!!!!!!!
+class AuthorizationViewController: UIViewController, UITextFieldDelegate {
+    var authView: AuthorizationView! //!!!!!!!!!!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,19 +16,38 @@ class AuthorizationViewController: UIViewController {
         let mainView = AuthorizationView(frame: view.frame)
         authView = mainView
         view.addSubview(authView)
-        authView.setAnchor(top: view.topAnchor, left: view.leftAnchor,
-                           bottom: view.bottomAnchor, right: view.rightAnchor,
-                           paddingTop: 0, paddingLeft: 0,
-                           paddingBottom: 0, paddingRight: 0)
+        authView.setAnchor(top: view.topAnchor,
+                           left: view.leftAnchor,
+                           bottom: view.bottomAnchor,
+                           right: view.rightAnchor,
+                           paddingTop: 0,
+                           paddingLeft: 0,
+                           paddingBottom: 0,
+                           paddingRight: 0)
+        authView.phoneNumberTextField.delegate = self
     }
 
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-     }
-     */
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex
+        for character in mask where index < numbers.endIndex {
+            if character == "X" {
+                result.append(numbers[index])
+                index = numbers.index(after: index)
+            } else {
+                result.append(character)
+            }
+        }
+        return result
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else {
+            return false
+        }
+        let newString = (text as NSString).replacingCharacters(in: range, with: string)
+        textField.text = format(with: "+XXX (XX) XXX-XX-XX", phone: newString)
+        return false
+    }
 }

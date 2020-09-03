@@ -12,22 +12,22 @@ class AuthorizationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    let label: UILabel = {
-        let lb = UILabel()
-        lb.textColor = UIColor(white: 1, alpha: 1)
-        lb.font = UIFont.systemFont(ofSize: 17)
-        lb.text = R.string.localizable.phone_label_key()
-        return lb
+    private lazy var editPhoneLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(white: 1, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 17)
+        label.text = R.string.localizable.phone_label_key()
+        return label
     }()
 
-    let backgroundImageView: UIImageView = {
+    private lazy var backgroundImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: R.image.village_background.name)
         imgView.contentMode = .scaleAspectFill
         return imgView
     }()
 
-    let phoneNumberTextField: UITextField = {
+    lazy var phoneNumberTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .none
         textField.keyboardType = .numberPad
@@ -39,9 +39,12 @@ class AuthorizationView: UIView {
         return textField
     }()
 
-    let sendCodeButton: UIButton = {
+    private lazy var sendCodeButton: UIButton = {
         let button = UIButton()
-        let string = NSAttributedString(string: R.string.localizable.send_code_button_key(), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18), .foregroundColor: UIColor.white])
+        let string = NSAttributedString(string: R.string.localizable.send_code_button_key(),
+                                        attributes: [NSAttributedString.Key.font:
+                                            UIFont.systemFont(ofSize: 18),
+                                                     .foregroundColor: UIColor.white])
         let attributedString = NSMutableAttributedString(attributedString: string)
         button.setAttributedTitle(attributedString, for: .normal)
         button.layer.cornerRadius = 5
@@ -52,7 +55,7 @@ class AuthorizationView: UIView {
     }()
 
     func mainStackView() -> UIStackView {
-        let stackView = UIStackView(arrangedSubviews: [label, phoneNumberTextField, sendCodeButton])
+        let stackView = UIStackView(arrangedSubviews: [editPhoneLabel, phoneNumberTextField, sendCodeButton])
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 10
@@ -63,9 +66,14 @@ class AuthorizationView: UIView {
         addSubview(backgroundImageView)
         let stackView = mainStackView()
         addSubview(stackView)
-        backgroundImageView.setAnchor(top: topAnchor, left: leftAnchor,
-                                      bottom: bottomAnchor, right: rightAnchor,
-                                      paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        backgroundImageView.setAnchor(top: topAnchor,
+                                      left: leftAnchor,
+                                      bottom: bottomAnchor,
+                                      right: rightAnchor,
+                                      paddingTop: 0,
+                                      paddingLeft: 0,
+                                      paddingBottom: 0,
+                                      paddingRight: 0)
         phoneNumberTextField.setAnchor(width: 0, height: 40)
         sendCodeButton.setAnchor(width: 0, height: 50)
         stackView.setAnchor(width: frame.width - 60, height: 130)
