@@ -1,11 +1,3 @@
-//
-//  StringExtension.swift
-//  Cartoons
-//
-//  Created by Alena Nesterkina on 9/2/20.
-//  Copyright © 2020 AlenaNesterkina. All rights reserved.
-//
-
 import Foundation
 
 extension String {

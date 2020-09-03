@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EEE9C9250148DC00970DA6 /* R.generated.swift */; };
+		20EEE9CD25014B4500970DA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */; };
 		3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3312EDE824FE859F00158EB6 /* Localizable.strings */; };
 		33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */; };
 		33B1F08D24FFF7B200DB6BA8 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08C24FFF7B200DB6BA8 /* AuthorizationView.swift */; };
 		33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */; };
-		33B1F092250002D400DB6BA8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F091250002D400DB6BA8 /* GoogleService-Info.plist */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
 		33B1F09F250024C800DB6BA8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F09E250024C800DB6BA8 /* StringExtension.swift */; };
 		33B1F0A225002BD500DB6BA8 /* VerificationCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F0A125002BD500DB6BA8 /* VerificationCodeTextField.swift */; };
@@ -23,11 +24,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20EEE9C9250148DC00970DA6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Cartoons/Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3312EDE724FE859F00158EB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		33B1F08C24FFF7B200DB6BA8 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		33B1F091250002D400DB6BA8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		33B1F09E250024C800DB6BA8 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		33B1F0A125002BD500DB6BA8 /* VerificationCodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeTextField.swift; sourceTree = "<group>"; };
@@ -54,6 +56,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20EEE9CB25014A3000970DA6 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				20EEE9C9250148DC00970DA6 /* R.generated.swift */,
+				20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		3312EDE324FE84FE00158EB6 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,7 +76,7 @@
 		33B1F08124FFA83800DB6BA8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				33B1F091250002D400DB6BA8 /* GoogleService-Info.plist */,
+				20EEE9CB25014A3000970DA6 /* Generated */,
 				3312EDE324FE84FE00158EB6 /* Localization */,
 				33FF60C324FA45F80077D109 /* Assets.xcassets */,
 				33B1F09525000B7900DB6BA8 /* Colors.xcassets */,
@@ -161,9 +172,9 @@
 		33FF60B924FA45F40077D109 /* Cartoons */ = {
 			isa = PBXGroup;
 			children = (
-				33B1F08724FFEEF500DB6BA8 /* Components */,
-				33B1F08624FFEEE400DB6BA8 /* Services */,
 				33B1F08424FFEEB000DB6BA8 /* PresentationLayer */,
+				33B1F08624FFEEE400DB6BA8 /* Services */,
+				33B1F08724FFEEF500DB6BA8 /* Components */,
 				33B1F08124FFA83800DB6BA8 /* Resources */,
 				33FF60BC24FA45F40077D109 /* SceneDelegate.swift */,
 				33FF60BA24FA45F40077D109 /* AppDelegate.swift */,
@@ -196,10 +207,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33FF60CB24FA45F80077D109 /* Build configuration list for PBXNativeTarget "Cartoons" */;
 			buildPhases = (
+				EE1A48727CE3716BA3F4A172 /* [CP] Check Pods Manifest.lock */,
 				33FF60CE24FA48080077D109 /* SwiftLint */,
 				33B6608B25013DAD00CA562E /* Swift Format */,
 				33B66084250131D400CA562E /* RSwift */,
-				EE1A48727CE3716BA3F4A172 /* [CP] Check Pods Manifest.lock */,
 				33FF60B324FA45F40077D109 /* Sources */,
 				33FF60B424FA45F40077D109 /* Frameworks */,
 				33FF60B524FA45F40077D109 /* Resources */,
@@ -254,9 +265,9 @@
 			files = (
 				33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */,
 				33FF60C724FA45F80077D109 /* LaunchScreen.storyboard in Resources */,
-				33B1F092250002D400DB6BA8 /* GoogleService-Info.plist in Resources */,
 				3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */,
 				33FF60C424FA45F80077D109 /* Assets.xcassets in Resources */,
+				20EEE9CD25014B4500970DA6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,11 +288,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/Cartoons/Resources/R.generated.swift,
+				$SRCROOT/Cartoons/Resources/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/Cartoons/Resources/R.generated.swift\"\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/Cartoons/Resources/Generated/R.generated.swift\"\n";
 		};
 		33B6608B25013DAD00CA562E /* Swift Format */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -299,7 +310,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \"$SRCROOT\"\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    if which swiftformat >/dev/null; then\n        swiftformat .\n    else\n        echo \"install swiftformat please!\"\n    fi\nfi\n";
 		};
 		33FF60CE24FA48080077D109 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -368,6 +379,7 @@
 				33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				33B1F09F250024C800DB6BA8 /* StringExtension.swift in Sources */,
+				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
 				33B1F0A225002BD500DB6BA8 /* VerificationCodeTextField.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				33B1F08D24FFF7B200DB6BA8 /* AuthorizationView.swift in Sources */,

@@ -1,11 +1,3 @@
-//
-//  UIViewExtension.swift
-//  Cartoons
-//
-//  Created by Alena Nesterkina on 9/2/20.
-//  Copyright © 2020 AlenaNesterkina. All rights reserved.
-//
-
 import Foundation
 import SnapKit
 import UIKit
@@ -30,8 +22,7 @@ extension UIView {
                    right: NSLayoutXAxisAnchor?,
                    paddingTop: CGFloat, paddingLeft: CGFloat,
                    paddingBottom: CGFloat, paddingRight: CGFloat,
-                   width: CGFloat = 0, height: CGFloat = 0)
-    {
+                   width: CGFloat = 0, height: CGFloat = 0) {
         translatesAutoresizingMaskIntoConstraints = false
 
         if let top = top {

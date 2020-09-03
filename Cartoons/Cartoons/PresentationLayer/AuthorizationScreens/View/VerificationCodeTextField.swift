@@ -1,11 +1,3 @@
-//
-//  VerificationCodeTextField.swift
-//  Cartoons
-//
-//  Created by Alena Nesterkina on 9/2/20.
-//  Copyright © 2020 AlenaNesterkina. All rights reserved.
-//
-
 import UIKit
 
 class VerificationCodeTextField: UITextField {
@@ -21,12 +13,10 @@ class VerificationCodeTextField: UITextField {
         let labelStackView = createLabelsStackView(with: slotCount)
         addSubview(labelStackView)
 
-        NSLayoutConstraint.activate([
-            labelStackView.topAnchor.constraint(equalTo: topAnchor),
-            labelStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            labelStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            labelStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
+        NSLayoutConstraint.activate([labelStackView.topAnchor.constraint(equalTo: topAnchor),
+                                     labelStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                                     labelStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                                     labelStackView.bottomAnchor.constraint(equalTo: bottomAnchor)])
     }
 
     private func configureTextField() {
