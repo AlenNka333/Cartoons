@@ -1,7 +1,15 @@
-import SnapKit
-import UIKit
+//
+//  VerificationView.swift
+//  Cartoons
+//
+//  Created by Alena Nesterkina on 9/3/20.
+//  Copyright © 2020 AlenaNesterkina. All rights reserved.
+//
 
-class AuthorizationView: UIView {
+import UIKit
+import Rswift
+
+class VerificationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -11,12 +19,13 @@ class AuthorizationView: UIView {
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    private lazy var editPhoneLabel: UILabel = {
+    
+    private lazy var verificationLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(white: 1, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 17)
-        label.text = R.string.localizable.phone_label_key()
+        label.numberOfLines = 3
+        label.text = R.string.localizable.verification_message_key()
         return label
     }()
 
@@ -27,21 +36,9 @@ class AuthorizationView: UIView {
         return imgView
     }()
 
-    lazy var phoneNumberTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .none
-        textField.keyboardType = .numberPad
-        textField.layer.cornerRadius = 5
-        textField.backgroundColor = UIColor(named: R.color.login_button_color.name)?.withAlphaComponent(0.3)
-        textField.textColor = UIColor(white: 1, alpha: 0.9)
-        textField.font = UIFont.systemFont(ofSize: 17)
-        textField.autocorrectionType = .no
-        return textField
-    }()
-
-     lazy var sendCodeButton: UIButton = {
+    private lazy var continueButton: UIButton = {
         let button = UIButton()
-        let string = NSAttributedString(string: R.string.localizable.send_code_button_key(),
+        let string = NSAttributedString(string: R.string.localizable.continue_button_key(),
                                         attributes: [NSAttributedString.Key.font:
                                             UIFont.systemFont(ofSize: 18),
                                                      .foregroundColor: UIColor.white])
@@ -50,12 +47,16 @@ class AuthorizationView: UIView {
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor(named: R.color.send_code_button_color.name)?.withAlphaComponent(1).cgColor
+
         return button
     }()
 
     func mainStackView() -> UIStackView {
-        let stackView = UIStackView(arrangedSubviews: [editPhoneLabel, phoneNumberTextField, sendCodeButton])
+        let verificationTextField = OneTimeCodeTextField(frame: frame)
+        verificationTextField.setAnchor(width: 0, height: 70)
+        let stackView = UIStackView(arrangedSubviews: [verificationLabel, verificationTextField, continueButton])
         stackView.axis = .vertical
+        stackView.alignment = .fill
         stackView.distribution = .fillProportionally
         stackView.spacing = 10
         return stackView
@@ -73,10 +74,9 @@ class AuthorizationView: UIView {
                                       paddingLeft: 0,
                                       paddingBottom: 0,
                                       paddingRight: 0)
-        phoneNumberTextField.setAnchor(width: 0, height: 40)
-        sendCodeButton.setAnchor(width: 0, height: 50)
-        sendCodeButton.sendActions(for: .touchUpInside)
-        stackView.setAnchor(width: frame.width - 60, height: 130)
+        
+        continueButton.setAnchor(width: 0, height: 50)
+        stackView.setAnchor(width: frame.width - 60, height: 230)
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -150).isActive = true
         stackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }

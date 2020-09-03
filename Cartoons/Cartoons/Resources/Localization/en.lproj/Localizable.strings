@@ -8,5 +8,7 @@
 
 phone_label_key = "Enter your phone number";
 send_code_button_key = "Send verification code";
+verification_message_key = "Please, check your messages for a six-digit security code and enter it below";
+continue_button_key = "Submit";
 onBoarding_first_logo_key = "Watch cartoons online and offline";
 onBoarding_second_logo_key = "Find your favourite characters";

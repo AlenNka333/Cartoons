@@ -1,6 +1,6 @@
 import UIKit
 
-class AuthorizationViewController: UIViewController, UITextFieldDelegate {
+class AuthorizationViewController: UIViewController {
     var authView: AuthorizationView! //need to skip force unwrap
 
     override func viewDidLoad() {
@@ -25,8 +25,13 @@ class AuthorizationViewController: UIViewController, UITextFieldDelegate {
                            paddingBottom: 0,
                            paddingRight: 0)
         authView.phoneNumberTextField.delegate = self
+        authView.sendCodeButton.addTarget(self,
+                                          action: #selector(self.buttonClicked),
+                                          for: .touchUpInside)
     }
+}
 
+extension AuthorizationViewController {
     func format(with mask: String, phone: String) -> String {
         let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
@@ -42,6 +47,16 @@ class AuthorizationViewController: UIViewController, UITextFieldDelegate {
         return result
     }
     
+    @objc func buttonClicked() {
+        print("Button pressed   ")
+        let newViewController = VerificationCodeViewController()
+        self.present(newViewController,
+                     animated:true,
+                     completion:nil)
+    }
+}
+
+extension AuthorizationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else {
             return false

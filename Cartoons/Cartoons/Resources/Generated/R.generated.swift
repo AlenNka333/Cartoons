@@ -203,7 +203,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 4 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
     struct localizable {
       /// en translation: Enter your phone number
       ///
@@ -213,10 +213,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let onBoarding_second_logo_key = Rswift.StringResource(key: "onBoarding_second_logo_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please, check your messages for a six-digit security code and enter it below
+      ///
+      /// Locales: en
+      static let verification_message_key = Rswift.StringResource(key: "verification_message_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Send verification code
       ///
       /// Locales: en
       static let send_code_button_key = Rswift.StringResource(key: "send_code_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Submit
+      ///
+      /// Locales: en
+      static let continue_button_key = Rswift.StringResource(key: "continue_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Watch cartoons online and offline
       ///
       /// Locales: en
@@ -252,6 +260,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("onBoarding_second_logo_key", bundle: bundle, comment: "")
       }
 
+      /// en translation: Please, check your messages for a six-digit security code and enter it below
+      ///
+      /// Locales: en
+      static func verification_message_key(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("verification_message_key", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "verification_message_key"
+        }
+
+        return NSLocalizedString("verification_message_key", bundle: bundle, comment: "")
+      }
+
       /// en translation: Send verification code
       ///
       /// Locales: en
@@ -265,6 +288,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("send_code_button_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Submit
+      ///
+      /// Locales: en
+      static func continue_button_key(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("continue_button_key", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "continue_button_key"
+        }
+
+        return NSLocalizedString("continue_button_key", bundle: bundle, comment: "")
       }
 
       /// en translation: Watch cartoons online and offline
