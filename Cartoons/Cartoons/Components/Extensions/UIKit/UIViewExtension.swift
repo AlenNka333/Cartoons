@@ -52,18 +52,5 @@ extension UIView {
         if width != 0 {
             widthAnchor.constraint(equalToConstant: width).isActive = true
         }
-
-//        snp.makeConstraints { make in
-//            make.top.equalTo(self.snp.top).offset(paddingTop)
-//            make.left.equalTo(self.snp.left).offset(paddingLeft)
-//            make.right.equalTo(self.snp.right).offset(paddingRight)
-//            make.bottom.equalTo(self.snp.bottom).offset(paddingBottom)
-//            if height != 0 {
-//                make.height.equalTo(height)
-//            }
-//            if width != 0 {
-//                make.width.equalTo(width)
-//            }
-//        }
     }
 }

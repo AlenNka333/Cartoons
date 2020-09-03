@@ -1,7 +1,7 @@
 import UIKit
 
 class AuthorizationViewController: UIViewController, UITextFieldDelegate {
-    var authView: AuthorizationView! //!!!!!!!!!!
+    var authView: AuthorizationView! //need to skip force unwrap
 
     override func viewDidLoad() {
         super.viewDidLoad()
