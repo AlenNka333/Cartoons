@@ -6,6 +6,7 @@
   Copyright © 2020 AlenaNesterkina. All rights reserved.
 */
 
-sign_in_button_key = "Sign In";
+phone_label_key = "Enter your phone number";
+send_code_button_key = "Send verification code";
 onBoarding_first_logo_key = "Watch cartoons online and offline";
 onBoarding_second_logo_key = "Find your favourite characters";
