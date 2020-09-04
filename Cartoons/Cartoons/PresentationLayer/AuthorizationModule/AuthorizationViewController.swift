@@ -6,13 +6,11 @@ class AuthorizationViewController: UIViewController {
         return authView
     }()
     
-    private lazy var secondView = VerificationView(frame: view.frame)
-
+    var presenter: AuthorizationViewPresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         authView = AuthorizationView(frame: view.frame)
-
-        view.addSubview(secondView)
         view.addSubview(authView)
         
         authView.phoneNumberTextField.delegate = self
@@ -30,8 +28,7 @@ class AuthorizationViewController: UIViewController {
 
 extension AuthorizationViewController {
     @objc func buttonClicked() {
-        let newViewController = VerificationCodeViewController()
-        navigationController?.pushViewController(newViewController, animated: true)
+        presenter.tabSendCode()
     }
 }
 

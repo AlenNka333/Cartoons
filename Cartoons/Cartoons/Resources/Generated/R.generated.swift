@@ -147,7 +147,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 7 images.
+  /// This `R.image` struct is generated, and contains static references to 8 images.
   struct image {
     /// Image `app_label`.
     static let app_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "app_label")
@@ -161,6 +161,8 @@ struct R: Rswift.Validatable {
     static let forest_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "forest_background")
     /// Image `label`.
     static let label = Rswift.ImageResource(bundle: R.hostingBundle, name: "label")
+    /// Image `mickeyheadwithshadow`.
+    static let mickeyheadwithshadow = Rswift.ImageResource(bundle: R.hostingBundle, name: "mickeyheadwithshadow")
     /// Image `village_background`.
     static let village_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "village_background")
 
@@ -203,6 +205,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "label", bundle: ..., traitCollection: ...)`
     static func label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.label, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "mickeyheadwithshadow", bundle: ..., traitCollection: ...)`
+    static func mickeyheadwithshadow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.mickeyheadwithshadow, compatibleWith: traitCollection)
     }
     #endif
 
@@ -407,6 +416,7 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
 
       static func validate() throws {
+        if UIKit.UIImage(named: "label", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'label' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }

@@ -19,6 +19,9 @@
 		33B660C1250246CF00CA562E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C0250246CF00CA562E /* StringExtension.swift */; };
 		33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */; };
 		33B660CA25026DDD00CA562E /* AppNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C925026DDD00CA562E /* AppNavigationRouter.swift */; };
+		33B660CC2502D6E600CA562E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660CB2502D6E600CA562E /* UIViewControllerExtension.swift */; };
+		33B660CF2502DBD700CA562E /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660CE2502DBD700CA562E /* ModuleBuilder.swift */; };
+		33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */; };
 		33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF60BA24FA45F40077D109 /* AppDelegate.swift */; };
 		33FF60BD24FA45F40077D109 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF60BC24FA45F40077D109 /* SceneDelegate.swift */; };
 		33FF60C424FA45F80077D109 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FF60C324FA45F80077D109 /* Assets.xcassets */; };
@@ -39,6 +42,9 @@
 		33B660C0250246CF00CA562E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
 		33B660C925026DDD00CA562E /* AppNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationRouter.swift; sourceTree = "<group>"; };
+		33B660CB2502D6E600CA562E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		33B660CE2502DBD700CA562E /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVIewPresenter.swift; sourceTree = "<group>"; };
 		33FF60B724FA45F40077D109 /* Cartoons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartoons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF60BA24FA45F40077D109 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33FF60BC24FA45F40077D109 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +100,7 @@
 		33B1F08424FFEEB000DB6BA8 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				33B6608325010F8600CA562E /* AuthorizationScreens */,
+				33B6608325010F8600CA562E /* AuthorizationModule */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -148,7 +154,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		33B6608325010F8600CA562E /* AuthorizationScreens */ = {
+		33B6608325010F8600CA562E /* AuthorizationModule */ = {
 			isa = PBXGroup;
 			children = (
 				33B660C525026DA000CA562E /* Presenter */,
@@ -156,13 +162,14 @@
 				33B660BA250166C200CA562E /* VerificationCodeViewController.swift */,
 				33B1F0A025002B9100DB6BA8 /* View */,
 			);
-			path = AuthorizationScreens;
+			path = AuthorizationModule;
 			sourceTree = "<group>";
 		};
 		33B660B82501602C00CA562E /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
 				33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */,
+				33B660CB2502D6E600CA562E /* UIViewControllerExtension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -179,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */,
+				33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -189,6 +197,14 @@
 				33B660C925026DDD00CA562E /* AppNavigationRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		33B660CD2502DBC000CA562E /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				33B660CE2502DBD700CA562E /* ModuleBuilder.swift */,
+			);
+			path = Builder;
 			sourceTree = "<group>";
 		};
 		33FF60AE24FA45F40077D109 = {
@@ -212,6 +228,7 @@
 		33FF60B924FA45F40077D109 /* Cartoons */ = {
 			isa = PBXGroup;
 			children = (
+				33B660CD2502DBC000CA562E /* Builder */,
 				33B660C825026DC300CA562E /* Router */,
 				33B1F08424FFEEB000DB6BA8 /* PresentationLayer */,
 				33B1F08624FFEEE400DB6BA8 /* Services */,
@@ -418,13 +435,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */,
+				33B660CF2502DBD700CA562E /* ModuleBuilder.swift in Sources */,
 				33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				33B660C1250246CF00CA562E /* StringExtension.swift in Sources */,
 				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				33B1F08D24FFF7B200DB6BA8 /* AuthorizationView.swift in Sources */,
+				33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */,
 				33B660BF250167DA00CA562E /* VerificationView.swift in Sources */,
+				33B660CC2502D6E600CA562E /* UIViewControllerExtension.swift in Sources */,
 				33FF60BD24FA45F40077D109 /* SceneDelegate.swift in Sources */,
 				33B660CA25026DDD00CA562E /* AppNavigationRouter.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationCodeViewController.swift in Sources */,

@@ -9,10 +9,10 @@
 import UIKit
 
 class VerificationCodeViewController: UIViewController {
+    var presenter: VerificationViewPresenterProtocol!
     override func viewDidLoad() {
         super.viewDidLoad()
         let mainView = VerificationView(frame: view.frame)
         view.addSubview(mainView)
     }
-
 }
