@@ -10,10 +10,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        window?.rootViewController = AuthorizationViewController()
+        window = UIWindow(windowScene: windowScene)
+        let navigationController = UINavigationController(rootViewController: AuthorizationViewController())
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_: UIScene) {

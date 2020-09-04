@@ -15,8 +15,10 @@
 		33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
 		33B660BB250166C200CA562E /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660BA250166C200CA562E /* VerificationCodeViewController.swift */; };
-		33B660BD250166EE00CA562E /* OneTimeCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660BC250166EE00CA562E /* OneTimeCodeTextField.swift */; };
 		33B660BF250167DA00CA562E /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660BE250167DA00CA562E /* VerificationView.swift */; };
+		33B660C1250246CF00CA562E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C0250246CF00CA562E /* StringExtension.swift */; };
+		33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */; };
+		33B660CA25026DDD00CA562E /* AppNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C925026DDD00CA562E /* AppNavigationRouter.swift */; };
 		33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF60BA24FA45F40077D109 /* AppDelegate.swift */; };
 		33FF60BD24FA45F40077D109 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF60BC24FA45F40077D109 /* SceneDelegate.swift */; };
 		33FF60C424FA45F80077D109 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FF60C324FA45F80077D109 /* Assets.xcassets */; };
@@ -33,8 +35,10 @@
 		33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		33B660BA250166C200CA562E /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
-		33B660BC250166EE00CA562E /* OneTimeCodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeCodeTextField.swift; sourceTree = "<group>"; };
 		33B660BE250167DA00CA562E /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
+		33B660C0250246CF00CA562E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
+		33B660C925026DDD00CA562E /* AppNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationRouter.swift; sourceTree = "<group>"; };
 		33FF60B724FA45F40077D109 /* Cartoons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartoons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF60BA24FA45F40077D109 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33FF60BC24FA45F40077D109 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				33B1F08C24FFF7B200DB6BA8 /* AuthorizationView.swift */,
-				33B660BC250166EE00CA562E /* OneTimeCodeTextField.swift */,
 				33B660BE250167DA00CA562E /* VerificationView.swift */,
 			);
 			path = View;
@@ -148,6 +151,7 @@
 		33B6608325010F8600CA562E /* AuthorizationScreens */ = {
 			isa = PBXGroup;
 			children = (
+				33B660C525026DA000CA562E /* Presenter */,
 				33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */,
 				33B660BA250166C200CA562E /* VerificationCodeViewController.swift */,
 				33B1F0A025002B9100DB6BA8 /* View */,
@@ -166,8 +170,25 @@
 		33B660B92501604000CA562E /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				33B660C0250246CF00CA562E /* StringExtension.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		33B660C525026DA000CA562E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		33B660C825026DC300CA562E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				33B660C925026DDD00CA562E /* AppNavigationRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		33FF60AE24FA45F40077D109 = {
@@ -191,6 +212,7 @@
 		33FF60B924FA45F40077D109 /* Cartoons */ = {
 			isa = PBXGroup;
 			children = (
+				33B660C825026DC300CA562E /* Router */,
 				33B1F08424FFEEB000DB6BA8 /* PresentationLayer */,
 				33B1F08624FFEEE400DB6BA8 /* Services */,
 				33B1F08724FFEEF500DB6BA8 /* Components */,
@@ -395,14 +417,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */,
 				33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
-				33B660BD250166EE00CA562E /* OneTimeCodeTextField.swift in Sources */,
+				33B660C1250246CF00CA562E /* StringExtension.swift in Sources */,
 				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				33B1F08D24FFF7B200DB6BA8 /* AuthorizationView.swift in Sources */,
 				33B660BF250167DA00CA562E /* VerificationView.swift in Sources */,
 				33FF60BD24FA45F40077D109 /* SceneDelegate.swift in Sources */,
+				33B660CA25026DDD00CA562E /* AppNavigationRouter.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationCodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,7 +6,7 @@
   Copyright © 2020 AlenaNesterkina. All rights reserved.
 */
 
-phone_label_key = "Enter your phone number";
+phone_label_key = "Phone number";
 send_code_button_key = "Send verification code";
 verification_message_key = "Please, check your messages for a six-digit security code and enter it below";
 continue_button_key = "Submit";
