@@ -9,8 +9,8 @@
 import Foundation
 
 extension String {
-    static func format(with mask: String, phone: String) -> String {
-        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+    func format(with mask: String) -> String {
+        let numbers = replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
         var index = numbers.startIndex
         for character in mask where index < numbers.endIndex {

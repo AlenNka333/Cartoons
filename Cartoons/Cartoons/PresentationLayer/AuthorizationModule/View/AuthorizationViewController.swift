@@ -1,7 +1,8 @@
-import SnapKit
 import UIKit
 
-class AuthorizationView: UIView {
+class AuthorizationViewController: UIViewController {
+    var presenter: AuthorizationViewPresenterProtocol!
+    
     private lazy var labelTextView: UIImageView = {
         let label = UIImageView()
         label.image = R.image.cartoons_label_3()
@@ -22,7 +23,7 @@ class AuthorizationView: UIView {
         let yView = UIView()
         yView.backgroundColor = .black
         yView.alpha = 0.6
-        yView.setAnchor(width: frame.width - 30, height: frame.height / 2)
+        yView.setAnchor(width: self.view.frame.width - 30, height: self.view.frame.height / 2)
         yView.layer.masksToBounds = false
         yView.layer.shadowColor = UIColor.black.cgColor
         yView.layer.shadowRadius = 4.0
@@ -41,7 +42,9 @@ class AuthorizationView: UIView {
     lazy var phoneNumberTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .none
-        textField.attributedPlaceholder = NSAttributedString(string: R.string.localizable.phone_label_key(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textField.attributedPlaceholder =
+            NSAttributedString(string: R.string.localizable.phone_label_key(), attributes:
+            [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.3)])
         textField.keyboardType = .numberPad
         textField.layer.cornerRadius = 5
         textField.backgroundColor = UIColor(named: R.color.login_button_color.name)?.withAlphaComponent(0.3)
@@ -64,32 +67,30 @@ class AuthorizationView: UIView {
         button.layer.borderColor = UIColor(named: R.color.send_code_button_color.name)?.withAlphaComponent(1).cgColor
         return button
     }()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setup()
+        self.setupToHideKeyboardOnTapOnView()
+        phoneNumberTextField.delegate = self
+        sendCodeButton.addTarget(self,
+                                          action: #selector(self.buttonClicked),
+                                          for: .touchUpInside)
     }
-
-    @available(*, unavailable)
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
-
-    private lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [phoneNumberTextField, sendCodeButton])
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 10
-        stackView.setAnchor(width: frame.width - 60, height: 100)
-        return stackView
-    }()
     
     func setup() {
-        addSubview(backgroundImageView)
-        addSubview(blackView)
-        addSubview(labelTextView)
-        addSubview(labelImageView)
-        addSubview(mainStackView)
+        view.addSubview(backgroundImageView)
+        view.addSubview(blackView)
+        view.addSubview(labelTextView)
+        view.addSubview(labelImageView)
+        view.addSubview(phoneNumberTextField)
+        view.addSubview(sendCodeButton)
         setConstraints()
     }
     
@@ -103,6 +104,7 @@ class AuthorizationView: UIView {
         blackView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100)
             $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
         }
         labelTextView.snp.makeConstraints {
             $0.top.equalTo(blackView).offset(20)
@@ -112,16 +114,39 @@ class AuthorizationView: UIView {
             $0.top.equalTo(labelTextView).offset(30)
             $0.centerX.equalTo(blackView)
         }
+        
         phoneNumberTextField.snp.makeConstraints {
-            $0.width.equalTo(0)
+            $0.width.equalTo(view.frame.width - 100)
             $0.height.equalTo(40)
+            $0.centerX.equalTo(view.center)
+            $0.centerY.equalTo(blackView)
         }
         sendCodeButton.snp.makeConstraints {
-            $0.width.equalTo(0)
+            $0.width.equalTo(view.frame.width - 100)
             $0.height.equalTo(50)
+            $0.centerX.equalTo(view.center)
+            $0.top.equalTo(phoneNumberTextField).offset(60)
         }
-        
-        mainStackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30).isActive = true
-        mainStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    }
+}
+
+extension AuthorizationViewController {
+    @objc func buttonClicked() {
+        presenter.tabSendCode()
+    }
+}
+
+extension AuthorizationViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.placeholder = nil
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else {
+            return false
+        }
+        let newString = (text as NSString).replacingCharacters(in: range, with: string)
+        textField.text = newString.format(with: "+XXX (XX) XXX-XX-XX")
+        return false
     }
 }

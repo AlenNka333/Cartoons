@@ -1,5 +1,5 @@
 //
-//  VerificationView.swift
+//  VerificationCodeViewController.swift
 //  Cartoons
 //
 //  Created by Alena Nesterkina on 9/3/20.
@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Rswift
 
-class VerificationView: UIView {
+class VerificationCodeViewController: UIViewController {
+    var presenter: VerificationViewPresenterProtocol!
+    
     private lazy var verificationLabel: UILabel = {
         let label = UILabel()
         label.text = R.string.localizable.verification_message_key()
@@ -17,7 +18,7 @@ class VerificationView: UIView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
-        label.setAnchor(width: frame.width - 60, height: 0)
+        label.setAnchor(width: self.view.frame.width - 60, height: 0)
         return label
     }()
     
@@ -25,7 +26,7 @@ class VerificationView: UIView {
         let yView = UIView()
         yView.backgroundColor = .black
         yView.alpha = 0.6
-        yView.setAnchor(width: frame.width - 30, height: frame.height / 2)
+        yView.setAnchor(width: self.view.frame.width - 30, height: self.view.frame.height / 2)
         yView.layer.masksToBounds = false
         yView.layer.shadowColor = UIColor.black.cgColor
         yView.layer.shadowRadius = 4.0
@@ -69,31 +70,19 @@ class VerificationView: UIView {
         return button
     }()
     
-    private lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [otpCodeTextField, verifyButton])
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 10
-        stackView.setAnchor(width: frame.width - 60, height: 100)
-        return stackView
-    }()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.setupToHideKeyboardOnTapOnView()
         setup()
     }
-
-    @available(*, unavailable)
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    
     func setup() {
-        addSubview(backgroundImageView)
-        addSubview(blackView)
-        //addSubview(timerLabel)
-        addSubview(verificationLabel)
-        addSubview(mainStackView)
+        view.addSubview(backgroundImageView)
+        view.addSubview(blackView)
+        view.addSubview(verificationLabel)
+        view.addSubview(otpCodeTextField)
+        view.addSubview(verifyButton)
         setConstraints()
     }
     
@@ -107,21 +96,23 @@ class VerificationView: UIView {
         blackView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100)
             $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
         }
         verificationLabel.snp.makeConstraints {
             $0.top.equalTo(blackView).offset(60)
             $0.centerX.equalTo(blackView)
         }
         otpCodeTextField.snp.makeConstraints {
-            $0.width.equalTo(0)
+            $0.width.equalTo(view.frame.width - 100)
             $0.height.equalTo(40)
+            $0.centerX.equalTo(view.center)
+            $0.centerY.equalTo(blackView)
         }
         verifyButton.snp.makeConstraints {
-            $0.width.equalTo(0)
+            $0.width.equalTo(view.frame.width - 100)
             $0.height.equalTo(50)
+            $0.centerX.equalTo(view.center)
+            $0.top.equalTo(otpCodeTextField).offset(60)
         }
-        
-        mainStackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30).isActive = true
-        mainStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }
