@@ -6,7 +6,7 @@ class AuthorizationViewController: UIViewController {
     
     private lazy var labelTextView: UIImageView = {
         let label = UIImageView()
-        label.image = R.image.cartoons_label_3()
+        label.image = R.image.cartoons_label()
         label.contentMode = .scaleAspectFill
         label.setAnchor(width: 250, height: 100)
         return label
@@ -14,9 +14,9 @@ class AuthorizationViewController: UIViewController {
     
     private lazy var labelImageView: UIImageView = {
         let label = UIImageView()
-        label.image = R.image.label()
+        label.image = R.image.logo()
         label.contentMode = .scaleAspectFill
-        label.setAnchor(width: 150, height: 150)
+        label.setAnchor(width: 100, height: 100)
         return label
     }()
     
@@ -49,7 +49,7 @@ class AuthorizationViewController: UIViewController {
         textField.textContentType = .telephoneNumber
         textField.keyboardType = .numberPad
         textField.layer.cornerRadius = 5
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height:textField.frame.height))
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
         textField.backgroundColor = R.color.login_button_color()?.withAlphaComponent(0.3)
         textField.textColor = UIColor(white: 1, alpha: 0.9)
@@ -114,7 +114,7 @@ class AuthorizationViewController: UIViewController {
             $0.centerX.equalTo(blackView)
         }
         labelImageView.snp.makeConstraints {
-            $0.top.equalTo(labelTextView).offset(30)
+            $0.top.equalTo(labelTextView).offset(100)
             $0.centerX.equalTo(blackView)
         }
         
@@ -144,7 +144,7 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
 extension AuthorizationViewController {
     @objc func buttonClicked() {
         guard let number = phoneNumberTextField.text else {
-            //presenter.showError()
+            presenter.showError(error: AuthorizationError.emptyPhoneNumber)
             return
         }
         presenter.sendPhoneNumberAction(number: number)

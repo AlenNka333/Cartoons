@@ -18,7 +18,7 @@ class FirebaseService {
             } else {
                 print(verificationID)
                 
-                UserDefaults.standard.set(verificationID, forKey: "firebase_verification")
+                UserDefaults.standard.set(verificationID, forKey: Constants.verificationId.rawValue)
                 UserDefaults.standard.synchronize()
             }
         }

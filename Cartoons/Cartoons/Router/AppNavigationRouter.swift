@@ -41,6 +41,5 @@ class Router: RouterProtocol {
         if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)
         }
-        
     }
 }

@@ -26,4 +26,7 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
             error == nil ? () : self?.view.setError(error: error)
         }
     }
+    func showError(error: Error) {
+        view.setError(error: error)
+    }
 }

@@ -16,6 +16,7 @@
 		332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */; };
 		332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */; };
 		332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36025060746008A8F29 /* AuthorizationErrors.swift */; };
+		332BA36925069D38008A8F29 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36825069D38008A8F29 /* Constants.swift */; };
 		33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */; };
 		33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
@@ -42,6 +43,7 @@
 		332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewPresenterProtocol.swift; sourceTree = "<group>"; };
 		332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewProtocol.swift; sourceTree = "<group>"; };
 		332BA36025060746008A8F29 /* AuthorizationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationErrors.swift; sourceTree = "<group>"; };
+		332BA36825069D38008A8F29 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -162,6 +164,14 @@
 			children = (
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		332BA36725069D11008A8F29 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				332BA36825069D38008A8F29 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		33B1F08124FFA83800DB6BA8 /* Resources */ = {
@@ -293,6 +303,7 @@
 		33FF60B924FA45F40077D109 /* Cartoons */ = {
 			isa = PBXGroup;
 			children = (
+				332BA36725069D11008A8F29 /* Constants */,
 				332BA35E25060722008A8F29 /* Errors */,
 				332BA34F250600DF008A8F29 /* Firebase */,
 				33B660CD2502DBC000CA562E /* Builder */,
@@ -516,6 +527,7 @@
 				332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */,
 				33B660CA25026DDD00CA562E /* AppNavigationRouter.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationCodeViewController.swift in Sources */,
+				332BA36925069D38008A8F29 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

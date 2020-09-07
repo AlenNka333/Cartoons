@@ -10,17 +10,16 @@ import Foundation
 import FirebaseAuth
 
 class FirebaseManager {
-    
     let firebaseManager: FirebaseService
     
     init() {
         firebaseManager = FirebaseService()
     }
     
-    func sendPhoneNumber(number: String, completion: @escaping (Error?) -> ()) {
+    func sendPhoneNumber(number: String, completion: @escaping (Error?) -> Void) {
         let formattedNumber = String(number.filter { !" -".contains($0)})
         if !number.isEmpty {
-            firebaseManager.sendPhoneToFirebase(number: formattedNumber) { (error) in
+            firebaseManager.sendPhoneToFirebase(number: formattedNumber) { error in
                 error == nil ? completion(nil) : completion(error)
             }
         } else {

@@ -180,57 +180,21 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 8 images.
+  /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
-    /// Image `app_label`.
-    static let app_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "app_label")
-    /// Image `cartoons_label_3`.
-    static let cartoons_label_3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "cartoons_label_3")
-    /// Image `cartoons_label_unic`.
-    static let cartoons_label_unic = Rswift.ImageResource(bundle: R.hostingBundle, name: "cartoons_label_unic")
     /// Image `cartoons_label`.
     static let cartoons_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "cartoons_label")
-    /// Image `forest_background`.
-    static let forest_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "forest_background")
     /// Image `label`.
     static let label = Rswift.ImageResource(bundle: R.hostingBundle, name: "label")
-    /// Image `mickeyheadwithshadow`.
-    static let mickeyheadwithshadow = Rswift.ImageResource(bundle: R.hostingBundle, name: "mickeyheadwithshadow")
+    /// Image `logo`.
+    static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo")
     /// Image `village_background`.
     static let village_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "village_background")
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "app_label", bundle: ..., traitCollection: ...)`
-    static func app_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.app_label, compatibleWith: traitCollection)
-    }
-    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "cartoons_label", bundle: ..., traitCollection: ...)`
     static func cartoons_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.cartoons_label, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cartoons_label_3", bundle: ..., traitCollection: ...)`
-    static func cartoons_label_3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cartoons_label_3, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "cartoons_label_unic", bundle: ..., traitCollection: ...)`
-    static func cartoons_label_unic(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.cartoons_label_unic, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "forest_background", bundle: ..., traitCollection: ...)`
-    static func forest_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.forest_background, compatibleWith: traitCollection)
     }
     #endif
 
@@ -242,9 +206,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "mickeyheadwithshadow", bundle: ..., traitCollection: ...)`
-    static func mickeyheadwithshadow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.mickeyheadwithshadow, compatibleWith: traitCollection)
+    /// `UIImage(named: "logo", bundle: ..., traitCollection: ...)`
+    static func logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.logo, compatibleWith: traitCollection)
     }
     #endif
 
@@ -419,7 +383,7 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
 
       static func validate() throws {
-        if UIKit.UIImage(named: "label", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'label' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logo' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }
