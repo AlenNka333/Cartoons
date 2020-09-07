@@ -105,14 +105,18 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 3 colors.
+  /// This `R.color` struct is generated, and contains static references to 5 colors.
   struct color {
     /// Color `login_button_color`.
     static let login_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "login_button_color")
+    /// Color `picotee_blue`.
+    static let picotee_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picotee_blue")
     /// Color `send_code_button_color`.
     static let send_code_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "send_code_button_color")
     /// Color `send_code_button_error`.
     static let send_code_button_error = Rswift.ColorResource(bundle: R.hostingBundle, name: "send_code_button_error")
+    /// Color `wisteria`.
+    static let wisteria = Rswift.ColorResource(bundle: R.hostingBundle, name: "wisteria")
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "login_button_color", bundle: ..., traitCollection: ...)`
@@ -120,6 +124,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func login_button_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.login_button_color, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "picotee_blue", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func picotee_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.picotee_blue, compatibleWith: traitCollection)
     }
     #endif
 
@@ -138,6 +151,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func send_code_button_error(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.send_code_button_error, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "wisteria", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func wisteria(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.wisteria, compatibleWith: traitCollection)
     }
     #endif
 

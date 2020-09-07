@@ -36,12 +36,12 @@ class VerificationCodeViewController: UIViewController {
         return yView
     }()
 
-    private lazy var backgroundImageView: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: R.image.village_background.name)
-        imgView.contentMode = .scaleAspectFill
-        return imgView
-    }()
+//    private lazy var backgroundImageView: UIImageView = {
+//        let imgView = UIImageView()
+//        imgView.image = UIImage(named: R.image.village_background.name)
+//        imgView.contentMode = .scaleAspectFill
+//        return imgView
+//    }()
 
     lazy var otpCodeTextField: UITextField = {
         let textField = UITextField()
@@ -76,6 +76,7 @@ class VerificationCodeViewController: UIViewController {
         super.viewDidLoad()
         self.setupToHideKeyboardOnTapOnView()
         setup()
+        self.view.backgroundColor = .green
         verifyWithOTP()
     }
     
@@ -97,7 +98,7 @@ class VerificationCodeViewController: UIViewController {
     }
     
     func setup() {
-        view.addSubview(backgroundImageView)
+//        view.addSubview(backgroundImageView)
         view.addSubview(blackView)
         view.addSubview(verificationLabel)
         view.addSubview(otpCodeTextField)
@@ -106,12 +107,12 @@ class VerificationCodeViewController: UIViewController {
     }
     
     func setConstraints() {
-        backgroundImageView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-        }
+//        backgroundImageView.snp.makeConstraints {
+//            $0.top.equalToSuperview()
+//            $0.bottom.equalToSuperview()
+//            $0.leading.equalToSuperview()
+//            $0.trailing.equalToSuperview()
+//        }
         blackView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100)
             $0.centerX.equalToSuperview()

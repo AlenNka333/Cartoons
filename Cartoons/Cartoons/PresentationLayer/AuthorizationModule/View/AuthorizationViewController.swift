@@ -33,12 +33,12 @@ class AuthorizationViewController: UIViewController {
         return yView
     }()
 
-    private lazy var backgroundImageView: UIImageView = {
-        let imgView = UIImageView()
-        imgView.image = UIImage(named: R.image.village_background.name)
-        imgView.contentMode = .scaleAspectFill
-        return imgView
-    }()
+//    private lazy var backgroundImageView: UIImageView = {
+//        let imgView = UIImageView()
+//        imgView.image = R.image.village_background()
+//        imgView.contentMode = .scaleAspectFill
+//        return imgView
+//    }()
 
     lazy var phoneNumberTextField: UITextField = {
         let textField = UITextField()
@@ -49,7 +49,9 @@ class AuthorizationViewController: UIViewController {
         textField.textContentType = .telephoneNumber
         textField.keyboardType = .numberPad
         textField.layer.cornerRadius = 5
-        textField.backgroundColor = UIColor(named: R.color.login_button_color.name)?.withAlphaComponent(0.3)
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height:textField.frame.height))
+        textField.leftViewMode = .always
+        textField.backgroundColor = R.color.login_button_color()?.withAlphaComponent(0.3)
         textField.textColor = UIColor(white: 1, alpha: 0.9)
         textField.font = UIFont.systemFont(ofSize: 17)
         textField.autocorrectionType = .no
@@ -73,6 +75,7 @@ class AuthorizationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        self.view.backgroundColor = .red
         self.setupToHideKeyboardOnTapOnView()
         phoneNumberTextField.delegate = self
         sendCodeButton.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
@@ -85,7 +88,7 @@ class AuthorizationViewController: UIViewController {
     }
     
     func setup() {
-        view.addSubview(backgroundImageView)
+//        view.addSubview(backgroundImageView)
         view.addSubview(blackView)
         view.addSubview(labelTextView)
         view.addSubview(labelImageView)
@@ -95,12 +98,12 @@ class AuthorizationViewController: UIViewController {
     }
     
     func setConstraints() {
-        backgroundImageView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-        }
+//        backgroundImageView.snp.makeConstraints {
+//            $0.top.equalToSuperview()
+//            $0.bottom.equalToSuperview()
+//            $0.leading.equalToSuperview()
+//            $0.trailing.equalToSuperview()
+//        }
         blackView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100)
             $0.centerX.equalToSuperview()

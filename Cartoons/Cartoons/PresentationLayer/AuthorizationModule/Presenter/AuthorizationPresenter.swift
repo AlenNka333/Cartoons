@@ -21,8 +21,9 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     }
     
     func sendPhoneNumberAction(number: String) {
-        firebaseManager.sendPhoneNumber(number: number) { [weak self] (error) in
-            error == nil ? self?.router?.createVerification() : self?.view.setError(error: error)
+        router?.createVerification()
+        firebaseManager.sendPhoneNumber(number: number) { [weak self] error in
+            error == nil ? () : self?.view.setError(error: error)
         }
     }
 }

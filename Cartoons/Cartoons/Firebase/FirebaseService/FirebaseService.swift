@@ -11,13 +11,15 @@ import FirebaseAuth
 
 class FirebaseService {
     
-    func sendPhoneToFirebase(number: String, completion: @escaping (Error?) -> ()) {
-        PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
-            if error == nil {
-                //Save to KeyChain verificationID
-                completion(nil)
-            } else {
+    func sendPhoneToFirebase(number: String, completion: @escaping (Error?) -> Void) {
+        PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { verificationID, error in
+            if error != nil {
                 completion(error)
+            } else {
+                print(verificationID)
+                
+                UserDefaults.standard.set(verificationID, forKey: "firebase_verification")
+                UserDefaults.standard.synchronize()
             }
         }
     }

@@ -116,22 +116,12 @@
 			path = FirebaseService;
 			sourceTree = "<group>";
 		};
-		332BA35C250605F5008A8F29 /* PhoneAuthPresenter */ = {
-			isa = PBXGroup;
-			children = (
-				33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */,
-				332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */,
-				332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */,
-			);
-			path = PhoneAuthPresenter;
-			sourceTree = "<group>";
-		};
-		332BA35D25060636008A8F29 /* OTPVerificationPresenter */ = {
+		332BA35D25060636008A8F29 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */,
 			);
-			path = OTPVerificationPresenter;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		332BA35E25060722008A8F29 /* Errors */ = {
@@ -150,6 +140,30 @@
 			path = AuthErrors;
 			sourceTree = "<group>";
 		};
+		332BA36225064418008A8F29 /* OTPVerificationModule */ = {
+			isa = PBXGroup;
+			children = (
+				332BA35D25060636008A8F29 /* Presenter */,
+				332BA3632506445C008A8F29 /* View */,
+			);
+			path = OTPVerificationModule;
+			sourceTree = "<group>";
+		};
+		332BA3632506445C008A8F29 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				33B660BA250166C200CA562E /* VerificationCodeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		332BA364250646F6008A8F29 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		33B1F08124FFA83800DB6BA8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,23 +180,9 @@
 			isa = PBXGroup;
 			children = (
 				33B6608325010F8600CA562E /* AuthorizationModule */,
+				332BA36225064418008A8F29 /* OTPVerificationModule */,
 			);
 			path = PresentationLayer;
-			sourceTree = "<group>";
-		};
-		33B1F08524FFEECB00DB6BA8 /* AuthorizationService */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AuthorizationService;
-			sourceTree = "<group>";
-		};
-		33B1F08624FFEEE400DB6BA8 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				33B1F08524FFEECB00DB6BA8 /* AuthorizationService */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		33B1F08724FFEEF500DB6BA8 /* Components */ = {
@@ -204,6 +204,7 @@
 		33B1F08924FFEF0B00DB6BA8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				332BA364250646F6008A8F29 /* Custom */,
 				33B660B92501604000CA562E /* Foundation */,
 				33B660B82501602C00CA562E /* UIKit */,
 			);
@@ -214,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */,
-				33B660BA250166C200CA562E /* VerificationCodeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -248,8 +248,9 @@
 		33B660C525026DA000CA562E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				332BA35C250605F5008A8F29 /* PhoneAuthPresenter */,
-				332BA35D25060636008A8F29 /* OTPVerificationPresenter */,
+				33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */,
+				332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */,
+				332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -297,7 +298,6 @@
 				33B660CD2502DBC000CA562E /* Builder */,
 				33B660C825026DC300CA562E /* Router */,
 				33B1F08424FFEEB000DB6BA8 /* PresentationLayer */,
-				33B1F08624FFEEE400DB6BA8 /* Services */,
 				33B1F08724FFEEF500DB6BA8 /* Components */,
 				33B1F08124FFA83800DB6BA8 /* Resources */,
 				33FF60BA24FA45F40077D109 /* AppDelegate.swift */,
