@@ -65,6 +65,7 @@ PODS:
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.4.0)
+  - KeychainAccess (4.2.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -81,6 +82,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
+  - KeychainAccess
   - R.swift
   - SnapKit
   - SwiftFormat/CLI
@@ -98,6 +100,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - KeychainAccess
     - nanopb
     - PromisesObjC
     - R.swift
@@ -117,6 +120,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  KeychainAccess: 3f760109aa99b05d0f231e28b22642da7153e38a
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
@@ -125,6 +129,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 49efde7a5820f9a4fc3cfc04c087556e319ad4a1
   SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
 
-PODFILE CHECKSUM: e5cd7c96f2470edd2d1822e2f4e550a53076eec0
+PODFILE CHECKSUM: 144148572fe9c1e76554efa6b2d04c69588d2683
 
 COCOAPODS: 1.9.3
