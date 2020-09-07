@@ -105,12 +105,14 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 2 colors.
+  /// This `R.color` struct is generated, and contains static references to 3 colors.
   struct color {
     /// Color `login_button_color`.
     static let login_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "login_button_color")
     /// Color `send_code_button_color`.
     static let send_code_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "send_code_button_color")
+    /// Color `send_code_button_error`.
+    static let send_code_button_error = Rswift.ColorResource(bundle: R.hostingBundle, name: "send_code_button_error")
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "login_button_color", bundle: ..., traitCollection: ...)`
@@ -127,6 +129,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func send_code_button_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.send_code_button_color, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "send_code_button_error", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func send_code_button_error(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.send_code_button_error, compatibleWith: traitCollection)
     }
     #endif
 

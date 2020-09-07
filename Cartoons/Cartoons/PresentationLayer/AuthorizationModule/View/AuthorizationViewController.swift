@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class AuthorizationViewController: UIViewController {
     var presenter: AuthorizationViewPresenterProtocol!
@@ -45,6 +46,7 @@ class AuthorizationViewController: UIViewController {
         textField.attributedPlaceholder =
             NSAttributedString(string: R.string.localizable.phone_label_key(), attributes:
             [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.3)])
+        textField.textContentType = .telephoneNumber
         textField.keyboardType = .numberPad
         textField.layer.cornerRadius = 5
         textField.backgroundColor = UIColor(named: R.color.login_button_color.name)?.withAlphaComponent(0.3)
@@ -73,9 +75,7 @@ class AuthorizationViewController: UIViewController {
         setup()
         self.setupToHideKeyboardOnTapOnView()
         phoneNumberTextField.delegate = self
-        sendCodeButton.addTarget(self,
-                                          action: #selector(self.buttonClicked),
-                                          for: .touchUpInside)
+        sendCodeButton.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,9 +130,21 @@ class AuthorizationViewController: UIViewController {
     }
 }
 
+extension AuthorizationViewController: AuthorizationViewProtocol {
+    func setError(error: Error?) {
+        let alert = UIAlertController(title: "", message: error?.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+}
+
 extension AuthorizationViewController {
     @objc func buttonClicked() {
-        presenter.tabSendCode()
+        guard let number = phoneNumberTextField.text else {
+            //presenter.showError()
+            return
+        }
+        presenter.sendPhoneNumberAction(number: number)
     }
 }
 
@@ -146,7 +158,7 @@ extension AuthorizationViewController: UITextFieldDelegate {
             return false
         }
         let newString = (text as NSString).replacingCharacters(in: range, with: string)
-        textField.text = newString.format(with: "+XXX (XX) XXX-XX-XX")
+        textField.text = newString.format(with: "+XXX XX XXX-XX-XX")
         return false
     }
 }

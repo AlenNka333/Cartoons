@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class VerificationCodeViewController: UIViewController {
     var presenter: VerificationViewPresenterProtocol!
@@ -75,6 +76,24 @@ class VerificationCodeViewController: UIViewController {
         super.viewDidLoad()
         self.setupToHideKeyboardOnTapOnView()
         setup()
+        verifyWithOTP()
+    }
+    
+    func verifyWithOTP() {
+        guard let verificationID = UserDefaults.standard.string(forKey: "firebase_verification") else {
+            return
+        }
+        guard let code = otpCodeTextField.text, code != "" else {
+            return
+        }
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: code)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+        if let error = error {
+           print(error.localizedDescription)
+          } else {
+            print("Success")
+           }
+    }
     }
     
     func setup() {

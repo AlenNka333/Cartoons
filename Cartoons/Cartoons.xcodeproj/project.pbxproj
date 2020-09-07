@@ -10,6 +10,12 @@
 		20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EEE9C9250148DC00970DA6 /* R.generated.swift */; };
 		20EEE9CD25014B4500970DA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */; };
 		3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3312EDE824FE859F00158EB6 /* Localizable.strings */; };
+		332BA3532506014B008A8F29 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA3522506014B008A8F29 /* FirebaseManager.swift */; };
+		332BA35525060174008A8F29 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA35425060174008A8F29 /* FirebaseService.swift */; };
+		332BA357250602DD008A8F29 /* AppNavigationRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA356250602DD008A8F29 /* AppNavigationRouterProtocol.swift */; };
+		332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */; };
+		332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */; };
+		332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36025060746008A8F29 /* AuthorizationErrors.swift */; };
 		33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */; };
 		33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
@@ -30,6 +36,12 @@
 		20EEE9C9250148DC00970DA6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Cartoons/Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3312EDE724FE859F00158EB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		332BA3522506014B008A8F29 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		332BA35425060174008A8F29 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		332BA356250602DD008A8F29 /* AppNavigationRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationRouterProtocol.swift; sourceTree = "<group>"; };
+		332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewPresenterProtocol.swift; sourceTree = "<group>"; };
+		332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewProtocol.swift; sourceTree = "<group>"; };
+		332BA36025060746008A8F29 /* AuthorizationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationErrors.swift; sourceTree = "<group>"; };
 		33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		33B1F08E24FFFAFC00DB6BA8 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -77,6 +89,65 @@
 				3312EDE824FE859F00158EB6 /* Localizable.strings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		332BA34F250600DF008A8F29 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				332BA35125060128008A8F29 /* FirebaseService */,
+				332BA350250600E8008A8F29 /* FirebaseManager */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		332BA350250600E8008A8F29 /* FirebaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				332BA3522506014B008A8F29 /* FirebaseManager.swift */,
+			);
+			path = FirebaseManager;
+			sourceTree = "<group>";
+		};
+		332BA35125060128008A8F29 /* FirebaseService */ = {
+			isa = PBXGroup;
+			children = (
+				332BA35425060174008A8F29 /* FirebaseService.swift */,
+			);
+			path = FirebaseService;
+			sourceTree = "<group>";
+		};
+		332BA35C250605F5008A8F29 /* PhoneAuthPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */,
+				332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */,
+				332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */,
+			);
+			path = PhoneAuthPresenter;
+			sourceTree = "<group>";
+		};
+		332BA35D25060636008A8F29 /* OTPVerificationPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */,
+			);
+			path = OTPVerificationPresenter;
+			sourceTree = "<group>";
+		};
+		332BA35E25060722008A8F29 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				332BA35F25060729008A8F29 /* AuthErrors */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		332BA35F25060729008A8F29 /* AuthErrors */ = {
+			isa = PBXGroup;
+			children = (
+				332BA36025060746008A8F29 /* AuthorizationErrors.swift */,
+			);
+			path = AuthErrors;
 			sourceTree = "<group>";
 		};
 		33B1F08124FFA83800DB6BA8 /* Resources */ = {
@@ -177,8 +248,8 @@
 		33B660C525026DA000CA562E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */,
-				33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */,
+				332BA35C250605F5008A8F29 /* PhoneAuthPresenter */,
+				332BA35D25060636008A8F29 /* OTPVerificationPresenter */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -187,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				33B660C925026DDD00CA562E /* AppNavigationRouter.swift */,
+				332BA356250602DD008A8F29 /* AppNavigationRouterProtocol.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -220,6 +292,8 @@
 		33FF60B924FA45F40077D109 /* Cartoons */ = {
 			isa = PBXGroup;
 			children = (
+				332BA35E25060722008A8F29 /* Errors */,
+				332BA34F250600DF008A8F29 /* Firebase */,
 				33B660CD2502DBC000CA562E /* Builder */,
 				33B660C825026DC300CA562E /* Router */,
 				33B1F08424FFEEB000DB6BA8 /* PresentationLayer */,
@@ -425,15 +499,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				332BA3532506014B008A8F29 /* FirebaseManager.swift in Sources */,
 				33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */,
+				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
+				332BA357250602DD008A8F29 /* AppNavigationRouterProtocol.swift in Sources */,
 				33B660CF2502DBD700CA562E /* ModuleBuilder.swift in Sources */,
 				33B1F08F24FFFAFC00DB6BA8 /* UIViewExtension.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				33B660C1250246CF00CA562E /* StringExtension.swift in Sources */,
 				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
+				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,
+				332BA35525060174008A8F29 /* FirebaseService.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewControllerExtension.swift in Sources */,
+				332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */,
 				33B660CA25026DDD00CA562E /* AppNavigationRouter.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationCodeViewController.swift in Sources */,
 			);
@@ -582,6 +662,7 @@
 			baseConfigurationReference = 7B69CCD3D5D1FAC505B09856 /* Pods-Cartoons.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6RB7NH47H2;
 				INFOPLIST_FILE = Cartoons/Resources/Info.plist;
@@ -591,6 +672,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlenaNesterkina.Cartoons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -601,6 +683,7 @@
 			baseConfigurationReference = 6CBC91D95B99F79D86B0ED70 /* Pods-Cartoons.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6RB7NH47H2;
 				INFOPLIST_FILE = Cartoons/Resources/Info.plist;
@@ -610,6 +693,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlenaNesterkina.Cartoons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

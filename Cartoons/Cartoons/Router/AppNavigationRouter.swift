@@ -9,17 +9,6 @@
 import Foundation
 import UIKit
 
-protocol RouterMain {
-    var navigationController: UINavigationController? { get set }
-    var assemblyBuilder: AssemblyBuilderProtocol? { get set }
-}
-
-protocol RouterProtocol: RouterMain {
-    func initialViewController()
-    func createVerification()
-    func popToRoot()
-}
-
 class Router: RouterProtocol {    
     var navigationController: UINavigationController?
     
