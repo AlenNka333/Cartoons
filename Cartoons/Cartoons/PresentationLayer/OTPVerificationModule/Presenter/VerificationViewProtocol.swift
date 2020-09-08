@@ -9,5 +9,5 @@
 import Foundation
 
 protocol VerificationViewProtocol: AnyObject {
-    func setError (error: Error)
+    func setError (error: Error?)
 }

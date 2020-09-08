@@ -16,6 +16,6 @@ protocol RouterMain {
 
 protocol RouterProtocol: RouterMain {
     func initialViewController()
-    func createVerification(animated: Bool)
+    func createVerification(animated: Bool, verificationId: String)
     func popToRoot(animated: Bool)
 }

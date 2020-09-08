@@ -26,8 +26,8 @@ class Router: RouterProtocol {
         navigationController?.viewControllers = [mainViewController]
         }
     
-    func createVerification(animated: Bool) {
-        guard let mainViewController = assemblyBuilder?.createVerification(router: self) else {
+    func createVerification(animated: Bool, verificationId: String) {
+        guard let mainViewController = assemblyBuilder?.createVerification(router: self, verificationId: verificationId) else {
                 return
             }
         navigationController?.pushViewController(mainViewController, animated: animated)

@@ -11,7 +11,7 @@ import UIKit
 
 protocol AssemblyBuilderProtocol {
     func createAuthorization(router: RouterProtocol) -> UIViewController
-    func createVerification(router: RouterProtocol) -> UIViewController
+    func createVerification(router: RouterProtocol, verificationId: String) -> UIViewController
 }
 
 class ModuleBuilder: AssemblyBuilderProtocol {
@@ -22,9 +22,9 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func createVerification(router: RouterProtocol) -> UIViewController {
+    func createVerification(router: RouterProtocol, verificationId: String) -> UIViewController {
         let view = VerificationCodeViewController()
-        let presenter = VerificationPresenter(view: view, router: router)
+        let presenter = VerificationPresenter(view: view, router: router, verificationId: verificationId)
         view.presenter = presenter
         return view
     }

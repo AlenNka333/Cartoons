@@ -10,20 +10,35 @@ import Foundation
 import FirebaseAuth
 
 class FirebaseManager {
-    let firebaseManager: FirebaseService
+    let firebaseService: FirebaseService = FirebaseService()
+    @UserDefault(Constants.verificationId, defaultValue: "")
+    var verificationID: String
     
-    init() {
-        firebaseManager = FirebaseService()
-    }
-    
-    func sendPhoneNumber(number: String, completion: @escaping (Error?) -> Void) {
+    func sendPhoneNumber(number: String, completion: @escaping (Result<String, Error>) -> Void) {
         let formattedNumber = String(number.filter { !" -".contains($0)})
         if !number.isEmpty {
-            firebaseManager.sendPhoneToFirebase(number: formattedNumber) { error in
-                error == nil ? completion(nil) : completion(error)
+            firebaseService.sendPhoneToFirebase(number: formattedNumber) { [weak self] (result) in
+                switch result {
+                case let .success(result):
+                    self?.verificationID = result
+                    completion(.success(result))
+                case let .failure(error):
+                    completion(.failure(error))
+                }
             }
         } else {
-            completion(AuthorizationError.emptyPhoneNumber)
+            completion(.failure(AuthorizationError.emptyPhoneNumber))
         }
-    }    
+    }
+    
+    func authorizeUser(verificationId: String, verifyCode: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
+        firebaseService.authorizeUser(with: verificationId, verifyCode: verifyCode) { [weak self] (result) in
+            switch result {
+            case let .success(user):
+                completion(.success(user))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

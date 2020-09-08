@@ -20,12 +20,17 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     }
     
     func sendPhoneNumberAction(number: String) {
-        router?.createVerification(animated: true)
-        firebaseManager.sendPhoneNumber(number: number) { [weak self] error in
-            error == nil ? () : self?.view.setError(error: error)
+        firebaseManager.sendPhoneNumber(number: number) { [weak self] result in
+            switch result {
+            case let .success(verificationId):
+                self?.router?.createVerification(animated: true, verificationId: verificationId)
+            case .failure(let error):
+                self?.view.setError(error: error)
+            }
         }
     }
-    func showError(error: Error) {
+    
+    func showError(error: Error?) {
         view.setError(error: error)
     }
 }

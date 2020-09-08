@@ -67,24 +67,7 @@ class VerificationCodeViewController: UIViewController {
         setupToHideKeyboardOnTapOnView()
         setupUI()
         view.backgroundColor = .green
-        verifyWithOTP()
-    }
-    
-    func verifyWithOTP() {
-        guard let verificationID = UserDefaults.standard.string(forKey: "firebase_verification") else {
-            return
-        }
-        guard let code = otpCodeTextField.text, !code.isEmpty else {
-            return
-        }
-        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: code)
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-        if let error = error {
-           print(error.localizedDescription)
-          } else {
-            print("Success")
-           }
-        }
+        verifyButton.addTarget(self, action: #selector(self.verifyUserButtonClicked), for: .touchUpInside)
     }
     
     func setupUI() {
@@ -118,5 +101,19 @@ class VerificationCodeViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(otpCodeTextField).offset(60)
         }
+    }
+}
+
+extension VerificationCodeViewController {
+    @objc func verifyUserButtonClicked() {
+        presenter.verifyUser(verificationCode: otpCodeTextField.text!)
+    }
+}
+
+extension VerificationCodeViewController: VerificationViewProtocol {
+    func setError(error: Error?) {
+         let alert = UIAlertController(title: "", message: error?.localizedDescription, preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+               self.present(alert, animated: true)
     }
 }

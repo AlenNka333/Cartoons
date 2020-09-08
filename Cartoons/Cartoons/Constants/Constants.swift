@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Constants: String {
-    case verificationId = "firebase_verification"
+enum Constants {
+    static let verificationId: String = "firebase_verification"
 }
 

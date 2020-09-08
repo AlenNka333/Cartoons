@@ -10,23 +10,27 @@ import Foundation
 import UIKit
 
 class VerificationPresenter: VerificationViewPresenterProtocol {
-    let view: VerificationViewProtocol?
+    let view: VerificationViewProtocol
     let router: RouterProtocol?
+    let verificationId: String
+    let firebaseManager: FirebaseManager = FirebaseManager()
     
-    required init(view: VerificationViewProtocol, router: RouterProtocol) {
+    required init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String) {
         self.view = view
         self.router = router
+        self.verificationId = verificationId
     }
-    
-    func showError(error: Error) {
-       view?.setError(error: error)
+    func showError(error: Error?) {
+        view.setError(error: error)
     }
-}
-
-extension VerificationCodeViewController: VerificationViewProtocol {
-    func setError(error: Error) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        self.present(alert, animated: true)
+    func verifyUser(verificationCode: String) {
+        firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] (result) in
+            switch result {
+            case let .success(user):
+                print("data: \(user?.additionalUserInfo?.username)")
+            case let .failure(error):
+                self?.view.setError(error: error)
+            }
+        }
     }
 }

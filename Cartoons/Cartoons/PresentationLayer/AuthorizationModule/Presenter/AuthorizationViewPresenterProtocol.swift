@@ -11,5 +11,5 @@ import Foundation
 protocol AuthorizationViewPresenterProtocol: AnyObject {
     init(view: AuthorizationViewProtocol, router: RouterProtocol)
     func sendPhoneNumberAction(number: String)
-    func showError(error: Error)
+    func showError(error: Error?)
 }
