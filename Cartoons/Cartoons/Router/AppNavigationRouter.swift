@@ -20,26 +20,22 @@ class Router: RouterProtocol {
     }
     
     func initialViewController() {
-        if let navigationController = navigationController {
-            guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
+        guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
                 return
             }
-            navigationController.viewControllers = [mainViewController]
+        navigationController?.viewControllers = [mainViewController]
         }
-    }
     
-    func createVerification() {
-        if let navigationController = navigationController {
-            guard let mainViewController = assemblyBuilder?.createVerification(router: self) else {
+    func createVerification(animated: Bool) {
+        guard let mainViewController = assemblyBuilder?.createVerification(router: self) else {
                 return
             }
-            navigationController.pushViewController(mainViewController, animated: true)
+        navigationController?.pushViewController(mainViewController, animated: animated)
         }
-    }
     
-    func popToRoot() {
+    func popToRoot(animated: Bool) {
         if let navigationController = navigationController {
-            navigationController.popToRootViewController(animated: true)
+            navigationController.popToRootViewController(animated: animated)
         }
     }
 }

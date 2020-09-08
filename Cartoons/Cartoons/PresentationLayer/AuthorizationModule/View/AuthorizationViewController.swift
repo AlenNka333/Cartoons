@@ -1,44 +1,33 @@
 import UIKit
-import FirebaseAuth
 
 class AuthorizationViewController: UIViewController {
     var presenter: AuthorizationViewPresenterProtocol!
     
-    private lazy var labelTextView: UIImageView = {
-        let label = UIImageView()
-        label.image = R.image.cartoons_label()
-        label.contentMode = .scaleAspectFill
-        label.setAnchor(width: 250, height: 100)
-        return label
+    private lazy var textLabelImageView: UIImageView = {
+        let image = UIImageView()
+        image.image = R.image.cartoons_label()
+        image.contentMode = .scaleAspectFill
+        return image
     }()
     
     private lazy var labelImageView: UIImageView = {
-        let label = UIImageView()
-        label.image = R.image.logo()
-        label.contentMode = .scaleAspectFill
-        label.setAnchor(width: 100, height: 100)
-        return label
+        let image = UIImageView()
+        image.image = R.image.label()
+        image.contentMode = .scaleAspectFill
+        return image
     }()
     
     private lazy var blackView: UIView = {
-        let yView = UIView()
-        yView.backgroundColor = .black
-        yView.alpha = 0.6
-        yView.setAnchor(width: self.view.frame.width - 30, height: self.view.frame.height / 2)
-        yView.layer.masksToBounds = false
-        yView.layer.shadowColor = UIColor.black.cgColor
-        yView.layer.shadowRadius = 4.0
-        yView.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
-        yView.layer.shadowOpacity = 1.0
-        return yView
+        let blackView = UIView()
+        blackView.backgroundColor = .black
+        blackView.alpha = 0.6
+        blackView.layer.masksToBounds = false
+        blackView.layer.shadowColor = UIColor.black.cgColor
+        blackView.layer.shadowRadius = 4.0
+        blackView.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
+        blackView.layer.shadowOpacity = 1.0
+        return blackView
     }()
-
-//    private lazy var backgroundImageView: UIImageView = {
-//        let imgView = UIImageView()
-//        imgView.image = R.image.village_background()
-//        imgView.contentMode = .scaleAspectFill
-//        return imgView
-//    }()
 
     lazy var phoneNumberTextField: UITextField = {
         let textField = UITextField()
@@ -68,29 +57,22 @@ class AuthorizationViewController: UIViewController {
         button.setAttributedTitle(attributedString, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor(named: R.color.send_code_button_color.name)?.withAlphaComponent(1).cgColor
+        button.layer.borderColor = R.color.send_code_button_color()?.cgColor
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-        self.view.backgroundColor = .red
-        self.setupToHideKeyboardOnTapOnView()
+        setupUI()
+        view.backgroundColor = .red
+        setupToHideKeyboardOnTapOnView()
         phoneNumberTextField.delegate = self
-        sendCodeButton.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+        sendCodeButton.addTarget(self, action: #selector(self.buttonTappedToSendCodeAction), for: .touchUpInside)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-    }
-    
-    func setup() {
-//        view.addSubview(backgroundImageView)
+    func setupUI() {
         view.addSubview(blackView)
-        view.addSubview(labelTextView)
+        view.addSubview(textLabelImageView)
         view.addSubview(labelImageView)
         view.addSubview(phoneNumberTextField)
         view.addSubview(sendCodeButton)
@@ -98,34 +80,30 @@ class AuthorizationViewController: UIViewController {
     }
     
     func setConstraints() {
-//        backgroundImageView.snp.makeConstraints {
-//            $0.top.equalToSuperview()
-//            $0.bottom.equalToSuperview()
-//            $0.leading.equalToSuperview()
-//            $0.trailing.equalToSuperview()
-//        }
         blackView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(100)
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview()
+            $0.height.equalTo(view.snp.height).offset(-200)
+            $0.width.equalTo(view.snp.width).offset(-30)
+            $0.center.equalToSuperview()
         }
-        labelTextView.snp.makeConstraints {
+        textLabelImageView.setAnchor(width: 250, height: 100)
+        textLabelImageView.snp.makeConstraints {
             $0.top.equalTo(blackView).offset(20)
             $0.centerX.equalTo(blackView)
         }
+        labelImageView.setAnchor(width: 150, height: 150)
         labelImageView.snp.makeConstraints {
-            $0.top.equalTo(labelTextView).offset(100)
+            $0.top.equalTo(textLabelImageView).offset(30)
             $0.centerX.equalTo(blackView)
         }
         
         phoneNumberTextField.snp.makeConstraints {
-            $0.width.equalTo(view.frame.width - 100)
+            $0.width.equalTo(blackView).offset(-20)
             $0.height.equalTo(40)
-            $0.centerX.equalTo(view.center)
+            $0.centerX.equalToSuperview()
             $0.centerY.equalTo(blackView)
         }
         sendCodeButton.snp.makeConstraints {
-            $0.width.equalTo(view.frame.width - 100)
+            $0.width.equalTo(blackView).offset(-20)
             $0.height.equalTo(50)
             $0.centerX.equalTo(view.center)
             $0.top.equalTo(phoneNumberTextField).offset(60)
@@ -142,7 +120,7 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
 }
 
 extension AuthorizationViewController {
-    @objc func buttonClicked() {
+    @objc func buttonTappedToSendCodeAction() {
         guard let number = phoneNumberTextField.text else {
             presenter.showError(error: AuthorizationError.emptyPhoneNumber)
             return

@@ -11,17 +11,16 @@ import UIKit
 
 class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     let view: AuthorizationViewProtocol
-    var router: RouterProtocol?
-    let firebaseManager: FirebaseManager
+    let router: RouterProtocol?
+    let firebaseManager: FirebaseManager = FirebaseManager()
     
     required init(view: AuthorizationViewProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
-        self.firebaseManager = FirebaseManager()
     }
     
     func sendPhoneNumberAction(number: String) {
-        router?.createVerification()
+        router?.createVerification(animated: true)
         firebaseManager.sendPhoneNumber(number: number) { [weak self] error in
             error == nil ? () : self?.view.setError(error: error)
         }

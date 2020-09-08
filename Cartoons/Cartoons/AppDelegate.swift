@@ -9,6 +9,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController()
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController.navigationBar.shadowImage = UIImage()
         let assemblyBuilder = ModuleBuilder()
         let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder)
         router.initialViewController()

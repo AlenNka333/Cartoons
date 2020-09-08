@@ -9,27 +9,17 @@
 import Foundation
 import UIKit
 
-protocol VerificationViewProtocol: AnyObject {
-    func setError (error: Error)
-}
-
-protocol VerificationViewPresenterProtocol: AnyObject {
-    init(view: VerificationViewProtocol, router: RouterProtocol)
-    func showError()
-}
-
 class VerificationPresenter: VerificationViewPresenterProtocol {
-    
     let view: VerificationViewProtocol?
-    var router: RouterProtocol?
+    let router: RouterProtocol?
     
     required init(view: VerificationViewProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
     }
     
-    func showError() {
-        //self.view.setError(error: e)
+    func showError(error: Error) {
+       view?.setError(error: error)
     }
 }
 
