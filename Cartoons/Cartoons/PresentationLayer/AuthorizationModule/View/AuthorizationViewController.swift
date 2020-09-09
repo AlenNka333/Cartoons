@@ -4,6 +4,7 @@ import FirebaseAuth
 class AuthorizationViewController: UIViewController {
     var presenter: AuthorizationViewPresenterProtocol!
     let alertView: CustomAlertView = CustomAlertView()
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     private lazy var textLabelImageView: UIImageView = {
         let image = UIImageView()
@@ -66,7 +67,7 @@ class AuthorizationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         setupToHideKeyboardOnTapOnView()
         phoneNumberTextField.delegate = self
         sendCodeButton.addTarget(self, action: #selector(self.buttonTappedToSendCodeAction), for: .touchUpInside)
@@ -116,6 +117,18 @@ class AuthorizationViewController: UIViewController {
 }
 
 extension AuthorizationViewController: AuthorizationViewProtocol {
+    func showActivityIndicatorAction() {
+        activityIndicator.style = UIActivityIndicatorView.Style.large
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+    }
+    
+    func stopActivityIndicatorAction() {
+        activityIndicator.stopAnimating()
+    }
+    
     func setError(error: Error?) {
         CustomAlertView.instance.showAlert(title: "Error", message: error!.localizedDescription, alertType: .error)
     }
@@ -127,6 +140,7 @@ extension AuthorizationViewController {
             presenter.showError(error: AuthorizationError.emptyPhoneNumber)
             return
         }
+        
         presenter.sendPhoneNumberAction(number: number)
     }
 }

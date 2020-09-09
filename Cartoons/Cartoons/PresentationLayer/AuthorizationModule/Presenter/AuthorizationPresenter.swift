@@ -20,11 +20,14 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     }
     
     func sendPhoneNumberAction(number: String) {
+        view.showActivityIndicatorAction()
         firebaseManager.sendPhoneNumber(number: number) { [weak self] result in
             switch result {
             case let .success(verificationId):
+                self?.view.stopActivityIndicatorAction()
                 self?.router?.createVerification(animated: true, verificationId: verificationId)
             case .failure(let error):
+                self?.view.stopActivityIndicatorAction()
                 self?.view.setError(error: error)
             }
         }
