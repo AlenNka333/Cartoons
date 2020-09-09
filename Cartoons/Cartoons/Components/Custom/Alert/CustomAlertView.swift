@@ -9,15 +9,14 @@
 import UIKit
 
 class CustomAlertView: UIView {
-    
     static let instance = CustomAlertView()
     
-    @IBOutlet var parentView: UIView!
-    @IBOutlet weak var alertView: UIView!
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet private var parentView: UIView!
+    @IBOutlet private weak var alertView: UIView!
+    @IBOutlet private weak var image: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet private weak var doneButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,10 +52,10 @@ class CustomAlertView: UIView {
             doneButton.backgroundColor = R.color.cinnabar()
         }
         
-        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(parentView)
+        UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.addSubview(parentView)
     }
     
-    @IBAction func onClickDone(_ sender: Any) {
+    @IBAction private func onClickDone(_ sender: Any) {
         parentView.removeFromSuperview()
     }
 }

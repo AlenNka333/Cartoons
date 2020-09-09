@@ -18,6 +18,5 @@ target 'Cartoons' do
     pod 'SwiftFormat/CLI'
     pod 'Firebase/Analytics'
     pod 'Firebase/Auth'
-    pod 'KeychainAccess'
 end
 

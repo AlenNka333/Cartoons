@@ -21,12 +21,12 @@
 		332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */; };
 		332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36F25077D9E008A8F29 /* UserDefault.swift */; };
 		33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */; };
-		33B1F08F24FFFAFC00DB6BA8 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08E24FFFAFC00DB6BA8 /* UIView+Extension.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
 		33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */; };
 		33B2AEA02508AE170006BE31 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33B2AE9F2508AE170006BE31 /* AlertView.xib */; };
 		33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AEA12508B9BA0006BE31 /* AlertType.swift */; };
 		33B2AEA42508BB750006BE31 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AEA32508BB750006BE31 /* GradientLayer.swift */; };
+		33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AEA52508EF670006BE31 /* NumberFormats.swift */; };
 		33B660BB250166C200CA562E /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660BA250166C200CA562E /* VerificationCodeViewController.swift */; };
 		33B660C1250246CF00CA562E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C0250246CF00CA562E /* StringExtension.swift */; };
 		33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */; };
@@ -55,12 +55,12 @@
 		332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewProtocol.swift; sourceTree = "<group>"; };
 		332BA36F25077D9E008A8F29 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
-		33B1F08E24FFFAFC00DB6BA8 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		33B2AE9F2508AE170006BE31 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		33B2AEA12508B9BA0006BE31 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		33B2AEA32508BB750006BE31 /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
+		33B2AEA52508EF670006BE31 /* NumberFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormats.swift; sourceTree = "<group>"; };
 		33B660BA250166C200CA562E /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
 		33B660C0250246CF00CA562E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
@@ -179,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				332BA36825069D38008A8F29 /* Constants.swift */,
+				33B2AEA52508EF670006BE31 /* NumberFormats.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -278,7 +279,6 @@
 		33B660B82501602C00CA562E /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				33B1F08E24FFFAFC00DB6BA8 /* UIView+Extension.swift */,
 				33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */,
 			);
 			path = UIKit;
@@ -554,7 +554,6 @@
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
 				332BA357250602DD008A8F29 /* AppNavigationRouterProtocol.swift in Sources */,
 				33B660CF2502DBD700CA562E /* ModuleBuilder.swift in Sources */,
-				33B1F08F24FFFAFC00DB6BA8 /* UIView+Extension.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				33B660C1250246CF00CA562E /* StringExtension.swift in Sources */,
 				332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */,
@@ -564,6 +563,7 @@
 				332BA35525060174008A8F29 /* FirebaseService.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
+				33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */,
 				33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */,
 				33B2AEA42508BB750006BE31 /* GradientLayer.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,

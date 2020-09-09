@@ -31,7 +31,7 @@ class AuthorizationViewController: UIViewController {
         return blackView
     }()
 
-    lazy var phoneNumberTextField: UITextField = {
+    private lazy var phoneNumberTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .none
         textField.attributedPlaceholder =
@@ -49,7 +49,7 @@ class AuthorizationViewController: UIViewController {
         return textField
     }()
 
-     lazy var sendCodeButton: UIButton = {
+     private lazy var sendCodeButton: UIButton = {
         let button = UIButton()
         let string = NSAttributedString(string: R.string.localizable.send_code_button_key(),
                                         attributes: [NSAttributedString.Key.font:
@@ -72,7 +72,7 @@ class AuthorizationViewController: UIViewController {
         sendCodeButton.addTarget(self, action: #selector(self.buttonTappedToSendCodeAction), for: .touchUpInside)
     }
     
-    func setupUI() {
+    private func setupUI() {
         view.addSubview(blackView)
         view.addSubview(textLabelImageView)
         view.addSubview(labelImageView)
@@ -81,19 +81,21 @@ class AuthorizationViewController: UIViewController {
         setConstraints()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         blackView.snp.makeConstraints {
             $0.height.equalTo(view.snp.height).offset(-200)
             $0.width.equalTo(view.snp.width).offset(-30)
             $0.center.equalToSuperview()
         }
-        textLabelImageView.setAnchor(width: 250, height: 100)
         textLabelImageView.snp.makeConstraints {
+            $0.width.equalTo(250)
+            $0.height.equalTo(100)
             $0.top.equalTo(blackView).offset(20)
             $0.centerX.equalTo(blackView)
         }
-        labelImageView.setAnchor(width: 150, height: 150)
         labelImageView.snp.makeConstraints {
+            $0.width.equalTo(150)
+            $0.height.equalTo(150)
             $0.top.equalTo(textLabelImageView).offset(30)
             $0.centerX.equalTo(blackView)
         }
@@ -139,7 +141,7 @@ extension AuthorizationViewController: UITextFieldDelegate {
             return false
         }
         let newString = (text as NSString).replacingCharacters(in: range, with: string)
-        textField.text = newString.format(with: "+XXX XX XXX-XX-XX")
+        textField.text = newString.format(with: NumberFormat.bel)
         return false
     }
 }

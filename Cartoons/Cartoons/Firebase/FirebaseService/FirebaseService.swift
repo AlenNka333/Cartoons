@@ -12,6 +12,7 @@ import FirebaseAuth
 class FirebaseService {
     let testPhoneNumber = "+15973342222"
     let testVerificationCode = "123456"
+    
     func sendPhoneToFirebase(number: String, completion: @escaping (Result<String, Error>) -> Void) {
         Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         PhoneAuthProvider.provider().verifyPhoneNumber(testPhoneNumber, uiDelegate: nil) { (verificationID, error) in

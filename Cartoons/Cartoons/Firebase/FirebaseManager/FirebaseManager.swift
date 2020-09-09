@@ -13,6 +13,7 @@ class FirebaseManager {
     let firebaseService: FirebaseService = FirebaseService()
     @UserDefault(Constants.verificationId, defaultValue: "")
     var verificationID: String
+    static var shouldAuthorize: Bool { Auth.auth().currentUser == nil }
     
     func sendPhoneNumber(number: String, completion: @escaping (Result<String, Error>) -> Void) {
         let formattedNumber = String(number.filter { !" -".contains($0)})

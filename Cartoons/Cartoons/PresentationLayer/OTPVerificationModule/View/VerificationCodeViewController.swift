@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import SnapKit
 
 class VerificationCodeViewController: UIViewController {
     var presenter: VerificationViewPresenterProtocol!
@@ -34,7 +35,7 @@ class VerificationCodeViewController: UIViewController {
         return blackView
     }()
 
-    lazy var otpCodeTextField: UITextField = {
+    private lazy var otpCodeTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .none
         textField.keyboardType = .numberPad
@@ -48,7 +49,7 @@ class VerificationCodeViewController: UIViewController {
         return textField
     }()
 
-     lazy var verifyButton: UIButton = {
+     private lazy var verifyButton: UIButton = {
         let button = UIButton()
         let string = NSAttributedString(string: R.string.localizable.continue_button_key(),
                                         attributes: [NSAttributedString.Key.font:
@@ -70,7 +71,7 @@ class VerificationCodeViewController: UIViewController {
         verifyButton.addTarget(self, action: #selector(self.verifyUserButtonClicked), for: .touchUpInside)
     }
     
-    func setupUI() {
+    private func setupUI() {
         view.addSubview(blackView)
         view.addSubview(verificationLabel)
         view.addSubview(otpCodeTextField)
@@ -78,7 +79,7 @@ class VerificationCodeViewController: UIViewController {
         setConstraints()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         blackView.snp.makeConstraints {
             $0.height.equalTo(view.snp.height).offset(-200)
             $0.width.equalTo(view.snp.width).offset(-30)
