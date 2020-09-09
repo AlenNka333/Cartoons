@@ -46,8 +46,6 @@ class CustomAlertView: UIView {
     func showAlert(title: String, message: String, alertType: AlertType) {
         titleLabel.text = title
         messageLabel.text = message
-        
-        
         switch alertType {
         case .success:
             doneButton.backgroundColor = R.color.green_yellow()
@@ -55,7 +53,7 @@ class CustomAlertView: UIView {
             doneButton.backgroundColor = R.color.cinnabar()
         }
         
-        UIApplication.shared.keyWindow?.addSubview(parentView)
+        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(parentView)
     }
     
     @IBAction func onClickDone(_ sender: Any) {
