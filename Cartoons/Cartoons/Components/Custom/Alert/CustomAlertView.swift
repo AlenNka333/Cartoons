@@ -32,6 +32,12 @@ class CustomAlertView: UIView {
     func setupUI() {
         parentView.backgroundColor = UIColor.clear
         alertView.layer.cornerRadius = 10
+        doneButton.layer.cornerRadius = 20
+        doneButton.layer.shadowColor = UIColor.darkGray.cgColor
+        doneButton.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
+        doneButton.layer.shadowRadius = 5.0
+        doneButton.layer.shadowOpacity = 0.3
+        doneButton.layer.masksToBounds = false
         
         parentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         parentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -41,12 +47,12 @@ class CustomAlertView: UIView {
         titleLabel.text = title
         messageLabel.text = message
         
+        
         switch alertType {
         case .success:
-            doneButton.backgroundColor = UIColor.clear
-            doneButton.layer.insertSublayer(GradientLayer.gradient(startColor: R.color.green_yellow()!.cgColor, endColor: R.color.coconut_cream()!.cgColor), at: 0) //need to deal with worse unwrapp
+            doneButton.backgroundColor = R.color.green_yellow()
         case .error:
-            doneButton.layer.insertSublayer(GradientLayer.gradient(startColor: R.color.cinnabar()!.cgColor, endColor: R.color.linen()!.cgColor), at: 0) //need to deal with worse unwrapp
+            doneButton.backgroundColor = R.color.cinnabar()
         }
         
         UIApplication.shared.keyWindow?.addSubview(parentView)

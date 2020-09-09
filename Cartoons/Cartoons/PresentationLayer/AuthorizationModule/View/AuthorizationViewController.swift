@@ -115,7 +115,7 @@ class AuthorizationViewController: UIViewController {
 
 extension AuthorizationViewController: AuthorizationViewProtocol {
     func setError(error: Error?) {
-        CustomAlertView.instance.showAlert(title: "Error", message: error!.localizedDescription, alertType: .success)
+        CustomAlertView.instance.showAlert(title: "Error", message: error!.localizedDescription, alertType: .error)
     }
 }
 

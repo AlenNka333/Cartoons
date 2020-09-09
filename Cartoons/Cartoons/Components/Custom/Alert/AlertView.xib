@@ -36,7 +36,7 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <state key="normal" title="Done">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </state>
                                     <connections>
                                         <action selector="onClickDone:" destination="-1" eventType="touchUpInside" id="7Fu-k2-K0b"/>
@@ -71,7 +71,7 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="label" translatesAutoresizingMaskIntoConstraints="NO" id="tvQ-Tg-ECi">
-                            <rect key="frame" x="87" y="50" width="200" height="200"/>
+                            <rect key="frame" x="87.5" y="50" width="200" height="200"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="jHJ-yX-d2o"/>
                                 <constraint firstAttribute="height" constant="200" id="sOj-y3-k4n"/>
