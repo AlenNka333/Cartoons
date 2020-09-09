@@ -105,8 +105,16 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 5 colors.
+  /// This `R.color` struct is generated, and contains static references to 9 colors.
   struct color {
+    /// Color `cinnabar`.
+    static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
+    /// Color `coconut_cream`.
+    static let coconut_cream = Rswift.ColorResource(bundle: R.hostingBundle, name: "coconut_cream")
+    /// Color `green_yellow`.
+    static let green_yellow = Rswift.ColorResource(bundle: R.hostingBundle, name: "green_yellow")
+    /// Color `linen`.
+    static let linen = Rswift.ColorResource(bundle: R.hostingBundle, name: "linen")
     /// Color `login_button_color`.
     static let login_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "login_button_color")
     /// Color `picotee_blue`.
@@ -117,6 +125,42 @@ struct R: Rswift.Validatable {
     static let send_code_button_error = Rswift.ColorResource(bundle: R.hostingBundle, name: "send_code_button_error")
     /// Color `wisteria`.
     static let wisteria = Rswift.ColorResource(bundle: R.hostingBundle, name: "wisteria")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "cinnabar", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func cinnabar(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.cinnabar, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "coconut_cream", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func coconut_cream(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.coconut_cream, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "green_yellow", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func green_yellow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.green_yellow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "linen", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func linen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.linen, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "login_button_color", bundle: ..., traitCollection: ...)`
@@ -218,6 +262,26 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.village_background, compatibleWith: traitCollection)
     }
     #endif
+
+    fileprivate init() {}
+  }
+
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  struct nib {
+    /// Nib `AlertView`.
+    static let alertView = _R.nib._AlertView()
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "AlertView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.alertView) instead")
+    static func alertView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.alertView)
+    }
+    #endif
+
+    static func alertView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.alertView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
 
     fileprivate init() {}
   }
@@ -363,9 +427,39 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     #if os(iOS) || os(tvOS)
+    try nib.validate()
+    #endif
+    #if os(iOS) || os(tvOS)
     try storyboard.validate()
     #endif
   }
+
+  #if os(iOS) || os(tvOS)
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _AlertView.validate()
+    }
+
+    struct _AlertView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "AlertView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "label", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'label' is used in nib 'AlertView', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+  #endif
 
   #if os(iOS) || os(tvOS)
   struct storyboard: Rswift.Validatable {

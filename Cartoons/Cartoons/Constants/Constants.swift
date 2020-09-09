@@ -10,5 +10,6 @@ import Foundation
 
 enum Constants {
     static let verificationId: String = "firebase_verification"
+    static let alertClassName: String = "AlertView"
 }
 

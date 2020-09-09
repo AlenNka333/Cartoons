@@ -10,17 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    func showAlert(with error: Error, title: [String] = ["Ok", "Cancel"], header: String) {
-        let alert = UIAlertController(title: header, message: error.localizedDescription, preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: title[0], style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: title[1], style: .cancel, handler: nil))
-
-        self.present(alert, animated: true)
-    }
-    
-    func setupToHideKeyboardOnTapOnView()
-    {
+    func setupToHideKeyboardOnTapOnView() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(UIViewController.dismissKeyboard))

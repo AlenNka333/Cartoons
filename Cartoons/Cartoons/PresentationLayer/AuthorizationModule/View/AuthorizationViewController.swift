@@ -3,6 +3,7 @@ import FirebaseAuth
 
 class AuthorizationViewController: UIViewController {
     var presenter: AuthorizationViewPresenterProtocol!
+    let alertView: CustomAlertView = CustomAlertView()
     
     private lazy var textLabelImageView: UIImageView = {
         let image = UIImageView()
@@ -114,9 +115,7 @@ class AuthorizationViewController: UIViewController {
 
 extension AuthorizationViewController: AuthorizationViewProtocol {
     func setError(error: Error?) {
-        let alert = UIAlertController(title: "", message: error?.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
+        CustomAlertView.instance.showAlert(title: "Error", message: error!.localizedDescription, alertType: .success)
     }
 }
 
