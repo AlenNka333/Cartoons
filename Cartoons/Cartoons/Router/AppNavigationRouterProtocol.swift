@@ -15,7 +15,7 @@ protocol RouterMain {
 }
 
 protocol RouterProtocol: RouterMain {
-    func initialViewController()
+    func initialViewController(isAuthorised: Bool)
     func createVerificationController(animated: Bool, verificationId: String)
     func openCartoonsController(animated: Bool)
     func popToRoot(animated: Bool)

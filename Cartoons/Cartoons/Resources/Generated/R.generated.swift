@@ -299,7 +299,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
     struct localizable {
       /// en translation: Find your favourite characters
       ///
@@ -321,6 +321,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let resend_button_key = Rswift.StringResource(key: "resend_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Sign out
+      ///
+      /// Locales: en
+      static let sign_out_button = Rswift.StringResource(key: "sign_out_button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Watch cartoons online and offline
       ///
       /// Locales: en
@@ -399,6 +403,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("resend_button_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sign out
+      ///
+      /// Locales: en
+      static func sign_out_button(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("sign_out_button", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "sign_out_button"
+        }
+
+        return NSLocalizedString("sign_out_button", bundle: bundle, comment: "")
       }
 
       /// en translation: Watch cartoons online and offline

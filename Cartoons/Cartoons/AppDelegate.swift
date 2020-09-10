@@ -4,6 +4,8 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    
+    let firebaseManager = FirebaseManager()
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -13,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationController.navigationBar.shadowImage = UIImage()
         let assemblyBuilder = ModuleBuilder()
         let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder)
-        router.initialViewController()
+        let flag = firebaseManager.shouldAuthorize
+        router.initialViewController(isAuthorised: false)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         return true

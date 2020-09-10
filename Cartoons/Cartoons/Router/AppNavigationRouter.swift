@@ -18,12 +18,20 @@ class Router: RouterProtocol {
         self.assemblyBuilder = assemblyBuilder
     }
     
-    func initialViewController() {
-        guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
+    func initialViewController(isAuthorised: Bool) {
+        switch isAuthorised {
+        case true:
+            guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
                 return
             }
-        navigationController?.viewControllers = [mainViewController]
+            navigationController?.viewControllers = [mainViewController]
+        case false:
+            guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
+                return
+            }
+            navigationController?.viewControllers = [mainViewController]
         }
+    }
     
     func createVerificationController(animated: Bool, verificationId: String) {
         guard let mainViewController = assemblyBuilder?.createVerification(router: self, verificationId: verificationId) else {

@@ -30,4 +30,9 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         view.presenter = presenter
         return view
     }
+    
+    func createTabBarController(router: RouterProtocol) -> UITabBarController {
+        let view = TabBarViewController()
+        return view
+    }
 }

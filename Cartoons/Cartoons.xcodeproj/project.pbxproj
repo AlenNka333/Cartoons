@@ -33,6 +33,7 @@
 		33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AEB1250A63790006BE31 /* CartoonsPresenter.swift */; };
 		33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AEB3250A63910006BE31 /* CartoonsViewPresenterProtocol.swift */; };
 		33B2AEB6250A63A00006BE31 /* CartoonsViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AEB5250A63A00006BE31 /* CartoonsViewProtocol.swift */; };
+		33B2AEBB250A702D0006BE31 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AEBA250A702D0006BE31 /* TabBarViewController.swift */; };
 		33B660BB250166C200CA562E /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660BA250166C200CA562E /* VerificationCodeViewController.swift */; };
 		33B660C1250246CF00CA562E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C0250246CF00CA562E /* StringExtension.swift */; };
 		33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */; };
@@ -73,6 +74,7 @@
 		33B2AEB1250A63790006BE31 /* CartoonsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonsPresenter.swift; sourceTree = "<group>"; };
 		33B2AEB3250A63910006BE31 /* CartoonsViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonsViewPresenterProtocol.swift; sourceTree = "<group>"; };
 		33B2AEB5250A63A00006BE31 /* CartoonsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonsViewProtocol.swift; sourceTree = "<group>"; };
+		33B2AEBA250A702D0006BE31 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		33B660BA250166C200CA562E /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
 		33B660C0250246CF00CA562E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		33B1F08424FFEEB000DB6BA8 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				33B2AEB7250A6FD90006BE31 /* TabBarModule */,
 				33B2AEAA250A61260006BE31 /* CartoonsModule */,
 				33B6608325010F8600CA562E /* AuthorizationModule */,
 				332BA36225064418008A8F29 /* OTPVerificationModule */,
@@ -311,6 +314,30 @@
 				33B2AEB1250A63790006BE31 /* CartoonsPresenter.swift */,
 				33B2AEB3250A63910006BE31 /* CartoonsViewPresenterProtocol.swift */,
 				33B2AEB5250A63A00006BE31 /* CartoonsViewProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		33B2AEB7250A6FD90006BE31 /* TabBarModule */ = {
+			isa = PBXGroup;
+			children = (
+				33B2AEB9250A6FF20006BE31 /* Presenter */,
+				33B2AEB8250A6FE70006BE31 /* View */,
+			);
+			path = TabBarModule;
+			sourceTree = "<group>";
+		};
+		33B2AEB8250A6FE70006BE31 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				33B2AEBA250A702D0006BE31 /* TabBarViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		33B2AEB9250A6FF20006BE31 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -613,6 +640,7 @@
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
 				332BA35525060174008A8F29 /* FirebaseService.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
+				33B2AEBB250A702D0006BE31 /* TabBarViewController.swift in Sources */,
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */,
 				33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */,
