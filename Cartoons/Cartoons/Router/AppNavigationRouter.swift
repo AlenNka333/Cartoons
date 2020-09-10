@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 
-class Router: RouterProtocol {    
+class Router: RouterProtocol {
     var navigationController: UINavigationController?
-    
     var assemblyBuilder: AssemblyBuilderProtocol?
     
     init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
@@ -26,8 +25,14 @@ class Router: RouterProtocol {
         navigationController?.viewControllers = [mainViewController]
         }
     
-    func createVerification(animated: Bool, verificationId: String) {
+    func createVerificationController(animated: Bool, verificationId: String) {
         guard let mainViewController = assemblyBuilder?.createVerification(router: self, verificationId: verificationId) else {
+                return
+            }
+        navigationController?.pushViewController(mainViewController, animated: animated)
+        }
+    func openCartoonsController(animated: Bool) {
+        guard let mainViewController = assemblyBuilder?.createCartoons(router: self) else {
                 return
             }
         navigationController?.pushViewController(mainViewController, animated: animated)

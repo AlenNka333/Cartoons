@@ -9,11 +9,6 @@
 import Foundation
 import UIKit
 
-protocol AssemblyBuilderProtocol {
-    func createAuthorization(router: RouterProtocol) -> UIViewController
-    func createVerification(router: RouterProtocol, verificationId: String) -> UIViewController
-}
-
 class ModuleBuilder: AssemblyBuilderProtocol {
     func createAuthorization(router: RouterProtocol) -> UIViewController {
         let view = AuthorizationViewController()
@@ -25,6 +20,13 @@ class ModuleBuilder: AssemblyBuilderProtocol {
     func createVerification(router: RouterProtocol, verificationId: String) -> UIViewController {
         let view = VerificationCodeViewController()
         let presenter = VerificationPresenter(view: view, router: router, verificationId: verificationId)
+        view.presenter = presenter
+        return view
+    }
+    
+    func createCartoons(router: RouterProtocol) -> UIViewController {
+        let view = CartoonsViewController()
+        let presenter = CartoonsPresenter(view: view, router: router)
         view.presenter = presenter
         return view
     }

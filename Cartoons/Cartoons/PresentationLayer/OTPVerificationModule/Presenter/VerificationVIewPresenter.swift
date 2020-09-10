@@ -29,7 +29,8 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
             case let .success(user):
                 //move to another screen
                 print("data: \(String(describing: user?.user.phoneNumber))")
-                CustomAlertView.instance.showAlert(title: "Error", message: "Works", alertType: .success)
+                self?.router?.openCartoonsController(animated: true)
+                //CustomAlertView.instance.showAlert(title: "Error", message: "Works", alertType: .success)
             case let .failure(error):
                 self?.view.setError(error: error)
             }
