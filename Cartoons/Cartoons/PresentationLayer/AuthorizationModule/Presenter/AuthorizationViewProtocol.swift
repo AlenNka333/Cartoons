@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AuthorizationViewProtocol: AnyObject {
-    func setError (error: Error?)
+    func setError (error: Error)
     func showActivityIndicatorAction()
     func stopActivityIndicatorAction()
 }

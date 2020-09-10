@@ -1,10 +1,9 @@
 import UIKit
-import FirebaseAuth
 
 class AuthorizationViewController: UIViewController {
     var presenter: AuthorizationViewPresenterProtocol!
-    let alertView: CustomAlertView = CustomAlertView()
-    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    let alertView = CustomAlertView()
+    let activityIndicator = UIActivityIndicatorView()
     
     private lazy var textLabelImageView: UIImageView = {
         let image = UIImageView()
@@ -50,9 +49,9 @@ class AuthorizationViewController: UIViewController {
         return textField
     }()
 
-     private lazy var sendCodeButton: UIButton = {
+     private lazy var getCodeButton: UIButton = {
         let button = UIButton()
-        let string = NSAttributedString(string: R.string.localizable.send_code_button_key(),
+        let string = NSAttributedString(string: R.string.localizable.get_code_button_key(),
                                         attributes: [NSAttributedString.Key.font:
                                             UIFont.systemFont(ofSize: 18),
                                                      .foregroundColor: UIColor.white])
@@ -60,17 +59,17 @@ class AuthorizationViewController: UIViewController {
         button.setAttributedTitle(attributedString, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
-        button.layer.borderColor = R.color.send_code_button_color()?.cgColor
+        button.layer.borderColor = R.color.enabled_button()?.cgColor
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         view.backgroundColor = .white
-        setupToHideKeyboardOnTapOnView()
         phoneNumberTextField.delegate = self
-        sendCodeButton.addTarget(self, action: #selector(self.buttonTappedToSendCodeAction), for: .touchUpInside)
+        getCodeButton.addTarget(self, action: #selector(self.buttonTappedToSendCodeAction), for: .touchUpInside)
+        setupUI()
+        setupToHideKeyboardOnTapOnView()
     }
     
     private func setupUI() {
@@ -78,7 +77,7 @@ class AuthorizationViewController: UIViewController {
         view.addSubview(textLabelImageView)
         view.addSubview(labelImageView)
         view.addSubview(phoneNumberTextField)
-        view.addSubview(sendCodeButton)
+        view.addSubview(getCodeButton)
         setConstraints()
     }
     
@@ -100,14 +99,13 @@ class AuthorizationViewController: UIViewController {
             $0.top.equalTo(textLabelImageView).offset(30)
             $0.centerX.equalTo(blackView)
         }
-        
         phoneNumberTextField.snp.makeConstraints {
             $0.width.equalTo(blackView).offset(-20)
             $0.height.equalTo(40)
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(blackView)
         }
-        sendCodeButton.snp.makeConstraints {
+        getCodeButton.snp.makeConstraints {
             $0.width.equalTo(blackView).offset(-20)
             $0.height.equalTo(50)
             $0.centerX.equalTo(view.center)
@@ -129,8 +127,10 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
         activityIndicator.stopAnimating()
     }
     
-    func setError(error: Error?) {
-        CustomAlertView.instance.showAlert(title: "Error", message: error!.localizedDescription, alertType: .error)
+    func setError(error: Error) {
+        CustomAlertView.instance.showAlert(title: "Error", message: error.localizedDescription, alertType: .error)
+        getCodeButton.isEnabled = true
+        getCodeButton.layer.borderColor = R.color.enabled_button()?.cgColor
     }
 }
 
@@ -140,7 +140,11 @@ extension AuthorizationViewController {
             presenter.showError(error: AuthorizationError.emptyPhoneNumber)
             return
         }
-        
+        if !PhoneNumberValidationHelper.checkValidation(number: number, type: NumberFormat.bel) {
+            presenter.showError(error: AuthorizationError.invalidPhoneNumber)
+        }
+        getCodeButton.isEnabled = false
+        getCodeButton.layer.borderColor = R.color.frozen_button()?.cgColor
         presenter.sendPhoneNumberAction(number: number)
     }
 }
@@ -155,7 +159,7 @@ extension AuthorizationViewController: UITextFieldDelegate {
             return false
         }
         let newString = (text as NSString).replacingCharacters(in: range, with: string)
-        textField.text = newString.format(with: NumberFormat.bel)
+        textField.text = newString.format(with: NumberFormat.bel.rawValue)
         return false
     }
 }

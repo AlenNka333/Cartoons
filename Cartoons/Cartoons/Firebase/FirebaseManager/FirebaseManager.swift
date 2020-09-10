@@ -6,19 +6,21 @@
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
-import Foundation
 import FirebaseAuth
+import Foundation
 
 class FirebaseManager {
-    let firebaseService: FirebaseService = FirebaseService()
+    let firebaseService = FirebaseService()
+    
     @UserDefault(Constants.verificationId, defaultValue: "")
+    
     var verificationID: String
-    static var shouldAuthorize: Bool { Auth.auth().currentUser == nil }
+    var shouldAuthorize: Bool { Auth.auth().currentUser == nil }
     
     func sendPhoneNumber(number: String, completion: @escaping (Result<String, Error>) -> Void) {
-        let formattedNumber = String(number.filter { !" -".contains($0)})
-        if !number.isEmpty {
-            firebaseService.sendPhoneToFirebase(number: formattedNumber) { [weak self] (result) in
+        let formattedNumber = String(number.filter { !" -".contains($0) })
+        if !formattedNumber.isEmpty {
+            firebaseService.sendPhoneToFirebase(number: formattedNumber) { [weak self] result in
                 switch result {
                 case let .success(result):
                     self?.verificationID = result
@@ -33,7 +35,7 @@ class FirebaseManager {
     }
     
     func authorizeUser(verificationId: String, verifyCode: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
-        firebaseService.authorizeUser(with: verificationId, verifyCode: verifyCode) { [weak self] (result) in
+        firebaseService.authorizeUser(with: verificationId, verifyCode: verifyCode) { result in
             switch result {
             case let .success(user):
                 completion(.success(user))

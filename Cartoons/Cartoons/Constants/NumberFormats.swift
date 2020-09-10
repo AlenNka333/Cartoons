@@ -8,6 +8,7 @@
 
 import Foundation
 
-enum NumberFormat {
-    static let bel: String = "+XXX XX XXX-XX-XX"
+enum NumberFormat: String {
+    case bel = "+XXX XX XXX-XX-XX"
+    case other = "+X XXX XXX-XX-XX"
 }

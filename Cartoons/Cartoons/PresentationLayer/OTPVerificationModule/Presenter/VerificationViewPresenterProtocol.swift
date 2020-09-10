@@ -10,7 +10,6 @@ import Foundation
 
 protocol VerificationViewPresenterProtocol: AnyObject {
     init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String)
-    func showError(error: Error?)
+    func showError(error: Error)
     func verifyUser(verificationCode: String)
 }
-

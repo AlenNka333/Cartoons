@@ -13,21 +13,23 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     let view: VerificationViewProtocol
     let router: RouterProtocol?
     let verificationId: String
-    let firebaseManager: FirebaseManager = FirebaseManager()
+    let firebaseManager = FirebaseManager()
     
     required init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String) {
         self.view = view
         self.router = router
         self.verificationId = verificationId
     }
-    func showError(error: Error?) {
+    func showError(error: Error) {
         view.setError(error: error)
     }
     func verifyUser(verificationCode: String) {
-        firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] (result) in
+        firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
             case let .success(user):
-                print("data: \(user?.additionalUserInfo?.username)")
+                //move to another screen
+                print("data: \(String(describing: user?.user.phoneNumber))")
+                CustomAlertView.instance.showAlert(title: "Error", message: "Works", alertType: .success)
             case let .failure(error):
                 self?.view.setError(error: error)
             }

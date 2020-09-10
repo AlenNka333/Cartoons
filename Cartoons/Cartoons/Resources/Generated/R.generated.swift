@@ -105,12 +105,16 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 9 colors.
+  /// This `R.color` struct is generated, and contains static references to 10 colors.
   struct color {
     /// Color `cinnabar`.
     static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
     /// Color `coconut_cream`.
     static let coconut_cream = Rswift.ColorResource(bundle: R.hostingBundle, name: "coconut_cream")
+    /// Color `enabled_button`.
+    static let enabled_button = Rswift.ColorResource(bundle: R.hostingBundle, name: "enabled_button")
+    /// Color `frozen_button`.
+    static let frozen_button = Rswift.ColorResource(bundle: R.hostingBundle, name: "frozen_button")
     /// Color `green_yellow`.
     static let green_yellow = Rswift.ColorResource(bundle: R.hostingBundle, name: "green_yellow")
     /// Color `linen`.
@@ -119,8 +123,6 @@ struct R: Rswift.Validatable {
     static let login_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "login_button_color")
     /// Color `picotee_blue`.
     static let picotee_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picotee_blue")
-    /// Color `send_code_button_color`.
-    static let send_code_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "send_code_button_color")
     /// Color `send_code_button_error`.
     static let send_code_button_error = Rswift.ColorResource(bundle: R.hostingBundle, name: "send_code_button_error")
     /// Color `wisteria`.
@@ -141,6 +143,24 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func coconut_cream(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.coconut_cream, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "enabled_button", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func enabled_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.enabled_button, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "frozen_button", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func frozen_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.frozen_button, compatibleWith: traitCollection)
     }
     #endif
 
@@ -177,15 +197,6 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func picotee_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.picotee_blue, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "send_code_button_color", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func send_code_button_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.send_code_button_color, compatibleWith: traitCollection)
     }
     #endif
 
@@ -294,6 +305,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let onBoarding_second_logo_key = Rswift.StringResource(key: "onBoarding_second_logo_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Get verification code
+      ///
+      /// Locales: en
+      static let get_code_button_key = Rswift.StringResource(key: "get_code_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Phone number
       ///
       /// Locales: en
@@ -302,14 +317,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let verification_message_key = Rswift.StringResource(key: "verification_message_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
-      /// en translation: Send verification code
+      /// en translation: Resend
       ///
       /// Locales: en
-      static let send_code_button_key = Rswift.StringResource(key: "send_code_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
-      /// en translation: Submit
-      ///
-      /// Locales: en
-      static let continue_button_key = Rswift.StringResource(key: "continue_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      static let resend_button_key = Rswift.StringResource(key: "resend_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Watch cartoons online and offline
       ///
       /// Locales: en
@@ -328,6 +339,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("onBoarding_second_logo_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Get verification code
+      ///
+      /// Locales: en
+      static func get_code_button_key(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("get_code_button_key", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "get_code_button_key"
+        }
+
+        return NSLocalizedString("get_code_button_key", bundle: bundle, comment: "")
       }
 
       /// en translation: Phone number
@@ -360,34 +386,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("verification_message_key", bundle: bundle, comment: "")
       }
 
-      /// en translation: Send verification code
+      /// en translation: Resend
       ///
       /// Locales: en
-      static func send_code_button_key(preferredLanguages: [String]? = nil) -> String {
+      static func resend_button_key(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("send_code_button_key", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("resend_button_key", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "send_code_button_key"
+          return "resend_button_key"
         }
 
-        return NSLocalizedString("send_code_button_key", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Submit
-      ///
-      /// Locales: en
-      static func continue_button_key(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("continue_button_key", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "continue_button_key"
-        }
-
-        return NSLocalizedString("continue_button_key", bundle: bundle, comment: "")
+        return NSLocalizedString("resend_button_key", bundle: bundle, comment: "")
       }
 
       /// en translation: Watch cartoons online and offline

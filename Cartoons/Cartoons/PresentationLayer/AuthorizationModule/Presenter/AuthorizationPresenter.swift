@@ -12,7 +12,7 @@ import UIKit
 class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     let view: AuthorizationViewProtocol
     let router: RouterProtocol?
-    let firebaseManager: FirebaseManager = FirebaseManager()
+    let firebaseManager = FirebaseManager()
     
     required init(view: AuthorizationViewProtocol, router: RouterProtocol) {
         self.view = view
@@ -33,7 +33,7 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
         }
     }
     
-    func showError(error: Error?) {
+    func showError(error: Error) {
         view.setError(error: error)
     }
 }
