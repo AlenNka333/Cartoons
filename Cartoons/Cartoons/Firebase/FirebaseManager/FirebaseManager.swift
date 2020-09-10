@@ -19,18 +19,22 @@ class FirebaseManager {
     
     func sendPhoneNumber(number: String, completion: @escaping (Result<String, Error>) -> Void) {
         let formattedNumber = String(number.filter { !" -".contains($0) })
-        if !formattedNumber.isEmpty {
-            firebaseService.sendPhoneToFirebase(number: formattedNumber) { [weak self] result in
-                switch result {
-                case let .success(result):
-                    self?.verificationID = result
-                    completion(.success(result))
-                case let .failure(error):
-                    completion(.failure(error))
+        if PhoneNumberValidationHelper.checkValidation(number: formattedNumber, type: NumberFormat.bel) {
+            if !formattedNumber.isEmpty {
+                firebaseService.sendPhoneToFirebase(number: formattedNumber) { [weak self] result in
+                    switch result {
+                    case let .success(result):
+                        self?.verificationID = result
+                        completion(.success(result))
+                    case let .failure(error):
+                        completion(.failure(error))
+                    }
                 }
+            } else {
+                completion(.failure(AuthorizationError.emptyPhoneNumber))
             }
         } else {
-            completion(.failure(AuthorizationError.emptyPhoneNumber))
+            completion(.failure(AuthorizationError.invalidPhoneNumber))
         }
     }
     

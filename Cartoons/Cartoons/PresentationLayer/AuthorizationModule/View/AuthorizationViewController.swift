@@ -140,9 +140,6 @@ extension AuthorizationViewController {
             presenter.showError(error: AuthorizationError.emptyPhoneNumber)
             return
         }
-        if !PhoneNumberValidationHelper.checkValidation(number: number, type: NumberFormat.bel) {
-            presenter.showError(error: AuthorizationError.invalidPhoneNumber)
-        }
         getCodeButton.isEnabled = false
         getCodeButton.layer.borderColor = R.color.frozen_button()?.cgColor
         presenter.sendPhoneNumberAction(number: number)
