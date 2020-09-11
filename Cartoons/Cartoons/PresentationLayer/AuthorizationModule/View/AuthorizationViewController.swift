@@ -46,6 +46,7 @@ class AuthorizationViewController: UIViewController {
         textField.textColor = UIColor(white: 1, alpha: 0.9)
         textField.font = UIFont.systemFont(ofSize: 17)
         textField.autocorrectionType = .no
+        textField.delegate = self
         return textField
     }()
 
@@ -60,55 +61,49 @@ class AuthorizationViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
         button.layer.borderColor = R.color.enabled_button()?.cgColor
+        button.addTarget(self, action: #selector(self.buttonTappedToSendCodeAction), for: .touchUpInside)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        phoneNumberTextField.delegate = self
-        getCodeButton.addTarget(self, action: #selector(self.buttonTappedToSendCodeAction), for: .touchUpInside)
         setupUI()
         setupToHideKeyboardOnTapOnView()
     }
     
     private func setupUI() {
+        view.backgroundColor = .white
         view.addSubview(blackView)
-        view.addSubview(textLabelImageView)
-        view.addSubview(labelImageView)
-        view.addSubview(phoneNumberTextField)
-        view.addSubview(getCodeButton)
-        setConstraints()
-    }
-    
-    private func setConstraints() {
         blackView.snp.makeConstraints {
-            $0.height.equalTo(view.snp.height).offset(-200)
-            $0.width.equalTo(view.snp.width).offset(-30)
+            $0.height.equalToSuperview().offset(-200)
+            $0.width.equalToSuperview().offset(-30)
             $0.center.equalToSuperview()
         }
+        view.addSubview(textLabelImageView)
         textLabelImageView.snp.makeConstraints {
             $0.width.equalTo(250)
             $0.height.equalTo(100)
             $0.top.equalTo(blackView).offset(20)
             $0.centerX.equalTo(blackView)
         }
+        view.addSubview(labelImageView)
         labelImageView.snp.makeConstraints {
-            $0.width.equalTo(150)
-            $0.height.equalTo(150)
+            $0.width.height.equalTo(150)
             $0.top.equalTo(textLabelImageView).offset(30)
             $0.centerX.equalTo(blackView)
         }
+        view.addSubview(phoneNumberTextField)
         phoneNumberTextField.snp.makeConstraints {
             $0.width.equalTo(blackView).offset(-20)
             $0.height.equalTo(40)
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(blackView)
         }
+        view.addSubview(getCodeButton)
         getCodeButton.snp.makeConstraints {
             $0.width.equalTo(blackView).offset(-20)
             $0.height.equalTo(50)
-            $0.centerX.equalTo(view.center)
+            $0.centerX.equalToSuperview()
             $0.top.equalTo(phoneNumberTextField).offset(60)
         }
     }
@@ -128,7 +123,7 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
     }
     
     func setError(error: Error) {
-        CustomAlertView.instance.showAlert(title: "Error", message: error.localizedDescription, alertType: .error)
+        CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
         getCodeButton.isEnabled = true
         getCodeButton.layer.borderColor = R.color.enabled_button()?.cgColor
     }

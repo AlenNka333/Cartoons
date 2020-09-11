@@ -5,28 +5,33 @@
 //  Created by Alena Nesterkina on 9/4/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-
+import FirebaseAuth
 import Foundation
 import UIKit
 
 class Router: RouterProtocol {
-    var navigationController: UINavigationController?
-    var assemblyBuilder: AssemblyBuilderProtocol?
+    internal var navigationController: UINavigationController?
+    internal var assemblyBuilder: AssemblyBuilderProtocol?
+    private let firebaseManager = FirebaseManager()
     
-    init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
-        self.navigationController = navigationController
-        self.assemblyBuilder = assemblyBuilder
+    init(window: UIWindow) {
+        navigationController = UINavigationController()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        assemblyBuilder = ModuleBuilder()
     }
     
-    func initialViewController(isAuthorised: Bool) {
+    func initialViewController() {
+        let user = Auth.auth().currentUser
+        let isAuthorised = !firebaseManager.shouldAuthorize
         switch isAuthorised {
         case true:
-            guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
+            guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
                 return
             }
             navigationController?.viewControllers = [mainViewController]
         case false:
-            guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
+            guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
                 return
             }
             navigationController?.viewControllers = [mainViewController]
@@ -39,8 +44,9 @@ class Router: RouterProtocol {
             }
         navigationController?.pushViewController(mainViewController, animated: animated)
         }
+    
     func openCartoonsController(animated: Bool) {
-        guard let mainViewController = assemblyBuilder?.createCartoons(router: self) else {
+        guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
                 return
             }
         navigationController?.pushViewController(mainViewController, animated: animated)

@@ -10,10 +10,15 @@ import SnapKit
 import UIKit
 
 class VerificationCodeViewController: UIViewController {
+    enum DefaultValues {
+        static let totalTime = 60
+        static let otpCodeCount = 6
+    }
+    
     var presenter: VerificationViewPresenterProtocol!
     let activityIndicator = UIActivityIndicatorView()
     var countdownTimer: Timer!
-    var totalTime = 60
+    var timer = DefaultValues.totalTime
     
     private lazy var verificationLabel: UILabel = {
         let label = UILabel()
@@ -27,7 +32,6 @@ class VerificationCodeViewController: UIViewController {
     
     private lazy var timerLabel: UILabel = {
            let label = UILabel()
-           label.text = "60"
            label.font = .systemFont(ofSize: 30)
            label.numberOfLines = 0
            label.textAlignment = .center
@@ -74,6 +78,7 @@ class VerificationCodeViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
         button.layer.borderColor = R.color.frozen_button()?.cgColor
+        button.addTarget(self, action: #selector(self.resendButtonClicked), for: .touchUpInside)
         return button
     }()
     
@@ -81,42 +86,37 @@ class VerificationCodeViewController: UIViewController {
         super.viewDidLoad()
         setupToHideKeyboardOnTapOnView()
         setupUI()
-        view.backgroundColor = .white
-        resendButton.addTarget(self, action: #selector(self.resendButtonClicked), for: .touchUpInside)
         startTimer()
     }
     
     private func setupUI() {
+        view.backgroundColor = .white
         view.addSubview(blackView)
-        view.addSubview(verificationLabel)
-        view.addSubview(otpCodeTextField)
-        view.addSubview(timerLabel)
-        view.addSubview(resendButton)
-        setConstraints()
-    }
-    
-    private func setConstraints() {
         blackView.snp.makeConstraints {
-            $0.height.equalTo(view.snp.height).offset(-200)
-            $0.width.equalTo(view.snp.width).offset(-30)
+            $0.height.equalToSuperview().offset(-200)
+            $0.width.equalToSuperview().offset(-30)
             $0.center.equalToSuperview()
         }
+        view.addSubview(verificationLabel)
         verificationLabel.snp.makeConstraints {
             $0.width.equalTo(blackView).offset(-60)
             $0.top.equalTo(blackView).offset(60)
             $0.centerX.equalTo(blackView)
         }
-        timerLabel.snp.makeConstraints {
-            $0.width.equalTo(blackView).offset(-60)
-            $0.top.equalTo(verificationLabel).offset(100)
-            $0.centerX.equalTo(blackView)
-        }
+        view.addSubview(otpCodeTextField)
         otpCodeTextField.snp.makeConstraints {
             $0.width.equalTo(blackView).offset(-20)
             $0.height.equalTo(40)
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(blackView)
         }
+        view.addSubview(timerLabel)
+        timerLabel.snp.makeConstraints {
+            $0.width.equalTo(blackView).offset(-60)
+            $0.top.equalTo(verificationLabel).offset(100)
+            $0.centerX.equalTo(blackView)
+        }
+        view.addSubview(resendButton)
         resendButton.snp.makeConstraints {
             $0.width.equalTo(blackView).offset(-20)
             $0.height.equalTo(50)
@@ -131,9 +131,9 @@ extension VerificationCodeViewController {
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
     @objc func updateTime() {
-        timerLabel.text = "\(totalTime)"
-        if totalTime != 0 {
-            totalTime -= 1
+        timerLabel.text = "\(timer)"
+        if timer != 0 {
+            timer -= 1
         } else {
             resendButton.isEnabled = true
             resendButton.layer.borderColor = R.color.enabled_button()?.cgColor
@@ -147,15 +147,15 @@ extension VerificationCodeViewController {
         guard let text = otpCodeTextField.text else {
             return
         }
-        if text.count == 6 {
+        if text.count == DefaultValues.otpCodeCount {
             endTimer()
             view.endEditing(true)
             presenter.verifyUser(verificationCode: text)
         }
     }
     @objc func resendButtonClicked() {
-        totalTime = 60
-        timerLabel.text = "\(totalTime)"
+        timer = DefaultValues.totalTime
+        timerLabel.text = "\(timer)"
         startTimer()
     }
 }
@@ -173,6 +173,6 @@ extension VerificationCodeViewController: VerificationViewProtocol {
         activityIndicator.stopAnimating()
     }
     func setError(error: Error) {
-        CustomAlertView.instance.showAlert(title: "Error", message: error.localizedDescription, alertType: .error)
+        CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
     }
 }

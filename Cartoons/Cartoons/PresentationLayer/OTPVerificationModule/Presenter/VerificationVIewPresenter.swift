@@ -26,11 +26,8 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     func verifyUser(verificationCode: String) {
         firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
-            case let .success(user):
-                //move to another screen
-                print("data: \(String(describing: user?.user.phoneNumber))")
+            case .success(_):
                 self?.router?.openCartoonsController(animated: true)
-                //CustomAlertView.instance.showAlert(title: "Error", message: "Works", alertType: .success)
             case let .failure(error):
                 self?.view.setError(error: error)
             }

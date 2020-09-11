@@ -51,7 +51,7 @@ class CustomAlertView: UIView {
         case .error:
             doneButton.backgroundColor = R.color.cinnabar()
         }
-        UIApplication.shared.windows.first(where: { $0.isKeyWindow == true })?.addSubview(parentView)
+        UIApplication.shared.windows.first { $0.isKeyWindow == true }?.addSubview(parentView)
     }
     
     @IBAction private func onClickDone(_ sender: Any) {

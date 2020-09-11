@@ -24,21 +24,17 @@ class CartoonsViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
         button.layer.borderColor = R.color.enabled_button()?.cgColor
+        button.addTarget(self, action: #selector(self.buttonTappedToSignOutAction), for: .touchUpInside)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        signOutButton.addTarget(self, action: #selector(self.buttonTappedToSignOutAction), for: .touchUpInside)
     }
     
     private func setupUI() {
         view.addSubview(signOutButton)
-        setConstraints()
-    }
-    
-    private func setConstraints() {
         signOutButton.snp.makeConstraints {
             $0.width.equalTo(100)
             $0.height.equalTo(50)
@@ -55,10 +51,9 @@ extension CartoonsViewController {
         let firebaseAuth = Auth.auth()
         do {
           try firebaseAuth.signOut()
-            CustomAlertView.instance.showAlert(title: "Sign Out", message: "Success", alertType: .success)
-        } catch let error as NSError {
-          CustomAlertView.instance.showAlert(title: "Sign Out", message: error.localizedDescription, alertType: .error)
+            CustomAlertView.instance.showAlert(title: R.string.localizable.sign_out_button(), message: R.string.localizable.success(), alertType: .success)
+        } catch {
+          CustomAlertView.instance.showAlert(title: R.string.localizable.sign_out_button(), message: error.localizedDescription, alertType: .error)
         }
     }
 }
-

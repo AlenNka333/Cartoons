@@ -299,8 +299,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 9 localization keys.
     struct localizable {
+      /// en translation: Error
+      ///
+      /// Locales: en
+      static let error = Rswift.StringResource(key: "error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Find your favourite characters
       ///
       /// Locales: en
@@ -325,10 +329,29 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let sign_out_button = Rswift.StringResource(key: "sign_out_button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Success
+      ///
+      /// Locales: en
+      static let success = Rswift.StringResource(key: "success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Watch cartoons online and offline
       ///
       /// Locales: en
       static let onBoarding_first_logo_key = Rswift.StringResource(key: "onBoarding_first_logo_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+
+      /// en translation: Error
+      ///
+      /// Locales: en
+      static func error(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error"
+        }
+
+        return NSLocalizedString("error", bundle: bundle, comment: "")
+      }
 
       /// en translation: Find your favourite characters
       ///
@@ -418,6 +441,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("sign_out_button", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Success
+      ///
+      /// Locales: en
+      static func success(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("success", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "success"
+        }
+
+        return NSLocalizedString("success", bundle: bundle, comment: "")
       }
 
       /// en translation: Watch cartoons online and offline

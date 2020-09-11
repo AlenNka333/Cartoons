@@ -9,6 +9,8 @@
 phone_label_key = "Phone number";
 get_code_button_key = "Get verification code";
 sign_out_button = "Sign out";
+error = "Error";
+success = "Success";
 verification_message_key = "Please, check your messages for a six-digit security code and enter it below";
 resend_button_key = "Resend";
 onBoarding_first_logo_key = "Watch cartoons online and offline";
