@@ -10,10 +10,27 @@ import Foundation
 
 class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
-    let router: RouterProtocol?
+    let firebaseManager = FirebaseManager()
     
-    required init(view: CartoonsViewProtocol, router: RouterProtocol) {
+    required init(view: CartoonsViewProtocol) {
         self.view = view
-        self.router = router
+    }
+    func signOutUserAction() {
+        firebaseManager.signOutUser { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.view.setSuccess(success: R.string.localizable.success())
+            case let .failure(error):
+                self?.view.setError(error: error)
+            }
+        }
+    }
+    
+    func showSuccess(success: String) {
+        view.setSuccess(success: success)
+    }
+    
+    func showError(error: Error) {
+        view.setError(error: error)
     }
 }

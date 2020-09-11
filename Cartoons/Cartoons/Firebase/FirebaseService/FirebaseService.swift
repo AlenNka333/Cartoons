@@ -38,4 +38,13 @@ class FirebaseService {
                 completion(.success(user))
             }
     }
+    func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+            completion(.success(()))
+        } catch {
+            completion(.failure(error))
+        }
+    }
 }
