@@ -39,7 +39,7 @@
                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </state>
                                     <connections>
-                                        <action selector="onClickDone:" destination="-1" eventType="touchUpInside" id="7Fu-k2-K0b"/>
+                                        <action selector="onClickDoneAction:" destination="-1" eventType="touchUpInside" id="6df-Pr-Exw"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSF-1V-CHJ">

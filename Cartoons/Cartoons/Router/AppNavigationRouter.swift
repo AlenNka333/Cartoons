@@ -22,7 +22,6 @@ class Router: RouterProtocol {
     }
     
     func initialViewController() {
-        let user = Auth.auth().currentUser
         let isAuthorised = !firebaseManager.shouldAuthorize
         switch isAuthorised {
         case true:

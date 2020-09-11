@@ -54,7 +54,7 @@ class CustomAlertView: UIView {
         UIApplication.shared.windows.first { $0.isKeyWindow == true }?.addSubview(parentView)
     }
     
-    @IBAction private func onClickDone(_ sender: Any) {
+    @IBAction private func onClickDoneAction(_ sender: Any) {
         parentView.removeFromSuperview()
     }
 }

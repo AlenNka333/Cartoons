@@ -78,7 +78,7 @@ class VerificationCodeViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
         button.layer.borderColor = R.color.frozen_button()?.cgColor
-        button.addTarget(self, action: #selector(self.resendButtonClicked), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.resendButtonTappedAction), for: .touchUpInside)
         return button
     }()
     
@@ -153,7 +153,7 @@ extension VerificationCodeViewController {
             presenter.verifyUser(verificationCode: text)
         }
     }
-    @objc func resendButtonClicked() {
+    @objc func resendButtonTappedAction() {
         timer = DefaultValues.totalTime
         timerLabel.text = "\(timer)"
         startTimer()
