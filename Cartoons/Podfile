@@ -12,6 +12,7 @@ target 'Cartoons' do
   use_frameworks!
   inhibit_all_warnings!
   
+    pod 'R.swift'
     pod 'SwiftLint'
     pod 'SnapKit'
     pod 'SwiftFormat/CLI'
