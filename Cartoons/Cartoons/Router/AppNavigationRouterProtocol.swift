@@ -12,9 +12,11 @@ import UIKit
 protocol RouterMain {
     var navigationController: UINavigationController? { get set }
     var assemblyBuilder: AssemblyBuilderProtocol? { get set }
+    var onBoarding: UIPageViewController? { get set }
 }
 
 protocol RouterProtocol: RouterMain {
+    func initOnBoarding()
     func initialViewController()
     func createVerificationController(animated: Bool, verificationId: String)
     func openCartoonsController(animated: Bool)

@@ -11,20 +11,17 @@ import Foundation
 
 class FirebaseManager {
     let firebaseService = FirebaseService()
-    
-    @UserDefault(Constants.verificationId, defaultValue: "")
-    
-    var verificationID: String
+
     var shouldAuthorize: Bool { Auth.auth().currentUser == nil }
     
     func sendPhoneNumber(number: String, completion: @escaping (Result<String, Error>) -> Void) {
         let formattedNumber = String(number.filter { !" -".contains($0) })
         if PhoneNumberValidationHelper.checkValidation(number: formattedNumber, type: NumberFormat.bel) {
             if !formattedNumber.isEmpty {
-                firebaseService.sendPhoneToFirebase(number: formattedNumber) { [weak self] result in
+                firebaseService.sendPhoneToFirebase(number: formattedNumber) { result in
                     switch result {
                     case let .success(result):
-                        self?.verificationID = result
+                        AppData.verificationID = result
                         completion(.success(result))
                     case let .failure(error):
                         completion(.failure(error))

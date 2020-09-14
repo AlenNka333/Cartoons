@@ -12,8 +12,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         let router = Router(window: wnd)
-        router.initialViewController()
-        window?.rootViewController = router.navigationController
+        if AppData.isFirstComing {
+            router.initOnBoarding()
+             window?.rootViewController = router.onBoarding
+        } else {
+            router.initialViewController()
+            window?.rootViewController = router.navigationController
+        }
         window?.makeKeyAndVisible()
         return true
     }

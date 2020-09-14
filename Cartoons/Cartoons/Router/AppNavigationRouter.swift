@@ -12,6 +12,7 @@ import UIKit
 class Router: RouterProtocol {
     internal var navigationController: UINavigationController?
     internal var assemblyBuilder: AssemblyBuilderProtocol?
+    internal var onBoarding: UIPageViewController?
     private let firebaseManager = FirebaseManager()
     
     init(window: UIWindow) {
@@ -20,7 +21,9 @@ class Router: RouterProtocol {
         navigationController?.navigationBar.shadowImage = UIImage()
         assemblyBuilder = ModuleBuilder()
     }
-    
+    func initOnBoarding() {
+        onBoarding = assemblyBuilder?.createOnBoarding(router: self)
+    }
     func initialViewController() {
         let isAuthorised = !firebaseManager.shouldAuthorize
         switch isAuthorised {

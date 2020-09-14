@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 class ModuleBuilder: AssemblyBuilderProtocol {
+    func createOnBoarding(router: RouterProtocol) -> UIPageViewController {
+        let view = PageViewController()
+        return view
+    }
+    
     func createAuthorization(router: RouterProtocol) -> UIViewController {
         let view = AuthorizationViewController()
         let presenter = AuthorizationPresenter(view: view, router: router)
