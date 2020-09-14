@@ -25,6 +25,11 @@
 		3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */; };
 		3373D94C250F612F0095F78C /* ThirdFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D94B250F612F0095F78C /* ThirdFeatureViewController.swift */; };
 		3373D94E250F63CA0095F78C /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D94D250F63CA0095F78C /* AppData.swift */; };
+		3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D951250F95100095F78C /* PageControllerPresenter.swift */; };
+		3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */; };
+		3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D955250F95460095F78C /* PagePresenterProtocol.swift */; };
+		3373D959250FCCE10095F78C /* ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D958250FCCE10095F78C /* ApplicationState.swift */; };
+		3373D95B250FCE850095F78C /* CheckApplicationStateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D95A250FCE850095F78C /* CheckApplicationStateHelper.swift */; };
 		33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
 		33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */; };
@@ -71,6 +76,11 @@
 		3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineWatchingFeatureViewController.swift; sourceTree = "<group>"; };
 		3373D94B250F612F0095F78C /* ThirdFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdFeatureViewController.swift; sourceTree = "<group>"; };
 		3373D94D250F63CA0095F78C /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		3373D951250F95100095F78C /* PageControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerPresenter.swift; sourceTree = "<group>"; };
+		3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
+		3373D955250F95460095F78C /* PagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenterProtocol.swift; sourceTree = "<group>"; };
+		3373D958250FCCE10095F78C /* ApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationState.swift; sourceTree = "<group>"; };
+		3373D95A250FCE850095F78C /* CheckApplicationStateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckApplicationStateHelper.swift; sourceTree = "<group>"; };
 		33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
@@ -204,6 +214,7 @@
 			children = (
 				332BA36825069D38008A8F29 /* Constants.swift */,
 				33B2AEA52508EF670006BE31 /* NumberFormats.swift */,
+				3373D958250FCCE10095F78C /* ApplicationState.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -220,12 +231,31 @@
 		3373D943250F55E90095F78C /* onBoardingModule */ = {
 			isa = PBXGroup;
 			children = (
+				3373D94F250F94CC0095F78C /* Presenter */,
+				3373D950250F94D60095F78C /* View */,
+			);
+			path = onBoardingModule;
+			sourceTree = "<group>";
+		};
+		3373D94F250F94CC0095F78C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3373D951250F95100095F78C /* PageControllerPresenter.swift */,
+				3373D955250F95460095F78C /* PagePresenterProtocol.swift */,
+				3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3373D950250F94D60095F78C /* View */ = {
+			isa = PBXGroup;
+			children = (
 				3373D944250F588A0095F78C /* PageViewController.swift */,
 				3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */,
 				3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */,
 				3373D94B250F612F0095F78C /* ThirdFeatureViewController.swift */,
 			);
-			path = onBoardingModule;
+			path = View;
 			sourceTree = "<group>";
 		};
 		33B1F08124FFA83800DB6BA8 /* Resources */ = {
@@ -310,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				33B2AEA8250A18860006BE31 /* PhoneNumberValidationHelper.swift */,
+				3373D95A250FCE850095F78C /* CheckApplicationStateHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -649,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				332BA3532506014B008A8F29 /* FirebaseManager.swift in Sources */,
+				3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */,
 				33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */,
 				33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
@@ -657,11 +689,14 @@
 				33B660CF2502DBD700CA562E /* ModuleBuilder.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				33B660C1250246CF00CA562E /* String+Extension.swift in Sources */,
+				3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */,
+				3373D959250FCCE10095F78C /* ApplicationState.swift in Sources */,
 				332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */,
 				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
 				332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */,
 				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
+				3373D95B250FCE850095F78C /* CheckApplicationStateHelper.swift in Sources */,
 				332BA35525060174008A8F29 /* FirebaseService.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				3373D945250F588A0095F78C /* PageViewController.swift in Sources */,
@@ -669,6 +704,7 @@
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */,
 				33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */,
+				3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */,
 				33B2AEA42508BB750006BE31 /* GradientLayer.swift in Sources */,
 				3373D94C250F612F0095F78C /* ThirdFeatureViewController.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,

@@ -12,6 +12,8 @@ import UIKit
 class ModuleBuilder: AssemblyBuilderProtocol {
     func createOnBoarding(router: RouterProtocol) -> UIPageViewController {
         let view = PageViewController()
+        let presenter = PageControllerPresenter(view: view, router: router)
+        view.presenter = presenter
         return view
     }
     
@@ -25,13 +27,6 @@ class ModuleBuilder: AssemblyBuilderProtocol {
     func createVerification(router: RouterProtocol, verificationId: String) -> UIViewController {
         let view = VerificationCodeViewController()
         let presenter = VerificationPresenter(view: view, router: router, verificationId: verificationId)
-        view.presenter = presenter
-        return view
-    }
-    
-    func createCartoons(router: RouterProtocol) -> UIViewController {
-        let view = CartoonsViewController()
-        let presenter = CartoonsPresenter(view: view, router: router)
         view.presenter = presenter
         return view
     }

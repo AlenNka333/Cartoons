@@ -10,10 +10,12 @@ import Foundation
 import UIKit
 
 class Router: RouterProtocol {
-    internal var navigationController: UINavigationController?
     internal var assemblyBuilder: AssemblyBuilderProtocol?
+    internal var navigationController: UINavigationController?
     internal var onBoarding: UIPageViewController?
-    private let firebaseManager = FirebaseManager()
+    internal var tabBarController: UITabBarController?
+    
+    static var appState: ApplicationState?
     
     init(window: UIWindow) {
         navigationController = UINavigationController()
@@ -21,38 +23,47 @@ class Router: RouterProtocol {
         navigationController?.navigationBar.shadowImage = UIImage()
         assemblyBuilder = ModuleBuilder()
     }
-    func initOnBoarding() {
-        onBoarding = assemblyBuilder?.createOnBoarding(router: self)
-    }
-    func initialViewController() {
-        let isAuthorised = !firebaseManager.shouldAuthorize
-        switch isAuthorised {
-        case true:
-            guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
-                return
-            }
-            navigationController?.viewControllers = [mainViewController]
-        case false:
-            guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
-                return
-            }
-            navigationController?.viewControllers = [mainViewController]
+    
+    func changeRootViewController(with rootViewController: UIViewController) {
+        guard let window = UIApplication.shared.keyWindow else {
+            return
         }
+        
     }
     
-    func createVerificationController(animated: Bool, verificationId: String) {
+    func showOnBoarding() {
+        onBoarding = assemblyBuilder?.createOnBoarding(router: self)
+        guard let onBoard = onBoarding else {
+            return
+        }
+        changeRootViewController(with: onBoard)
+    }
+    
+    func showTabBarController() {
+        tabBarController = assemblyBuilder?.createTabBarController(router: self)
+        guard let tabBar = tabBarController else {
+            return
+        }
+        changeRootViewController(with: tabBar)
+    }
+
+    func showAuthorizationController() {
+        guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
+                return
+            }
+        navigationController?.viewControllers = [mainViewController]
+        guard let navigation = navigationController else {
+            return
+        }
+        changeRootViewController(with: navigation)
+    }
+    
+    func showOTPController(animated: Bool, verificationId: String) {
         guard let mainViewController = assemblyBuilder?.createVerification(router: self, verificationId: verificationId) else {
                 return
             }
         navigationController?.pushViewController(mainViewController, animated: animated)
-        }
-    
-    func openCartoonsController(animated: Bool) {
-        guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
-                return
-            }
-        navigationController?.pushViewController(mainViewController, animated: animated)
-        }
+    }
     
     func popToRoot(animated: Bool) {
         if let navigationController = navigationController {

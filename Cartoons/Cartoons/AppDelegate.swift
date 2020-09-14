@@ -12,14 +12,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         let router = Router(window: wnd)
-        if !AppData.isFirstComing {
-            router.initOnBoarding()
-             window?.rootViewController = router.onBoarding
-        } else {
-            router.initialViewController()
-            window?.rootViewController = router.navigationController
+        switch CheckApplicationStateHelper.checkState() {
+        case .firstTime:
+            router.showOnBoarding()
+            wnd.rootViewController = router.onBoarding
+        case .authorized:
+            router.showTabBarController()
+            wnd.rootViewController = router.tabBarController
+        case .notAuthorized:
+            router.showAuthorizationController()
+            wnd.rootViewController = router.navigationController
         }
-        window?.makeKeyAndVisible()
+        wnd.makeKeyAndVisible()
         return true
     }
 }

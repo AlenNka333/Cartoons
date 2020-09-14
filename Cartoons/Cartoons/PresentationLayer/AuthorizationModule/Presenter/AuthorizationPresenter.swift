@@ -25,7 +25,7 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
             self?.view.stopActivityIndicatorAction()
             switch result {
             case let .success(verificationId):
-                self?.router?.createVerificationController(animated: true, verificationId: verificationId)
+                self?.router?.showOTPController(animated: true, verificationId: verificationId)
             case .failure(let error):
                 self?.view.setError(error: error)
             }

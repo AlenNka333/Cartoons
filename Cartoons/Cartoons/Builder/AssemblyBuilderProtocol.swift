@@ -13,6 +13,5 @@ protocol AssemblyBuilderProtocol {
     func createOnBoarding(router: RouterProtocol) -> UIPageViewController
     func createAuthorization(router: RouterProtocol) -> UIViewController
     func createVerification(router: RouterProtocol, verificationId: String) -> UIViewController
-    func createCartoons(router: RouterProtocol) -> UIViewController
     func createTabBarController(router: RouterProtocol) -> UITabBarController
 }

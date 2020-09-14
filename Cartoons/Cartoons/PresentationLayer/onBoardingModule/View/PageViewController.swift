@@ -13,6 +13,7 @@ class PageViewController: UIPageViewController {
         static let initialPage: Int = 0
     }
     
+    var presenter: PageControllerPresenter!
     private var pages = [UIViewController]()  
     private lazy var pageControl: UIPageControl = {
         let pageC = UIPageControl()
@@ -40,7 +41,6 @@ class PageViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.dataSource = self
         self.delegate = self
         initViewControllers()
@@ -80,7 +80,11 @@ class PageViewController: UIPageViewController {
 
 extension PageViewController {
     @objc func skipButtonAction() {
+        presenter.showMainScreen()
     }
+}
+
+extension PageViewController: PageViewControllerProtocol {
 }
 
 extension PageViewController: UIPageViewControllerDelegate {
@@ -110,7 +114,7 @@ extension PageViewController: UIPageViewControllerDataSource {
             if viewControllerIndex < pages.count - 1 {
                 return pages[viewControllerIndex + 1]
             } else {
-                return pages.first
+                presenter.showMainScreen()
             }
         }
         return nil

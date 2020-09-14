@@ -27,7 +27,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
             case .success(_):
-                self?.router?.openCartoonsController(animated: true)
+                self?.router?.showTabBarController()
             case let .failure(error):
                 self?.view.setError(error: error)
             }
