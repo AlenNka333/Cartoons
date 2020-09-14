@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         let router = Router(window: wnd)
-        if AppData.isFirstComing {
+        if !AppData.isFirstComing {
             router.initOnBoarding()
              window?.rootViewController = router.onBoarding
         } else {

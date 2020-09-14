@@ -13,9 +13,7 @@ class PageViewController: UIPageViewController {
         static let initialPage: Int = 0
     }
     
-    private var pages = [UIViewController]()
-   
-    
+    private var pages = [UIViewController]()  
     private lazy var pageControl: UIPageControl = {
         let pageC = UIPageControl()
         pageC.frame = CGRect()
@@ -23,6 +21,21 @@ class PageViewController: UIPageViewController {
         pageC.pageIndicatorTintColor = .darkGray
         pageC.currentPage = DefaultValues.initialPage
         return pageC
+    }()
+    
+    private var skipButton: UIButton = {
+        let button = UIButton()
+        let string = NSAttributedString(string: R.string.localizable.skip(),
+                                        attributes: [NSAttributedString.Key.font:
+                                            UIFont.systemFont(ofSize: 18),
+                                                     .foregroundColor: UIColor.white])
+        let attributedString = NSMutableAttributedString(attributedString: string)
+        button.setAttributedTitle(attributedString, for: .normal)
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = 2
+        button.layer.borderColor = R.color.enabled_button()?.cgColor
+        button.addTarget(self, action: #selector(skipButtonAction), for: .touchUpInside)
+        return button
     }()
     
     override func viewDidLoad() {
@@ -46,13 +59,27 @@ class PageViewController: UIPageViewController {
         view.addSubview(pageControl)
         pageControl.numberOfPages = pages.count
         pageControl.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-10)
+            $0.bottom.equalToSuperview().offset(-30)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(50)
+            $0.width.equalTo(150)
+            $0.height.equalTo(50)
+        }
+        
+        view.addSubview(skipButton)
+        skipButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.width.equalTo(100)
+            $0.height.equalTo(30)
         }
     }
     func setFirstComing() {
         AppData.isFirstComing = false
+    }
+}
+
+extension PageViewController {
+    @objc func skipButtonAction() {
     }
 }
 
@@ -88,6 +115,4 @@ extension PageViewController: UIPageViewControllerDataSource {
         }
         return nil
     }
-    
-    
 }
