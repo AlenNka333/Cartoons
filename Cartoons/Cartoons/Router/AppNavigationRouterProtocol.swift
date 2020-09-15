@@ -17,7 +17,7 @@ protocol RouterMain {
 }
 
 protocol RouterProtocol: RouterMain {
-    func changeRootViewController()
+    func changeRootViewController(with rootViewController: UIViewController)
     func showOnBoarding()
     func showAuthorizationController()
     func showOTPController(animated: Bool, verificationId: String)

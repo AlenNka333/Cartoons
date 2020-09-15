@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 class Router: RouterProtocol {
-    internal var assemblyBuilder: AssemblyBuilderProtocol?
-    internal var navigationController: UINavigationController?
-    internal var onBoarding: UIPageViewController?
-    internal var tabBarController: UITabBarController?
-    
     static var appState: ApplicationState?
+    
+    var assemblyBuilder: AssemblyBuilderProtocol?
+    var navigationController: UINavigationController?
+    var onBoarding: UIPageViewController?
+    var tabBarController: UITabBarController?
     
     init(window: UIWindow) {
         navigationController = UINavigationController()
@@ -25,7 +25,7 @@ class Router: RouterProtocol {
     }
     
     func changeRootViewController(with rootViewController: UIViewController) {
-        guard let window = UIApplication.shared.keyWindow else {
+        guard let window = UIApplication.shared.windows.filter( { $0.isKeyWindow } ).first else {
             return
         }
         
