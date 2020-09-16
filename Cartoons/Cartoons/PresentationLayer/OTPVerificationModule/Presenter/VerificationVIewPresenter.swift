@@ -14,10 +14,11 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     let verificationId: String
     let firebaseManager = FirebaseManager()
     
-    init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String) {
+    init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String, number: String) {
         self.view = view
         self.router = router
         self.verificationId = verificationId
+        view.setLabelText(number: number)
     }
     func showError(error: Error) {
         view.setError(error: error)

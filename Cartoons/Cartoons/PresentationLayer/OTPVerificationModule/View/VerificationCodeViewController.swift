@@ -166,6 +166,10 @@ extension VerificationCodeViewController {
 }
 
 extension VerificationCodeViewController: VerificationViewProtocol {
+    func setLabelText(number: String) {
+        verificationLabel.text?.append("\n\(number)")
+    }
+    
     func showActivityIndicatorAction() {
         activityIndicator.style = UIActivityIndicatorView.Style.large
         activityIndicator.center = view.center

@@ -24,9 +24,9 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func createVerification(router: RouterProtocol, verificationId: String) -> UIViewController {
+    func createVerification(router: RouterProtocol, verificationId: String, number: String) -> UIViewController {
         let view = VerificationCodeViewController()
-        let presenter = VerificationPresenter(view: view, router: router, verificationId: verificationId)
+        let presenter = VerificationPresenter(view: view, router: router, verificationId: verificationId, number: number)
         view.presenter = presenter
         return view
     }
