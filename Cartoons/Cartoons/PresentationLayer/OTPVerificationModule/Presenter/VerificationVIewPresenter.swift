@@ -14,7 +14,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     let verificationId: String
     let firebaseManager = FirebaseManager()
     
-    required init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String) {
+    init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String) {
         self.view = view
         self.router = router
         self.verificationId = verificationId

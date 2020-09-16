@@ -13,7 +13,7 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     let router: RouterProtocol?
     let firebaseManager = FirebaseManager()
     
-    required init(view: AuthorizationViewProtocol, router: RouterProtocol) {
+    init(view: AuthorizationViewProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
     }

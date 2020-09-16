@@ -269,6 +269,7 @@
 		33B1F08424FFEEB000DB6BA8 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				33B660CD2502DBC000CA562E /* Builder */,
 				3373D943250F55E90095F78C /* onBoardingModule */,
 				33B2AEB7250A6FD90006BE31 /* TabBarModule */,
 				33B2AEAA250A61260006BE31 /* CartoonsModule */,
@@ -291,6 +292,8 @@
 		33B1F08824FFEF0300DB6BA8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				332BA36725069D11008A8F29 /* Constants */,
+				33B2AEA7250A18670006BE31 /* Helpers */,
 				33B2AEA32508BB750006BE31 /* GradientLayer.swift */,
 			);
 			path = Utilities;
@@ -443,6 +446,15 @@
 			path = Builder;
 			sourceTree = "<group>";
 		};
+		33D1C3CB2512778A002A9843 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				332BA34F250600DF008A8F29 /* Firebase */,
+				332BA35E25060722008A8F29 /* Errors */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		33FF60AE24FA45F40077D109 = {
 			isa = PBXGroup;
 			children = (
@@ -464,15 +476,11 @@
 		33FF60B924FA45F40077D109 /* Cartoons */ = {
 			isa = PBXGroup;
 			children = (
-				33B2AEA7250A18670006BE31 /* Helpers */,
-				332BA36725069D11008A8F29 /* Constants */,
-				332BA35E25060722008A8F29 /* Errors */,
-				332BA34F250600DF008A8F29 /* Firebase */,
-				33B660CD2502DBC000CA562E /* Builder */,
-				33FF60BA24FA45F40077D109 /* AppDelegate.swift */,
-				33B660C825026DC300CA562E /* Router */,
 				33B1F08424FFEEB000DB6BA8 /* PresentationLayer */,
 				33B1F08724FFEEF500DB6BA8 /* Components */,
+				33D1C3CB2512778A002A9843 /* Services */,
+				33FF60BA24FA45F40077D109 /* AppDelegate.swift */,
+				33B660C825026DC300CA562E /* Router */,
 				33B1F08124FFA83800DB6BA8 /* Resources */,
 				33FF60C524FA45F80077D109 /* LaunchScreen.storyboard */,
 			);

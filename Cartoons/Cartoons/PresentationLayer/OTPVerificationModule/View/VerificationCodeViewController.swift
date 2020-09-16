@@ -15,7 +15,7 @@ class VerificationCodeViewController: UIViewController {
         static let otpCodeCount = 6
     }
     
-    var presenter: VerificationViewPresenterProtocol!
+    var presenter: VerificationViewPresenterProtocol?
     let activityIndicator = UIActivityIndicatorView()
     var countdownTimer: Timer!
     var timer = DefaultValues.totalTime
@@ -144,6 +144,9 @@ extension VerificationCodeViewController {
         countdownTimer.invalidate()
     }
     @objc func textDidChange() {
+        guard let presenter = self.presenter else {
+            return
+        }
         guard let text = otpCodeTextField.text else {
             return
         }
@@ -154,6 +157,8 @@ extension VerificationCodeViewController {
         }
     }
     @objc func resendButtonTappedAction() {
+        resendButton.isEnabled = false
+        resendButton.layer.borderColor = R.color.frozen_button()?.cgColor
         timer = DefaultValues.totalTime
         timerLabel.text = "\(timer)"
         startTimer()

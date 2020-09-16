@@ -9,7 +9,7 @@
 import UIKit
 
 class CartoonsViewController: UIViewController {
-    var presenter: CartoonsViewPresenterProtocol!
+    var presenter: CartoonsViewPresenterProtocol?
     
     private lazy var signOutButton: UIButton = {
         let button = UIButton()
@@ -52,6 +52,9 @@ extension CartoonsViewController: CartoonsViewProtocol {
 }
 extension CartoonsViewController {
     @objc func buttonTappedToSignOutAction() {
+        guard let presenter = self.presenter else {
+            return
+        }
         presenter.signOutUserAction()
     }
 }

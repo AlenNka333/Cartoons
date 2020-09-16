@@ -12,7 +12,7 @@ class PageControllerPresenter: PagePresenterProtocol {
     let view: PageViewControllerProtocol
     let router: RouterProtocol?
     
-    required init(view: PageViewControllerProtocol, router: RouterProtocol) {
+    init(view: PageViewControllerProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
     }

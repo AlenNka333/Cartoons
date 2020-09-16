@@ -1,7 +1,7 @@
 import UIKit
 
 class AuthorizationViewController: UIViewController {
-    var presenter: AuthorizationViewPresenterProtocol!
+    var presenter: AuthorizationViewPresenterProtocol?
     let alertView = CustomAlertView()
     let activityIndicator = UIActivityIndicatorView()
     
@@ -131,6 +131,9 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
 
 extension AuthorizationViewController {
     @objc func buttonTappedToSendCodeAction() {
+        guard let presenter = self.presenter else {
+            return
+        }
         guard let number = phoneNumberTextField.text else {
             presenter.showError(error: AuthorizationError.emptyPhoneNumber)
             return
