@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 class VerificationPresenter: VerificationViewPresenterProtocol {
     let view: VerificationViewProtocol

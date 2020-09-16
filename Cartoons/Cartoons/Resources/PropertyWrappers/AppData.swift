@@ -12,5 +12,5 @@ struct AppData {
     static var verificationID: String
     
     @UserDefault(Constants.firstComing, defaultValue: true)
-    static var isFirstComing: Bool
+    static var shouldShowOnBoarding: Bool
 }

@@ -8,6 +8,5 @@
 
 import Foundation
 
-protocol PageViewControllerProtocol: AnyObject {
-    
+protocol PageViewControllerProtocol: AnyObject {    
 }

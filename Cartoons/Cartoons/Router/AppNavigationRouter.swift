@@ -26,7 +26,7 @@ class Router: RouterProtocol {
     }
     
     func start() {
-        if AppData.isFirstComing {
+        if AppData.shouldShowOnBoarding {
             showOnBoarding()
         } else {
             let firebaseManager = FirebaseManager()

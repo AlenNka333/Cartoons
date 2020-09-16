@@ -97,7 +97,10 @@ extension PageViewController: PageViewControllerProtocol {
 }
 
 extension PageViewController: UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
         if let viewControllers = pageViewController.viewControllers {
             if let viewControllerIndex = pages.firstIndex(of: viewControllers[0]) {
                 pageControl.currentPage = viewControllerIndex
@@ -123,6 +126,7 @@ extension PageViewController: UIPageViewControllerDataSource {
             if viewControllerIndex < pages.count - 1 {
                 return pages[viewControllerIndex + 1]
             } else {
+                presenter.saveUserCame()
                 presenter.showAuthorizationScreen()
             }
         }
