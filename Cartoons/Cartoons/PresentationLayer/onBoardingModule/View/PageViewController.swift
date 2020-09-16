@@ -9,7 +9,11 @@
 import UIKit
 
 class PageViewController: UIPageViewController {
-    var triggerButton: UIButton = {
+    enum Constants {
+        static let initialPage: Int = 0
+    }
+
+    var skipButton: UIButton = {
         let button = UIButton()
         let string = NSAttributedString(string: R.string.localizable.skip(),
                                         attributes: [NSAttributedString.Key.font:
@@ -30,15 +34,7 @@ class PageViewController: UIPageViewController {
         text.text = "Test"
         return text
     }()
-    
-    var mainView: UIView {
-      return view
-    }
-    
-    enum DefaultValues {
-        static let initialPage: Int = 0
-    }
-    
+
     var presenter: PageControllerPresenter!
     private var pages = [UIViewController]()  
     private lazy var pageControl: UIPageControl = {
@@ -46,7 +42,7 @@ class PageViewController: UIPageViewController {
         pageC.frame = CGRect()
         pageC.currentPageIndicatorTintColor = .white
         pageC.pageIndicatorTintColor = .darkGray
-        pageC.currentPage = DefaultValues.initialPage
+        pageC.currentPage = Constants.initialPage
         return pageC
     }()
     
@@ -63,7 +59,7 @@ class PageViewController: UIPageViewController {
         pages.append(StreamingFeatureViewController())
         pages.append(OfflineWatchingFeatureViewController())
         pages.append(ThirdFeatureViewController())
-        setViewControllers([pages[DefaultValues.initialPage]], direction: .forward, animated: true, completion: nil)
+        setViewControllers([pages[Constants.initialPage]], direction: .forward, animated: true, completion: nil)
     }
     
     func setupUI() {
@@ -81,14 +77,15 @@ class PageViewController: UIPageViewController {
             $0.center.equalToSuperview()
         }
         
-        view.addSubview(triggerButton)
-        triggerButton.snp.makeConstraints {
+        view.addSubview(skipButton)
+        skipButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(50)
             $0.trailing.equalToSuperview().offset(-10)
             $0.width.equalTo(100)
             $0.height.equalTo(30)
         }
     }
+    
     func setFirstComing() {
         AppData.isFirstComing = false
     }
