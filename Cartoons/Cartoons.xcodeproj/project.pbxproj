@@ -28,8 +28,6 @@
 		3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D951250F95100095F78C /* PageControllerPresenter.swift */; };
 		3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */; };
 		3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D955250F95460095F78C /* PagePresenterProtocol.swift */; };
-		3373D959250FCCE10095F78C /* ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D958250FCCE10095F78C /* ApplicationState.swift */; };
-		3373D95B250FCE850095F78C /* CheckApplicationStateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D95A250FCE850095F78C /* CheckApplicationStateHelper.swift */; };
 		33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
 		33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */; };
@@ -79,8 +77,6 @@
 		3373D951250F95100095F78C /* PageControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerPresenter.swift; sourceTree = "<group>"; };
 		3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		3373D955250F95460095F78C /* PagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenterProtocol.swift; sourceTree = "<group>"; };
-		3373D958250FCCE10095F78C /* ApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationState.swift; sourceTree = "<group>"; };
-		3373D95A250FCE850095F78C /* CheckApplicationStateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckApplicationStateHelper.swift; sourceTree = "<group>"; };
 		33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
@@ -214,7 +210,6 @@
 			children = (
 				332BA36825069D38008A8F29 /* Constants.swift */,
 				33B2AEA52508EF670006BE31 /* NumberFormats.swift */,
-				3373D958250FCCE10095F78C /* ApplicationState.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -340,7 +335,6 @@
 			isa = PBXGroup;
 			children = (
 				33B2AEA8250A18860006BE31 /* PhoneNumberValidationHelper.swift */,
-				3373D95A250FCE850095F78C /* CheckApplicationStateHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -475,11 +469,11 @@
 				332BA35E25060722008A8F29 /* Errors */,
 				332BA34F250600DF008A8F29 /* Firebase */,
 				33B660CD2502DBC000CA562E /* Builder */,
+				33FF60BA24FA45F40077D109 /* AppDelegate.swift */,
 				33B660C825026DC300CA562E /* Router */,
 				33B1F08424FFEEB000DB6BA8 /* PresentationLayer */,
 				33B1F08724FFEEF500DB6BA8 /* Components */,
 				33B1F08124FFA83800DB6BA8 /* Resources */,
-				33FF60BA24FA45F40077D109 /* AppDelegate.swift */,
 				33FF60C524FA45F80077D109 /* LaunchScreen.storyboard */,
 			);
 			path = Cartoons;
@@ -690,13 +684,11 @@
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				33B660C1250246CF00CA562E /* String+Extension.swift in Sources */,
 				3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */,
-				3373D959250FCCE10095F78C /* ApplicationState.swift in Sources */,
 				332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */,
 				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
 				332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */,
 				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
-				3373D95B250FCE850095F78C /* CheckApplicationStateHelper.swift in Sources */,
 				332BA35525060174008A8F29 /* FirebaseService.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				3373D945250F588A0095F78C /* PageViewController.swift in Sources */,

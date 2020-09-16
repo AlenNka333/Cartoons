@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ThirdFeatureViewController: UIViewController {
+class ThirdFeatureViewController: PageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .purple
     }
+    
 }

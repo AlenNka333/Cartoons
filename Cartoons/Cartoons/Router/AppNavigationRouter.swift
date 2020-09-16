@@ -10,29 +10,44 @@ import Foundation
 import UIKit
 
 class Router: RouterProtocol {
-    static var appState: ApplicationState?
-    
     var assemblyBuilder: AssemblyBuilderProtocol?
     var navigationController: UINavigationController?
     var onBoarding: UIPageViewController?
     var tabBarController: UITabBarController?
+    let window: UIWindow?
     
-    init(window: UIWindow) {
+    init(window: UIWindow?) {
+        self.window = window
+        window?.makeKeyAndVisible()
         navigationController = UINavigationController()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         assemblyBuilder = ModuleBuilder()
     }
     
+    func start() {
+        if AppData.isFirstComing {
+            showOnBoarding()
+        } else {
+            let firebaseManager = FirebaseManager()
+            switch firebaseManager.shouldAuthorize {
+            case true:
+                showAuthorizationController()
+            case false:
+                showTabBarController()
+            }
+        }
+    }
+    
     func changeRootViewController(with rootViewController: UIViewController) {
-        guard let window = UIApplication.shared.windows.filter( { $0.isKeyWindow } ).first else {
+        guard let window = self.window else {
             return
         }
-        
+        window.rootViewController = rootViewController
     }
     
     func showOnBoarding() {
-        onBoarding = assemblyBuilder?.createOnBoarding(router: self)
+        onBoarding = assemblyBuilder?.createOnBoarding(router: self) as? UIPageViewController
         guard let onBoard = onBoarding else {
             return
         }
@@ -40,7 +55,7 @@ class Router: RouterProtocol {
     }
     
     func showTabBarController() {
-        tabBarController = assemblyBuilder?.createTabBarController(router: self)
+        tabBarController = assemblyBuilder?.createTabBarController(router: self) as? UITabBarController
         guard let tabBar = tabBarController else {
             return
         }
@@ -55,7 +70,7 @@ class Router: RouterProtocol {
         guard let navigation = navigationController else {
             return
         }
-        changeRootViewController(with: navigation)
+       changeRootViewController(with: navigation)
     }
     
     func showOTPController(animated: Bool, verificationId: String) {

@@ -9,6 +9,32 @@
 import UIKit
 
 class PageViewController: UIPageViewController {
+    var triggerButton: UIButton = {
+        let button = UIButton()
+        let string = NSAttributedString(string: R.string.localizable.skip(),
+                                        attributes: [NSAttributedString.Key.font:
+                                            UIFont.systemFont(ofSize: 18),
+                                                     .foregroundColor: UIColor.white])
+        let attributedString = NSMutableAttributedString(attributedString: string)
+        button.setAttributedTitle(attributedString, for: .normal)
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = 2
+        button.layer.borderColor = R.color.enabled_button()?.cgColor
+        button.addTarget(self, action: #selector(skipButtonAction), for: .touchUpInside)
+        return button
+    }()
+    
+    var contentTextView: UITextView = {
+        let text = UITextView()
+        text.isUserInteractionEnabled = false
+        text.text = "Test"
+        return text
+    }()
+    
+    var mainView: UIView {
+      return view
+    }
+    
     enum DefaultValues {
         static let initialPage: Int = 0
     }
@@ -22,21 +48,6 @@ class PageViewController: UIPageViewController {
         pageC.pageIndicatorTintColor = .darkGray
         pageC.currentPage = DefaultValues.initialPage
         return pageC
-    }()
-    
-    private var skipButton: UIButton = {
-        let button = UIButton()
-        let string = NSAttributedString(string: R.string.localizable.skip(),
-                                        attributes: [NSAttributedString.Key.font:
-                                            UIFont.systemFont(ofSize: 18),
-                                                     .foregroundColor: UIColor.white])
-        let attributedString = NSMutableAttributedString(attributedString: string)
-        button.setAttributedTitle(attributedString, for: .normal)
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 2
-        button.layer.borderColor = R.color.enabled_button()?.cgColor
-        button.addTarget(self, action: #selector(skipButtonAction), for: .touchUpInside)
-        return button
     }()
     
     override func viewDidLoad() {
@@ -65,8 +76,13 @@ class PageViewController: UIPageViewController {
             $0.height.equalTo(50)
         }
         
-        view.addSubview(skipButton)
-        skipButton.snp.makeConstraints {
+        view.addSubview(contentTextView)
+        contentTextView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        view.addSubview(triggerButton)
+        triggerButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(50)
             $0.trailing.equalToSuperview().offset(-10)
             $0.width.equalTo(100)
@@ -80,7 +96,7 @@ class PageViewController: UIPageViewController {
 
 extension PageViewController {
     @objc func skipButtonAction() {
-        presenter.showMainScreen()
+        presenter.showAuthorizationScreen()
     }
 }
 
@@ -114,7 +130,7 @@ extension PageViewController: UIPageViewControllerDataSource {
             if viewControllerIndex < pages.count - 1 {
                 return pages[viewControllerIndex + 1]
             } else {
-                presenter.showMainScreen()
+                presenter.showAuthorizationScreen()
             }
         }
         return nil

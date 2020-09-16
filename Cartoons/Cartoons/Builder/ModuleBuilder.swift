@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ModuleBuilder: AssemblyBuilderProtocol {
-    func createOnBoarding(router: RouterProtocol) -> UIPageViewController {
+    func createOnBoarding(router: RouterProtocol) -> UIViewController {
         let view = PageViewController()
         let presenter = PageControllerPresenter(view: view, router: router)
         view.presenter = presenter
@@ -31,7 +31,7 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func createTabBarController(router: RouterProtocol) -> UITabBarController {
+    func createTabBarController(router: RouterProtocol) -> UIViewController {
         let view = TabBarViewController()
         return view
     }

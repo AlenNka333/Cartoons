@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 protocol AssemblyBuilderProtocol {
-    func createOnBoarding(router: RouterProtocol) -> UIPageViewController
+    func createOnBoarding(router: RouterProtocol) -> UIViewController
     func createAuthorization(router: RouterProtocol) -> UIViewController
     func createVerification(router: RouterProtocol, verificationId: String) -> UIViewController
-    func createTabBarController(router: RouterProtocol) -> UITabBarController
+    func createTabBarController(router: RouterProtocol) -> UIViewController
 }

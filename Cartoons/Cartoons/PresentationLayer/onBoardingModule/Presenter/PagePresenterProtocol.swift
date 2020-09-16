@@ -10,5 +10,5 @@ import Foundation
 
 protocol PagePresenterProtocol: AnyObject {
     init(view: PageViewControllerProtocol, router: RouterProtocol)
-    func showMainScreen()
+    func showAuthorizationScreen()
 }

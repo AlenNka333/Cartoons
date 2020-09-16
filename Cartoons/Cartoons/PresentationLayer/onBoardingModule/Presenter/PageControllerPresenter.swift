@@ -17,7 +17,7 @@ class PageControllerPresenter: PagePresenterProtocol {
         self.router = router
     }
     
-    func showMainScreen() {
-        router?.showTabBarController()
+    func showAuthorizationScreen() {
+        router?.showAuthorizationController()
     }
 }
