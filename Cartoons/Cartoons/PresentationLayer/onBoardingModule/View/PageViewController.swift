@@ -52,7 +52,6 @@ class PageViewController: UIPageViewController {
         self.delegate = self
         initViewControllers()
         setupUI()
-        setFirstComing()
     }
     
     func initViewControllers() {
@@ -85,14 +84,11 @@ class PageViewController: UIPageViewController {
             $0.height.equalTo(30)
         }
     }
-    
-    func setFirstComing() {
-        AppData.isFirstComing = false
-    }
 }
 
 extension PageViewController {
     @objc func skipButtonAction() {
+        presenter.saveUserCame()
         presenter.showAuthorizationScreen()
     }
 }

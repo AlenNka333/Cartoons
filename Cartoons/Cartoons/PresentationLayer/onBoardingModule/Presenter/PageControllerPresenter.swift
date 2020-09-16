@@ -16,7 +16,9 @@ class PageControllerPresenter: PagePresenterProtocol {
         self.view = view
         self.router = router
     }
-    
+    func saveUserCame() {
+        AppData.isFirstComing = false
+    }
     func showAuthorizationScreen() {
         router?.showAuthorizationController()
     }
