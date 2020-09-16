@@ -9,4 +9,6 @@
 import Foundation
 
 protocol CartoonsViewProtocol: AnyObject {
+    func setError (error: Error)
+    func setSuccess(success: String)
 }

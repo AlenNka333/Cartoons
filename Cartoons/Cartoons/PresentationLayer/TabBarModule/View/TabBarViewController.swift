@@ -12,6 +12,8 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let firstViewController = CartoonsViewController()
+        let presenter = CartoonsPresenter(view: firstViewController)
+        firstViewController.presenter = presenter
         firstViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
         let tabBarList = [firstViewController]
         viewControllers = tabBarList
