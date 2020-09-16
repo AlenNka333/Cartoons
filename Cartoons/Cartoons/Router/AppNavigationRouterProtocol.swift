@@ -21,7 +21,7 @@ protocol RouterProtocol: RouterMain {
     func changeRootViewController(with rootViewController: UIViewController)
     func showOnBoarding()
     func showAuthorizationController()
-    func showOTPController(animated: Bool, verificationId: String)
+    func showOTPController(verificationId: String, animated: Bool)
     func showTabBarController()
     func popToRoot(animated: Bool)
 }

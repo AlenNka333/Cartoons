@@ -73,7 +73,7 @@ class Router: RouterProtocol {
        changeRootViewController(with: navigation)
     }
     
-    func showOTPController(animated: Bool, verificationId: String) {
+    func showOTPController(verificationId: String, animated: Bool) {
         guard let mainViewController = assemblyBuilder?.createVerification(router: self, verificationId: verificationId) else {
                 return
             }
