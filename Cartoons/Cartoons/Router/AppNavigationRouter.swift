@@ -44,6 +44,7 @@ class Router: RouterProtocol {
             return
         }
         window.rootViewController = rootViewController
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
     
     func showOnBoarding() {

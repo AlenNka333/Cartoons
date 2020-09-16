@@ -12,7 +12,9 @@ class PageViewController: UIPageViewController {
     enum Constants {
         static let initialPage: Int = 0
     }
-
+    var presenter: PageControllerPresenter!
+    private var pages = [UIViewController]()
+    
     var skipButton: UIButton = {
         let button = UIButton()
         let string = NSAttributedString(string: R.string.localizable.skip(),
@@ -23,7 +25,7 @@ class PageViewController: UIPageViewController {
         button.setAttributedTitle(attributedString, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
-        button.layer.borderColor = R.color.enabled_button()?.cgColor
+        button.layer.borderColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(skipButtonAction), for: .touchUpInside)
         return button
     }()
@@ -34,9 +36,7 @@ class PageViewController: UIPageViewController {
         text.text = "Test"
         return text
     }()
-
-    var presenter: PageControllerPresenter!
-    private var pages = [UIViewController]()  
+    
     private lazy var pageControl: UIPageControl = {
         let pageC = UIPageControl()
         pageC.frame = CGRect()
