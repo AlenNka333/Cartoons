@@ -13,5 +13,4 @@ class ThirdFeatureViewController: PageViewController {
         super.viewDidLoad()
         view.backgroundColor = .purple
     }
-    
 }
