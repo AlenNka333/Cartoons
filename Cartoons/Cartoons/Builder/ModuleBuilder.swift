@@ -26,7 +26,7 @@ class ModuleBuilder: AssemblyBuilderProtocol {
     
     func createCartoons(router: RouterProtocol) -> UIViewController {
         let view = CartoonsViewController()
-        let presenter = CartoonsPresenter(view: view, router: router)
+        let presenter = CartoonsPresenter(view: view)
         view.presenter = presenter
         return view
     }

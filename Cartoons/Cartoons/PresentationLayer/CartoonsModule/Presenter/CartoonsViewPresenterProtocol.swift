@@ -9,5 +9,8 @@
 import Foundation
 
 protocol CartoonsViewPresenterProtocol: AnyObject {
-   init(view: CartoonsViewProtocol, router: RouterProtocol)
+   init(view: CartoonsViewProtocol)
+    func signOutUserAction()
+    func showError(error: Error)
+    func showSuccess(success: String)
 }

@@ -6,7 +6,6 @@
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
-import FirebaseAuth
 import UIKit
 
 class CartoonsViewController: UIViewController {
@@ -44,16 +43,15 @@ class CartoonsViewController: UIViewController {
 }
 
 extension CartoonsViewController: CartoonsViewProtocol {
+    func setSuccess(success: String) {
+        CustomAlertView.instance.showAlert(title: success, message: "", alertType: .success)
+    }
+    func setError(error: Error) {
+        CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
+    }
 }
-
 extension CartoonsViewController {
     @objc func buttonTappedToSignOutAction() {
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-            CustomAlertView.instance.showAlert(title: R.string.localizable.sign_out_button(), message: R.string.localizable.success(), alertType: .success)
-        } catch {
-          CustomAlertView.instance.showAlert(title: R.string.localizable.sign_out_button(), message: error.localizedDescription, alertType: .error)
-        }
+        presenter.signOutUserAction()
     }
 }
