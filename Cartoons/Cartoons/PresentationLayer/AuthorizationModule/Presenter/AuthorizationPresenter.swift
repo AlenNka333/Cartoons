@@ -20,15 +20,16 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     
     func sendPhoneNumberAction(number: String) {
         view.showActivityIndicatorAction()
-        firebaseManager.sendPhoneNumber(number: number) { [weak self] result in
-            self?.view.stopActivityIndicatorAction()
-            switch result {
-            case let .success(verificationId):
-                self?.router?.showOTPController(verificationId: verificationId, number: number, animated: true)
-            case .failure(let error):
-                self?.view.setError(error: error)
-            }
-        }
+        router?.showOTPController(verificationId: "verificationId", number: number, animated: true)
+//        firebaseManager.sendPhoneNumber(number: number) { [weak self] result in
+//            self?.view.stopActivityIndicatorAction()
+//            switch result {
+//            case let .success(verificationId):
+//                self?.router?.showOTPController(verificationId: verificationId, number: number, animated: true)
+//            case .failure(let error):
+//                self?.view.setError(error: error)
+//            }
+//        }
     }
     
     func showError(error: Error) {

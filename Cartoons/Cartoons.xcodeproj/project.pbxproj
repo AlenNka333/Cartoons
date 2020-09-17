@@ -49,8 +49,13 @@
 		33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */; };
 		33B660CF2502DBD700CA562E /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660CE2502DBD700CA562E /* ModuleBuilder.swift */; };
 		33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */; };
+		33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EA82513569100EA2BF4 /* CustomButton.swift */; };
+		33EE7EAC25135ADB00EA2BF4 /* Alice-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */; };
+		33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EAE25135D3100EA2BF4 /* CustomTextField.swift */; };
+		33EE7EB2251360B000EA2BF4 /* CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EB1251360B000EA2BF4 /* CustomLabelView.swift */; };
+		33EE7EB4251361D000EA2BF4 /* LabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33EE7EB3251361D000EA2BF4 /* LabelView.xib */; };
+		33EE7EB62513765500EA2BF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33EE7EB52513765500EA2BF4 /* Assets.xcassets */; };
 		33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF60BA24FA45F40077D109 /* AppDelegate.swift */; };
-		33FF60C424FA45F80077D109 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FF60C324FA45F80077D109 /* Assets.xcassets */; };
 		33FF60C724FA45F80077D109 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FF60C524FA45F80077D109 /* LaunchScreen.storyboard */; };
 		CC0829AD7450E31B34F97A5A /* Pods_Cartoons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 481551CF71DC885446983E5B /* Pods_Cartoons.framework */; };
 /* End PBXBuildFile section */
@@ -98,9 +103,14 @@
 		33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		33B660CE2502DBD700CA562E /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVIewPresenter.swift; sourceTree = "<group>"; };
+		33EE7EA82513569100EA2BF4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alice-Regular.ttf"; sourceTree = "<group>"; };
+		33EE7EAE25135D3100EA2BF4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		33EE7EB1251360B000EA2BF4 /* CustomLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelView.swift; sourceTree = "<group>"; };
+		33EE7EB3251361D000EA2BF4 /* LabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelView.xib; sourceTree = "<group>"; };
+		33EE7EB52513765500EA2BF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33FF60B724FA45F40077D109 /* Cartoons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartoons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FF60BA24FA45F40077D109 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		33FF60C324FA45F80077D109 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33FF60C624FA45F80077D109 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33FF60C824FA45F80077D109 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		481551CF71DC885446983E5B /* Pods_Cartoons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cartoons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,11 +266,12 @@
 		33B1F08124FFA83800DB6BA8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				33EE7EAA25135A9600EA2BF4 /* Fonts */,
 				332BA36E25077D80008A8F29 /* PropertyWrappers */,
 				20EEE9CB25014A3000970DA6 /* Generated */,
 				3312EDE324FE84FE00158EB6 /* Localization */,
-				33FF60C324FA45F80077D109 /* Assets.xcassets */,
 				33B1F09525000B7900DB6BA8 /* Colors.xcassets */,
+				33EE7EB52513765500EA2BF4 /* Assets.xcassets */,
 				33FF60C824FA45F80077D109 /* Info.plist */,
 			);
 			path = Resources;
@@ -319,6 +330,9 @@
 		33B2AE962508AC590006BE31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				33EE7EB02513609D00EA2BF4 /* AppLabel */,
+				33EE7EAD25135D0A00EA2BF4 /* TextField */,
+				33EE7EA325134D7900EA2BF4 /* Button */,
 				33B2AE972508AC610006BE31 /* Alert */,
 			);
 			path = Custom;
@@ -455,6 +469,39 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		33EE7EA325134D7900EA2BF4 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				33EE7EA82513569100EA2BF4 /* CustomButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		33EE7EAA25135A9600EA2BF4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		33EE7EAD25135D0A00EA2BF4 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				33EE7EAE25135D3100EA2BF4 /* CustomTextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		33EE7EB02513609D00EA2BF4 /* AppLabel */ = {
+			isa = PBXGroup;
+			children = (
+				33EE7EB1251360B000EA2BF4 /* CustomLabelView.swift */,
+				33EE7EB3251361D000EA2BF4 /* LabelView.xib */,
+			);
+			path = AppLabel;
+			sourceTree = "<group>";
+		};
 		33FF60AE24FA45F40077D109 = {
 			isa = PBXGroup;
 			children = (
@@ -568,11 +615,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */,
+				33EE7EB4251361D000EA2BF4 /* LabelView.xib in Resources */,
 				33FF60C724FA45F80077D109 /* LaunchScreen.storyboard in Resources */,
 				3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */,
 				33B2AEA02508AE170006BE31 /* AlertView.xib in Resources */,
-				33FF60C424FA45F80077D109 /* Assets.xcassets in Resources */,
 				20EEE9CD25014B4500970DA6 /* GoogleService-Info.plist in Resources */,
+				33EE7EB62513765500EA2BF4 /* Assets.xcassets in Resources */,
+				33EE7EAC25135ADB00EA2BF4 /* Alice-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,8 +734,10 @@
 				3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */,
 				33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */,
 				33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */,
+				33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
 				3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */,
+				33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */,
 				332BA357250602DD008A8F29 /* AppNavigationRouterProtocol.swift in Sources */,
 				33B660CF2502DBD700CA562E /* ModuleBuilder.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
@@ -710,6 +761,7 @@
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,
 				332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */,
 				33B2AEB0250A63160006BE31 /* AssemblyBuilderProtocol.swift in Sources */,
+				33EE7EB2251360B000EA2BF4 /* CustomLabelView.swift in Sources */,
 				33B660CA25026DDD00CA562E /* AppNavigationRouter.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationCodeViewController.swift in Sources */,
 				3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */,

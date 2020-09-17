@@ -51,36 +51,15 @@ class VerificationCodeViewController: UIViewController {
         return blackView
     }()
 
-    private lazy var otpCodeTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .none
-        textField.keyboardType = .numberPad
-        textField.textAlignment = .center
-        textField.textContentType = .oneTimeCode
-        textField.layer.cornerRadius = 5
-        textField.backgroundColor = R.color.login_button_color()?.withAlphaComponent(0.3)
-        textField.textColor = UIColor(white: 1, alpha: 0.9)
-        textField.font = UIFont.systemFont(ofSize: 20)
-        textField.autocorrectionType = .no
-        textField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        return textField
-    }()
+    private lazy var otpCodeTextField = CustomTextField()
+        
+       private lazy var ownView: UIView = {
+           view = UIView()
+           view.backgroundColor = UIColor(patternImage: R.image.main_background()!)
+           return view
+       }()
 
-     private lazy var resendButton: UIButton = {
-        let button = UIButton()
-        let string = NSAttributedString(string: R.string.localizable.resend_button_key(),
-                                        attributes: [NSAttributedString.Key.font:
-                                            UIFont.systemFont(ofSize: 18),
-                                                     .foregroundColor: UIColor.white])
-        let attributedString = NSMutableAttributedString(attributedString: string)
-        button.setAttributedTitle(attributedString, for: .normal)
-        button.isEnabled = false
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 2
-        button.layer.borderColor = R.color.frozen_button()?.cgColor
-        button.addTarget(self, action: #selector(self.resendButtonTappedAction), for: .touchUpInside)
-        return button
-    }()
+     private lazy var resendButton = CustomButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,40 +68,35 @@ class VerificationCodeViewController: UIViewController {
         startTimer()
     }
     
+    override func loadView() {
+           self.view = ownView
+       }
+    
     private func setupUI() {
-        view.backgroundColor = .white
-        view.addSubview(blackView)
-        blackView.snp.makeConstraints {
-            $0.height.equalToSuperview().offset(-200)
-            $0.width.equalToSuperview().offset(-30)
-            $0.center.equalToSuperview()
-        }
-        view.addSubview(verificationLabel)
-        verificationLabel.snp.makeConstraints {
-            $0.width.equalTo(blackView).offset(-60)
-            $0.top.equalTo(blackView).offset(60)
-            $0.centerX.equalTo(blackView)
-        }
-        view.addSubview(otpCodeTextField)
-        otpCodeTextField.snp.makeConstraints {
-            $0.width.equalTo(blackView).offset(-20)
-            $0.height.equalTo(40)
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(blackView)
-        }
-        view.addSubview(timerLabel)
-        timerLabel.snp.makeConstraints {
-            $0.width.equalTo(blackView).offset(-60)
-            $0.top.equalTo(verificationLabel).offset(100)
-            $0.centerX.equalTo(blackView)
-        }
-        view.addSubview(resendButton)
-        resendButton.snp.makeConstraints {
-            $0.width.equalTo(blackView).offset(-20)
-            $0.height.equalTo(50)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(otpCodeTextField).offset(60)
-        }
+        resendButton.isEnabled = false
+        resendButton.backgroundColor = R.color.disabled_button_color()
+//        view.addSubview(verificationLabel)
+//
+//        view.addSubview(otpCodeTextField)
+//        otpCodeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+//        otpCodeTextField.snp.makeConstraints {
+//            $0.height.equalTo(40)
+//            $0.centerX.equalToSuperview()
+//
+//        }
+//        view.addSubview(timerLabel)
+//        timerLabel.snp.makeConstraints {
+//            $0.width.equalTo(blackView).offset(-60)
+//            $0.top.equalTo(verificationLabel).offset(100)
+//            $0.centerX.equalTo(blackView)
+//        }
+//        view.addSubview(resendButton)
+//        resendButton.snp.makeConstraints {
+//            $0.width.equalTo(blackView).offset(-20)
+//            $0.height.equalTo(50)
+//            $0.centerX.equalToSuperview()
+//            $0.top.equalTo(otpCodeTextField).offset(60)
+//        }
     }
 }
 
@@ -136,7 +110,7 @@ extension VerificationCodeViewController {
             timer -= 1
         } else {
             resendButton.isEnabled = true
-            resendButton.layer.borderColor = R.color.enabled_button()?.cgColor
+            resendButton.backgroundColor = R.color.enabled_button_color()
             endTimer()
         }
     }
@@ -158,7 +132,7 @@ extension VerificationCodeViewController {
     }
     @objc func resendButtonTappedAction() {
         resendButton.isEnabled = false
-        resendButton.layer.borderColor = R.color.frozen_button()?.cgColor
+        resendButton.backgroundColor = R.color.disabled_button_color()
         timer = DefaultValues.totalTime
         timerLabel.text = "\(timer)"
         startTimer()
