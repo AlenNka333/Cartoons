@@ -37,6 +37,7 @@ class AuthorizationViewController: UIViewController {
             $0.centerY.equalToSuperview().offset(-60)
         }
         view.addSubview(getCodeButton)
+        getCodeButton.setTitle(R.string.localizable.get_code_button_key(), for: .normal)
         getCodeButton.addTarget(self, action: #selector(buttonTappedToSendCodeAction), for: .touchUpInside)
         getCodeButton.snp.makeConstraints {
             $0.center.equalToSuperview()

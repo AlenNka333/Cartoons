@@ -25,7 +25,6 @@ class CustomButton: UIButton {
             $0.height.equalTo(50)
         }
         isEnabled = true
-        setTitle(R.string.localizable.get_code_button_key(), for: .normal)
         setTitleColor(.white, for: .normal)
         titleLabel?.layer.shadowColor = UIColor.black.cgColor
         titleLabel?.layer.shadowOffset = CGSize(width: 2.0, height: 1.0)

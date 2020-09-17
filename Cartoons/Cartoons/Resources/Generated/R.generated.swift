@@ -217,14 +217,23 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 3 images.
+  /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
+    /// Image `ellipse`.
+    static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "ellipse")
     /// Image `label`.
     static let label = Rswift.ImageResource(bundle: R.hostingBundle, name: "label")
     /// Image `main_background`.
     static let main_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_background")
     /// Image `tree_leave`.
     static let tree_leave = Rswift.ImageResource(bundle: R.hostingBundle, name: "tree_leave")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ellipse", bundle: ..., traitCollection: ...)`
+    static func ellipse(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ellipse, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "label", bundle: ..., traitCollection: ...)`
@@ -286,7 +295,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 10 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 11 localization keys.
     struct localizable {
       /// en translation: Error
       ///
@@ -300,14 +309,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let get_code_button_key = Rswift.StringResource(key: "get_code_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: OTP Code
+      ///
+      /// Locales: en
+      static let otp_code_key = Rswift.StringResource(key: "otp_code_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Phone number
       ///
       /// Locales: en
       static let phone_label_key = Rswift.StringResource(key: "phone_label_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
-      /// en translation: Please, check your messages for a six-digit security code and enter it below
-      ///
-      /// Locales: en
-      static let verification_message_key = Rswift.StringResource(key: "verification_message_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Resend
       ///
       /// Locales: en
@@ -316,6 +325,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let sign_out_button = Rswift.StringResource(key: "sign_out_button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Six-digit security code was send to number:
+      ///
+      /// Locales: en
+      static let verification_message_key = Rswift.StringResource(key: "verification_message_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Skip
       ///
       /// Locales: en
@@ -374,6 +387,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("get_code_button_key", bundle: bundle, comment: "")
       }
 
+      /// en translation: OTP Code
+      ///
+      /// Locales: en
+      static func otp_code_key(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("otp_code_key", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "otp_code_key"
+        }
+
+        return NSLocalizedString("otp_code_key", bundle: bundle, comment: "")
+      }
+
       /// en translation: Phone number
       ///
       /// Locales: en
@@ -387,21 +415,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("phone_label_key", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Please, check your messages for a six-digit security code and enter it below
-      ///
-      /// Locales: en
-      static func verification_message_key(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("verification_message_key", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "verification_message_key"
-        }
-
-        return NSLocalizedString("verification_message_key", bundle: bundle, comment: "")
       }
 
       /// en translation: Resend
@@ -432,6 +445,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("sign_out_button", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Six-digit security code was send to number:
+      ///
+      /// Locales: en
+      static func verification_message_key(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("verification_message_key", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "verification_message_key"
+        }
+
+        return NSLocalizedString("verification_message_key", bundle: bundle, comment: "")
       }
 
       /// en translation: Skip

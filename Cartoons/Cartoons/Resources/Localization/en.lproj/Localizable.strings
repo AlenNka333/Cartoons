@@ -7,12 +7,13 @@
 */
 
 phone_label_key = "Phone number";
+otp_code_key = "OTP Code";
 get_code_button_key = "Get verification code";
 sign_out_button = "Sign out";
 error = "Error";
 success = "Success";
 skip = "Skip";
-verification_message_key = "Please, check your messages for a six-digit security code and enter it below";
+verification_message_key = "Six-digit security code was send to number:";
 resend_button_key = "Resend";
 onBoarding_first_logo_key = "Watch cartoons online and offline";
 onBoarding_second_logo_key = "Find your favourite characters";
