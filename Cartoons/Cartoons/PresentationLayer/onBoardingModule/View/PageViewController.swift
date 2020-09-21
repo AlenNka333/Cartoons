@@ -57,7 +57,6 @@ class PageViewController: UIPageViewController {
     func initViewControllers() {
         pages.append(StreamingFeatureViewController())
         pages.append(OfflineWatchingFeatureViewController())
-        pages.append(ThirdFeatureViewController())
         setViewControllers([pages[Constants.initialPage]], direction: .forward, animated: true, completion: nil)
     }
     

@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 6 colors.
+  /// This `R.color` struct is generated, and contains static references to 9 colors.
   struct color {
     /// Color `cinnabar`.
     static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
@@ -116,6 +116,12 @@ struct R: Rswift.Validatable {
     static let disabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "disabled_button_color")
     /// Color `enabled_button_color`.
     static let enabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "enabled_button_color")
+    /// Color `main_blue`.
+    static let main_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_blue")
+    /// Color `main_orange`.
+    static let main_orange = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_orange")
+    /// Color `main_pink`.
+    static let main_pink = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_pink")
     /// Color `picotee_blue`.
     static let picotee_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picotee_blue")
     /// Color `wisteria`.
@@ -154,6 +160,33 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func enabled_button_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.enabled_button_color, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "main_blue", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func main_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.main_blue, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "main_orange", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func main_orange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.main_orange, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "main_pink", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func main_pink(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.main_pink, compatibleWith: traitCollection)
     }
     #endif
 
@@ -217,12 +250,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 4 images.
+  /// This `R.image` struct is generated, and contains static references to 5 images.
   struct image {
     /// Image `ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "ellipse")
     /// Image `label`.
     static let label = Rswift.ImageResource(bundle: R.hostingBundle, name: "label")
+    /// Image `launch_background`.
+    static let launch_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "launch_background")
     /// Image `main_background`.
     static let main_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_background")
     /// Image `tree_leave`.
@@ -239,6 +274,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "label", bundle: ..., traitCollection: ...)`
     static func label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.label, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "launch_background", bundle: ..., traitCollection: ...)`
+    static func launch_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.launch_background, compatibleWith: traitCollection)
     }
     #endif
 
@@ -597,7 +639,7 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
 
       static func validate() throws {
-        if UIKit.UIImage(named: "label", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'label' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "launch_background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'launch_background' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }
