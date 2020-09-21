@@ -12,6 +12,8 @@ import UIKit
 protocol AssemblyBuilderProtocol {
     func createAuthorization(router: RouterProtocol) -> UIViewController
     func createVerification(router: RouterProtocol, verificationId: String) -> UIViewController
-    func createCartoons(router: RouterProtocol) -> UIViewController
+    func createCartoons() -> UIViewController
+    func createFavourites() -> UIViewController
+    func createSettings() -> UIViewController
     func createTabBarController(router: RouterProtocol) -> UITabBarController
 }

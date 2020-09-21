@@ -9,13 +9,35 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
+    private var builder = ModuleBuilder()
+    private var tabBarList = [UIViewController]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let firstViewController = CartoonsViewController()
-        let presenter = CartoonsPresenter(view: firstViewController)
-        firstViewController.presenter = presenter
-        firstViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
-        let tabBarList = [firstViewController]
+        navigationController?.isNavigationBarHidden = false
+        initTabBarList()
         viewControllers = tabBarList
+        setupUi()
+    }
+    
+    func initTabBarList() {
+        let firstViewController = builder.createCartoons()
+        let navigationF = UINavigationController(rootViewController: firstViewController)
+        navigationF.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 0)
+        tabBarList.append(navigationF)
+        
+        let secondViewController = builder.createFavourites()
+        let navigationS = UINavigationController(rootViewController: secondViewController)
+        navigationS.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        tabBarList.append(navigationS)
+        
+        let thirdViewController = builder.createSettings()
+        let navigationT = UINavigationController(rootViewController: thirdViewController)
+        navigationT.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 2)
+        tabBarList.append(navigationT)
+    }
+    
+    func setupUi() {
+        self.tabBar.barTintColor = R.color.tab_bar_color()
     }
 }

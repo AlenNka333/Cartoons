@@ -15,3 +15,6 @@ verification_message_key = "Please, check your messages for a six-digit security
 resend_button_key = "Resend";
 onBoarding_first_logo_key = "Watch cartoons online and offline";
 onBoarding_second_logo_key = "Find your favourite characters";
+cartoons_screen = "Cartoons";
+cartoons_screen_subtitle = "Watch your favourite cartoons online and offline";
+

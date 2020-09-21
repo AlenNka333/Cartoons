@@ -9,23 +9,16 @@
 import UIKit
 
 class CartoonsViewController: UIViewController {
+    private struct Const {
+        static let ImageSizeForLargeState: CGFloat = 80
+        static let ImageRightMargin: CGFloat = 16
+        static let ImageBottomMarginForLargeState: CGFloat = 12
+        static let ImageBottomMarginForSmallState: CGFloat = 6
+        static let ImageSizeForSmallState: CGFloat = 32
+        static let NavBarHeightSmallState: CGFloat = 44
+        static let NavBarHeightLargeState: CGFloat = 96.5
+    }
     var presenter: CartoonsViewPresenterProtocol!
-    
-    private lazy var signOutButton: UIButton = {
-        let button = UIButton()
-        let string = NSAttributedString(string: R.string.localizable.sign_out_button(),
-                                        attributes: [NSAttributedString.Key.font:
-                                            UIFont.systemFont(ofSize: 18),
-                                                     .foregroundColor: UIColor.white])
-        let attributedString = NSMutableAttributedString(attributedString: string)
-        button.setAttributedTitle(attributedString, for: .normal)
-        button.isEnabled = true
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 2
-        button.layer.borderColor = R.color.enabled_button()?.cgColor
-        button.addTarget(self, action: #selector(self.buttonTappedToSignOutAction), for: .touchUpInside)
-        return button
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +26,29 @@ class CartoonsViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.addSubview(signOutButton)
-        signOutButton.snp.makeConstraints {
-            $0.width.equalTo(100)
-            $0.height.equalTo(50)
-            $0.center.equalToSuperview()
-        }
+        view.backgroundColor = R.color.main_background()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = R.string.localizable.cartoons_screen()
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = R.color.navigation_bar_color()
+        appearance.largeTitleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        navigationController?.navigationBar.topItem?.standardAppearance = appearance
+        navigationController?.navigationBar.topItem?.compactAppearance = appearance
+        navigationController?.navigationBar.topItem?.scrollEdgeAppearance = appearance
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        let imageView = UIImageView(image: R.image.navigation_label())
+        navigationBar.addSubview(imageView)
+        imageView.layer.cornerRadius = Const.ImageSizeForLargeState / 2
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -Const.ImageRightMargin),
+            imageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -Const.ImageBottomMarginForLargeState),
+            imageView.heightAnchor.constraint(equalToConstant: Const.ImageSizeForLargeState),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
+            ])
     }
 }
 
@@ -48,10 +58,5 @@ extension CartoonsViewController: CartoonsViewProtocol {
     }
     func setError(error: Error) {
         CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
-    }
-}
-extension CartoonsViewController {
-    @objc func buttonTappedToSignOutAction() {
-        presenter.signOutUserAction()
     }
 }

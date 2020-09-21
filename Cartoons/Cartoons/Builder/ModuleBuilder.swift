@@ -24,9 +24,23 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func createCartoons(router: RouterProtocol) -> UIViewController {
+    func createCartoons() -> UIViewController {
         let view = CartoonsViewController()
         let presenter = CartoonsPresenter(view: view)
+        view.presenter = presenter
+        return view
+    }
+    
+    func createFavourites() -> UIViewController {
+        let view = FavouritesViewController()
+        let presenter = FavouritesPresenter(view: view)
+        view.presenter = presenter
+        return view
+    }
+    
+    func createSettings() -> UIViewController {
+        let view = SettingsViewController()
+        let presenter = SettingsPresenter(view: view)
         view.presenter = presenter
         return view
     }

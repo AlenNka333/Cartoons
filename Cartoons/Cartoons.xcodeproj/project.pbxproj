@@ -10,6 +10,14 @@
 		20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EEE9C9250148DC00970DA6 /* R.generated.swift */; };
 		20EEE9CD25014B4500970DA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */; };
 		3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3312EDE824FE859F00158EB6 /* Localizable.strings */; };
+		332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C2251896CF00EF56B8 /* FavouritesViewController.swift */; };
+		332227C52518970900EF56B8 /* FavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C42518970900EF56B8 /* FavouritesPresenter.swift */; };
+		332227C72518972300EF56B8 /* FavouritesViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */; };
+		332227C92518973500EF56B8 /* FavouritesViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C82518973500EF56B8 /* FavouritesViewProtocol.swift */; };
+		332227CB251899BC00EF56B8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227CA251899BC00EF56B8 /* SettingsViewController.swift */; };
+		332227CD25189A1A00EF56B8 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227CC25189A1A00EF56B8 /* SettingsPresenter.swift */; };
+		332227CF25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227CE25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift */; };
+		332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227D025189D2D00EF56B8 /* SettingsViewProtocol.swift */; };
 		332BA3532506014B008A8F29 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA3522506014B008A8F29 /* FirebaseManager.swift */; };
 		332BA35525060174008A8F29 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA35425060174008A8F29 /* FirebaseService.swift */; };
 		332BA357250602DD008A8F29 /* AppNavigationRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA356250602DD008A8F29 /* AppNavigationRouterProtocol.swift */; };
@@ -51,6 +59,14 @@
 		20EEE9C9250148DC00970DA6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Cartoons/Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3312EDE724FE859F00158EB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		332227C2251896CF00EF56B8 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		332227C42518970900EF56B8 /* FavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesPresenter.swift; sourceTree = "<group>"; };
+		332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewPresenterProtocol.swift; sourceTree = "<group>"; };
+		332227C82518973500EF56B8 /* FavouritesViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewProtocol.swift; sourceTree = "<group>"; };
+		332227CA251899BC00EF56B8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		332227CC25189A1A00EF56B8 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		332227CE25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewPresenterProtocol.swift; sourceTree = "<group>"; };
+		332227D025189D2D00EF56B8 /* SettingsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewProtocol.swift; sourceTree = "<group>"; };
 		332BA3522506014B008A8F29 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		332BA35425060174008A8F29 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		332BA356250602DD008A8F29 /* AppNavigationRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationRouterProtocol.swift; sourceTree = "<group>"; };
@@ -119,6 +135,60 @@
 				3312EDE824FE859F00158EB6 /* Localizable.strings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		332227BC2518967C00EF56B8 /* FavouritesModule */ = {
+			isa = PBXGroup;
+			children = (
+				332227BF251896AB00EF56B8 /* Presenter */,
+				332227BE251896A600EF56B8 /* View */,
+			);
+			path = FavouritesModule;
+			sourceTree = "<group>";
+		};
+		332227BD2518968F00EF56B8 /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				332227C1251896B600EF56B8 /* Presenter */,
+				332227C0251896B200EF56B8 /* View */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
+		332227BE251896A600EF56B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				332227C2251896CF00EF56B8 /* FavouritesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		332227BF251896AB00EF56B8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				332227C42518970900EF56B8 /* FavouritesPresenter.swift */,
+				332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */,
+				332227C82518973500EF56B8 /* FavouritesViewProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		332227C0251896B200EF56B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				332227CA251899BC00EF56B8 /* SettingsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		332227C1251896B600EF56B8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				332227CC25189A1A00EF56B8 /* SettingsPresenter.swift */,
+				332227CE25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift */,
+				332227D025189D2D00EF56B8 /* SettingsViewProtocol.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		332BA34F250600DF008A8F29 /* Firebase */ = {
@@ -222,6 +292,8 @@
 		33B1F08424FFEEB000DB6BA8 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				332227BD2518968F00EF56B8 /* SettingsModule */,
+				332227BC2518967C00EF56B8 /* FavouritesModule */,
 				33B2AEB7250A6FD90006BE31 /* TabBarModule */,
 				33B2AEAA250A61260006BE31 /* CartoonsModule */,
 				33B6608325010F8600CA562E /* AuthorizationModule */,
@@ -625,11 +697,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */,
 				332BA3532506014B008A8F29 /* FirebaseManager.swift in Sources */,
 				33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */,
 				33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
 				332BA357250602DD008A8F29 /* AppNavigationRouterProtocol.swift in Sources */,
+				332227CF25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift in Sources */,
 				33B660CF2502DBD700CA562E /* ModuleBuilder.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				33B660C1250246CF00CA562E /* String+Extension.swift in Sources */,
@@ -639,23 +713,29 @@
 				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
 				332BA35525060174008A8F29 /* FirebaseService.swift in Sources */,
+				332227CD25189A1A00EF56B8 /* SettingsPresenter.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				33B2AEBB250A702D0006BE31 /* TabBarViewController.swift in Sources */,
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */,
+				332227C72518972300EF56B8 /* FavouritesViewPresenterProtocol.swift in Sources */,
 				33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */,
 				33B2AEA42508BB750006BE31 /* GradientLayer.swift in Sources */,
+				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,
 				332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */,
+				332227C52518970900EF56B8 /* FavouritesPresenter.swift in Sources */,
 				33B2AEB0250A63160006BE31 /* AssemblyBuilderProtocol.swift in Sources */,
 				33B660CA25026DDD00CA562E /* AppNavigationRouter.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationCodeViewController.swift in Sources */,
 				33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */,
 				33B2AEB6250A63A00006BE31 /* CartoonsViewProtocol.swift in Sources */,
+				332227C92518973500EF56B8 /* FavouritesViewProtocol.swift in Sources */,
 				33B2AEA9250A18860006BE31 /* PhoneNumberValidationHelper.swift in Sources */,
 				33B2AEAE250A617A0006BE31 /* CartoonsViewController.swift in Sources */,
 				332BA36B25076084008A8F29 /* VerificationViewPresenterProtocol.swift in Sources */,
 				332BA36925069D38008A8F29 /* Constants.swift in Sources */,
+				332227CB251899BC00EF56B8 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

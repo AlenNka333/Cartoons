@@ -14,27 +14,30 @@ class Router: RouterProtocol {
     internal var assemblyBuilder: AssemblyBuilderProtocol?
     private let firebaseManager = FirebaseManager()
     
-    init(window: UIWindow) {
+    init() {
         navigationController = UINavigationController()
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.isNavigationBarHidden = true
         assemblyBuilder = ModuleBuilder()
     }
     
     func initialViewController() {
-        let isAuthorised = !firebaseManager.shouldAuthorize
-        switch isAuthorised {
-        case true:
-            guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
-                return
-            }
-            navigationController?.viewControllers = [mainViewController]
-        case false:
-            guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
-                return
-            }
-            navigationController?.viewControllers = [mainViewController]
-        }
+        guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
+                        return
+                    }
+        navigationController?.viewControllers = [mainViewController]
+//        let isAuthorised = !firebaseManager.shouldAuthorize
+//        switch isAuthorised {
+//        case true:
+//            guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
+//                return
+//            }
+//            navigationController?.viewControllers = [mainViewController]
+//        case false:
+//            guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
+//                return
+//            }
+//            navigationController?.viewControllers = [mainViewController]
+
     }
     
     func createVerificationController(animated: Bool, verificationId: String) {

@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let wnd = window else {
             return false
         }
-        let router = Router(window: wnd)
+        let router = Router()
         router.initialViewController()
         window?.rootViewController = router.navigationController
         window?.makeKeyAndVisible()
