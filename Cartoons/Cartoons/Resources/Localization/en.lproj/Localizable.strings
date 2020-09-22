@@ -19,4 +19,7 @@ onBoarding_first_logo_key = "Watch cartoons online and offline";
 onBoarding_second_logo_key = "Find your favourite characters";
 cartoons_screen = "Cartoons";
 cartoons_screen_subtitle = "...plunge into a fairy tale";
+favourites_screen = "Favourites";
+favourites_screen_subtitle = "...offline watching is available";
+settings_screen = "Settings";
 

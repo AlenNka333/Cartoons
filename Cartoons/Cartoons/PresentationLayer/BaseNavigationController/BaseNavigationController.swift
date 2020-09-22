@@ -35,32 +35,43 @@ class BaseNavigationController: UINavigationController {
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance
-        setSubTitle(subTitle: R.string.localizable.cartoons_screen_subtitle())
-        setImageView(image: R.image.navigation_label())
+        if  navigationBar.subviews.isEmpty {
+            navigationBar.addSubview(subtitle)
+            navigationBar.addSubview(imageView)
+            subtitle.snp.makeConstraints {
+                $0.top.equalTo(navigationBar).offset(25)
+                $0.leading.equalTo(navigationBar).offset(20)
+            }
+            imageView.snp.makeConstraints {
+                $0.trailing.equalTo(navigationBar).offset(-20)
+                $0.bottom.equalTo(navigationBar).offset(-10)
+            }
+        }
+        
     }
 }
 
 extension UINavigationController {
-    func setSubTitle(subTitle: String) {
+    var subtitle: UILabel {
         let firstFrame = CGRect(x: 0, y: 0, width: navigationBar.frame.width / 2, height: navigationBar.frame.height / 2)
         let subtitle = UILabel(frame: firstFrame)
         subtitle.attributedText = NSAttributedString(string: R.string.localizable.cartoons_screen_subtitle(), attributes: [NSAttributedString.Key.foregroundColor:
             UIColor.white.withAlphaComponent(0.48), NSAttributedString.Key.font: R.font.aliceRegular(size: 14)])
-        navigationBar.addSubview(subtitle)
-        subtitle.snp.makeConstraints {
-            $0.top.equalTo(navigationBar).offset(25)
-            $0.leading.equalTo(navigationBar).offset(20)
-        }
+        return subtitle
+    }
+    
+    var imageView: UIImageView {
+        let imageView = UIImageView(image: UIImage())
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }
+    
+    func setSubTitle(title: String) {
+        subtitle.text = title
     }
     
     func setImageView(image: UIImage?) {
-        let imageView = UIImageView(image: image)
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        navigationBar.addSubview(imageView)
-        imageView.snp.makeConstraints {
-            $0.trailing.equalTo(navigationBar).offset(-20)
-            $0.bottom.equalTo(navigationBar).offset(-10)
-        }
+        imageView.image = image
     }
 }

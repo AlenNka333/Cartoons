@@ -379,8 +379,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 13 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 16 localization keys.
     struct localizable {
+      /// en translation: ...offline watching is available
+      ///
+      /// Locales: en
+      static let favourites_screen_subtitle = Rswift.StringResource(key: "favourites_screen_subtitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: ...plunge into a fairy tale
       ///
       /// Locales: en
@@ -393,6 +397,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let error = Rswift.StringResource(key: "error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Favourites
+      ///
+      /// Locales: en
+      static let favourites_screen = Rswift.StringResource(key: "favourites_screen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Find your favourite characters
       ///
       /// Locales: en
@@ -413,6 +421,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let resend_button_key = Rswift.StringResource(key: "resend_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Settings
+      ///
+      /// Locales: en
+      static let settings_screen = Rswift.StringResource(key: "settings_screen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Sign out
       ///
       /// Locales: en
@@ -433,6 +445,21 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let onBoarding_first_logo_key = Rswift.StringResource(key: "onBoarding_first_logo_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+
+      /// en translation: ...offline watching is available
+      ///
+      /// Locales: en
+      static func favourites_screen_subtitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("favourites_screen_subtitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "favourites_screen_subtitle"
+        }
+
+        return NSLocalizedString("favourites_screen_subtitle", bundle: bundle, comment: "")
+      }
 
       /// en translation: ...plunge into a fairy tale
       ///
@@ -477,6 +504,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Favourites
+      ///
+      /// Locales: en
+      static func favourites_screen(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("favourites_screen", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "favourites_screen"
+        }
+
+        return NSLocalizedString("favourites_screen", bundle: bundle, comment: "")
       }
 
       /// en translation: Find your favourite characters
@@ -552,6 +594,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("resend_button_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Settings
+      ///
+      /// Locales: en
+      static func settings_screen(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("settings_screen", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "settings_screen"
+        }
+
+        return NSLocalizedString("settings_screen", bundle: bundle, comment: "")
       }
 
       /// en translation: Sign out

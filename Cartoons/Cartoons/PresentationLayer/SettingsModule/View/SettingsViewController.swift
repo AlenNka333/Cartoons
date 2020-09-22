@@ -13,10 +13,10 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = R.string.localizable.settings_screen()
+        navigationController?.setSubTitle(title: "")
+        navigationController?.setImageView(image: UIImage())
     }
-    
-    
 }
 
 extension SettingsViewController: SettingsViewProtocol {

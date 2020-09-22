@@ -39,5 +39,6 @@ class TabBarViewController: UITabBarController {
     
     func setupUi() {
         tabBar.barTintColor = R.color.tab_bar_color()?.withAlphaComponent(0.3)
+        tabBar.isTranslucent = true
     }
 }
