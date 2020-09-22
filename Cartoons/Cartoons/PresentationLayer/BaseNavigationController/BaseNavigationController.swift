@@ -35,19 +35,6 @@ class BaseNavigationController: UINavigationController {
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance
-        if  navigationBar.subviews.isEmpty {
-            navigationBar.addSubview(subtitle)
-            navigationBar.addSubview(imageView)
-            subtitle.snp.makeConstraints {
-                $0.top.equalTo(navigationBar).offset(25)
-                $0.leading.equalTo(navigationBar).offset(20)
-            }
-            imageView.snp.makeConstraints {
-                $0.trailing.equalTo(navigationBar).offset(-20)
-                $0.bottom.equalTo(navigationBar).offset(-10)
-            }
-        }
-        
     }
 }
 
@@ -57,6 +44,11 @@ extension UINavigationController {
         let subtitle = UILabel(frame: firstFrame)
         subtitle.attributedText = NSAttributedString(string: R.string.localizable.cartoons_screen_subtitle(), attributes: [NSAttributedString.Key.foregroundColor:
             UIColor.white.withAlphaComponent(0.48), NSAttributedString.Key.font: R.font.aliceRegular(size: 14)])
+        navigationBar.addSubview(subtitle)
+        subtitle.snp.makeConstraints {
+            $0.top.equalTo(navigationBar).offset(25)
+            $0.leading.equalTo(navigationBar).offset(20)
+        }
         return subtitle
     }
     
@@ -64,6 +56,12 @@ extension UINavigationController {
         let imageView = UIImageView(image: UIImage())
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        navigationBar.addSubview(imageView)
+        
+        imageView.snp.makeConstraints {
+            $0.trailing.equalTo(navigationBar).offset(-20)
+            $0.bottom.equalTo(navigationBar).offset(-10)
+        }
         return imageView
     }
     
