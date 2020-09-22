@@ -9,7 +9,6 @@
 import Foundation
 
 protocol CartoonsViewPresenterProtocol: AnyObject {
-   init(view: CartoonsViewProtocol)
     func signOutUserAction()
     func showError(error: Error)
     func showSuccess(success: String)

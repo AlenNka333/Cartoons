@@ -10,6 +10,7 @@ import Foundation
 
 protocol VerificationViewProtocol: AnyObject {
     func setError (error: Error)
+    func setLabelText(number: String)
     func showActivityIndicatorAction()
     func stopActivityIndicatorAction()
 }

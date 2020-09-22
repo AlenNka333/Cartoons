@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import UIKit
 
 class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     let view: AuthorizationViewProtocol
     let router: RouterProtocol?
     let firebaseManager = FirebaseManager()
     
-    required init(view: AuthorizationViewProtocol, router: RouterProtocol) {
+    init(view: AuthorizationViewProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
     }
@@ -25,7 +24,7 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
             self?.view.stopActivityIndicatorAction()
             switch result {
             case let .success(verificationId):
-                self?.router?.createVerificationController(animated: true, verificationId: verificationId)
+                self?.router?.showOTPController(verificationId: verificationId, number: number, animated: true)
             case .failure(let error):
                 self?.view.setError(error: error)
             }

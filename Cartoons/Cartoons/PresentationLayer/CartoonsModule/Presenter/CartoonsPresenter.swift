@@ -12,7 +12,7 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
     let firebaseManager = FirebaseManager()
     
-    required init(view: CartoonsViewProtocol) {
+    init(view: CartoonsViewProtocol) {
         self.view = view
     }
     func signOutUserAction() {

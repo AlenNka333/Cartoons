@@ -9,23 +9,9 @@
 import UIKit
 
 class CartoonsViewController: UIViewController {
-    var presenter: CartoonsViewPresenterProtocol!
+    var presenter: CartoonsViewPresenterProtocol?
     
-    private lazy var signOutButton: UIButton = {
-        let button = UIButton()
-        let string = NSAttributedString(string: R.string.localizable.sign_out_button(),
-                                        attributes: [NSAttributedString.Key.font:
-                                            UIFont.systemFont(ofSize: 18),
-                                                     .foregroundColor: UIColor.white])
-        let attributedString = NSMutableAttributedString(attributedString: string)
-        button.setAttributedTitle(attributedString, for: .normal)
-        button.isEnabled = true
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 2
-        button.layer.borderColor = R.color.enabled_button()?.cgColor
-        button.addTarget(self, action: #selector(self.buttonTappedToSignOutAction), for: .touchUpInside)
-        return button
-    }()
+    private lazy var signOutButton = CustomButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +38,9 @@ extension CartoonsViewController: CartoonsViewProtocol {
 }
 extension CartoonsViewController {
     @objc func buttonTappedToSignOutAction() {
+        guard let presenter = self.presenter else {
+            return
+        }
         presenter.signOutUserAction()
     }
 }

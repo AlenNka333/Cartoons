@@ -8,13 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
-        guard let wnd = window else {
-            return false
-        }
-        let router = Router(window: wnd)
-        router.initialViewController()
-        window?.rootViewController = router.navigationController
-        window?.makeKeyAndVisible()
+        let router = Router(window: window)
+        router.start()
         return true
     }
 }

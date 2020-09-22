@@ -47,7 +47,7 @@ class CustomAlertView: UIView {
         messageLabel.text = message
         switch alertType {
         case .success:
-            doneButton.backgroundColor = R.color.green_yellow()
+            doneButton.backgroundColor = R.color.enabled_button_color()
         case .error:
             doneButton.backgroundColor = R.color.cinnabar()
         }
