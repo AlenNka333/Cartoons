@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 9 colors.
+  /// This `R.color` struct is generated, and contains static references to 12 colors.
   struct color {
     /// Color `cinnabar`.
     static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
@@ -116,6 +116,8 @@ struct R: Rswift.Validatable {
     static let disabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "disabled_button_color")
     /// Color `enabled_button_color`.
     static let enabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "enabled_button_color")
+    /// Color `main_background`.
+    static let main_background = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_background")
     /// Color `main_blue`.
     static let main_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_blue")
     /// Color `main_orange`.
@@ -168,6 +170,15 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "main_background", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func main_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.main_background, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "main_blue", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -195,15 +206,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "main_background", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func main_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.main_background, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "navigation_bar_color", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -218,15 +220,6 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func picotee_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.picotee_blue, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "send_code_button_error", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func send_code_button_error(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.send_code_button_error, compatibleWith: traitCollection)
     }
     #endif
 
@@ -290,21 +283,23 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 5 images.
+  /// This `R.image` struct is generated, and contains static references to 6 images.
   struct image {
-    /// Image `ellipse`.
-    static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "ellipse")
+    /// Image `Ellipse`.
+    static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
     /// Image `label`.
     static let label = Rswift.ImageResource(bundle: R.hostingBundle, name: "label")
     /// Image `launch_background`.
     static let launch_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "launch_background")
     /// Image `main_background`.
     static let main_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_background")
+    /// Image `navigation_label`.
+    static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
     /// Image `tree_leave`.
     static let tree_leave = Rswift.ImageResource(bundle: R.hostingBundle, name: "tree_leave")
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ellipse", bundle: ..., traitCollection: ...)`
+    /// `UIImage(named: "Ellipse", bundle: ..., traitCollection: ...)`
     static func ellipse(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ellipse, compatibleWith: traitCollection)
     }
@@ -332,6 +327,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "navigation_label", bundle: ..., traitCollection: ...)`
+    static func navigation_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.navigation_label, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "tree_leave", bundle: ..., traitCollection: ...)`
     static func tree_leave(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.tree_leave, compatibleWith: traitCollection)
@@ -341,12 +343,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `AlertView`.
     static let alertView = _R.nib._AlertView()
     /// Nib `LabelView`.
     static let labelView = _R.nib._LabelView()
+    /// Nib `NavigationBar`.
+    static let navigationBar = _R.nib._NavigationBar()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "AlertView", in: bundle)`
@@ -364,6 +368,14 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "NavigationBar", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.navigationBar) instead")
+    static func navigationBar(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.navigationBar)
+    }
+    #endif
+
     static func alertView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.alertView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
@@ -372,12 +384,16 @@ struct R: Rswift.Validatable {
       return R.nib.labelView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
+    static func navigationBar(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.navigationBar.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+
     fileprivate init() {}
   }
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 11 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 13 localization keys.
     struct localizable {
       /// en translation: Cartoons
       ///
@@ -692,6 +708,17 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "tree_leave", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'tree_leave' is used in nib 'LabelView', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _NavigationBar: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "NavigationBar"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
 
       fileprivate init() {}
