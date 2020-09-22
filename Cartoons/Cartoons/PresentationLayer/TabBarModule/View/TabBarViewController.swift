@@ -16,23 +16,23 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
         initTabBarList()
-        viewControllers = tabBarList
+        setViewControllers(tabBarList, animated: false)
         setupUi()
     }
     
     func initTabBarList() {
         let firstViewController = builder.createCartoons()
-        let navigationF = UINavigationController(rootViewController: firstViewController)
+        let navigationF = BaseNavigationController(rootViewController: firstViewController)
         navigationF.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 0)
         tabBarList.append(navigationF)
         
         let secondViewController = builder.createFavourites()
-        let navigationS = UINavigationController(rootViewController: secondViewController)
+        let navigationS = BaseNavigationController(rootViewController: secondViewController)
         navigationS.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         tabBarList.append(navigationS)
         
         let thirdViewController = builder.createSettings()
-        let navigationT = UINavigationController(rootViewController: thirdViewController)
+        let navigationT = BaseNavigationController(rootViewController: thirdViewController)
         navigationT.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 2)
         tabBarList.append(navigationT)
     }

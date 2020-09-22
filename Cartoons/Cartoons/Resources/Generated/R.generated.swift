@@ -343,14 +343,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
     /// Nib `AlertView`.
     static let alertView = _R.nib._AlertView()
     /// Nib `LabelView`.
     static let labelView = _R.nib._LabelView()
-    /// Nib `NavigationBar`.
-    static let navigationBar = _R.nib._NavigationBar()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "AlertView", in: bundle)`
@@ -368,24 +366,12 @@ struct R: Rswift.Validatable {
     }
     #endif
 
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "NavigationBar", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.navigationBar) instead")
-    static func navigationBar(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.navigationBar)
-    }
-    #endif
-
     static func alertView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.alertView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     static func labelView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.labelView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
-
-    static func navigationBar(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.navigationBar.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     fileprivate init() {}
@@ -395,6 +381,10 @@ struct R: Rswift.Validatable {
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 13 localization keys.
     struct localizable {
+      /// en translation: ...plunge into a fairy tale
+      ///
+      /// Locales: en
+      static let cartoons_screen_subtitle = Rswift.StringResource(key: "cartoons_screen_subtitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Cartoons
       ///
       /// Locales: en
@@ -443,10 +433,21 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let onBoarding_first_logo_key = Rswift.StringResource(key: "onBoarding_first_logo_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
-      /// en translation: Watch your favourite cartoons online and offline
+
+      /// en translation: ...plunge into a fairy tale
       ///
       /// Locales: en
-      static let cartoons_screen_subtitle = Rswift.StringResource(key: "cartoons_screen_subtitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      static func cartoons_screen_subtitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cartoons_screen_subtitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "cartoons_screen_subtitle"
+        }
+
+        return NSLocalizedString("cartoons_screen_subtitle", bundle: bundle, comment: "")
+      }
 
       /// en translation: Cartoons
       ///
@@ -628,21 +629,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("onBoarding_first_logo_key", bundle: bundle, comment: "")
       }
 
-      /// en translation: Watch your favourite cartoons online and offline
-      ///
-      /// Locales: en
-      static func cartoons_screen_subtitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("cartoons_screen_subtitle", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "cartoons_screen_subtitle"
-        }
-
-        return NSLocalizedString("cartoons_screen_subtitle", bundle: bundle, comment: "")
-      }
-
       fileprivate init() {}
     }
 
@@ -708,17 +694,6 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "tree_leave", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'tree_leave' is used in nib 'LabelView', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _NavigationBar: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "NavigationBar"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
 
       fileprivate init() {}

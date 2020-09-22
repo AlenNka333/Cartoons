@@ -10,7 +10,7 @@ import UIKit
 
 class Router: RouterProtocol {
     var assemblyBuilder: AssemblyBuilderProtocol?
-    var navigationController: UINavigationController?
+    var navigationController: BaseNavigationController?
     var onBoarding: UIPageViewController?
     var tabBarController: UITabBarController?
     let window: UIWindow?
@@ -18,7 +18,7 @@ class Router: RouterProtocol {
     init(window: UIWindow?) {
         self.window = window
         window?.makeKeyAndVisible()
-        navigationController = UINavigationController()
+        navigationController = BaseNavigationController()
         navigationController?.isNavigationBarHidden = true
         assemblyBuilder = ModuleBuilder()
     }
