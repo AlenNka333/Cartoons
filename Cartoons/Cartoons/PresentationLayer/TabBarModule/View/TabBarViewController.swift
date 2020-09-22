@@ -38,6 +38,6 @@ class TabBarViewController: UITabBarController {
     }
     
     func setupUi() {
-        self.tabBar.barTintColor = R.color.tab_bar_color()
+        tabBar.barTintColor = R.color.tab_bar_color()?.withAlphaComponent(0.3)
     }
 }

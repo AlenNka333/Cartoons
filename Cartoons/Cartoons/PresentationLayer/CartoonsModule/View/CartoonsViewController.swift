@@ -27,28 +27,33 @@ class CartoonsViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = R.color.main_background()
-        navigationController?.navigationBar.prefersLargeTitles = true
+        guard let navigationBar = navigationController?.navigationBar else { return }
+        navigationBar.prefersLargeTitles = true
         title = R.string.localizable.cartoons_screen()
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = R.color.navigation_bar_color()
         appearance.largeTitleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
-        navigationController?.navigationBar.topItem?.standardAppearance = appearance
-        navigationController?.navigationBar.topItem?.compactAppearance = appearance
-        navigationController?.navigationBar.topItem?.scrollEdgeAppearance = appearance
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        let imageView = UIImageView(image: R.image.navigation_label())
+        navigationBar.topItem?.standardAppearance = appearance
+        navigationBar.topItem?.compactAppearance = appearance
+        navigationBar.topItem?.scrollEdgeAppearance = appearance
+        let imageView = addmageView()
         navigationBar.addSubview(imageView)
-        imageView.layer.cornerRadius = Const.ImageSizeForLargeState / 2
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -Const.ImageRightMargin),
             imageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -Const.ImageBottomMarginForLargeState),
             imageView.heightAnchor.constraint(equalToConstant: Const.ImageSizeForLargeState),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
-            ])
+        ])
+    }
+    
+    func addmageView() -> UIImageView {
+        let imageView = UIImageView(image: R.image.navigation_label())
+        imageView.layer.cornerRadius = Const.ImageSizeForLargeState / 2
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }
 }
 
