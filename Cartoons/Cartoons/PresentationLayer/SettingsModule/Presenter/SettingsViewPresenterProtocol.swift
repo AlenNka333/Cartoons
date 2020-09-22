@@ -8,7 +8,7 @@
 
 import Foundation
 protocol SettingsViewPresenterProtocol: AnyObject {
-   init(view: SettingsViewProtocol)
+    func signOut()
     func showError(error: Error)
     func showSuccess(success: String)
 }

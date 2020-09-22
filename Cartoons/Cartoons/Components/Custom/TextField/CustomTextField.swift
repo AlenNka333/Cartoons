@@ -26,9 +26,9 @@ class CustomTextField: UITextField {
         }
         keyboardType = .numberPad
         borderStyle = .none
+        textColor = .black
         layer.cornerRadius = 10
         backgroundColor = .white
-        
         attributedPlaceholder =
             NSAttributedString(string: R.string.localizable.phone_label_key(),
                                attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48), NSAttributedString.Key.font: UIFont(name: "Alice-Regular", size: 15)!])

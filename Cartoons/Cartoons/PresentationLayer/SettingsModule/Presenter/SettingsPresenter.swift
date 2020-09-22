@@ -10,9 +10,21 @@ import Foundation
 
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
+    let firebaseManager = FirebaseManager()
     
-    required init(view: SettingsViewProtocol) {
+    init(view: SettingsViewProtocol) {
         self.view = view
+    }
+    
+    func signOut() {
+        firebaseManager.signOutUser { [weak self] result in
+            switch result{
+            case .success(_):
+                self?.view.setSuccess(success: "Signed out")
+            case .failure(let error):
+                self?.view.setError(error: error)
+            }
+        }
     }
     
     func showSuccess(success: String) {

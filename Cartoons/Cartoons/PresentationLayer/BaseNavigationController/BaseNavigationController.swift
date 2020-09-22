@@ -22,6 +22,7 @@ class BaseNavigationController: UINavigationController {
         appearance.backgroundColor = R.color.navigation_bar_color()
         appearance.largeTitleTextAttributes = [ NSAttributedString.Key.foregroundColor:
             UIColor.white, NSAttributedString.Key.font: R.font.aliceRegular(size: Const.titleSize) ]
+        appearance.shadowColor = .black
         return appearance
     }()
     
@@ -32,6 +33,10 @@ class BaseNavigationController: UINavigationController {
     
     func setupUI() {
         navigationBar.prefersLargeTitles = true
+        navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        navigationBar.layer.shadowRadius = 4.0
+        navigationBar.layer.shadowOpacity = 1.0
+        navigationBar.layer.masksToBounds = false
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance

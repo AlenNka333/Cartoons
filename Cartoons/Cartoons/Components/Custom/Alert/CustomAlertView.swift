@@ -38,13 +38,16 @@ class CustomAlertView: UIView {
         doneButton.layer.shadowOpacity = 0.3
         doneButton.layer.masksToBounds = false
         
+        
         parentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         parentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
     func showAlert(title: String, message: String, alertType: AlertType) {
         titleLabel.text = title
+        titleLabel.textColor = .black
         messageLabel.text = message
+        messageLabel.textColor = .black
         switch alertType {
         case .success:
             doneButton.backgroundColor = R.color.enabled_button_color()

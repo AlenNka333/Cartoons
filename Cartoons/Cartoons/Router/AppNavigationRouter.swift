@@ -24,18 +24,17 @@ class Router: RouterProtocol {
     }
     
     func start() {
-        showTabBarController()
-//        if AppData.shouldShowOnBoarding {
-//            showOnBoarding()
-//        } else {
-//            let firebaseManager = FirebaseManager()
-//            switch firebaseManager.shouldAuthorize {
-//            case true:
-//                showAuthorizationController()
-//            case false:
-//                showTabBarController()
-//            }
-//        }
+        if AppData.shouldShowOnBoarding {
+            showOnBoarding()
+        } else {
+            let firebaseManager = FirebaseManager()
+            switch firebaseManager.shouldAuthorize {
+            case true:
+                showAuthorizationController()
+            case false:
+                showTabBarController()
+            }
+        }
     }
     
     func changeRootViewController(with rootViewController: UIViewController) {

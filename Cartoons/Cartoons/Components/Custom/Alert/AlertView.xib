@@ -41,21 +41,21 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="17"/>
                                     <state key="normal" title="Done">
-                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="titleColor" red="0.993053138256073" green="0.99322277307510376" blue="0.99304240942001343" alpha="0.9995117188" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="onClickDoneAction:" destination="-1" eventType="touchUpInside" id="6df-Pr-Exw"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSF-1V-CHJ">
-                                    <rect key="frame" x="20" y="118.5" width="255" height="51.5"/>
+                                    <rect key="frame" x="20" y="98.5" width="255" height="51.5"/>
                                     <string key="text">messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessage</string>
                                     <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQn-ZA-pHb">
-                                    <rect key="frame" x="20" y="72" width="255" height="23"/>
+                                    <rect key="frame" x="20" y="52" width="255" height="23"/>
                                     <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                                 <constraint firstAttribute="bottom" secondItem="hTG-r8-od5" secondAttribute="bottom" constant="20" id="LHQ-fd-la5"/>
                                 <constraint firstItem="HSF-1V-CHJ" firstAttribute="top" secondItem="qQn-ZA-pHb" secondAttribute="bottom" constant="23.5" id="V4H-cT-UX8"/>
                                 <constraint firstAttribute="trailing" secondItem="qQn-ZA-pHb" secondAttribute="trailing" constant="20" id="Xe2-7c-vt0"/>
-                                <constraint firstItem="hTG-r8-od5" firstAttribute="top" secondItem="HSF-1V-CHJ" secondAttribute="bottom" constant="20" id="oOJ-3g-JgS"/>
+                                <constraint firstItem="hTG-r8-od5" firstAttribute="top" secondItem="HSF-1V-CHJ" secondAttribute="bottom" constant="40" id="oOJ-3g-JgS"/>
                                 <constraint firstAttribute="trailing" secondItem="HSF-1V-CHJ" secondAttribute="trailing" constant="20" id="pCg-Vy-XTz"/>
                                 <constraint firstAttribute="trailing" secondItem="hTG-r8-od5" secondAttribute="trailing" constant="20" id="xlf-9W-TPh"/>
                             </constraints>
