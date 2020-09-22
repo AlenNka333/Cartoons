@@ -1,68 +1,17 @@
 import UIKit
 
 class AuthorizationViewController: UIViewController {
-    var presenter: AuthorizationViewPresenterProtocol!
+    var presenter: AuthorizationViewPresenterProtocol?
     let alertView = CustomAlertView()
     let activityIndicator = UIActivityIndicatorView()
     
-    private lazy var textLabelImageView: UIImageView = {
-        let image = UIImageView()
-        image.image = R.image.cartoons_label()
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
-    
-    private lazy var labelImageView: UIImageView = {
-        let image = UIImageView()
-        image.image = R.image.label()
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
-    
-    private lazy var blackView: UIView = {
-        let blackView = UIView()
-        blackView.backgroundColor = .black
-        blackView.alpha = 0.6
-        blackView.layer.masksToBounds = false
-        blackView.layer.shadowColor = UIColor.black.cgColor
-        blackView.layer.shadowRadius = 4.0
-        blackView.layer.shadowOffset = CGSize(width: -1.0, height: 1.0)
-        blackView.layer.shadowOpacity = 1.0
-        return blackView
-    }()
-
-    private lazy var phoneNumberTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .none
-        textField.attributedPlaceholder =
-            NSAttributedString(string: R.string.localizable.phone_label_key(), attributes:
-            [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.3)])
-        textField.textContentType = .telephoneNumber
-        textField.keyboardType = .numberPad
-        textField.layer.cornerRadius = 5
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
-        textField.leftViewMode = .always
-        textField.backgroundColor = R.color.login_button_color()?.withAlphaComponent(0.3)
-        textField.textColor = UIColor(white: 1, alpha: 0.9)
-        textField.font = UIFont.systemFont(ofSize: 17)
-        textField.autocorrectionType = .no
-        textField.delegate = self
-        return textField
-    }()
-
-     private lazy var getCodeButton: UIButton = {
-        let button = UIButton()
-        let string = NSAttributedString(string: R.string.localizable.get_code_button_key(),
-                                        attributes: [NSAttributedString.Key.font:
-                                            UIFont.systemFont(ofSize: 18),
-                                                     .foregroundColor: UIColor.white])
-        let attributedString = NSMutableAttributedString(attributedString: string)
-        button.setAttributedTitle(attributedString, for: .normal)
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 2
-        button.layer.borderColor = R.color.enabled_button()?.cgColor
-        button.addTarget(self, action: #selector(self.buttonTappedToSendCodeAction), for: .touchUpInside)
-        return button
+    private lazy var appLabelView = CustomLabelView()
+    private lazy var phoneNumberTextField = CustomTextField()
+    private lazy var getCodeButton: UIButton = CustomButton()
+    private lazy var ownView: UIView = {
+        view = UIView()
+        view.backgroundColor = UIColor(patternImage: R.image.main_background()!)
+        return view
     }()
     
     override func viewDidLoad() {
@@ -71,40 +20,27 @@ class AuthorizationViewController: UIViewController {
         setupToHideKeyboardOnTapOnView()
     }
     
+    override func loadView() {
+        self.view = ownView
+    }
+    
     private func setupUI() {
-        view.backgroundColor = .white
-        view.addSubview(blackView)
-        blackView.snp.makeConstraints {
-            $0.height.equalToSuperview().offset(-200)
-            $0.width.equalToSuperview().offset(-30)
-            $0.center.equalToSuperview()
-        }
-        view.addSubview(textLabelImageView)
-        textLabelImageView.snp.makeConstraints {
-            $0.width.equalTo(250)
-            $0.height.equalTo(100)
-            $0.top.equalTo(blackView).offset(20)
-            $0.centerX.equalTo(blackView)
-        }
-        view.addSubview(labelImageView)
-        labelImageView.snp.makeConstraints {
-            $0.width.height.equalTo(150)
-            $0.top.equalTo(textLabelImageView).offset(30)
-            $0.centerX.equalTo(blackView)
+        view.addSubview(appLabelView)
+        appLabelView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(160)
         }
         view.addSubview(phoneNumberTextField)
+        phoneNumberTextField.delegate = self
         phoneNumberTextField.snp.makeConstraints {
-            $0.width.equalTo(blackView).offset(-20)
-            $0.height.equalTo(40)
             $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(blackView)
+            $0.centerY.equalToSuperview().offset(-60)
         }
         view.addSubview(getCodeButton)
+        getCodeButton.setTitle(R.string.localizable.get_code_button_key(), for: .normal)
+        getCodeButton.addTarget(self, action: #selector(buttonTappedToSendCodeAction), for: .touchUpInside)
         getCodeButton.snp.makeConstraints {
-            $0.width.equalTo(blackView).offset(-20)
-            $0.height.equalTo(50)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(phoneNumberTextField).offset(60)
+            $0.center.equalToSuperview()
         }
     }
 }
@@ -125,18 +61,21 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
     func setError(error: Error) {
         CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
         getCodeButton.isEnabled = true
-        getCodeButton.layer.borderColor = R.color.enabled_button()?.cgColor
+        getCodeButton.backgroundColor = R.color.enabled_button_color()
     }
 }
 
 extension AuthorizationViewController {
     @objc func buttonTappedToSendCodeAction() {
+        guard let presenter = self.presenter else {
+            return
+        }
         guard let number = phoneNumberTextField.text else {
             presenter.showError(error: AuthorizationError.emptyPhoneNumber)
             return
         }
         getCodeButton.isEnabled = false
-        getCodeButton.layer.borderColor = R.color.frozen_button()?.cgColor
+        getCodeButton.backgroundColor = R.color.disabled_button_color()
         presenter.sendPhoneNumberAction(number: number)
     }
 }

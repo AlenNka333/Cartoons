@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 class VerificationPresenter: VerificationViewPresenterProtocol {
     let view: VerificationViewProtocol
@@ -15,10 +14,11 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     let verificationId: String
     let firebaseManager = FirebaseManager()
     
-    required init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String) {
+    init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String, number: String) {
         self.view = view
         self.router = router
         self.verificationId = verificationId
+        view.setLabelText(number: number)
     }
     func showError(error: Error) {
         view.setError(error: error)
@@ -27,7 +27,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
             case .success(_):
-                self?.router?.openCartoonsController(animated: true)
+                self?.router?.showTabBarController()
             case let .failure(error):
                 self?.view.setError(error: error)
             }

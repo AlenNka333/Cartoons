@@ -5,54 +5,79 @@
 //  Created by Alena Nesterkina on 9/4/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-import FirebaseAuth
 import Foundation
 import UIKit
 
 class Router: RouterProtocol {
-    internal var navigationController: UINavigationController?
-    internal var assemblyBuilder: AssemblyBuilderProtocol?
-    private let firebaseManager = FirebaseManager()
+    var assemblyBuilder: AssemblyBuilderProtocol?
+    var navigationController: UINavigationController?
+    var onBoarding: UIPageViewController?
+    var tabBarController: UITabBarController?
+    let window: UIWindow?
     
-    init() {
+    init(window: UIWindow?) {
+        self.window = window
+        window?.makeKeyAndVisible()
         navigationController = UINavigationController()
         navigationController?.isNavigationBarHidden = true
         assemblyBuilder = ModuleBuilder()
     }
     
-    func initialViewController() {
-        guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
-                        return
-                    }
-        navigationController?.viewControllers = [mainViewController]
-//        let isAuthorised = !firebaseManager.shouldAuthorize
-//        switch isAuthorised {
-//        case true:
-//            guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
-//                return
-//            }
-//            navigationController?.viewControllers = [mainViewController]
-//        case false:
-//            guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
-//                return
-//            }
-//            navigationController?.viewControllers = [mainViewController]
-
+    func start() {
+        if AppData.shouldShowOnBoarding {
+            showOnBoarding()
+        } else {
+            let firebaseManager = FirebaseManager()
+            switch firebaseManager.shouldAuthorize {
+            case true:
+                showAuthorizationController()
+            case false:
+                showTabBarController()
+            }
+        }
     }
     
-    func createVerificationController(animated: Bool, verificationId: String) {
-        guard let mainViewController = assemblyBuilder?.createVerification(router: self, verificationId: verificationId) else {
-                return
-            }
-        navigationController?.pushViewController(mainViewController, animated: animated)
+    func changeRootViewController(with rootViewController: UIViewController) {
+        guard let window = self.window else {
+            return
         }
+        window.rootViewController = rootViewController
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
+    }
     
-    func openCartoonsController(animated: Bool) {
-        guard let mainViewController = assemblyBuilder?.createTabBarController(router: self) else {
+    func showOnBoarding() {
+        onBoarding = assemblyBuilder?.createOnBoarding(router: self) as? UIPageViewController
+        guard let onBoard = onBoarding else {
+            return
+        }
+        changeRootViewController(with: onBoard)
+    }
+    
+    func showTabBarController() {
+        tabBarController = assemblyBuilder?.createTabBarController(router: self) as? UITabBarController
+        guard let tabBar = tabBarController else {
+            return
+        }
+        changeRootViewController(with: tabBar)
+    }
+
+    func showAuthorizationController() {
+        guard let mainViewController = assemblyBuilder?.createAuthorization(router: self) else {
+                return
+            }
+        navigationController?.viewControllers = [mainViewController]
+        guard let navigation = navigationController else {
+            return
+        }
+       changeRootViewController(with: navigation)
+    }
+    
+    func showOTPController(verificationId: String, number: String, animated: Bool) {
+        guard let mainViewController = assemblyBuilder?.createVerification(router: self, verificationId: verificationId, number: number) else {
                 return
             }
         navigationController?.pushViewController(mainViewController, animated: animated)
-        }
+    }
     
     func popToRoot(animated: Bool) {
         if let navigationController = navigationController {

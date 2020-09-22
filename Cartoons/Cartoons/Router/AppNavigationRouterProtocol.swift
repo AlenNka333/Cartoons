@@ -10,13 +10,18 @@ import Foundation
 import UIKit
 
 protocol RouterMain {
-    var navigationController: UINavigationController? { get set }
     var assemblyBuilder: AssemblyBuilderProtocol? { get set }
+    var navigationController: UINavigationController? { get set }
+    var onBoarding: UIPageViewController? { get set }
+    var tabBarController: UITabBarController? { get set }
 }
 
 protocol RouterProtocol: RouterMain {
-    func initialViewController()
-    func createVerificationController(animated: Bool, verificationId: String)
-    func openCartoonsController(animated: Bool)
+    func start()
+    func changeRootViewController(with rootViewController: UIViewController)
+    func showOnBoarding()
+    func showAuthorizationController()
+    func showOTPController(verificationId: String, number: String, animated: Bool)
+    func showTabBarController()
     func popToRoot(animated: Bool)
 }
