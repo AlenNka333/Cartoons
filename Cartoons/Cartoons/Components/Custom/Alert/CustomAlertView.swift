@@ -38,7 +38,6 @@ class CustomAlertView: UIView {
         doneButton.layer.shadowOpacity = 0.3
         doneButton.layer.masksToBounds = false
         
-        
         parentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         parentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }

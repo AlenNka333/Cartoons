@@ -35,25 +35,32 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         let view = CartoonsViewController()
         let presenter = CartoonsPresenter(view: view)
         view.presenter = presenter
-        return view
+        let navigation = BaseNavigationController(rootViewController: view)
+        navigation.tabBarItem = UITabBarItem(title: TabState.media.rawValue, image: R.image.clapperboard(), tag: 0)
+        return navigation
     }
     
     func createFavourites() -> UIViewController {
         let view = FavouritesViewController()
         let presenter = FavouritesPresenter(view: view)
         view.presenter = presenter
-        return view
+        let navigation = BaseNavigationController(rootViewController: view)
+        navigation.tabBarItem = UITabBarItem(title: TabState.favourites.rawValue, image: R.image.crown(), tag: 1)
+        return navigation
     }
     
-    func createSettings() -> UIViewController {
+    func createSettings(router: RouterProtocol) -> UIViewController {
         let view = SettingsViewController()
-        let presenter = SettingsPresenter(view: view)
+        let presenter = SettingsPresenter(view: view, router: router)
         view.presenter = presenter
-        return view
+        let navigation = BaseNavigationController(rootViewController: view)
+        navigation.tabBarItem = UITabBarItem(title: TabState.settings.rawValue, image: R.image.flower(), tag: 2)
+        return navigation
     }
     
     func createTabBarController(router: RouterProtocol) -> UIViewController {
         let view = TabBarViewController()
+        view.viewControllers = [createCartoons(), createFavourites(), createSettings(router: router)]
         return view
     }
 }

@@ -16,5 +16,5 @@ protocol AssemblyBuilderProtocol {
     func createTabBarController(router: RouterProtocol) -> UIViewController
     func createCartoons() -> UIViewController
     func createFavourites() -> UIViewController
-    func createSettings() -> UIViewController
+    func createSettings(router: RouterProtocol) -> UIViewController
 }

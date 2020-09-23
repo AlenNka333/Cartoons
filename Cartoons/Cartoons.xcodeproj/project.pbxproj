@@ -355,12 +355,12 @@
 		33B1F08424FFEEB000DB6BA8 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				33B2AEB7250A6FD90006BE31 /* BaseTabBarController */,
 				339ECE31251A14BF00168C5B /* BaseNavigationController */,
 				33B660CD2502DBC000CA562E /* Builder */,
 				3373D943250F55E90095F78C /* onBoardingModule */,
 				332227BD2518968F00EF56B8 /* SettingsModule */,
 				332227BC2518967C00EF56B8 /* FavouritesModule */,
-				33B2AEB7250A6FD90006BE31 /* TabBarModule */,
 				33B2AEAA250A61260006BE31 /* CartoonsModule */,
 				332BA36225064418008A8F29 /* OTPVerificationModule */,
 				33B6608325010F8600CA562E /* AuthorizationModule */,
@@ -460,28 +460,12 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		33B2AEB7250A6FD90006BE31 /* TabBarModule */ = {
-			isa = PBXGroup;
-			children = (
-				33B2AEB9250A6FF20006BE31 /* Presenter */,
-				33B2AEB8250A6FE70006BE31 /* View */,
-			);
-			path = TabBarModule;
-			sourceTree = "<group>";
-		};
-		33B2AEB8250A6FE70006BE31 /* View */ = {
+		33B2AEB7250A6FD90006BE31 /* BaseTabBarController */ = {
 			isa = PBXGroup;
 			children = (
 				33B2AEBA250A702D0006BE31 /* TabBarViewController.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		33B2AEB9250A6FF20006BE31 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
+			path = BaseTabBarController;
 			sourceTree = "<group>";
 		};
 		33B6608325010F8600CA562E /* AuthorizationModule */ = {

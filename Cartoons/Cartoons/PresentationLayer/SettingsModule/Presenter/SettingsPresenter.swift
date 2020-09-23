@@ -11,16 +11,18 @@ import Foundation
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
     let firebaseManager = FirebaseManager()
+    let router: RouterProtocol
     
-    init(view: SettingsViewProtocol) {
+    init(view: SettingsViewProtocol, router: RouterProtocol) {
         self.view = view
+        self.router = router
     }
     
     func signOut() {
         firebaseManager.signOutUser { [weak self] result in
-            switch result{
+            switch result {
             case .success(_):
-                self?.view.setSuccess(success: "Signed out")
+                self?.router.showAuthorizationController()
             case .failure(let error):
                 self?.view.setError(error: error)
             }
