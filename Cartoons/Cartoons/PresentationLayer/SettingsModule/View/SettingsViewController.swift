@@ -14,27 +14,31 @@ class SettingsViewController: UIViewController {
     private lazy var signOutButton: UIButton = CustomButton()
     private lazy var ownView: UIView = {
         view = UIView()
-        view.backgroundColor = R.color.main_blue()
+        view.backgroundColor = R.color.main_orange()
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.standardAppearance.shadowColor = .clear
-        navigationController?.navigationBar.compactAppearance?.shadowColor = .clear
-        navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
-        title = R.string.localizable.settings_screen()
-        navigationController?.setSubTitle(title: "")
-        navigationController?.setImageView(image: UIImage())
+        navigationController?.navigationBar.isHidden = true
         setupUi()
     }
     
     func setupUi() {
-        view.addSubview(signOutButton)
-        signOutButton.setTitle(R.string.localizable.sign_out_button(), for: .normal)
-        signOutButton.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
-        signOutButton.snp.makeConstraints {
-            $0.center.equalToSuperview()
+//        view.addSubview(signOutButton)
+//        signOutButton.setTitle(R.string.localizable.sign_out_button(), for: .normal)
+//        signOutButton.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
+//        signOutButton.snp.makeConstraints {
+//            $0.center.equalToSuperview()
+//        }
+        let profile = ProfileView()
+        profile.delegate = self
+        profile.setPhone(phone: "phone")
+        view.addSubview(profile)
+        profile.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
     }
     
@@ -61,3 +65,10 @@ extension SettingsViewController: SettingsViewProtocol {
         presenter.signOut()
     }
 }
+
+extension SettingsViewController: ProfileViewDelegate {
+    func changeProfileImageTapped() {
+        CustomAlertView.instance.showAlert(title: "Success", message: "", alertType: .success)
+    }
+}
+

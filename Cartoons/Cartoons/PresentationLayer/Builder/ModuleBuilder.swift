@@ -53,7 +53,7 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         let view = SettingsViewController()
         let presenter = SettingsPresenter(view: view, router: router)
         view.presenter = presenter
-        let navigation = BaseNavigationController(rootViewController: view)
+        let navigation = UINavigationController(rootViewController: view)
         navigation.tabBarItem = UITabBarItem(title: TabState.settings.rawValue, image: R.image.flower(), tag: 2)
         return navigation
     }
