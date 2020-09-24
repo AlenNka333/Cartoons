@@ -61,13 +61,11 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70E-Ew-7E0">
-                                    <rect key="frame" x="155" y="189" width="120" height="40"/>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70E-Ew-7E0">
+                                    <rect key="frame" x="155" y="190" width="120" height="40"/>
                                     <color key="backgroundColor" red="0.083722442960000004" green="0.73233264590000002" blue="0.083488200499999998" alpha="0.79989833050000003" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="1w1-FD-Whh"/>
-                                        <constraint firstAttribute="width" constant="120" id="X37-qa-ld5"/>
-                                        <constraint firstAttribute="height" constant="40" id="neb-or-lwl"/>
+                                        <constraint firstAttribute="width" constant="120" id="uKX-6K-MhF"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="17"/>
                                     <state key="normal" title="Yes">
@@ -82,17 +80,18 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="250" id="1zy-sR-DVa"/>
                                 <constraint firstItem="qQn-ZA-pHb" firstAttribute="leading" secondItem="715-6n-JpH" secondAttribute="leading" constant="20" id="3XN-Gl-KcH"/>
-                                <constraint firstAttribute="trailing" secondItem="70E-Ew-7E0" secondAttribute="trailing" constant="20" id="7qb-1C-4CT"/>
-                                <constraint firstAttribute="bottom" secondItem="70E-Ew-7E0" secondAttribute="bottom" constant="21" id="CEh-Xf-nOa"/>
+                                <constraint firstItem="70E-Ew-7E0" firstAttribute="top" secondItem="hTG-r8-od5" secondAttribute="top" id="FcU-be-UnE"/>
+                                <constraint firstItem="70E-Ew-7E0" firstAttribute="leading" secondItem="hTG-r8-od5" secondAttribute="trailing" constant="15" id="IWn-Vc-2nI"/>
+                                <constraint firstItem="70E-Ew-7E0" firstAttribute="baseline" secondItem="hTG-r8-od5" secondAttribute="baseline" id="JZw-gx-LX3"/>
                                 <constraint firstItem="hTG-r8-od5" firstAttribute="leading" secondItem="715-6n-JpH" secondAttribute="leading" constant="20" id="JeV-eY-ie7"/>
                                 <constraint firstItem="HSF-1V-CHJ" firstAttribute="leading" secondItem="715-6n-JpH" secondAttribute="leading" constant="20" id="KQg-CL-gpN"/>
                                 <constraint firstAttribute="bottom" secondItem="hTG-r8-od5" secondAttribute="bottom" constant="20" id="LHQ-fd-la5"/>
-                                <constraint firstAttribute="trailing" secondItem="70E-Ew-7E0" secondAttribute="trailing" constant="20" id="SzP-Vt-LmS"/>
                                 <constraint firstItem="HSF-1V-CHJ" firstAttribute="top" secondItem="qQn-ZA-pHb" secondAttribute="bottom" constant="23.5" id="V4H-cT-UX8"/>
                                 <constraint firstAttribute="trailing" secondItem="qQn-ZA-pHb" secondAttribute="trailing" constant="20" id="Xe2-7c-vt0"/>
+                                <constraint firstItem="70E-Ew-7E0" firstAttribute="firstBaseline" secondItem="hTG-r8-od5" secondAttribute="firstBaseline" id="cLE-c5-QY7"/>
                                 <constraint firstItem="hTG-r8-od5" firstAttribute="top" secondItem="HSF-1V-CHJ" secondAttribute="bottom" constant="40" id="oOJ-3g-JgS"/>
                                 <constraint firstAttribute="trailing" secondItem="HSF-1V-CHJ" secondAttribute="trailing" constant="20" id="pCg-Vy-XTz"/>
-                                <constraint firstItem="70E-Ew-7E0" firstAttribute="leading" secondItem="hTG-r8-od5" secondAttribute="trailing" constant="15" id="u3L-Ok-Ccu"/>
+                                <constraint firstItem="70E-Ew-7E0" firstAttribute="trailing" secondItem="HSF-1V-CHJ" secondAttribute="trailing" id="qzJ-eX-Egj"/>
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="label" translatesAutoresizingMaskIntoConstraints="NO" id="tvQ-Tg-ECi">
