@@ -24,18 +24,19 @@ class Router: RouterProtocol {
     }
     
     func start() {
-        showTabBarController()
-//        if AppData.shouldShowOnBoarding {
-//            showOnBoarding()
-//        } else {
-//            let firebaseManager = FirebaseManager()
-//            switch firebaseManager.shouldAuthorize {
-//            case true:
-//                showAuthorizationController()
-//            case false:
-//                showTabBarController()
-//            }
-//        }
+        showTabBarController(with: "")
+        if AppData.shouldShowOnBoarding {
+            showOnBoarding()
+        } else {
+            let firebaseManager = FirebaseManager()
+            switch firebaseManager.shouldAuthorize {
+            case true:
+                showAuthorizationController()
+            case false:
+                let number = firebaseManager.getUserInfo()
+                showTabBarController(with: number ?? "")
+            }
+        }
     }
     
     func changeRootViewController(with rootViewController: UIViewController) {
@@ -54,8 +55,8 @@ class Router: RouterProtocol {
         changeRootViewController(with: onBoard)
     }
     
-    func showTabBarController() {        
-        tabBarController = assemblyBuilder?.createTabBarController(router: self) as? UITabBarController
+    func showTabBarController(with number: String) {
+        tabBarController = assemblyBuilder?.createTabBarController(router: self, number: number) as? UITabBarController
         guard let tabBar = tabBarController else {
             return
         }

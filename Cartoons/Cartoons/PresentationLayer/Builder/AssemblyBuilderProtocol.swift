@@ -13,8 +13,8 @@ protocol AssemblyBuilderProtocol {
     func createOnBoarding(router: RouterProtocol) -> UIViewController
     func createAuthorization(router: RouterProtocol) -> UIViewController
     func createVerification(router: RouterProtocol, verificationId: String, number: String) -> UIViewController
-    func createTabBarController(router: RouterProtocol) -> UIViewController
+    func createTabBarController(router: RouterProtocol, number: String) -> UIViewController
     func createCartoons() -> UIViewController
     func createFavourites() -> UIViewController
-    func createSettings(router: RouterProtocol) -> UIViewController
+    func createSettings(router: RouterProtocol, number: String) -> UIViewController
 }

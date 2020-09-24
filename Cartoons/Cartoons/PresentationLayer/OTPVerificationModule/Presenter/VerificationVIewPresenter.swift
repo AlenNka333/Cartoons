@@ -13,11 +13,13 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     let router: RouterProtocol?
     let verificationId: String
     let firebaseManager = FirebaseManager()
+    let number: String?
     
     init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String, number: String) {
         self.view = view
         self.router = router
         self.verificationId = verificationId
+        self.number = number
         view.setLabelText(number: number)
     }
     func showError(error: Error) {
@@ -27,7 +29,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
             case .success(_):
-                self?.router?.showTabBarController()
+                self?.router?.showTabBarController(with: self?.number ?? "")
             case let .failure(error):
                 self?.view.setError(error: error)
             }

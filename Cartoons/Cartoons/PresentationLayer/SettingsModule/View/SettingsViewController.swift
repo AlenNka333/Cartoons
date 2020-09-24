@@ -11,6 +11,7 @@ import UIKit
 class SettingsViewController: UIViewController {
     var presenter: SettingsViewPresenterProtocol!
     
+    private let profile = ProfileView()
     private lazy var signOutButton: UIButton = CustomButton()
     private lazy var ownView: UIView = {
         view = UIView()
@@ -25,15 +26,13 @@ class SettingsViewController: UIViewController {
     }
     
     func setupUi() {
-//        view.addSubview(signOutButton)
-//        signOutButton.setTitle(R.string.localizable.sign_out_button(), for: .normal)
-//        signOutButton.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
-//        signOutButton.snp.makeConstraints {
-//            $0.center.equalToSuperview()
-//        }
-        let profile = ProfileView()
+        view.addSubview(signOutButton)
+        signOutButton.setTitle(R.string.localizable.sign_out_button(), for: .normal)
+        signOutButton.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
+        signOutButton.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
         profile.delegate = self
-        profile.setPhone(phone: "phone")
         view.addSubview(profile)
         profile.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -48,6 +47,9 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewProtocol {
+    func setPhoneLabel(number: String) {
+        profile.setPhone(phone: number)
+    }
     func setQuestion(question: String) {
         CustomAlertView.instance.showAlert(title: "Wait...", message: question, alertType: .question)
     }

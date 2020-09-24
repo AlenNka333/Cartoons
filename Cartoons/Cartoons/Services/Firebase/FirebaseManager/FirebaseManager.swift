@@ -56,4 +56,8 @@ class FirebaseManager {
             }
         }
     }
+    
+    func getUserInfo() -> String? {
+        return firebaseService.getPhoneNumber()
+    }
 }

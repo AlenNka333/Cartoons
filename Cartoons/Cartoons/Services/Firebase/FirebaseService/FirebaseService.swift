@@ -47,4 +47,9 @@ class FirebaseService {
             completion(.failure(error))
         }
     }
+    
+    func getPhoneNumber() -> String? {
+        let firebaseUser = Auth.auth().currentUser
+        return firebaseUser?.phoneNumber
+    }
 }

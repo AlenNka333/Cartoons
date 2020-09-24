@@ -39,6 +39,7 @@
 		3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D955250F95460095F78C /* PagePresenterProtocol.swift */; };
 		339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339ECE32251A14DC00168C5B /* BaseNavigationController.swift */; };
 		33A3BA23251CC3EE004EA0D9 /* ProfileViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA22251CC3EE004EA0D9 /* ProfileViewDelegate.swift */; };
+		33A3BA2B251CE142004EA0D9 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2A251CE142004EA0D9 /* General.swift */; };
 		33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
 		33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */; };
@@ -103,6 +104,7 @@
 		3373D955250F95460095F78C /* PagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenterProtocol.swift; sourceTree = "<group>"; };
 		339ECE32251A14DC00168C5B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		33A3BA22251CC3EE004EA0D9 /* ProfileViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewDelegate.swift; sourceTree = "<group>"; };
+		33A3BA2A251CE142004EA0D9 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		332BA35E25060722008A8F29 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
+				33A3BA29251CE129004EA0D9 /* GeneralErrors */,
 				332BA35F25060729008A8F29 /* AuthErrors */,
 			);
 			path = Errors;
@@ -351,6 +354,14 @@
 				339ECE32251A14DC00168C5B /* BaseNavigationController.swift */,
 			);
 			path = BaseNavigationController;
+			sourceTree = "<group>";
+		};
+		33A3BA29251CE129004EA0D9 /* GeneralErrors */ = {
+			isa = PBXGroup;
+			children = (
+				33A3BA2A251CE142004EA0D9 /* General.swift */,
+			);
+			path = GeneralErrors;
 			sourceTree = "<group>";
 		};
 		33B1F08124FFA83800DB6BA8 /* Resources */ = {
@@ -843,6 +854,7 @@
 				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,
 				332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */,
+				33A3BA2B251CE142004EA0D9 /* General.swift in Sources */,
 				332227C52518970900EF56B8 /* FavouritesPresenter.swift in Sources */,
 				33B2AEB0250A63160006BE31 /* AssemblyBuilderProtocol.swift in Sources */,
 				33EE7EB2251360B000EA2BF4 /* CustomLabelView.swift in Sources */,

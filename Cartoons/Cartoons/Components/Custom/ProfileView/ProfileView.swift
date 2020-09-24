@@ -26,7 +26,6 @@ class ProfileView: UIView {
     func setupUI() {
         backgroundColor = R.color.navigation_bar_color()
         snp.makeConstraints {
-            $0.width.equalTo(300)
             $0.height.equalTo(220)
         }
         layer.shadowOffset = CGSize(width: 0.0, height: 2.0)

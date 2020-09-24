@@ -32,7 +32,7 @@ class VerificationCodeViewController: UIViewController {
         label.text = R.string.localizable.verification_message_key()
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont(name: "Alice-Regular", size: 20)
+        label.font = R.font.aliceRegular(size: 20)
         label.textColor = .white
         return label
     }()
@@ -40,7 +40,7 @@ class VerificationCodeViewController: UIViewController {
            let label = UILabel()
            label.numberOfLines = 0
            label.textAlignment = .center
-           label.font = UIFont(name: "Alice-Regular", size: 30)
+           label.font = R.font.aliceRegular(size: 30)
            label.textColor = .white
            return label
        }()
@@ -81,7 +81,7 @@ class VerificationCodeViewController: UIViewController {
         view.addSubview(otpCodeTextField)
         otpCodeTextField.attributedPlaceholder =
         NSAttributedString(string: R.string.localizable.otp_code_key(),
-                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48), NSAttributedString.Key.font: UIFont(name: "Alice-Regular", size: 15)!])
+                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48), NSAttributedString.Key.font: R.font.aliceRegular(size: 15)])
         otpCodeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         otpCodeTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()

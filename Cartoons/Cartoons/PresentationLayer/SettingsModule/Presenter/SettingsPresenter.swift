@@ -13,10 +13,11 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     let firebaseManager = FirebaseManager()
     let router: RouterProtocol
     
-    init(view: SettingsViewProtocol, router: RouterProtocol) {
+    init(view: SettingsViewProtocol, router: RouterProtocol, number: String) {
         self.view = view
         self.router = router
         CustomAlertView.instance.delegate = self
+        view.setPhoneLabel(number: number)
     }
     
     func signOut() {

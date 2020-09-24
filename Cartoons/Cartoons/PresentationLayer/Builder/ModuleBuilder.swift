@@ -49,18 +49,18 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         return navigation
     }
     
-    func createSettings(router: RouterProtocol) -> UIViewController {
+    func createSettings(router: RouterProtocol, number: String) -> UIViewController {
         let view = SettingsViewController()
-        let presenter = SettingsPresenter(view: view, router: router)
+        let presenter = SettingsPresenter(view: view, router: router, number: number)
         view.presenter = presenter
         let navigation = UINavigationController(rootViewController: view)
         navigation.tabBarItem = UITabBarItem(title: TabState.settings.rawValue, image: R.image.flower(), tag: 2)
         return navigation
     }
     
-    func createTabBarController(router: RouterProtocol) -> UIViewController {
+    func createTabBarController(router: RouterProtocol, number: String) -> UIViewController {
         let view = TabBarViewController()
-        view.viewControllers = [createCartoons(), createFavourites(), createSettings(router: router)]
+        view.viewControllers = [createCartoons(), createFavourites(), createSettings(router: router, number: number)]
         return view
     }
 }
