@@ -16,17 +16,11 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     init(view: SettingsViewProtocol, router: RouterProtocol) {
         self.view = view
         self.router = router
+        CustomAlertView.instance.delegate = self
     }
     
     func signOut() {
-        firebaseManager.signOutUser { [weak self] result in
-            switch result {
-            case .success(_):
-                self?.router.showAuthorizationController()
-            case .failure(let error):
-                self?.view.setError(error: error)
-            }
-        }
+        view.setQuestion(question: "Are you sure to sign out?")
     }
     
     func showSuccess(success: String) {
@@ -35,5 +29,18 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     
     func showError(error: Error) {
         view.setError(error: error)
+    }
+}
+
+extension SettingsPresenter: CustomAlertViewDelegate {
+    func agreeButtonTapped() {
+        firebaseManager.signOutUser { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.router.showAuthorizationController()
+            case .failure(let error):
+                self?.view.setError(error: error)
+            }
+        }
     }
 }

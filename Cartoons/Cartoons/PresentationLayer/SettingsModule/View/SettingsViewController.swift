@@ -32,7 +32,7 @@ class SettingsViewController: UIViewController {
     func setupUi() {
         view.addSubview(signOutButton)
         signOutButton.setTitle(R.string.localizable.sign_out_button(), for: .normal)
-        signOutButton.addTarget(self, action: #selector(buttonTappedToSendCodeAction), for: .touchUpInside)
+        signOutButton.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
         signOutButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
@@ -44,18 +44,20 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewProtocol {
+    func setQuestion(question: String) {
+        CustomAlertView.instance.showAlert(title: "Wait...", message: question, alertType: .question)
+    }
+    
     func setSuccess(success: String) {
         CustomAlertView.instance.showAlert(title: success, message: "", alertType: .success)
     }
     func setError(error: Error) {
         CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
     }
-    @objc func buttonTappedToSendCodeAction() {
+    @objc func buttonTappedToSignOutAction() {
         guard let presenter = self.presenter else {
             return
         }
-        signOutButton.isEnabled = false
-        signOutButton.backgroundColor = R.color.disabled_button_color()
         presenter.signOut()
     }
 }

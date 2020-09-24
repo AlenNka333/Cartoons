@@ -21,7 +21,7 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
         setupUi()
-    }
+        }
     
     func setupUi() {
         tabBar.unselectedItemTintColor = .white
