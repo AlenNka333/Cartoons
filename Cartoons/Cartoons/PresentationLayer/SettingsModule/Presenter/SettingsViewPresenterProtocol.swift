@@ -11,4 +11,5 @@ protocol SettingsViewPresenterProtocol: AnyObject {
     func signOut()
     func showError(error: Error)
     func showSuccess(success: String)
+    func agreeButtonTapped()
 }

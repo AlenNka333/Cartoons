@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 protocol AssemblyBuilderProtocol {
-    func createOnBoarding(router: RouterProtocol) -> UIViewController
-    func createAuthorization(router: RouterProtocol) -> UIViewController
-    func createVerification(router: RouterProtocol, verificationId: String, number: String) -> UIViewController
-    func createTabBarController(router: RouterProtocol, number: String) -> UIViewController
+    func createOnBoarding(router: RouterProtocol, firebaseManager: FirebaseManager) -> UIViewController
+    func createAuthorization(router: RouterProtocol, firebaseManager: FirebaseManager) -> UIViewController
+    func createVerification(router: RouterProtocol, firebaseManager: FirebaseManager, verificationId: String, number: String) -> UIViewController
+    func createTabBarController(router: RouterProtocol, manager: FirebaseManager, number: String) -> UIViewController
     func createCartoons() -> UIViewController
     func createFavourites() -> UIViewController
-    func createSettings(router: RouterProtocol, number: String) -> UIViewController
+    func createSettings(router: RouterProtocol, manager: FirebaseManager, number: String) -> UIViewController
 }

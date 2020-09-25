@@ -19,9 +19,9 @@ protocol RouterMain {
 protocol RouterProtocol: RouterMain {
     func start()
     func changeRootViewController(with rootViewController: UIViewController)
-    func showOnBoarding()
-    func showAuthorizationController()
-    func showOTPController(verificationId: String, number: String, animated: Bool)
-    func showTabBarController(with number: String)
+    func showOnBoarding(firebaseManager: FirebaseManager)
+    func showAuthorizationController(firebaseManager: FirebaseManager)
+    func showOTPController(verificationId: String, firebaseManager: FirebaseManager, number: String, animated: Bool)
+    func showTabBarController(firebaseManager: FirebaseManager, number: String)
     func popToRoot(animated: Bool)
 }

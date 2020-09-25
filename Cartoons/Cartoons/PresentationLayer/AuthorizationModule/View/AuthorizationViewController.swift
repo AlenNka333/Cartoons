@@ -4,6 +4,7 @@ class AuthorizationViewController: UIViewController {
     var presenter: AuthorizationViewPresenterProtocol?
     let alertView = CustomAlertView()
     let activityIndicator = UIActivityIndicatorView()
+    let alertService = AlertService()
     
     private lazy var appLabelView = CustomLabelView()
     private lazy var phoneNumberTextField = CustomTextField()
@@ -59,7 +60,10 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
     }
     
     func setError(error: Error) {
-        CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
+        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
+            return
+        }
+        present(alertVC, animated: true)
         getCodeButton.isEnabled = true
         getCodeButton.backgroundColor = R.color.enabled_button_color()
     }

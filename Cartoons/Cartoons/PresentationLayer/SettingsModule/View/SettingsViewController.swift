@@ -8,10 +8,14 @@
 
 import UIKit
 
+enum BTAction {
+    case cancel
+    case accept
+}
+
 class SettingsViewController: UIViewController {
     var presenter: SettingsViewPresenterProtocol!
-    
-    private let profile = ProfileView()
+    let alertService = AlertService()
     private lazy var signOutButton: UIButton = CustomButton()
     private lazy var ownView: UIView = {
         view = UIView()
@@ -21,7 +25,10 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
+        title = R.string.localizable.settings_screen()
+        navigationController?.setSubTitle(title: "")
+        navigationController?.setImage(image: R.image.favourites())
+        navigationController?.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeProfileImageTapped)))
         setupUi()
     }
     
@@ -32,13 +39,6 @@ class SettingsViewController: UIViewController {
         signOutButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
-        profile.delegate = self
-        view.addSubview(profile)
-        profile.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-        }
     }
     
     override func loadView() {
@@ -48,18 +48,35 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: SettingsViewProtocol {
     func setPhoneLabel(number: String) {
-        profile.setPhone(phone: number)
+        title = number
     }
+    
     func setQuestion(question: String) {
-        CustomAlertView.instance.showAlert(title: "Wait...", message: question, alertType: .question)
+        let alertVC = alertService.alert(title: "Wait...", body: question, alertType: .question) { [weak self] action in
+            switch action {
+                case .accept:
+                    self?.presenter.agreeButtonTapped()
+                case .cancel:
+                    break
+                }
+        }
+        present(alertVC, animated: true)
     }
     
     func setSuccess(success: String) {
-        CustomAlertView.instance.showAlert(title: success, message: "", alertType: .success)
+        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) {_ in
+            return
+        }
+        present(alertVC, animated: true)
     }
+    
     func setError(error: Error) {
-        CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
+        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
+           return
+       }
+       present(alertVC, animated: true)
     }
+    
     @objc func buttonTappedToSignOutAction() {
         guard let presenter = self.presenter else {
             return
@@ -68,9 +85,8 @@ extension SettingsViewController: SettingsViewProtocol {
     }
 }
 
-extension SettingsViewController: ProfileViewDelegate {
-    func changeProfileImageTapped() {
-        CustomAlertView.instance.showAlert(title: "Success", message: "", alertType: .success)
+extension SettingsViewController {
+    @objc func changeProfileImageTapped() {
+     
     }
 }
-

@@ -39,10 +39,11 @@ class ProfileView: UIView {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(50)
         }
+        profileImageView.isUserInteractionEnabled = true
         profileImageView.layer.cornerRadius = 60
         profileImageView.layer.borderWidth = 3
         profileImageView.layer.borderColor = UIColor.white.cgColor
-        profileImageView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(changeProfileImageAction)))
+        profileImageView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(ProfileView.changeProfileImageAction)))
         
         addSubview(phoneLabel)
         phoneLabel.attributedText = NSAttributedString(string: R.string.localizable.phone_label_key(),
@@ -59,6 +60,8 @@ class ProfileView: UIView {
     }
     
     @objc func changeProfileImageAction() {
+        print("Tapped")
         delegate?.changeProfileImageTapped()
+        
     }
 }
