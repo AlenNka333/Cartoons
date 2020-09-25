@@ -19,6 +19,7 @@ class VerificationCodeViewController: UIViewController {
     let activityIndicator = UIActivityIndicatorView()
     var countdownTimer: Timer!
     var timer = DefaultValues.totalTime
+    let alertService = AlertService()
     
     private lazy var otpCodeTextField = CustomTextField()
     private lazy var resendButton = CustomButton()
@@ -153,6 +154,9 @@ extension VerificationCodeViewController: VerificationViewProtocol {
         activityIndicator.stopAnimating()
     }
     func setError(error: Error) {
-        CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
+        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
+            return
+        }
+        present(alertVC, animated: true)
     }
 }

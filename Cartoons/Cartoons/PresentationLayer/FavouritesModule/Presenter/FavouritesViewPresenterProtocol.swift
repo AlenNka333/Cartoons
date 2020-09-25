@@ -8,7 +8,6 @@
 
 import Foundation
 protocol FavouritesViewPresenterProtocol: AnyObject {
-   init(view: FavouritesViewProtocol)
     func showError(error: Error)
     func showSuccess(success: String)
 }

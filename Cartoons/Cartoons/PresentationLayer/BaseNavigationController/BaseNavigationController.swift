@@ -61,6 +61,7 @@ extension UINavigationController {
         let imageView = UIImageView(image: UIImage())
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        navigationController?.imageView.isUserInteractionEnabled = true
         navigationBar.addSubview(imageView)
         
         imageView.snp.makeConstraints {
@@ -74,7 +75,7 @@ extension UINavigationController {
         subtitle.text = title
     }
     
-    func setImageView(image: UIImage?) {
+    func setImage(image: UIImage?) {
         imageView.image = image
     }
 }

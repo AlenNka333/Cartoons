@@ -10,6 +10,7 @@ import UIKit
 
 class CartoonsViewController: UIViewController {
     var presenter: CartoonsViewPresenterProtocol!
+    let alertService = AlertService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,15 +21,21 @@ class CartoonsViewController: UIViewController {
         view.backgroundColor = R.color.main_background()
         title = R.string.localizable.cartoons_screen()
         navigationController?.setSubTitle(title: R.string.localizable.cartoons_screen_subtitle())
-        navigationController?.setImageView(image: R.image.navigation_label())
+        navigationController?.setImage(image: R.image.navigation_label())
     }
 }
 
 extension CartoonsViewController: CartoonsViewProtocol {
     func setSuccess(success: String) {
-        CustomAlertView.instance.showAlert(title: success, message: "", alertType: .success)
+        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) {_ in
+            return
+        }
+        present(alertVC, animated: true)
     }
     func setError(error: Error) {
-        CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
+        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
+            return
+        }
+        present(alertVC, animated: true)
     }
 }

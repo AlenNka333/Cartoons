@@ -10,13 +10,13 @@ import Foundation
 
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
-    let firebaseManager = FirebaseManager()
+    let firebaseManager: FirebaseManager?
     let router: RouterProtocol
     
-    init(view: SettingsViewProtocol, router: RouterProtocol, number: String) {
+    init(view: SettingsViewProtocol, router: RouterProtocol, manager: FirebaseManager, number: String) {
         self.view = view
         self.router = router
-        CustomAlertView.instance.delegate = self
+        self.firebaseManager = manager
         view.setPhoneLabel(number: number)
     }
     
@@ -31,14 +31,15 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     func showError(error: Error) {
         view.setError(error: error)
     }
-}
-
-extension SettingsPresenter: CustomAlertViewDelegate {
+    
     func agreeButtonTapped() {
-        firebaseManager.signOutUser { [weak self] result in
+        guard let manager = firebaseManager else {
+            return
+        }
+        manager.signOutUser { [weak self] result in
             switch result {
             case .success(_):
-                self?.router.showAuthorizationController()
+                self?.router.showAuthorizationController(firebaseManager: manager)
             case .failure(let error):
                 self?.view.setError(error: error)
             }
