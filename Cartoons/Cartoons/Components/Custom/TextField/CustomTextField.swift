@@ -31,18 +31,19 @@ class CustomTextField: UITextField {
         backgroundColor = .white
         attributedPlaceholder =
             NSAttributedString(string: R.string.localizable.phone_label_key(),
-                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48), NSAttributedString.Key.font: R.font.aliceRegular(size: 15)!])
+                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48),
+                                            NSAttributedString.Key.font: R.font.aliceRegular(size: 15).isNilOrEmpty])
         setLeftPaddingPoints(10)
     }
 }
 
 extension UITextField {
-    func setLeftPaddingPoints(_ amount:CGFloat){
+    func setLeftPaddingPoints(_ amount: CGFloat) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.leftView = paddingView
         self.leftViewMode = .always
     }
-    func setRightPaddingPoints(_ amount:CGFloat) {
+    func setRightPaddingPoints(_ amount: CGFloat) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.rightView = paddingView
         self.rightViewMode = .always

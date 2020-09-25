@@ -38,7 +38,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         }
         manager.signOutUser { [weak self] result in
             switch result {
-            case .success(_):
+            case .success:
                 self?.router.showAuthorizationController(firebaseManager: manager)
             case .failure(let error):
                 self?.view.setError(error: error)

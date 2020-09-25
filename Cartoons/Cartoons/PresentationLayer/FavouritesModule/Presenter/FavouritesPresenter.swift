@@ -15,7 +15,6 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
         self.view = view
     }
     
-    
     func showSuccess(success: String) {
         view.setSuccess(success: success)
     }

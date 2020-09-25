@@ -46,8 +46,10 @@ class ProfileView: UIView {
         profileImageView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(ProfileView.changeProfileImageAction)))
         
         addSubview(phoneLabel)
-        phoneLabel.attributedText = NSAttributedString(string: R.string.localizable.phone_label_key(),
-        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: R.font.aliceRegular(size: 20)!])
+        phoneLabel.attributedText = NSAttributedString(
+            string: R.string.localizable.phone_label_key(),
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
+                         NSAttributedString.Key.font: R.font.aliceRegular(size: 20).isNilOrEmpty])
         phoneLabel.textAlignment = .center
         phoneLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -62,6 +64,5 @@ class ProfileView: UIView {
     @objc func changeProfileImageAction() {
         print("Tapped")
         delegate?.changeProfileImageTapped()
-        
     }
 }

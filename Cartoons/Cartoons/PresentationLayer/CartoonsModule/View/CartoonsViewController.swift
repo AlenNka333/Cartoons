@@ -9,7 +9,7 @@
 import UIKit
 
 class CartoonsViewController: UIViewController {
-    var presenter: CartoonsViewPresenterProtocol!
+    var presenter: CartoonsViewPresenterProtocol?
     let alertService = AlertService()
     
     override func viewDidLoad() {

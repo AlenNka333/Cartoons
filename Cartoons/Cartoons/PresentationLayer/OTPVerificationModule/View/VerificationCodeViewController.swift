@@ -17,7 +17,7 @@ class VerificationCodeViewController: UIViewController {
     
     var presenter: VerificationViewPresenterProtocol?
     let activityIndicator = UIActivityIndicatorView()
-    var countdownTimer: Timer!
+    var countdownTimer: Timer?
     var timer = DefaultValues.totalTime
     let alertService = AlertService()
     
@@ -47,7 +47,7 @@ class VerificationCodeViewController: UIViewController {
        }()
     private lazy var ownView: UIView = {
            view = UIView()
-           view.backgroundColor = UIColor(patternImage: R.image.main_background()!)
+        view.backgroundColor = UIColor(patternImage: R.image.main_background().isNilOrEmpty)
            return view
        }()
     
@@ -59,7 +59,7 @@ class VerificationCodeViewController: UIViewController {
     }
     
     override func loadView() {
-           self.view = ownView
+        self.view = ownView
     }
     
     private func setupUI() {
@@ -82,7 +82,8 @@ class VerificationCodeViewController: UIViewController {
         view.addSubview(otpCodeTextField)
         otpCodeTextField.attributedPlaceholder =
         NSAttributedString(string: R.string.localizable.otp_code_key(),
-                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48), NSAttributedString.Key.font: R.font.aliceRegular(size: 15)])
+                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48),
+                                        NSAttributedString.Key.font: R.font.aliceRegular(size: 15).isNilOrEmpty])
         otpCodeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         otpCodeTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -102,6 +103,7 @@ extension VerificationCodeViewController {
     func startTimer() {
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
+    
     @objc func updateTime() {
         timerLabel.text = "\(timer)"
         if timer != 0 {
@@ -112,9 +114,11 @@ extension VerificationCodeViewController {
             endTimer()
         }
     }
+    
     func endTimer() {
-        countdownTimer.invalidate()
+        countdownTimer?.invalidate()
     }
+    
     @objc func textDidChange() {
         guard let presenter = self.presenter else {
             return
@@ -128,6 +132,7 @@ extension VerificationCodeViewController {
             presenter.verifyUser(verificationCode: text)
         }
     }
+    
     @objc func resendButtonTappedAction() {
         resendButton.isEnabled = false
         resendButton.backgroundColor = R.color.disabled_button_color()
@@ -153,6 +158,7 @@ extension VerificationCodeViewController: VerificationViewProtocol {
     func stopActivityIndicatorAction() {
         activityIndicator.stopAnimating()
     }
+    
     func setError(error: Error) {
         let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
             return

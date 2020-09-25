@@ -32,7 +32,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         }
         manager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
-            case .success(_):
+            case .success:
                 self?.router?.showTabBarController(firebaseManager: manager, number: self?.number ?? "")
             case let .failure(error):
                 self?.view.setError(error: error)

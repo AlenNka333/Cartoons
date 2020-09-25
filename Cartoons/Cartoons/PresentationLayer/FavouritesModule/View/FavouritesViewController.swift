@@ -8,8 +8,7 @@
 
 import UIKit
 class FavouritesViewController: UIViewController {
-    var presenter: FavouritesViewPresenterProtocol!
-
+    var presenter: FavouritesViewPresenterProtocol?
     let alertService = AlertService()
     
     override func viewDidLoad() {
@@ -35,4 +34,3 @@ extension FavouritesViewController: FavouritesViewProtocol {
         present(alertVC, animated: true)
     }
 }
-

@@ -49,7 +49,7 @@ class FirebaseManager {
     func signOutUser(completion: @escaping (Result<Void, Error>) -> Void) {
         firebaseService.signOut { result in
             switch result {
-            case .success(_):
+            case .success:
                 completion(.success(()))
             case let .failure(error):
                 completion(.failure(error))

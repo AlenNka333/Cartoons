@@ -20,8 +20,8 @@ class BaseNavigationController: UINavigationController {
     private lazy var appearance: UINavigationBarAppearance = {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = R.color.navigation_bar_color()
-        appearance.largeTitleTextAttributes = [ NSAttributedString.Key.foregroundColor:
-            UIColor.white, NSAttributedString.Key.font: R.font.aliceRegular(size: Const.titleSize) ]
+        appearance.largeTitleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                NSAttributedString.Key.font: R.font.aliceRegular(size: Const.titleSize).isNilOrEmpty ]
         appearance.shadowColor = .black
         return appearance
     }()
@@ -47,8 +47,9 @@ extension UINavigationController {
     var subtitle: UILabel {
         let firstFrame = CGRect(x: 0, y: 0, width: navigationBar.frame.width / 2, height: navigationBar.frame.height / 2)
         let subtitle = UILabel(frame: firstFrame)
-        subtitle.attributedText = NSAttributedString(string: R.string.localizable.cartoons_screen_subtitle(), attributes: [NSAttributedString.Key.foregroundColor:
-            UIColor.white.withAlphaComponent(0.48), NSAttributedString.Key.font: R.font.aliceRegular(size: 14)])
+        subtitle.attributedText = NSAttributedString(string: R.string.localizable.cartoons_screen_subtitle(),
+                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.48),
+                                                                  NSAttributedString.Key.font: R.font.aliceRegular(size: 14).isNilOrEmpty])
         navigationBar.addSubview(subtitle)
         subtitle.snp.makeConstraints {
             $0.top.equalTo(navigationBar).offset(25)

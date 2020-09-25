@@ -14,7 +14,7 @@ enum BTAction {
 }
 
 class SettingsViewController: UIViewController {
-    var presenter: SettingsViewPresenterProtocol!
+    var presenter: SettingsViewPresenterProtocol?
     let alertService = AlertService()
     private lazy var signOutButton: UIButton = CustomButton()
     private lazy var ownView: UIView = {
@@ -55,7 +55,7 @@ extension SettingsViewController: SettingsViewProtocol {
         let alertVC = alertService.alert(title: "Wait...", body: question, alertType: .question) { [weak self] action in
             switch action {
                 case .accept:
-                    self?.presenter.agreeButtonTapped()
+                    self?.presenter?.agreeButtonTapped()
                 case .cancel:
                     break
                 }
@@ -71,9 +71,9 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
-           return
-       }
+        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) { _ in
+                return
+        }
        present(alertVC, animated: true)
     }
     
@@ -87,6 +87,5 @@ extension SettingsViewController: SettingsViewProtocol {
 
 extension SettingsViewController {
     @objc func changeProfileImageTapped() {
-     
     }
 }

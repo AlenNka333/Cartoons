@@ -12,6 +12,7 @@ class PageViewController: UIPageViewController {
     enum Constants {
         static let initialPage: Int = 0
     }
+    
     var presenter: PageControllerPresenter?
     private var pages = [UIViewController]()
     

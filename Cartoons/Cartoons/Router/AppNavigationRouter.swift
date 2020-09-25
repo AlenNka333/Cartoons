@@ -76,7 +76,10 @@ class Router: RouterProtocol {
     }
     
     func showOTPController(verificationId: String, firebaseManager: FirebaseManager, number: String, animated: Bool) {
-        guard let mainViewController = assemblyBuilder?.createVerification(router: self, firebaseManager: firebaseManager, verificationId: verificationId, number: number) else {
+        guard let mainViewController = assemblyBuilder?.createVerification( router: self,
+                                                                            firebaseManager: firebaseManager,
+                                                                            verificationId: verificationId,
+                                                                            number: number) else {
                 return
             }
         navigationController?.pushViewController(mainViewController, animated: animated)
