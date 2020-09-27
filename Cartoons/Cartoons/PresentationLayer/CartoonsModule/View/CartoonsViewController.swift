@@ -20,8 +20,8 @@ class CartoonsViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = R.color.main_background()
         title = R.string.localizable.cartoons_screen()
-        navigationController?.setSubTitle(title: R.string.localizable.cartoons_screen_subtitle())
-        navigationController?.setImage(image: R.image.navigation_label())
+        (navigationController as? BaseNavigationController)?.setSubTitle(title: R.string.localizable.cartoons_screen_subtitle())
+        (navigationController as? BaseNavigationController)?.setImage(image: R.image.navigation_label(), isEnabled: false)
     }
 }
 

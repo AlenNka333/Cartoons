@@ -13,10 +13,13 @@ enum BTAction {
     case accept
 }
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UIGestureRecognizerDelegate {
     var presenter: SettingsViewPresenterProtocol?
+    
     let alertService = AlertService()
+    
     private lazy var signOutButton: UIButton = CustomButton()
+    
     private lazy var ownView: UIView = {
         view = UIView()
         view.backgroundColor = R.color.main_orange()
@@ -26,10 +29,14 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = R.string.localizable.settings_screen()
-        navigationController?.setSubTitle(title: "")
-        navigationController?.setImage(image: R.image.favourites())
-        navigationController?.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeProfileImageTapped)))
+        (navigationController as? BaseNavigationController)?.setImage(image: R.image.favourites(), isEnabled: true)
+        (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
+        }
         setupUi()
+    }
+    
+    override func loadView() {
+        self.view = ownView
     }
     
     func setupUi() {
@@ -40,13 +47,11 @@ class SettingsViewController: UIViewController {
             $0.center.equalToSuperview()
         }
     }
-    
-    override func loadView() {
-        self.view = ownView
-    }
 }
-
 extension SettingsViewController: SettingsViewProtocol {
+    func editProfilePicture() {
+    }
+    
     func setPhoneLabel(number: String) {
         title = number
     }
@@ -82,10 +87,5 @@ extension SettingsViewController: SettingsViewProtocol {
             return
         }
         presenter.signOut()
-    }
-}
-
-extension SettingsViewController {
-    @objc func changeProfileImageTapped() {
     }
 }

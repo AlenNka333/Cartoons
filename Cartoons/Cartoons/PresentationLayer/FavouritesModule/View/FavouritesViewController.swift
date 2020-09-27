@@ -15,8 +15,8 @@ class FavouritesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = R.color.main_background()
         title = R.string.localizable.favourites_screen()
-        navigationController?.setSubTitle(title: R.string.localizable.favourites_screen_subtitle())
-        navigationController?.setImage(image: R.image.favourites())
+        (navigationController as? BaseNavigationController)?.setSubTitle(title: R.string.localizable.favourites_screen_subtitle())
+        (navigationController as? BaseNavigationController)?.setImage(image: R.image.favourites(), isEnabled: false)
     }
 }
 

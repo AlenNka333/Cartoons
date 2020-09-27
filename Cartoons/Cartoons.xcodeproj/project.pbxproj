@@ -28,7 +28,6 @@
 		332BA36B25076084008A8F29 /* VerificationViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36A25076084008A8F29 /* VerificationViewPresenterProtocol.swift */; };
 		332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */; };
 		332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36F25077D9E008A8F29 /* UserDefault.swift */; };
-		334D9958251C953F0043704D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D9957251C953F0043704D /* ProfileView.swift */; };
 		3373D945250F588A0095F78C /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D944250F588A0095F78C /* PageViewController.swift */; };
 		3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */; };
 		3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */; };
@@ -37,10 +36,10 @@
 		3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */; };
 		3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D955250F95460095F78C /* PagePresenterProtocol.swift */; };
 		339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339ECE32251A14DC00168C5B /* BaseNavigationController.swift */; };
-		33A3BA23251CC3EE004EA0D9 /* ProfileViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA22251CC3EE004EA0D9 /* ProfileViewDelegate.swift */; };
 		33A3BA2B251CE142004EA0D9 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2A251CE142004EA0D9 /* General.swift */; };
 		33A3BA2D251E140F004EA0D9 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2C251E140F004EA0D9 /* AlertService.swift */; };
 		33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */; };
+		33A3BA36251E4D79004EA0D9 /* ProfileNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA35251E4D79004EA0D9 /* ProfileNavigationController.swift */; };
 		33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
 		33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */; };
@@ -94,7 +93,6 @@
 		332BA36A25076084008A8F29 /* VerificationViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewPresenterProtocol.swift; sourceTree = "<group>"; };
 		332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewProtocol.swift; sourceTree = "<group>"; };
 		332BA36F25077D9E008A8F29 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
-		334D9957251C953F0043704D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3373D944250F588A0095F78C /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingFeatureViewController.swift; sourceTree = "<group>"; };
 		3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineWatchingFeatureViewController.swift; sourceTree = "<group>"; };
@@ -103,10 +101,10 @@
 		3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		3373D955250F95460095F78C /* PagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenterProtocol.swift; sourceTree = "<group>"; };
 		339ECE32251A14DC00168C5B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
-		33A3BA22251CC3EE004EA0D9 /* ProfileViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewDelegate.swift; sourceTree = "<group>"; };
 		33A3BA2A251CE142004EA0D9 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		33A3BA2C251E140F004EA0D9 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional + Extension.swift"; sourceTree = "<group>"; };
+		33A3BA35251E4D79004EA0D9 /* ProfileNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationController.swift; sourceTree = "<group>"; };
 		33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
@@ -312,15 +310,6 @@
 			path = PropertyWrappers;
 			sourceTree = "<group>";
 		};
-		334D9956251C95240043704D /* ProfileView */ = {
-			isa = PBXGroup;
-			children = (
-				334D9957251C953F0043704D /* ProfileView.swift */,
-				33A3BA22251CC3EE004EA0D9 /* ProfileViewDelegate.swift */,
-			);
-			path = ProfileView;
-			sourceTree = "<group>";
-		};
 		3373D943250F55E90095F78C /* onBoardingModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +353,14 @@
 				33A3BA2A251CE142004EA0D9 /* General.swift */,
 			);
 			path = GeneralErrors;
+			sourceTree = "<group>";
+		};
+		33A3BA34251E4D41004EA0D9 /* ProfileNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				33A3BA35251E4D79004EA0D9 /* ProfileNavigationController.swift */,
+			);
+			path = ProfileNavigationController;
 			sourceTree = "<group>";
 		};
 		33B1F08124FFA83800DB6BA8 /* Resources */ = {
@@ -435,7 +432,7 @@
 		33B2AE962508AC590006BE31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				334D9956251C95240043704D /* ProfileView */,
+				33A3BA34251E4D41004EA0D9 /* ProfileNavigationController */,
 				33EE7EB02513609D00EA2BF4 /* AppLabel */,
 				33EE7EAD25135D0A00EA2BF4 /* TextField */,
 				33EE7EA325134D7900EA2BF4 /* Button */,
@@ -852,6 +849,7 @@
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */,
 				332227C72518972300EF56B8 /* FavouritesViewPresenterProtocol.swift in Sources */,
+				33A3BA36251E4D79004EA0D9 /* ProfileNavigationController.swift in Sources */,
 				33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */,
 				3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */,
 				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
@@ -867,8 +865,6 @@
 				3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */,
 				33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */,
 				33B2AEB6250A63A00006BE31 /* CartoonsViewProtocol.swift in Sources */,
-				33A3BA23251CC3EE004EA0D9 /* ProfileViewDelegate.swift in Sources */,
-				334D9958251C953F0043704D /* ProfileView.swift in Sources */,
 				332227C92518973500EF56B8 /* FavouritesViewProtocol.swift in Sources */,
 				33B2AEA9250A18860006BE31 /* PhoneNumberValidationHelper.swift in Sources */,
 				33B2AEAE250A617A0006BE31 /* CartoonsViewController.swift in Sources */,
