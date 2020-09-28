@@ -310,13 +310,13 @@
 			path = PropertyWrappers;
 			sourceTree = "<group>";
 		};
-		3373D943250F55E90095F78C /* onBoardingModule */ = {
+		3373D943250F55E90095F78C /* OnBoardingModule */ = {
 			isa = PBXGroup;
 			children = (
 				3373D94F250F94CC0095F78C /* Presenter */,
 				3373D950250F94D60095F78C /* View */,
 			);
-			path = onBoardingModule;
+			path = OnBoardingModule;
 			sourceTree = "<group>";
 		};
 		3373D94F250F94CC0095F78C /* Presenter */ = {
@@ -383,7 +383,7 @@
 				33B2AEB7250A6FD90006BE31 /* BaseTabBarController */,
 				339ECE31251A14BF00168C5B /* BaseNavigationController */,
 				33B660CD2502DBC000CA562E /* Builder */,
-				3373D943250F55E90095F78C /* onBoardingModule */,
+				3373D943250F55E90095F78C /* OnBoardingModule */,
 				332227BD2518968F00EF56B8 /* SettingsModule */,
 				332227BC2518967C00EF56B8 /* FavouritesModule */,
 				33B2AEAA250A61260006BE31 /* CartoonsModule */,
