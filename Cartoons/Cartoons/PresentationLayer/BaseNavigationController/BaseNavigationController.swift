@@ -29,6 +29,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage())
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -61,6 +62,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         }
         navigationBar.addSubview(imageView)
         imageView.snp.makeConstraints {
+            $0.height.width.equalTo(70)
             $0.trailing.equalToSuperview().offset(-20)
             $0.bottom.equalToSuperview().offset(-10)
         }
@@ -79,6 +81,12 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     func setImage(image: UIImage?, isEnabled: Bool) {
         imageView.image = image
         imageView.isUserInteractionEnabled = isEnabled
+    }
+    
+    func setProfileImage(image: UIImage?) {
+        imageView.isUserInteractionEnabled = true
+        imageView.layer.cornerRadius = imageView.frame.height / 2
+        imageView.image = image
     }
     
     @objc func editProfileImage() {

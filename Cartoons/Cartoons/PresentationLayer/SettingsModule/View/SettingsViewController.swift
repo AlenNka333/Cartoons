@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = R.string.localizable.settings_screen()
-        (navigationController as? BaseNavigationController)?.setImage(image: R.image.favourites(), isEnabled: true)
+        (navigationController as? BaseNavigationController)?.setImage(image: R.image.profile_image(), isEnabled: true)
         (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
             self?.presenter?.editProfileImage()
         }
@@ -95,6 +95,7 @@ extension SettingsViewController: SettingsViewProtocol {
 
 extension SettingsViewController: ImagePickerDelegateProtocol {
     func didSelect(image: UIImage?) {
-        (navigationController as? BaseNavigationController)?.setImage(image: R.image.favourites(), isEnabled: true)
+        (navigationController as? BaseNavigationController)?.setProfileImage(image: image)
+        
     }
 }
