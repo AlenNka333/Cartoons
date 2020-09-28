@@ -8,21 +8,13 @@
 
 import UIKit
 
-enum TabState: String {
-    case media = "Cartoons"
-    case favourites = "Favourites"
-    case settings = "Settings"
-}
-
 class TabBarViewController: UITabBarController {
-    private var tabBarList = [UIViewController]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUi()
-        }
+        setupUI()
+    }
     
-    func setupUi() {
+    func setupUI() {
         tabBar.unselectedItemTintColor = .white
         tabBar.tintColor = R.color.wisteria()
         tabBar.backgroundColor = R.color.navigation_bar_color()?.withAlphaComponent(0.7)

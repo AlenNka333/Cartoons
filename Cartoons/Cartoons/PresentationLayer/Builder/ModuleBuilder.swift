@@ -36,7 +36,7 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         let presenter = CartoonsPresenter(view: view)
         view.presenter = presenter
         let navigation = BaseNavigationController(rootViewController: view)
-        navigation.tabBarItem = UITabBarItem(title: TabState.media.rawValue, image: R.image.clapperboard(), tag: 0)
+        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.cartoons_screen(), image: R.image.clapperboard(), tag: 0)
         return navigation
     }
     
@@ -45,7 +45,7 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         let presenter = FavouritesPresenter(view: view)
         view.presenter = presenter
         let navigation = BaseNavigationController(rootViewController: view)
-        navigation.tabBarItem = UITabBarItem(title: TabState.favourites.rawValue, image: R.image.crown(), tag: 1)
+        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.favourites_screen(), image: R.image.crown(), tag: 1)
         return navigation
     }
     
@@ -54,13 +54,12 @@ class ModuleBuilder: AssemblyBuilderProtocol {
         let presenter = SettingsPresenter(view: view, router: router, manager: manager, number: number)
         view.presenter = presenter
         let navigation = BaseNavigationController(rootViewController: view)
-        navigation.tabBarItem = UITabBarItem(title: TabState.settings.rawValue, image: R.image.flower(), tag: 2)
+        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.settings_screen(), image: R.image.flower(), tag: 2)
         return navigation
     }
     
     func createTabBarController(router: RouterProtocol, manager: FirebaseManager, number: String) -> UIViewController {
         let view = TabBarViewController()
-        view.viewControllers = [createCartoons(), createFavourites(), createSettings(router: router, manager: manager, number: number)]
         return view
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
-    let firebaseManager: FirebaseManager?
+    let firebaseManager: FirebaseManager
     let router: RouterProtocol
     
     init(view: SettingsViewProtocol, router: RouterProtocol, manager: FirebaseManager, number: String) {
@@ -21,7 +21,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     }
     
     func signOut() {
-        view.setQuestion(question: "Are you sure to sign out?")
+        view.setQuestion(question: R.string.localizable.question_to_sign_out())
     }
     
     func showSuccess(success: String) {
@@ -33,13 +33,11 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     }
     
     func agreeButtonTapped() {
-        guard let manager = firebaseManager else {
-            return
-        }
-        manager.signOutUser { [weak self] result in
+        firebaseManager.signOutUser { [weak self] result in
+            let manager = self?.firebaseManager
             switch result {
             case .success:
-                self?.router.showAuthorizationController(firebaseManager: manager)
+                self?.router.showAuthorizationController(firebaseManager: manager.unwrapped)
             case .failure(let error):
                 self?.view.setError(error: error)
             }

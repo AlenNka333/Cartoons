@@ -49,40 +49,35 @@ class Router: RouterProtocol {
     }
     
     func showOnBoarding(firebaseManager: FirebaseManager) {
-        onBoarding = assemblyBuilder?.createOnBoarding(router: self, firebaseManager: firebaseManager) as? UIPageViewController
-        guard let onBoard = onBoarding else {
-            return
-        }
-        changeRootViewController(with: onBoard)
+        onBoarding = assemblyBuilder?.createOnBoarding(router: self, firebaseManager: firebaseManager) as? PageViewController
+        changeRootViewController(with: onBoarding.unwrapped)
     }
     
     func showTabBarController(firebaseManager: FirebaseManager, number: String) {
-        tabBarController = assemblyBuilder?.createTabBarController(router: self, manager: firebaseManager, number: number) as? UITabBarController
-        guard let tabBar = tabBarController else {
-            return
-        }
-        changeRootViewController(with: tabBar)
+        tabBarController = assemblyBuilder?.createTabBarController(router: self, manager: firebaseManager, number: number) as? TabBarViewController
+        var controllers = [UIViewController]()
+        let cartoons = assemblyBuilder?.createCartoons()
+        let favourites = assemblyBuilder?.createFavourites()
+        let setting = assemblyBuilder?.createSettings(router: self, manager: firebaseManager, number: number)
+        controllers.append(cartoons.unwrapped)
+        controllers.append(favourites.unwrapped)
+        controllers.append(setting.unwrapped)
+        tabBarController?.viewControllers = controllers
+        changeRootViewController(with: tabBarController.unwrapped)
     }
 
     func showAuthorizationController(firebaseManager: FirebaseManager) {
-        guard let mainViewController = assemblyBuilder?.createAuthorization(router: self, firebaseManager: firebaseManager) else {
-                return
-            }
-        navigationController?.viewControllers = [mainViewController]
-        guard let navigation = navigationController else {
-            return
-        }
-       changeRootViewController(with: navigation)
+        let mainViewController = assemblyBuilder?.createAuthorization(router: self, firebaseManager: firebaseManager)
+        navigationController?.viewControllers = [mainViewController.unwrapped]
+        changeRootViewController(with: navigationController.unwrapped)
     }
     
     func showOTPController(verificationId: String, firebaseManager: FirebaseManager, number: String, animated: Bool) {
-        guard let mainViewController = assemblyBuilder?.createVerification( router: self,
-                                                                            firebaseManager: firebaseManager,
-                                                                            verificationId: verificationId,
-                                                                            number: number) else {
-                return
-            }
-        navigationController?.pushViewController(mainViewController, animated: animated)
+        let mainViewController = assemblyBuilder?.createVerification( router: self,
+                                                                      firebaseManager: firebaseManager,
+                                                                      verificationId: verificationId,
+                                                                      number: number)
+        navigationController?.pushViewController(mainViewController.unwrapped, animated: animated)
     }
     
     func popToRoot(animated: Bool) {

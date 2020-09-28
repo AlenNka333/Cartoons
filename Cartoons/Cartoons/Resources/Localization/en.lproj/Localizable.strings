@@ -22,4 +22,5 @@ cartoons_screen_subtitle = "...plunge into a fairy tale";
 favourites_screen = "Favourites";
 favourites_screen_subtitle = "...offline watching is available";
 settings_screen = "Settings";
+question_to_sign_out = "Are you sure to sign out?";
 

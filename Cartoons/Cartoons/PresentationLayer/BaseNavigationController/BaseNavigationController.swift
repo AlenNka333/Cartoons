@@ -65,7 +65,6 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
             $0.bottom.equalToSuperview().offset(-10)
         }
     }
-    
     func setSubTitle(title: String) {
         subtitle.attributedText = NSAttributedString(string: title,
                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.48),
@@ -83,6 +82,5 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     }
     
     @objc func editProfileImage() {
-        imageAction?()
     }
 }
