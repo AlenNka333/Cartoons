@@ -47,7 +47,7 @@ class VerificationCodeViewController: UIViewController {
        }()
     private lazy var ownView: UIView = {
            view = UIView()
-        view.backgroundColor = UIColor(patternImage: R.image.main_background().isNilOrEmpty)
+        view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
            return view
        }()
     
@@ -83,7 +83,7 @@ class VerificationCodeViewController: UIViewController {
         otpCodeTextField.attributedPlaceholder =
         NSAttributedString(string: R.string.localizable.otp_code_key(),
                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48),
-                                        NSAttributedString.Key.font: R.font.aliceRegular(size: 15).isNilOrEmpty])
+                                        NSAttributedString.Key.font: R.font.aliceRegular(size: 15).unwrapped])
         otpCodeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         otpCodeTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()

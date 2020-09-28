@@ -21,7 +21,7 @@ class BaseNavigationController: UINavigationController {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = R.color.navigation_bar_color()
         appearance.largeTitleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                NSAttributedString.Key.font: R.font.aliceRegular(size: Const.titleSize).isNilOrEmpty ]
+                                                NSAttributedString.Key.font: R.font.aliceRegular(size: Const.titleSize).unwrapped ]
         appearance.shadowColor = .black
         return appearance
     }()
@@ -49,7 +49,7 @@ extension UINavigationController {
         let subtitle = UILabel(frame: firstFrame)
         subtitle.attributedText = NSAttributedString(string: R.string.localizable.cartoons_screen_subtitle(),
                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.48),
-                                                                  NSAttributedString.Key.font: R.font.aliceRegular(size: 14).isNilOrEmpty])
+                                                                  NSAttributedString.Key.font: R.font.aliceRegular(size: 14).unwrapped])
         navigationBar.addSubview(subtitle)
         subtitle.snp.makeConstraints {
             $0.top.equalTo(navigationBar).offset(25)

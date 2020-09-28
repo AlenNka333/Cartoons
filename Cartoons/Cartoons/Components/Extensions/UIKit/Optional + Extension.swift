@@ -8,12 +8,8 @@
 
 import UIKit
 
-protocol SimplyInitializable {
-    init()
-}
-
 extension Optional where Wrapped == String {
-    var isNilOrEmpty: String {
+    var unwrapped: String {
         guard let unwrapped = self else {
             return ""
         }
@@ -22,7 +18,7 @@ extension Optional where Wrapped == String {
 }
 
 extension Optional where Wrapped == UIColor {
-    var isNilOrEmpty: UIColor {
+    var unwrapped: UIColor {
         guard let unwrapped = self else {
             return UIColor()
         }
@@ -31,7 +27,7 @@ extension Optional where Wrapped == UIColor {
 }
 
 extension Optional where Wrapped == UIImage {
-    var isNilOrEmpty: UIImage {
+    var unwrapped: UIImage {
         guard let unwrapped = self else {
             return UIImage()
         }
@@ -40,9 +36,54 @@ extension Optional where Wrapped == UIImage {
 }
 
 extension Optional where Wrapped == UIFont {
-    var isNilOrEmpty: UIFont {
+    var unwrapped: UIFont {
         guard let unwrapped = self else {
             return UIFont()
+        }
+        return unwrapped
+    }
+}
+
+extension Optional where Wrapped == UIViewController {
+    var unwrapped: UIViewController {
+        guard let unwrapped = self else {
+            return UIViewController()
+        }
+        return unwrapped
+    }
+}
+
+extension Optional where Wrapped == UITabBarController {
+    var unwrapped: UITabBarController {
+        guard let unwrapped = self else {
+            return UITabBarController()
+        }
+        return unwrapped
+    }
+}
+
+extension Optional where Wrapped == UIPageViewController {
+    var unwrapped: UIPageViewController {
+        guard let unwrapped = self else {
+            return UIPageViewController()
+        }
+        return unwrapped
+    }
+}
+
+extension Optional where Wrapped == BaseNavigationController {
+    var unwrapped: BaseNavigationController {
+        guard let unwrapped = self else {
+            return BaseNavigationController()
+        }
+        return unwrapped
+    }
+}
+
+extension Optional where Wrapped == FirebaseManager {
+    var unwrapped: FirebaseManager {
+        guard let unwrapped = self else {
+            return FirebaseManager()
         }
         return unwrapped
     }

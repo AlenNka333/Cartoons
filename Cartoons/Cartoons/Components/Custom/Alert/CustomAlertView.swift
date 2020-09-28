@@ -28,7 +28,6 @@ class CustomAlertView: UIViewController {
     }
     
     override func loadView() {
-        super.loadView()
         view = parentView
     }
     

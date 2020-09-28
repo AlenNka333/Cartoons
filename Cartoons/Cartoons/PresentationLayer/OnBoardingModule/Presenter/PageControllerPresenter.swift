@@ -11,7 +11,7 @@ import Foundation
 class PageControllerPresenter: PagePresenterProtocol {
     let view: PageViewControllerProtocol
     let router: RouterProtocol?
-    let firebaseManager: FirebaseManager?
+    let firebaseManager: FirebaseManager
     
     init(view: PageViewControllerProtocol, router: RouterProtocol, firebaseManager: FirebaseManager) {
         self.view = view
@@ -22,9 +22,6 @@ class PageControllerPresenter: PagePresenterProtocol {
         AppData.shouldShowOnBoarding = false
     }
     func showAuthorizationScreen() {
-        guard let manager = firebaseManager else {
-            return
-        }
-        router?.showAuthorizationController(firebaseManager: manager)
+        router?.showAuthorizationController(firebaseManager: firebaseManager)
     }
 }
