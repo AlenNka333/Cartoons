@@ -82,5 +82,6 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     }
     
     @objc func editProfileImage() {
+        imageAction?()
     }
 }

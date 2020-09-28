@@ -12,4 +12,5 @@ protocol SettingsViewProtocol: AnyObject {
     func setError (error: Error)
     func setSuccess(success: String)
     func setQuestion(question: String)
+    func editProfileImage()
 }

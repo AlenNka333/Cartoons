@@ -32,6 +32,10 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         view.setError(error: error)
     }
     
+    func editProfileImage() {
+        view.editProfileImage()
+    }
+    
     func agreeButtonTapped() {
         firebaseManager.signOutUser { [weak self] result in
             let manager = self?.firebaseManager

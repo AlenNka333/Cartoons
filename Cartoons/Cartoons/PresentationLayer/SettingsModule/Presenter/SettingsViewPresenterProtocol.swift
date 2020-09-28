@@ -12,4 +12,5 @@ protocol SettingsViewPresenterProtocol: AnyObject {
     func showError(error: Error)
     func showSuccess(success: String)
     func agreeButtonTapped()
+    func editProfileImage()
 }

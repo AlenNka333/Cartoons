@@ -59,6 +59,8 @@
 		33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */; };
 		33B660CF2502DBD700CA562E /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660CE2502DBD700CA562E /* ModuleBuilder.swift */; };
 		33B660D12502E8A700CA562E /* VerificationVIewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */; };
+		33EAD3AF2522093000128EEB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EAD3AE2522093000128EEB /* ImagePicker.swift */; };
+		33EAD3B32522095900128EEB /* ImagePickerDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EAD3B22522095900128EEB /* ImagePickerDelegateProtocol.swift */; };
 		33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EA82513569100EA2BF4 /* CustomButton.swift */; };
 		33EE7EAC25135ADB00EA2BF4 /* Alice-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */; };
 		33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EAE25135D3100EA2BF4 /* CustomTextField.swift */; };
@@ -123,6 +125,8 @@
 		33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		33B660CE2502DBD700CA562E /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		33B660D02502E8A700CA562E /* VerificationVIewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVIewPresenter.swift; sourceTree = "<group>"; };
+		33EAD3AE2522093000128EEB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		33EAD3B22522095900128EEB /* ImagePickerDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegateProtocol.swift; sourceTree = "<group>"; };
 		33EE7EA82513569100EA2BF4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alice-Regular.ttf"; sourceTree = "<group>"; };
 		33EE7EAE25135D3100EA2BF4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -422,6 +426,7 @@
 		33B2AE962508AC590006BE31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				33EAD3B12522094200128EEB /* ImagePicker */,
 				33EE7EB02513609D00EA2BF4 /* AppLabel */,
 				33EE7EAD25135D0A00EA2BF4 /* TextField */,
 				33EE7EA325134D7900EA2BF4 /* Button */,
@@ -545,6 +550,15 @@
 				332BA35E25060722008A8F29 /* Errors */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		33EAD3B12522094200128EEB /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				33EAD3AE2522093000128EEB /* ImagePicker.swift */,
+				33EAD3B22522095900128EEB /* ImagePickerDelegateProtocol.swift */,
+			);
+			path = ImagePicker;
 			sourceTree = "<group>";
 		};
 		33EE7EA325134D7900EA2BF4 /* Button */ = {
@@ -856,9 +870,11 @@
 				332227C92518973500EF56B8 /* FavouritesViewProtocol.swift in Sources */,
 				33B2AEA9250A18860006BE31 /* PhoneNumberValidationHelper.swift in Sources */,
 				33B2AEAE250A617A0006BE31 /* CartoonsViewController.swift in Sources */,
+				33EAD3B32522095900128EEB /* ImagePickerDelegateProtocol.swift in Sources */,
 				332BA36B25076084008A8F29 /* VerificationViewPresenterProtocol.swift in Sources */,
 				332BA36925069D38008A8F29 /* Constants.swift in Sources */,
 				3373D94E250F63CA0095F78C /* AppData.swift in Sources */,
+				33EAD3AF2522093000128EEB /* ImagePicker.swift in Sources */,
 				332227CB251899BC00EF56B8 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
