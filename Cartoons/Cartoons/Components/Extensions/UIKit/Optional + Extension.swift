@@ -13,7 +13,7 @@ protocol SimplyInitializable {
 }
 
 extension Optional where Wrapped == String {
-    var isNilOrEmpty: String {
+    var unwrapped: String {
         guard let unwrapped = self else {
             return ""
         }
@@ -22,7 +22,7 @@ extension Optional where Wrapped == String {
 }
 
 extension Optional where Wrapped == UIColor {
-    var isNilOrEmpty: UIColor {
+    var unwrapped: UIColor {
         guard let unwrapped = self else {
             return UIColor()
         }
@@ -31,7 +31,7 @@ extension Optional where Wrapped == UIColor {
 }
 
 extension Optional where Wrapped == UIImage {
-    var isNilOrEmpty: UIImage {
+    var unwrapped: UIImage {
         guard let unwrapped = self else {
             return UIImage()
         }
@@ -40,7 +40,7 @@ extension Optional where Wrapped == UIImage {
 }
 
 extension Optional where Wrapped == UIFont {
-    var isNilOrEmpty: UIFont {
+    var unwrapped: UIFont {
         guard let unwrapped = self else {
             return UIFont()
         }

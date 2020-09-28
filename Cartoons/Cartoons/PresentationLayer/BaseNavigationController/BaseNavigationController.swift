@@ -22,7 +22,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = R.color.navigation_bar_color()
         appearance.largeTitleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                NSAttributedString.Key.font: R.font.aliceRegular(size: Const.titleSize).isNilOrEmpty]
+                                                NSAttributedString.Key.font: R.font.aliceRegular(size: Const.titleSize).unwrapped]
         appearance.shadowColor = .black
         return appearance
     }()
@@ -69,7 +69,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     func setSubTitle(title: String) {
         subtitle.attributedText = NSAttributedString(string: title,
                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.48),
-                                                                  NSAttributedString.Key.font: R.font.aliceRegular(size: 14).isNilOrEmpty])
+                                                                  NSAttributedString.Key.font: R.font.aliceRegular(size: 14).unwrapped])
     }
     
     func setupActions() {

@@ -16,7 +16,7 @@ class ProfileNavigationController: UINavigationController {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = R.color.navigation_bar_color()
         appearance.largeTitleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                NSAttributedString.Key.font: R.font.aliceRegular(size: 20).isNilOrEmpty ]
+                                                NSAttributedString.Key.font: R.font.aliceRegular(size: 20).unwrapped ]
         appearance.shadowColor = .black
         return appearance
     }()

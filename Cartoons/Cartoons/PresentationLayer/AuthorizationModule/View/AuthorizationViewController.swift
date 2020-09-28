@@ -11,7 +11,7 @@ class AuthorizationViewController: UIViewController {
     private lazy var getCodeButton: UIButton = CustomButton()
     private lazy var ownView: UIView = {
         view = UIView()
-        view.backgroundColor = UIColor(patternImage: R.image.main_background().isNilOrEmpty)
+        view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
         return view
     }()
     
