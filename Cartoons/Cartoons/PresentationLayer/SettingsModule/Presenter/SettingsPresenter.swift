@@ -20,7 +20,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         view.setPhoneLabel(number: number)
     }
     
-    func showPermissionsAlert(error: Error){
+    func showPermissionsAlert(error: Error) {
         view.setPermissionAlert(message: error.localizedDescription)
     }
     

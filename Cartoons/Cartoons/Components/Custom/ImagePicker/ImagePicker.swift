@@ -6,8 +6,8 @@
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
-import UIKit
 import PhotosUI
+import UIKit
 
 class ImagePicker: NSObject {
     private let pickerController: UIImagePickerController

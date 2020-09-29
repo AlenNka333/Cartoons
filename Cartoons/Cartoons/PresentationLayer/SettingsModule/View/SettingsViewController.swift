@@ -16,7 +16,7 @@ enum BTAction {
 class SettingsViewController: UIViewController {
     let alertService = AlertService()
     var presenter: SettingsViewPresenterProtocol?
-    var imagePicker: ImagePicker!
+    var imagePicker: ImagePicker?
     
     private lazy var signOutButton: UIButton = CustomButton()
     private lazy var customView: UIView = {
@@ -56,10 +56,13 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: SettingsViewProtocol {
     func setPermissionAlert(message: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) { [weak self] action in
-            switch action {
+        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
+            switch $0 {
                 case .accept:
-                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                    guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 case .cancel:
                     break
                 }
@@ -68,7 +71,7 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func editProfileImage() {
-        imagePicker.present { [weak self] result in
+        imagePicker?.present { [weak self] result in
             switch result {
                 case .failure(let error):
                     self?.presenter?.showPermissionsAlert(error: error)
