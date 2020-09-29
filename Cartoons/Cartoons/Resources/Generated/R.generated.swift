@@ -451,7 +451,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 21 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -529,6 +529,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let take_a_photo = Rswift.StringResource(key: "take_a_photo", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Wait...
+      ///
+      /// Locales: en
+      static let choice_alert_title = Rswift.StringResource(key: "choice_alert_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Watch cartoons online and offline
       ///
       /// Locales: en
@@ -817,6 +821,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("take_a_photo", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Wait...
+      ///
+      /// Locales: en
+      static func choice_alert_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("choice_alert_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "choice_alert_title"
+        }
+
+        return NSLocalizedString("choice_alert_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Watch cartoons online and offline

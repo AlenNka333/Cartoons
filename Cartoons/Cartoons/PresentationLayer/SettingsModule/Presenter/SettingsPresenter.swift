@@ -21,7 +21,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     }
     
     func signOut() {
-        view.setQuestion(question: R.string.localizable.question_to_sign_out())
+        view.setChoice(choice: R.string.localizable.question_to_sign_out())
     }
     
     func showSuccess(success: String) {

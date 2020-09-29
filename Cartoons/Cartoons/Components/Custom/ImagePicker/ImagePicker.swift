@@ -11,55 +11,54 @@ import UIKit
 class ImagePicker: NSObject {
     private let pickerController: UIImagePickerController
     private weak var presentationController: UIViewController?
-    private weak var delegate: ImagePickerDelegateProtocol?
+    var closure: ((Result<UIImage?, Error>) -> Void)?
     
-    init(presentationController: UIViewController, delegate: ImagePickerDelegateProtocol) {
+    init(presentationController: UIViewController) {
         self.pickerController = UIImagePickerController()
         super.init()
         self.presentationController = presentationController
-        self.delegate = delegate
         
         self.pickerController.delegate = self
         self.pickerController.allowsEditing = true
         self.pickerController.mediaTypes = ["public.image"]
     }
     
-    func present() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if let action = self.action(for: .camera, title: R.string.localizable.take_a_photo()) {
-            alert.addAction(action)
-        }
-        if let action = self.action(for: .photoLibrary, title: R.string.localizable.choose_from_library()) {
-            alert.addAction(action)
-        }
-        alert.addAction(UIAlertAction(title: R.string.localizable.cancel(), style: .cancel, handler: nil))
-        self.presentationController?.present(alert, animated: true)
-    }
-    
-    private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
-        guard UIImagePickerController.isSourceTypeAvailable(type) else {
-            return nil
-        }
-        return UIAlertAction(title: title, style: .default) { [weak self] _ in
-            guard let picker = self?.pickerController else {
+    func present(completion: ((Result<UIImage?, Error>) -> Void)? = nil) {
+        closure = completion
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: R.string.localizable.take_a_photo(), style: .default) { [unowned self] _ in
+            guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+                closure?(.failure(AccessErrors.noCameraPermission))
                 return
             }
-            picker.sourceType = type
-            self?.presentationController?.present(picker, animated: true)
+            self.pickerController.sourceType = .camera
+            self.presentationController?.present(self.pickerController, animated: true)
         }
+        alertController.addAction(cameraAction)
+        let libraryAction = UIAlertAction(title: R.string.localizable.choose_from_library(), style: .default) { [unowned self] _ in
+            guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+                closure?(.failure(AccessErrors.noLibraryPermission))
+                return
+            }
+            self.pickerController.sourceType = .photoLibrary
+            self.presentationController?.present(self.pickerController, animated: true)
+        }
+        alertController.addAction(libraryAction)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.presentationController?.present(alertController, animated: true)
     }
     
     private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
         controller.dismiss(animated: true, completion: nil)
-        self.delegate?.didSelect(image: image)
+        closure?(.success(image))
     }
 }
 
 extension ImagePicker: UIImagePickerControllerDelegate {
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.pickerController(picker, didSelect: nil)
     }
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else {
             return  self.pickerController(picker, didSelect: nil)
         }

@@ -27,6 +27,10 @@ class CustomAlertView: UIViewController {
         setupUI()
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     override func loadView() {
         view = parentView
     }

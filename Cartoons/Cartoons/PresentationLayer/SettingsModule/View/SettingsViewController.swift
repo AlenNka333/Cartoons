@@ -27,17 +27,21 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = R.string.localizable.settings_screen()
-        (navigationController as? BaseNavigationController)?.setImage(image: R.image.profile_image(), isEnabled: true)
-        (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
-            self?.presenter?.editProfileImage()
-        }
-        imagePicker = ImagePicker(presentationController: self, delegate: self)
+        imagePicker = ImagePicker(presentationController: self)
+        setupNavigationController()
         setupUI()
     }
     
     override func loadView() {
         self.view = customView
+    }
+    
+    func setupNavigationController() {
+        title = R.string.localizable.settings_screen()
+        (navigationController as? BaseNavigationController)?.setImage(image: R.image.profile_image(), isEnabled: true)
+        (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
+            self?.presenter?.editProfileImage()
+        }
     }
     
     func setupUI() {
@@ -52,15 +56,22 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: SettingsViewProtocol {
     func editProfileImage() {
-        imagePicker.present()
+        imagePicker.present { [weak self] result in
+            switch result {
+                case .failure(let error):
+                    self?.presenter?.showError(error: error)
+            case .success(let image):
+                self?.didSelect(image: image)
+            }
+        }
     }
     
     func setPhoneLabel(number: String) {
         title = number
     }
     
-    func setQuestion(question: String) {
-        let alertVC = alertService.alert(title: "Wait...", body: question, alertType: .question) { [weak self] action in
+    func setChoice(choice: String) {
+        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: choice, alertType: .question) { [weak self] action in
             switch action {
                 case .accept:
                     self?.presenter?.agreeButtonTapped()
@@ -78,7 +89,16 @@ extension SettingsViewController: SettingsViewProtocol {
     
     func setError(error: Error) {
         let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error)
-       present(alertVC, animated: true)
+        present(alertVC, animated: true)
+    }
+}
+
+extension SettingsViewController {
+    func didSelect(image: UIImage?) {
+        guard let image = image else {
+            return
+        }
+        (navigationController as? BaseNavigationController)?.setProfileImage(image: image)
     }
     
     @objc func buttonTappedToSignOutAction() {
@@ -86,11 +106,5 @@ extension SettingsViewController: SettingsViewProtocol {
             return
         }
         presenter.signOut()
-    }
-}
-
-extension SettingsViewController: ImagePickerDelegateProtocol {
-    func didSelect(image: UIImage?) {
-        (navigationController as? BaseNavigationController)?.setProfileImage(image: image)        
     }
 }

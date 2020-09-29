@@ -11,6 +11,6 @@ protocol SettingsViewProtocol: AnyObject {
     func setPhoneLabel(number: String)
     func setError (error: Error)
     func setSuccess(success: String)
-    func setQuestion(question: String)
+    func setChoice(choice: String)
     func editProfileImage()
 }

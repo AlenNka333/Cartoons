@@ -15,14 +15,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAlertView" customModule="Cartoons" customModuleProvider="target">
             <connections>
-                <outlet property="agreeButton" destination="70E-Ew-7E0" id="8yk-Rk-eto"/>
-                <outlet property="alertView" destination="715-6n-JpH" id="EbR-jd-TnN"/>
-                <outlet property="cancelButton" destination="hTG-r8-od5" id="3BW-oZ-mcA"/>
-                <outlet property="image" destination="tvQ-Tg-ECi" id="mp9-PO-mBA"/>
-                <outlet property="messageLabel" destination="HSF-1V-CHJ" id="KJr-nx-jfF"/>
-                <outlet property="parentView" destination="bU0-do-5ea" id="i28-VX-wHc"/>
-                <outlet property="titleLabel" destination="qQn-ZA-pHb" id="r1B-8Q-4SH"/>
-                <outlet property="view" destination="iN0-l3-epB" id="Aya-Gm-Sze"/>
+                <outlet property="agreeButton" destination="70E-Ew-7E0" id="Hfx-0e-MIR"/>
+                <outlet property="alertView" destination="715-6n-JpH" id="3kr-AD-Gfd"/>
+                <outlet property="cancelButton" destination="hTG-r8-od5" id="pSm-Y9-Xax"/>
+                <outlet property="image" destination="tvQ-Tg-ECi" id="Tr0-Sb-VVY"/>
+                <outlet property="messageLabel" destination="HSF-1V-CHJ" id="vJl-HO-WKT"/>
+                <outlet property="parentView" destination="bU0-do-5ea" id="VyU-ob-YcJ"/>
+                <outlet property="titleLabel" destination="qQn-ZA-pHb" id="qdc-c5-8Ou"/>
+                <outlet property="view" destination="iN0-l3-epB" id="z6f-1K-sFb"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
