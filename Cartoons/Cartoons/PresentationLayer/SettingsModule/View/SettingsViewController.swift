@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
     var presenter: SettingsViewPresenterProtocol?
     let alertService = AlertService()
     private lazy var signOutButton: UIButton = CustomButton()
-    private lazy var ownView: UIView = {
+    private lazy var customView: UIView = {
         view = UIView()
         view.backgroundColor = R.color.main_orange()
         return view
@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = ownView
+        self.view = customView
     }
 }
 
@@ -64,16 +64,12 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func setSuccess(success: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) {_ in
-            return
-        }
+        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success)
         present(alertVC, animated: true)
     }
     
     func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) { _ in
-                return
-        }
+        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error)
        present(alertVC, animated: true)
     }
     

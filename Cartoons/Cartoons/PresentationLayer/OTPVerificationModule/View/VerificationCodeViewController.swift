@@ -45,7 +45,7 @@ class VerificationCodeViewController: UIViewController {
            label.textColor = .white
            return label
        }()
-    private lazy var ownView: UIView = {
+    private lazy var customView: UIView = {
            view = UIView()
         view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
            return view
@@ -59,7 +59,7 @@ class VerificationCodeViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = ownView
+        self.view = customView
     }
     
     private func setupUI() {
