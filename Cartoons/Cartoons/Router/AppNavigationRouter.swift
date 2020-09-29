@@ -25,19 +25,19 @@ class Router: RouterProtocol {
     
     func start() {
         let firebaseManager = FirebaseManager()
-        //showTabBarController(firebaseManager: firebaseManager, number: "+375298939122")
+        showTabBarController(firebaseManager: firebaseManager, number: "+375298939122")
         
-        if AppData.shouldShowOnBoarding {
-            showOnBoarding(firebaseManager: firebaseManager)
-        } else {
-            switch firebaseManager.shouldAuthorize {
-            case true:
-                showAuthorizationController(firebaseManager: firebaseManager)
-            case false:
-                let number = firebaseManager.getUserInfo()
-                showTabBarController(firebaseManager: firebaseManager, number: number ?? "")
-            }
-        }
+//        if AppData.shouldShowOnBoarding {
+//            showOnBoarding(firebaseManager: firebaseManager)
+//        } else {
+//            switch firebaseManager.shouldAuthorize {
+//            case true:
+//                showAuthorizationController(firebaseManager: firebaseManager)
+//            case false:
+//                let number = firebaseManager.getUserInfo()
+//                showTabBarController(firebaseManager: firebaseManager, number: number ?? "")
+//            }
+//        }
     }
     
     func changeRootViewController(with rootViewController: UIViewController) {
