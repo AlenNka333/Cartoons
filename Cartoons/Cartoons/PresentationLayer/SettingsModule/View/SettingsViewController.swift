@@ -72,16 +72,12 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func setSuccess(success: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) {_ in
-            return
-        }
+        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success)
         present(alertVC, animated: true)
     }
     
     func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) { _ in
-                return
-        }
+        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error)
        present(alertVC, animated: true)
     }
     
