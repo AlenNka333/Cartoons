@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class ImagePicker: NSObject {
     private let pickerController: UIImagePickerController
@@ -26,26 +27,80 @@ class ImagePicker: NSObject {
     func present(completion: ((Result<UIImage?, Error>) -> Void)? = nil) {
         closure = completion
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: R.string.localizable.take_a_photo(), style: .default) { [unowned self] _ in
+        let cameraAction = UIAlertAction(title: R.string.localizable.take_a_photo(), style: .default) { [weak self] _ in
             guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-                closure?(.failure(AccessErrors.noCameraPermission))
                 return
             }
-            self.pickerController.sourceType = .camera
-            self.presentationController?.present(self.pickerController, animated: true)
+            self?.checkCameraAccessPermission {
+                guard let pickerController = self?.pickerController else {
+                    return
+                }
+                if $0 {
+                    self?.pickerController.sourceType = .camera
+                    self?.presentationController?.present(pickerController, animated: true)
+                } else {
+                    self?.closure?(.failure(AccessErrors.noCameraPermission))
+                }
+            }
         }
         alertController.addAction(cameraAction)
-        let libraryAction = UIAlertAction(title: R.string.localizable.choose_from_library(), style: .default) { [unowned self] _ in
+        let libraryAction = UIAlertAction(title: R.string.localizable.choose_from_library(), style: .default) { [weak self] _ in
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
-                closure?(.failure(AccessErrors.noLibraryPermission))
                 return
             }
-            self.pickerController.sourceType = .photoLibrary
-            self.presentationController?.present(self.pickerController, animated: true)
+            self?.checkPhotoAccessPermission {
+                guard let pickerController = self?.pickerController else {
+                    return
+                }
+                if $0 {
+                    self?.pickerController.sourceType = .photoLibrary
+                    self?.presentationController?.present(pickerController, animated: true)
+                } else {
+                    self?.closure?(.failure(AccessErrors.noLibraryPermission))
+                }
+            }
         }
         alertController.addAction(libraryAction)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.presentationController?.present(alertController, animated: true)
+    }
+    
+    func checkPhotoAccessPermission(completion: @escaping (Bool) -> Void) {
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+        case .authorized:
+            completion(true)
+        case .denied, .restricted:
+            completion(false)
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({
+                if $0 == .authorized {
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+            })
+        case .limited:
+            break
+        }
+    }
+    
+    func checkCameraAccessPermission(completion: @escaping (Bool) -> Void) {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        switch status {
+        case .authorized:
+            completion(true)
+        case .denied, .restricted:
+            completion(false)
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) {
+                if $0 {
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+            }
+        }
     }
     
     private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {

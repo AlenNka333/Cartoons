@@ -11,6 +11,7 @@ protocol SettingsViewProtocol: AnyObject {
     func setPhoneLabel(number: String)
     func setError (error: Error)
     func setSuccess(success: String)
-    func setChoice(choice: String)
+    func setSignOutAlert(message: String)
+    func setPermissionAlert(message: String)
     func editProfileImage()
 }

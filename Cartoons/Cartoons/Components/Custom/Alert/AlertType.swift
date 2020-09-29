@@ -12,4 +12,5 @@ enum AlertType {
     case success
     case error
     case question
+    case permission
 }

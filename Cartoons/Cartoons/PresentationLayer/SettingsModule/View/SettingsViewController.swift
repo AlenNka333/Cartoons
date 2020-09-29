@@ -55,11 +55,23 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewProtocol {
+    func setPermissionAlert(message: String) {
+        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) { [weak self] action in
+            switch action {
+                case .accept:
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                case .cancel:
+                    break
+                }
+        }
+        present(alertVC, animated: true)
+    }
+    
     func editProfileImage() {
         imagePicker.present { [weak self] result in
             switch result {
                 case .failure(let error):
-                    self?.presenter?.showError(error: error)
+                    self?.presenter?.showPermissionsAlert(error: error)
             case .success(let image):
                 self?.didSelect(image: image)
             }
@@ -70,8 +82,8 @@ extension SettingsViewController: SettingsViewProtocol {
         title = number
     }
     
-    func setChoice(choice: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: choice, alertType: .question) { [weak self] action in
+    func setSignOutAlert(message: String) {
+        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
             switch action {
                 case .accept:
                     self?.presenter?.agreeButtonTapped()

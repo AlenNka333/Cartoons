@@ -20,8 +20,12 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         view.setPhoneLabel(number: number)
     }
     
+    func showPermissionsAlert(error: Error){
+        view.setPermissionAlert(message: error.localizedDescription)
+    }
+    
     func signOut() {
-        view.setChoice(choice: R.string.localizable.question_to_sign_out())
+        view.setSignOutAlert(message: R.string.localizable.question_to_sign_out())
     }
     
     func showSuccess(success: String) {

@@ -27,6 +27,7 @@ get_code_button_key = "Get verification code";
 skip = "Skip";
 resend_button_key = "Resend";
 cancel = "Cancel";
+allow = "Allow";
 
 //OnBoarding
 onBoarding_first_logo_key = "Watch cartoons online and offline";
