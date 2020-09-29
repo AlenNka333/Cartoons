@@ -451,7 +451,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 17 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -465,10 +465,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let question_to_sign_out = Rswift.StringResource(key: "question_to_sign_out", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Cancel
+      ///
+      /// Locales: en
+      static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Cartoons
       ///
       /// Locales: en
       static let cartoons_screen = Rswift.StringResource(key: "cartoons_screen", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Choose from library
+      ///
+      /// Locales: en
+      static let choose_from_library = Rswift.StringResource(key: "choose_from_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Error
       ///
       /// Locales: en
@@ -517,6 +525,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let success = Rswift.StringResource(key: "success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Take a photo
+      ///
+      /// Locales: en
+      static let take_a_photo = Rswift.StringResource(key: "take_a_photo", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Watch cartoons online and offline
       ///
       /// Locales: en
@@ -567,6 +579,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("question_to_sign_out", bundle: bundle, comment: "")
       }
 
+      /// en translation: Cancel
+      ///
+      /// Locales: en
+      static func cancel(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cancel", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "cancel"
+        }
+
+        return NSLocalizedString("cancel", bundle: bundle, comment: "")
+      }
+
       /// en translation: Cartoons
       ///
       /// Locales: en
@@ -580,6 +607,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("cartoons_screen", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Choose from library
+      ///
+      /// Locales: en
+      static func choose_from_library(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("choose_from_library", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "choose_from_library"
+        }
+
+        return NSLocalizedString("choose_from_library", bundle: bundle, comment: "")
       }
 
       /// en translation: Error
@@ -760,6 +802,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("success", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Take a photo
+      ///
+      /// Locales: en
+      static func take_a_photo(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("take_a_photo", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "take_a_photo"
+        }
+
+        return NSLocalizedString("take_a_photo", bundle: bundle, comment: "")
       }
 
       /// en translation: Watch cartoons online and offline

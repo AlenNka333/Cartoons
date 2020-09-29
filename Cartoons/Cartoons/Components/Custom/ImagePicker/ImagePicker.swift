@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ImagePicker: NSObject {
+class ImagePicker: NSObject {
     private let pickerController: UIImagePickerController
     private weak var presentationController: UIViewController?
     private weak var delegate: ImagePickerDelegateProtocol?
@@ -23,27 +23,30 @@ open class ImagePicker: NSObject {
         self.pickerController.allowsEditing = true
         self.pickerController.mediaTypes = ["public.image"]
     }
-  
+    
+    func present() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        if let action = self.action(for: .camera, title: R.string.localizable.take_a_photo()) {
+            alert.addAction(action)
+        }
+        if let action = self.action(for: .photoLibrary, title: R.string.localizable.choose_from_library()) {
+            alert.addAction(action)
+        }
+        alert.addAction(UIAlertAction(title: R.string.localizable.cancel(), style: .cancel, handler: nil))
+        self.presentationController?.present(alert, animated: true)
+    }
+    
     private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
         guard UIImagePickerController.isSourceTypeAvailable(type) else {
             return nil
         }
-        return UIAlertAction(title: title, style: .default) { [unowned self] _ in
-            self.pickerController.sourceType = type
-            self.presentationController?.present(self.pickerController, animated: true)
+        return UIAlertAction(title: title, style: .default) { [weak self] _ in
+            guard let picker = self?.pickerController else {
+                return
+            }
+            picker.sourceType = type
+            self?.presentationController?.present(picker, animated: true)
         }
-    }
-    
-    func present() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if let action = self.action(for: .camera, title: "Take a photo") {
-            alert.addAction(action)
-        }
-        if let action = self.action(for: .photoLibrary, title: "Choose from library") {
-            alert.addAction(action)
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.presentationController?.present(alert, animated: true)
     }
     
     private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {

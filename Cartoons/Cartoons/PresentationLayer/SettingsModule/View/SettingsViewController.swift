@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = ownView
+        self.view = customView
     }
     
     func setupUI() {
@@ -91,7 +91,6 @@ extension SettingsViewController: SettingsViewProtocol {
 
 extension SettingsViewController: ImagePickerDelegateProtocol {
     func didSelect(image: UIImage?) {
-        (navigationController as? BaseNavigationController)?.setProfileImage(image: image)
-        
+        (navigationController as? BaseNavigationController)?.setProfileImage(image: image)        
     }
 }
