@@ -38,10 +38,12 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     
     func agreeButtonTapped() {
         firebaseManager.signOutUser { [weak self] result in
-            let manager = self?.firebaseManager
+            guard let manager = self?.firebaseManager else {
+                return
+            }
             switch result {
             case .success:
-                self?.router.showAuthorizationController(firebaseManager: manager.unwrapped)
+                self?.router.showAuthorizationController(firebaseManager: manager)
             case .failure(let error):
                 self?.view.setError(error: error)
             }

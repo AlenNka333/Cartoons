@@ -25,19 +25,19 @@ class Router: RouterProtocol {
     
     func start() {
         let firebaseManager = FirebaseManager()
-        showTabBarController(firebaseManager: firebaseManager, number: "+375298939122")
+        //showTabBarController(firebaseManager: firebaseManager, number: "+375298939122")
         
-//        if AppData.shouldShowOnBoarding {
-//            showOnBoarding(firebaseManager: firebaseManager)
-//        } else {
-//            switch firebaseManager.shouldAuthorize {
-//            case true:
-//                showAuthorizationController(firebaseManager: firebaseManager)
-//            case false:
-//                let number = firebaseManager.getUserInfo()
-//                showTabBarController(firebaseManager: firebaseManager, number: number ?? "")
-//            }
-//        }
+        if AppData.shouldShowOnBoarding {
+            showOnBoarding(firebaseManager: firebaseManager)
+        } else {
+            switch firebaseManager.shouldAuthorize {
+            case true:
+                showAuthorizationController(firebaseManager: firebaseManager)
+            case false:
+                let number = firebaseManager.getUserInfo()
+                showTabBarController(firebaseManager: firebaseManager, number: number ?? "")
+            }
+        }
     }
     
     func changeRootViewController(with rootViewController: UIViewController) {
@@ -50,26 +50,38 @@ class Router: RouterProtocol {
     
     func showOnBoarding(firebaseManager: FirebaseManager) {
         onBoarding = assemblyBuilder?.createOnBoarding(router: self, firebaseManager: firebaseManager) as? PageViewController
-        changeRootViewController(with: onBoarding.unwrapped)
+        guard let onBoarding = onBoarding else {
+            return
+        }
+        changeRootViewController(with: onBoarding)
     }
     
     func showTabBarController(firebaseManager: FirebaseManager, number: String) {
         tabBarController = assemblyBuilder?.createTabBarController(router: self, manager: firebaseManager, number: number) as? TabBarViewController
+        guard let tabBar = tabBarController else {
+            return
+        }
         var controllers = [UIViewController]()
         let cartoons = assemblyBuilder?.createCartoons()
         let favourites = assemblyBuilder?.createFavourites()
-        let setting = assemblyBuilder?.createSettings(router: self, manager: firebaseManager, number: number)
-        controllers.append(cartoons.unwrapped)
-        controllers.append(favourites.unwrapped)
-        controllers.append(setting.unwrapped)
+        let settings = assemblyBuilder?.createSettings(router: self, manager: firebaseManager, number: number)
+        guard let cartoon = cartoons, let favourite = favourites, let setting = settings else {
+            return
+        }
+        controllers.append(cartoon)
+        controllers.append(favourite)
+        controllers.append(setting)
         tabBarController?.viewControllers = controllers
-        changeRootViewController(with: tabBarController.unwrapped)
+        changeRootViewController(with: tabBar)
     }
 
     func showAuthorizationController(firebaseManager: FirebaseManager) {
         let mainViewController = assemblyBuilder?.createAuthorization(router: self, firebaseManager: firebaseManager)
-        navigationController?.viewControllers = [mainViewController.unwrapped]
-        changeRootViewController(with: navigationController.unwrapped)
+        guard let main = mainViewController, let navigation = navigationController else {
+            return
+        }
+        navigationController?.viewControllers = [main]
+        changeRootViewController(with: navigation)
     }
     
     func showOTPController(verificationId: String, firebaseManager: FirebaseManager, number: String, animated: Bool) {
@@ -77,7 +89,10 @@ class Router: RouterProtocol {
                                                                       firebaseManager: firebaseManager,
                                                                       verificationId: verificationId,
                                                                       number: number)
-        navigationController?.pushViewController(mainViewController.unwrapped, animated: animated)
+        guard let main = mainViewController else {
+            return
+        }
+        navigationController?.pushViewController(main, animated: animated)
     }
     
     func popToRoot(animated: Bool) {

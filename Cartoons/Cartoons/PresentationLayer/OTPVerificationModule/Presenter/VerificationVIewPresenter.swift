@@ -28,11 +28,15 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
     func verifyUser(verificationCode: String) {
         firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
-            let manager = self?.firebaseManager
-            let number = self?.number
+            guard let manager = self?.firebaseManager else {
+                return
+            }
+            guard let number = self?.number else {
+                return
+            }
             switch result {
             case .success:
-                self?.router.showTabBarController(firebaseManager: manager.unwrapped, number: number.unwrapped)
+                self?.router.showTabBarController(firebaseManager: manager, number: number)
             case let .failure(error):
                 self?.view.setError(error: error)
             }

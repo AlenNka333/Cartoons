@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController {
     var imagePicker: ImagePicker!
     
     private lazy var signOutButton: UIButton = CustomButton()
-    private lazy var ownView: UIView = {
+    private lazy var customView: UIView = {
         view = UIView()
         view.backgroundColor = R.color.main_orange()
         return view

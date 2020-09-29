@@ -23,10 +23,12 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
         view.showActivityIndicatorAction()
         firebaseManager.sendPhoneNumber(number: number) { [weak self] result in
             self?.view.stopActivityIndicatorAction()
-            let manager = self?.firebaseManager
+            guard let manager = self?.firebaseManager else {
+                return
+            }
             switch result {
             case let .success(verificationId):
-                self?.router.showOTPController(verificationId: verificationId, firebaseManager: manager.unwrapped, number: number, animated: true)
+                self?.router.showOTPController(verificationId: verificationId, firebaseManager: manager, number: number, animated: true)
             case .failure(let error):
                 self?.view.setError(error: error)
             }
