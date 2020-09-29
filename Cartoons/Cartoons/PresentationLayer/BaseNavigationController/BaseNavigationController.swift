@@ -12,10 +12,8 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     private enum Const {
         static let titleSize: CGFloat = 40
         static let subtitleSize: CGFloat = 14
-        static let ImageSize: CGFloat = 80
-        static let ImageRightMargin: CGFloat = 20
-        static let ImageBottomMargin: CGFloat = 10
     }
+    
     var imageAction: (() -> Void)?
     
     private lazy var appearance: UINavigationBarAppearance = {

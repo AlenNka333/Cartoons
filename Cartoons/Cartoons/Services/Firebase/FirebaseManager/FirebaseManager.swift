@@ -58,6 +58,6 @@ class FirebaseManager {
     }
     
     func getUserInfo() -> String? {
-        return firebaseService.getPhoneNumber()
+        return firebaseService.phoneNumber
     }
 }
