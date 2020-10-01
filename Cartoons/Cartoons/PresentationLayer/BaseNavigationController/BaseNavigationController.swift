@@ -5,8 +5,9 @@
 //  Created by Alena Nesterkina on 9/22/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-
+//swiftlint:disable all
 import UIKit
+import Kingfisher
 
 class BaseNavigationController: UINavigationController, UINavigationControllerDelegate {
     private enum Const {
@@ -86,6 +87,12 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         imageView.isUserInteractionEnabled = true
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.image = image
+    }
+    
+    func setProfileImage(path: URL) {
+        imageView.isUserInteractionEnabled = true
+        imageView.layer.cornerRadius = imageView.frame.height / 2
+        imageView.kf.setImage(with: path)
     }
     
     @objc func editProfileImage() {

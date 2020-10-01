@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,8 +29,8 @@
 		332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */; };
 		332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36F25077D9E008A8F29 /* UserDefault.swift */; };
 		3334A4D12523344F00AD18C7 /* AccessErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A4D02523344F00AD18C7 /* AccessErrors.swift */; };
-		3334A5062524755100AD18C7 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A5052524755100AD18C7 /* UIImageView + Extension.swift */; };
 		3334A50C2525DD5800AD18C7 /* FirebaseStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A50B2525DD5800AD18C7 /* FirebaseStoreService.swift */; };
+		3334A577252630DF00AD18C7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3334A576252630DF00AD18C7 /* Kingfisher */; };
 		3373D945250F588A0095F78C /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D944250F588A0095F78C /* PageViewController.swift */; };
 		3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */; };
 		3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */; };
@@ -74,6 +74,19 @@
 		CC0829AD7450E31B34F97A5A /* Pods_Cartoons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 481551CF71DC885446983E5B /* Pods_Cartoons.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3334A5742526304000AD18C7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		20EEE9C9250148DC00970DA6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Cartoons/Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -97,7 +110,6 @@
 		332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewProtocol.swift; sourceTree = "<group>"; };
 		332BA36F25077D9E008A8F29 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		3334A4D02523344F00AD18C7 /* AccessErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessErrors.swift; sourceTree = "<group>"; };
-		3334A5052524755100AD18C7 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		3334A50B2525DD5800AD18C7 /* FirebaseStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStoreService.swift; sourceTree = "<group>"; };
 		3373D944250F588A0095F78C /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingFeatureViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3334A577252630DF00AD18C7 /* Kingfisher in Frameworks */,
 				CC0829AD7450E31B34F97A5A /* Pods_Cartoons.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,7 +530,6 @@
 			children = (
 				33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */,
 				33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */,
-				3334A5052524755100AD18C7 /* UIImageView + Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -672,12 +684,16 @@
 				33FF60B424FA45F40077D109 /* Frameworks */,
 				33FF60B524FA45F40077D109 /* Resources */,
 				5907D36B556650DA39F3161C /* [CP] Embed Pods Frameworks */,
+				3334A5742526304000AD18C7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Cartoons;
+			packageProductDependencies = (
+				3334A576252630DF00AD18C7 /* Kingfisher */,
+			);
 			productName = Cartoons;
 			productReference = 33FF60B724FA45F40077D109 /* Cartoons.app */;
 			productType = "com.apple.product-type.application";
@@ -706,6 +722,9 @@
 				Base,
 			);
 			mainGroup = 33FF60AE24FA45F40077D109;
+			packageReferences = (
+				3334A575252630DF00AD18C7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 33FF60B824FA45F40077D109 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -844,7 +863,6 @@
 				33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */,
 				33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
-				3334A5062524755100AD18C7 /* UIImageView + Extension.swift in Sources */,
 				3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */,
 				33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */,
 				332BA357250602DD008A8F29 /* AppNavigationRouterProtocol.swift in Sources */,
@@ -1099,6 +1117,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3334A575252630DF00AD18C7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.15.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3334A576252630DF00AD18C7 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3334A575252630DF00AD18C7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 33FF60AF24FA45F40077D109 /* Project object */;
 }

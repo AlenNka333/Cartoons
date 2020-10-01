@@ -70,7 +70,7 @@ class FirebaseManager {
         return firebaseAuthService.phoneNumber
     }
     
-    func loadProfileImage(completion: @escaping (Result<URL, Error>) -> Void) {
+    func loadProfileImage(completion: @escaping (Result<URL?, Error>) -> Void) {
         guard let id = userId else {
             completion(.failure(AuthorizationError.emptyUser))
             return
@@ -79,12 +79,8 @@ class FirebaseManager {
             switch result {
             case .failure(let error):
                 completion(.failure(error))
-            case .success(let url):
-                guard let url = url else {
-                    completion(.failure(GeneralError.invalidUrl))
-                    return
-                }
-                completion(.success(url))
+            case .success(let path):
+                completion(.success(path))
             }
         }
     }

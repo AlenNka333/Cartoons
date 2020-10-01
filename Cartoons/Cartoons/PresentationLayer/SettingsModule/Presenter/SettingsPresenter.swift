@@ -25,8 +25,12 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
             switch result {
             case .failure(let error):
                 self?.view.setError(error: error)
-            case .success(let url):
-                self?.view.setProfileImage(url: url)
+            case .success(let path):
+                guard let path = path else {
+                    self?.view.setError(error: GeneralError.invalidUrl)
+                    return
+                }
+                self?.view.setProfileImage(path: path)
             }
         }
     }
@@ -35,7 +39,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
             switch result {
             case .failure(let error):
                 self?.view.setError(error: error)
-            case .success():
+            case .success:
                 break
             }
         }

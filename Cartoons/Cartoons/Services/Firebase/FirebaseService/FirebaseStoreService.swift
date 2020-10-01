@@ -44,7 +44,8 @@ class FirebaseStoreService {
         databaseRef.child("users").child(userID).observeSingleEvent(of: .value) { snapshot in
                 let values = snapshot.value as? NSDictionary
                 if let profileImageURL = values?[ "imageURL" ] as? String {
-                    completion(.success(URL(string: profileImageURL)))
+                    let url = URL(string: profileImageURL)
+                    completion(.success(url))
                 } else {
                     completion(.failure(GeneralError.noSuchPath))
                 }

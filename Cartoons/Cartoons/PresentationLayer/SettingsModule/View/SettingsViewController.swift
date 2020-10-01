@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 enum BTAction {
     case cancel
@@ -81,10 +82,8 @@ extension SettingsViewController: SettingsViewProtocol {
         }
     }
     
-    func setProfileImage(url: URL) {
-        let bufferImageView = UIImageView()
-        bufferImageView.sd_setImage(with: url, placeholderImage: R.image.profile_image())
-        (navigationController as? BaseNavigationController)?.setProfileImage(image: bufferImageView.image)
+    func setProfileImage(path: URL) {
+        (navigationController as? BaseNavigationController)?.setProfileImage(path: path)
     }
     
     func setPhoneLabel(number: String) {
