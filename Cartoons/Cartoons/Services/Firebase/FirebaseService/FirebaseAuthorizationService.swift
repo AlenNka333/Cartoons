@@ -9,7 +9,7 @@
 import FirebaseAuth
 import Foundation
 
-class FirebaseService {
+class FirebaseAuthorizationService {
     var phoneNumber: String? {
         let firebaseUser = Auth.auth().currentUser
         return firebaseUser?.phoneNumber

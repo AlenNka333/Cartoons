@@ -18,6 +18,8 @@ target 'Cartoons' do
     pod 'SwiftFormat/CLI'
     pod 'Firebase/Analytics'
     pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
+    pod 'Firebase/Database'
     pod 'SDWebImage'
 end
 

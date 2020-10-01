@@ -20,26 +20,26 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         view.setPhoneLabel(number: number)
     }
     
-    func showPermissionsAlert(error: Error) {
-        view.setPermissionAlert(message: error.localizedDescription)
+    func showProfileImage() {
+        firebaseManager.loadProfileImage { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.view.setError(error: error)
+            case .success(let url):
+                self?.view.setProfileImage(url: url)
+            }
+        }
     }
-    
-    func signOut() {
-        view.setSignOutAlert(message: R.string.localizable.question_to_sign_out())
+    func saveProfileImage(imageData: Data) {
+        firebaseManager.storeUserProfileImage(imageData: imageData) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.view.setError(error: error)
+            case .success():
+                break
+            }
+        }
     }
-    
-    func showSuccess(success: String) {
-        view.setSuccess(success: success)
-    }
-    
-    func showError(error: Error) {
-        view.setError(error: error)
-    }
-    
-    func editProfileImage() {
-        view.editProfileImage()
-    }
-    
     func agreeButtonTapped() {
         firebaseManager.signOutUser { [weak self] result in
             guard let manager = self?.firebaseManager else {
@@ -52,5 +52,20 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
                 self?.view.setError(error: error)
             }
         }
+    }
+    func signOut() {
+        view.setSignOutAlert(message: R.string.localizable.question_to_sign_out())
+    }
+    func editProfileImage() {
+        view.editProfileImage()
+    }
+    func showPermissionsAlert(error: Error) {
+        view.setPermissionAlert(message: error.localizedDescription)
+    }
+    func showSuccess(success: String) {
+        view.setSuccess(success: success)
+    }
+    func showError(error: Error) {
+        view.setError(error: error)
     }
 }

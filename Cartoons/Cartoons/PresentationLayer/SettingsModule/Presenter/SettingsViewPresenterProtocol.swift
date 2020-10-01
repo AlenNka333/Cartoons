@@ -14,4 +14,6 @@ protocol SettingsViewPresenterProtocol: AnyObject {
     func showPermissionsAlert(error: Error)
     func agreeButtonTapped()
     func editProfileImage()
+    func showProfileImage()
+    func saveProfileImage(imageData: Data)
 }

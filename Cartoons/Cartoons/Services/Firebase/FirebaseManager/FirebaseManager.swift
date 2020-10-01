@@ -7,18 +7,27 @@
 //
 
 import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 import Foundation
 
 class FirebaseManager {
-    let firebaseService = FirebaseService()
-
+    private let firebaseAuthService = FirebaseAuthorizationService()
+    private let firebaseStoreService = FirebaseStoreService()
+    private lazy var metadata = StorageMetadata()
+    private lazy var userId: String? = {
+        if let id = Auth.auth().currentUser?.uid {
+            return id
+        }
+        return nil
+    }()
     var shouldAuthorize: Bool { Auth.auth().currentUser == nil }
     
     func sendPhoneNumber(number: String, completion: @escaping (Result<String, Error>) -> Void) {
         let formattedNumber = String(number.filter { !" -".contains($0) })
         if PhoneNumberValidationHelper.checkValidation(number: formattedNumber, type: NumberFormat.bel) {
             if !formattedNumber.isEmpty {
-                firebaseService.sendPhoneToFirebase(number: formattedNumber) { result in
+                firebaseAuthService.sendPhoneToFirebase(number: formattedNumber) { result in
                     switch result {
                     case let .success(result):
                         AppData.verificationID = result
@@ -36,7 +45,7 @@ class FirebaseManager {
     }
     
     func authorizeUser(verificationId: String, verifyCode: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
-        firebaseService.authorizeUser(with: verificationId, verifyCode: verifyCode) { result in
+        firebaseAuthService.authorizeUser(with: verificationId, verifyCode: verifyCode) { result in
             switch result {
             case let .success(user):
                 completion(.success(user))
@@ -47,7 +56,7 @@ class FirebaseManager {
     }
     
     func signOutUser(completion: @escaping (Result<Void, Error>) -> Void) {
-        firebaseService.signOut { result in
+        firebaseAuthService.signOut { result in
             switch result {
             case .success:
                 completion(.success(()))
@@ -58,6 +67,41 @@ class FirebaseManager {
     }
     
     func getUserInfo() -> String? {
-        return firebaseService.phoneNumber
+        return firebaseAuthService.phoneNumber
+    }
+    
+    func loadProfileImage(completion: @escaping (Result<URL, Error>) -> Void) {
+        guard let id = userId else {
+            completion(.failure(AuthorizationError.emptyUser))
+            return
+        }
+        firebaseStoreService.loadFromFirebase(userID: id) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let url):
+                guard let url = url else {
+                    completion(.failure(GeneralError.invalidUrl))
+                    return
+                }
+                completion(.success(url))
+            }
+        }
+    }
+    
+    func storeUserProfileImage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void) {
+        metadata.contentType = "image/jpeg"
+        guard let id = userId else {
+            completion(.failure(AuthorizationError.emptyUser))
+            return
+        }
+        firebaseStoreService.storeToFirebase(metadata: metadata, imageData: imageData, id: id) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success:
+                completion(.success(()))
+            }
+        }
     }
 }

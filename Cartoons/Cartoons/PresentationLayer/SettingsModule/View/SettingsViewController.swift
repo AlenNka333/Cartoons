@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController {
     
     func setupNavigationController() {
         title = R.string.localizable.settings_screen()
-        (navigationController as? BaseNavigationController)?.setImage(image: R.image.profile_image(), isEnabled: true)
+        presenter?.showProfileImage()
         (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
             self?.presenter?.editProfileImage()
         }
@@ -81,6 +81,12 @@ extension SettingsViewController: SettingsViewProtocol {
         }
     }
     
+    func setProfileImage(url: URL) {
+        let bufferImageView = UIImageView()
+        bufferImageView.sd_setImage(with: url, placeholderImage: R.image.profile_image())
+        (navigationController as? BaseNavigationController)?.setProfileImage(image: bufferImageView.image)
+    }
+    
     func setPhoneLabel(number: String) {
         title = number
     }
@@ -113,6 +119,10 @@ extension SettingsViewController {
         guard let image = image else {
             return
         }
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+            return
+        }
+        presenter?.saveProfileImage(imageData: imageData)
         (navigationController as? BaseNavigationController)?.setProfileImage(image: image)
     }
     

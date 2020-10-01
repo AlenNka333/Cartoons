@@ -28,6 +28,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage())
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
