@@ -9,6 +9,8 @@
 import Foundation
 
 enum AccessErrors: Error {
+    case cameraNotAvailable
+    case libraryNotAvailable
     case noCameraPermission
     case noLibraryPermission
 }
@@ -16,6 +18,10 @@ enum AccessErrors: Error {
 extension AccessErrors: LocalizedError {
     public var errorDescription: String? {
         switch self {
+        case .cameraNotAvailable:
+            return NSLocalizedString("Camera is not available to use", comment: "Description of camera failure usage")
+        case .libraryNotAvailable:
+            return NSLocalizedString("Library is not available to use", comment: "Description of library failure usage")
         case .noCameraPermission:
             return NSLocalizedString("Camera access required for capturing photos", comment: "Description of camera permission error")
         case .noLibraryPermission:

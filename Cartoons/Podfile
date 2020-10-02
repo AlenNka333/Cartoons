@@ -23,3 +23,12 @@ target 'Cartoons' do
     pod 'SDWebImage'
 end
 
+target 'CartoonsTests' do
+  use_frameworks!
+  inhibit_all_warnings!
+  
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
+    pod 'Firebase/Database'
+end
+

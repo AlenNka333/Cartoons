@@ -29,6 +29,7 @@ class ImagePicker: NSObject {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: R.string.localizable.take_a_photo(), style: .default) { [weak self] _ in
             guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+                self?.closure?(.failure(AccessErrors.cameraNotAvailable))
                 return
             }
             self?.checkCameraAccessPermission {
@@ -43,9 +44,11 @@ class ImagePicker: NSObject {
                 }
             }
         }
+        
         alertController.addAction(cameraAction)
         let libraryAction = UIAlertAction(title: R.string.localizable.choose_from_library(), style: .default) { [weak self] _ in
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+                self?.closure?(.failure(AccessErrors.libraryNotAvailable))
                 return
             }
             self?.checkPhotoAccessPermission {

@@ -64,7 +64,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         imageView.snp.makeConstraints {
             $0.height.width.equalTo(70)
             $0.trailing.equalToSuperview().offset(-20)
-            $0.bottom.equalToSuperview().offset(-10)
+            $0.bottom.equalToSuperview().offset(-20)
         }
     }
     func setSubTitle(title: String) {

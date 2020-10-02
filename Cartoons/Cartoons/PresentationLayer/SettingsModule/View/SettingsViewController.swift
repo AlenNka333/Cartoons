@@ -6,8 +6,8 @@
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 enum BTAction {
     case cancel
