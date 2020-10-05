@@ -20,11 +20,6 @@ class SettingsViewController: UIViewController {
     var imagePicker: ImagePicker?
     
     private lazy var signOutButton: UIButton = CustomButton()
-    private lazy var customView: UIView = {
-        view = UIView()
-        view.backgroundColor = R.color.main_orange()
-        return view
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +28,9 @@ class SettingsViewController: UIViewController {
         setupUI()
     }
     
-    override func loadView() {
-        self.view = customView
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
     }
     
     func setupNavigationController() {

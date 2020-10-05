@@ -31,7 +31,7 @@
 		332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36F25077D9E008A8F29 /* UserDefault.swift */; };
 		3334A4D12523344F00AD18C7 /* AccessErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A4D02523344F00AD18C7 /* AccessErrors.swift */; };
 		3334A50C2525DD5800AD18C7 /* FirebaseStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A50B2525DD5800AD18C7 /* FirebaseStoreService.swift */; };
-		3334A577252630DF00AD18C7 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 3334A576252630DF00AD18C7 /* SwiftPackageProductDependency */; };
+		3334A577252630DF00AD18C7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3334A576252630DF00AD18C7 /* Kingfisher */; };
 		3334A61B2527818A00AD18C7 /* CartoonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A61A2527818A00AD18C7 /* CartoonsTests.swift */; };
 		3334A6282527861100AD18C7 /* AuthorizationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A6272527861100AD18C7 /* AuthorizationPresenterTests.swift */; };
 		3373D945250F588A0095F78C /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D944250F588A0095F78C /* PageViewController.swift */; };
@@ -191,7 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3334A577252630DF00AD18C7 /* BuildFile in Frameworks */,
+				3334A577252630DF00AD18C7 /* Kingfisher in Frameworks */,
 				CC0829AD7450E31B34F97A5A /* Pods_Cartoons.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -755,7 +755,7 @@
 			);
 			name = Cartoons;
 			packageProductDependencies = (
-				3334A576252630DF00AD18C7 /* SwiftPackageProductDependency */,
+				3334A576252630DF00AD18C7 /* Kingfisher */,
 			);
 			productName = Cartoons;
 			productReference = 33FF60B724FA45F40077D109 /* Cartoons.app */;
@@ -790,7 +790,7 @@
 			);
 			mainGroup = 33FF60AE24FA45F40077D109;
 			packageReferences = (
-				3334A575252630DF00AD18C7 /* RemoteSwiftPackageReference */,
+				3334A575252630DF00AD18C7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 33FF60B824FA45F40077D109 /* Products */;
 			projectDirPath = "";
@@ -859,7 +859,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/Cartoons/Resources/Generated/R.generated.swift",
+				$SRCROOT/Cartoons/Resources/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1305,7 +1305,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3334A575252630DF00AD18C7 /* RemoteSwiftPackageReference */ = {
+		3334A575252630DF00AD18C7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -1316,9 +1316,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3334A576252630DF00AD18C7 /* SwiftPackageProductDependency */ = {
+		3334A576252630DF00AD18C7 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3334A575252630DF00AD18C7 /* RemoteSwiftPackageReference */;
+			package = 3334A575252630DF00AD18C7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

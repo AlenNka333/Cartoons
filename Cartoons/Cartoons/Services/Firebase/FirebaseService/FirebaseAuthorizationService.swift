@@ -29,6 +29,15 @@ class FirebaseAuthorizationService {
         }
     }
     
+    func requestOTP(number: String, completion: @escaping (Result<Void, Error>) -> Void) {
+            PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+            }
+    }
+    
     func authorizeUser(with verifyId: String, verifyCode: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
             let credential: PhoneAuthCredential = PhoneAuthProvider.provider().credential(withVerificationID: verifyId, verificationCode: verifyCode)
             Auth.auth().signIn(with: credential) { user, error in
@@ -43,6 +52,7 @@ class FirebaseAuthorizationService {
                 completion(.success(user))
             }
     }
+    
     func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
         let firebaseAuth = Auth.auth()
         do {

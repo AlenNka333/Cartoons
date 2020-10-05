@@ -55,6 +55,16 @@ class FirebaseManager {
         }
     }
     
+    func resendOTPCode(number: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        firebaseAuthService.requestOTP(number: number) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
     func signOutUser(completion: @escaping (Result<Void, Error>) -> Void) {
         firebaseAuthService.signOut { result in
             switch result {

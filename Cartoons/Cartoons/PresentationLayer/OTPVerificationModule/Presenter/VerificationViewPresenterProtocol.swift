@@ -11,4 +11,5 @@ import Foundation
 protocol VerificationViewPresenterProtocol: AnyObject {
     func showError(error: Error)
     func verifyUser(verificationCode: String)
+    func resendVerificationCode()
 }

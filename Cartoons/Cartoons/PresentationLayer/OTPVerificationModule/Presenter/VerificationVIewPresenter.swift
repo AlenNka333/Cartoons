@@ -26,6 +26,16 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     func showError(error: Error) {
         view.setError(error: error)
     }
+    func resendVerificationCode() {
+        firebaseManager.resendOTPCode(number: number) { [weak self] result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                self?.view.setError(error: error)
+            }
+        }
+    }
     func verifyUser(verificationCode: String) {
         firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             guard let manager = self?.firebaseManager else {

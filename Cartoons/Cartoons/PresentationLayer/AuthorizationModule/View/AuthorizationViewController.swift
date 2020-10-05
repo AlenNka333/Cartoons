@@ -21,8 +21,9 @@ class AuthorizationViewController: UIViewController {
         setupToHideKeyboardOnTapOnView()
     }
     
-    override func loadView() {
-        self.view = customView
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
     }
     
     private func setupUI() {

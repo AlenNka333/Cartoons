@@ -58,8 +58,9 @@ class VerificationCodeViewController: UIViewController {
         startTimer()
     }
     
-    override func loadView() {
-        self.view = customView
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
     }
     
     private func setupUI() {
@@ -93,6 +94,7 @@ class VerificationCodeViewController: UIViewController {
         resendButton.isEnabled = false
         resendButton.backgroundColor = R.color.disabled_button_color()
         resendButton.setTitle(R.string.localizable.resend_button_key(), for: .normal)
+        resendButton.addTarget(self, action: #selector(resendButtonTappedAction), for: .touchUpInside)
         resendButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
@@ -139,6 +141,7 @@ extension VerificationCodeViewController {
         timer = DefaultValues.totalTime
         timerLabel.text = "\(timer)"
         startTimer()
+        presenter?.resendVerificationCode()
     }
 }
 
