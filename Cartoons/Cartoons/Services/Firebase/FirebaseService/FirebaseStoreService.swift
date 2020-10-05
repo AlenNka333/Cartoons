@@ -21,34 +21,36 @@ class FirebaseStoreService {
                 completion(.failure(error))
                 return
             }
-            storageItem.downloadURL { [weak self] url, error in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                guard let imageURL = url?.absoluteString else {
-                    return
-                }
-                self?.databaseRef.child("users")
-                    .child(id).updateChildValues(["id": id, "imageURL": imageURL]) { error, _ in
-                        if let error = error {
-                            completion(.failure(error))
-                            return
-                        }
-                    }
-            }
         }
     }
     
     func loadFromFirebase(userID: String, completion: @escaping (Result<URL?, Error>) -> Void) {
-        databaseRef.child("users").child(userID).observeSingleEvent(of: .value) { snapshot in
-                let values = snapshot.value as? NSDictionary
-                if let profileImageURL = values?[ "imageURL" ] as? String {
-                    let url = URL(string: profileImageURL)
-                    completion(.success(url))
-                } else {
-                    completion(.failure(GeneralError.noSuchPath))
+            storageRef.child("profile_images").listAll { [weak self] result, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
                 }
-        }
+                if result.items.isEmpty {
+                    completion(.success(nil))
+                    return
+                }
+                let image = result.items.filter {
+                    return $0.name == userID
+                }
+                if image.isEmpty {
+                    completion(.success(nil))
+                    return
+                }
+                let reference = self?.storageRef.child("profile_images/\(userID)")
+                reference?.downloadURL { url, error in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    } else {
+                        completion(.success(url))
+                        return
+                  }
+                }
+            }
     }
 }

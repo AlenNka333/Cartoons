@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
+        view.backgroundColor = UIColor(patternImage: R.image.settings_background().unwrapped)
     }
     
     func setupNavigationController() {
@@ -78,7 +78,7 @@ extension SettingsViewController: SettingsViewProtocol {
         }
     }
     
-    func setProfileImage(path: URL) {
+    func setProfileImage(path: URL?) {
         (navigationController as? BaseNavigationController)?.setProfileImage(path: path)
     }
     

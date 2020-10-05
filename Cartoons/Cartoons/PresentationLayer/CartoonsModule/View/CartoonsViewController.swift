@@ -18,10 +18,15 @@ class CartoonsViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = R.color.main_background()
+        //view.backgroundColor = R.color.main_background()
         title = R.string.localizable.cartoons_screen()
         (navigationController as? BaseNavigationController)?.setSubTitle(title: R.string.localizable.cartoons_screen_subtitle())
         (navigationController as? BaseNavigationController)?.setImage(image: R.image.navigation_label(), isEnabled: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.backgroundColor = UIColor(patternImage: R.image.main_screen_background().unwrapped)
     }
 }
 

@@ -89,10 +89,10 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         imageView.image = image
     }
     
-    func setProfileImage(path: URL) {
+    func setProfileImage(path: URL?) {
         imageView.isUserInteractionEnabled = true
         imageView.layer.cornerRadius = imageView.frame.height / 2
-        imageView.kf.setImage(with: path)
+        imageView.kf.setImage(with: path, placeholder: R.image.profile_icon())
     }
     
     @objc func editProfileImage() {

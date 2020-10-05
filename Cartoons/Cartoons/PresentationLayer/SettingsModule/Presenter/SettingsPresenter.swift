@@ -26,10 +26,6 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
             case .failure(let error):
                 self?.view.setError(error: error)
             case .success(let path):
-                guard let path = path else {
-                    self?.view.setError(error: GeneralError.invalidUrl)
-                    return
-                }
                 self?.view.setProfileImage(path: path)
             }
         }
