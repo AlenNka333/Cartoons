@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 12 colors.
+  /// This `R.color` struct is generated, and contains static references to 11 colors.
   struct color {
     /// Color `cinnabar`.
     static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
@@ -116,8 +116,6 @@ struct R: Rswift.Validatable {
     static let disabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "disabled_button_color")
     /// Color `enabled_button_color`.
     static let enabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "enabled_button_color")
-    /// Color `main_background`.
-    static let main_background = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_background")
     /// Color `main_blue`.
     static let main_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_blue")
     /// Color `main_orange`.
@@ -166,15 +164,6 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func enabled_button_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.enabled_button_color, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "main_background", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func main_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.main_background, compatibleWith: traitCollection)
     }
     #endif
 

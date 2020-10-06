@@ -23,8 +23,8 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     func showProfileImage() {
         firebaseManager.loadProfileImage { [weak self] result in
             switch result {
-            case .failure(let error):
-                self?.view.setError(error: error)
+            case .failure:
+                break
             case .success(let path):
                 self?.view.setProfileImage(path: path)
             }

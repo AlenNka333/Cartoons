@@ -25,24 +25,8 @@ class FirebaseStoreService {
     }
     
     func loadFromFirebase(userID: String, completion: @escaping (Result<URL?, Error>) -> Void) {
-            storageRef.child("profile_images").listAll { [weak self] result, error in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                if result.items.isEmpty {
-                    completion(.success(nil))
-                    return
-                }
-                let image = result.items.filter {
-                    return $0.name == userID
-                }
-                if image.isEmpty {
-                    completion(.success(nil))
-                    return
-                }
-                let reference = self?.storageRef.child("profile_images/\(userID)")
-                reference?.downloadURL { url, error in
+                let reference = self.storageRef.child("profile_images/\(userID)")
+                reference.downloadURL { url, error in
                     if let error = error {
                         completion(.failure(error))
                         return
@@ -51,6 +35,5 @@ class FirebaseStoreService {
                         return
                   }
                 }
-            }
     }
 }

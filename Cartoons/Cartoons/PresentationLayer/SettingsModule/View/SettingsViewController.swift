@@ -9,11 +9,6 @@
 import Kingfisher
 import UIKit
 
-enum BTAction {
-    case cancel
-    case accept
-}
-
 class SettingsViewController: UIViewController {
     let alertService = AlertService()
     var presenter: SettingsViewPresenterProtocol?
@@ -28,11 +23,6 @@ class SettingsViewController: UIViewController {
         setupUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        view.backgroundColor = UIColor(patternImage: R.image.settings_background().unwrapped)
-    }
-    
     func setupNavigationController() {
         title = R.string.localizable.settings_screen()
         presenter?.showProfileImage()
@@ -42,6 +32,7 @@ class SettingsViewController: UIViewController {
     }
     
     func setupUI() {
+        view.backgroundColor = R.color.main_pink()
         view.addSubview(signOutButton)
         signOutButton.setTitle(R.string.localizable.sign_out_button(), for: .normal)
         signOutButton.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
@@ -80,6 +71,10 @@ extension SettingsViewController: SettingsViewProtocol {
     
     func setProfileImage(path: URL?) {
         (navigationController as? BaseNavigationController)?.setProfileImage(path: path)
+    }
+    
+    func setDefaultImage() {
+        (navigationController as? BaseNavigationController)?.setDefaultImage(image: R.image.profile_icon())
     }
     
     func setPhoneLabel(number: String) {

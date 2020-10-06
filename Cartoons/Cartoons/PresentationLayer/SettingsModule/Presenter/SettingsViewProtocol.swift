@@ -14,5 +14,6 @@ protocol SettingsViewProtocol: AnyObject {
     func setSignOutAlert(message: String)
     func setPermissionAlert(message: String)
     func setProfileImage(path: URL?)
+    func setDefaultImage()
     func editProfileImage()
 }

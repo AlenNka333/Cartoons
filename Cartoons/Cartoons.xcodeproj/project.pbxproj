@@ -34,6 +34,7 @@
 		3334A577252630DF00AD18C7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3334A576252630DF00AD18C7 /* Kingfisher */; };
 		3334A61B2527818A00AD18C7 /* CartoonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A61A2527818A00AD18C7 /* CartoonsTests.swift */; };
 		3334A6282527861100AD18C7 /* AuthorizationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A6272527861100AD18C7 /* AuthorizationPresenterTests.swift */; };
+		334A5133252B4433003BCF59 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A5132252B4433003BCF59 /* RootCoordinator.swift */; };
 		3373D945250F588A0095F78C /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D944250F588A0095F78C /* PageViewController.swift */; };
 		3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */; };
 		3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */; };
@@ -129,6 +130,7 @@
 		3334A61A2527818A00AD18C7 /* CartoonsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonsTests.swift; sourceTree = "<group>"; };
 		3334A61C2527818A00AD18C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3334A6272527861100AD18C7 /* AuthorizationPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenterTests.swift; sourceTree = "<group>"; };
+		334A5132252B4433003BCF59 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		33710661943FC0E3F567D415 /* Pods-CartoonsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CartoonsTests.release.xcconfig"; path = "Target Support Files/Pods-CartoonsTests/Pods-CartoonsTests.release.xcconfig"; sourceTree = "<group>"; };
 		3373D944250F588A0095F78C /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingFeatureViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,14 @@
 				3334A6272527861100AD18C7 /* AuthorizationPresenterTests.swift */,
 			);
 			path = CartoonsTests;
+			sourceTree = "<group>";
+		};
+		334A5131252B441D003BCF59 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				334A5132252B4433003BCF59 /* RootCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		3373D943250F55E90095F78C /* OnBoardingModule */ = {
@@ -681,6 +691,7 @@
 		33FF60B924FA45F40077D109 /* Cartoons */ = {
 			isa = PBXGroup;
 			children = (
+				334A5131252B441D003BCF59 /* Coordinators */,
 				33B1F08424FFEEB000DB6BA8 /* PresentationLayer */,
 				33B1F08724FFEEF500DB6BA8 /* Components */,
 				33D1C3CB2512778A002A9843 /* Services */,
@@ -1026,6 +1037,7 @@
 				33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */,
 				33B2AEB6250A63A00006BE31 /* CartoonsViewProtocol.swift in Sources */,
 				332227C92518973500EF56B8 /* FavouritesViewProtocol.swift in Sources */,
+				334A5133252B4433003BCF59 /* RootCoordinator.swift in Sources */,
 				33B2AEA9250A18860006BE31 /* PhoneNumberValidationHelper.swift in Sources */,
 				33B2AEAE250A617A0006BE31 /* CartoonsViewController.swift in Sources */,
 				332BA36B25076084008A8F29 /* VerificationViewPresenterProtocol.swift in Sources */,

@@ -31,6 +31,8 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(editProfileImage))
+        imageView.addGestureRecognizer(tap)
         return imageView
     }()
     
@@ -43,7 +45,6 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         super.viewDidLoad()
         delegate = self
         setupUI()
-        setupActions()
     }
     
     func setupUI() {
@@ -64,18 +65,16 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         imageView.snp.makeConstraints {
             $0.height.width.equalTo(70)
             $0.trailing.equalToSuperview().offset(-20)
-            $0.bottom.equalToSuperview().offset(-20)
+            $0.bottom.equalToSuperview().offset(-15)
         }
     }
+}
+
+extension BaseNavigationController {
     func setSubTitle(title: String) {
         subtitle.attributedText = NSAttributedString(string: title,
                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.48),
                                                                   NSAttributedString.Key.font: R.font.aliceRegular(size: 14).unwrapped])
-    }
-    
-    func setupActions() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(editProfileImage))
-        imageView.addGestureRecognizer(tap)
     }
     
     func setImage(image: UIImage?, isEnabled: Bool) {
@@ -92,7 +91,13 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     func setProfileImage(path: URL?) {
         imageView.isUserInteractionEnabled = true
         imageView.layer.cornerRadius = imageView.frame.height / 2
-        imageView.kf.setImage(with: path, placeholder: R.image.profile_icon())
+        imageView.kf.setImage(with: path)
+    }
+    
+    func setDefaultImage(image: UIImage?) {
+        imageView.isUserInteractionEnabled = true
+        imageView.layer.cornerRadius = imageView.frame.height / 2
+        imageView.image = image
     }
     
     @objc func editProfileImage() {
