@@ -31,8 +31,6 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(editProfileImage))
-        imageView.addGestureRecognizer(tap)
         return imageView
     }()
     
@@ -62,6 +60,8 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
             $0.leading.equalToSuperview().offset(20)
         }
         navigationBar.addSubview(imageView)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(editProfileImage))
+        imageView.addGestureRecognizer(tap)
         imageView.snp.makeConstraints {
             $0.height.width.equalTo(70)
             $0.trailing.equalToSuperview().offset(-20)
@@ -96,7 +96,6 @@ extension BaseNavigationController {
     
     func setDefaultImage(image: UIImage?) {
         imageView.isUserInteractionEnabled = true
-        imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.image = image
     }
     

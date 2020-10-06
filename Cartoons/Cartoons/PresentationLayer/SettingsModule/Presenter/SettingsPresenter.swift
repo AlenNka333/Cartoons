@@ -24,7 +24,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         firebaseManager.loadProfileImage { [weak self] result in
             switch result {
             case .failure:
-                break
+                self?.view.setDefaultImage()
             case .success(let path):
                 self?.view.setProfileImage(path: path)
             }

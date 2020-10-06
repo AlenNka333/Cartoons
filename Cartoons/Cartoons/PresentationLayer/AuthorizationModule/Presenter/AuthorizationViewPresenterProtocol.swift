@@ -8,7 +8,6 @@
 
 import Foundation
 
-protocol AuthorizationViewPresenterProtocol: AnyObject {
+protocol AuthorizationViewPresenterProtocol: PresenterProtocol, AnyObject {
     func sendPhoneNumberAction(number: String)
-    func showError(error: Error)
 }

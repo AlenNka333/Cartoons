@@ -1,10 +1,7 @@
 import UIKit
 
-class AuthorizationViewController: UIViewController {
+class AuthorizationViewController: ViewController {
     var presenter: AuthorizationViewPresenterProtocol?
-    let alertView = CustomAlertView()
-    let activityIndicator = UIActivityIndicatorView()
-    let alertService = AlertService()
     
     private lazy var appLabelView = CustomLabelView()
     private lazy var phoneNumberTextField = CustomTextField()
@@ -26,7 +23,8 @@ class AuthorizationViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
     }
     
-    private func setupUI() {
+    override func setupUI() {
+        super.setupUI()
         view.addSubview(appLabelView)
         appLabelView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -48,23 +46,17 @@ class AuthorizationViewController: UIViewController {
 }
 
 extension AuthorizationViewController: AuthorizationViewProtocol {
-    func showActivityIndicatorAction() {
-        activityIndicator.style = UIActivityIndicatorView.Style.large
+    func showActivityIndicator() {
+        super.startActivityIndicator()
         activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
     }
     
     func stopActivityIndicatorAction() {
-        activityIndicator.stopAnimating()
+        super.stopActivityIndicator()
     }
     
-    func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
-            return
-        }
-        present(alertVC, animated: true)
+    func showError(error: Error) {
+        super.setError(error: error)
         getCodeButton.isEnabled = true
         getCodeButton.backgroundColor = R.color.enabled_button_color()
     }

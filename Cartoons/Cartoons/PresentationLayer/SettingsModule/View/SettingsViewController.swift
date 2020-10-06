@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     var imagePicker: ImagePicker?
     
     private lazy var signOutButton: UIButton = CustomButton()
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class SettingsViewController: UIViewController {
     
     func setupNavigationController() {
         title = R.string.localizable.settings_screen()
+        (navigationController as? BaseNavigationController)?.setImage(image: UIImage(), isEnabled: true)
         presenter?.showProfileImage()
         (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
             self?.presenter?.editProfileImage()
