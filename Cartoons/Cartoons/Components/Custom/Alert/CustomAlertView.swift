@@ -32,7 +32,7 @@ class CustomAlertView: UIViewController {
         setupUI()
     }
   
-    override func loadView() {
+    override func loadView() { //swiftlint:disable:this prohibited_super_call
         super.loadView()
         view = parentView
     }

@@ -19,7 +19,7 @@ class OfflineWatchingFeatureViewController: UIViewController {
         label.textAlignment = .center
         label.attributedText = NSAttributedString(string: R.string.localizable.onBoarding_second_logo_key(),
                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                               NSAttributedString.Key.font: UIFont(name: "Alice-Regular", size: 24)!])
+                                                               NSAttributedString.Key.font: UIFont(name: "Alice-Regular", size: 24).unwrapped])
         label.numberOfLines = 0
         return label
     }()
@@ -30,7 +30,7 @@ class OfflineWatchingFeatureViewController: UIViewController {
     }
     
     func setupUI() {
-        view.backgroundColor = UIColor(patternImage: R.image.launch_background()!)
+        view.backgroundColor = UIColor(patternImage: R.image.launch_background().unwrapped)
         view.addSubview(mainImageView)
         mainImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()

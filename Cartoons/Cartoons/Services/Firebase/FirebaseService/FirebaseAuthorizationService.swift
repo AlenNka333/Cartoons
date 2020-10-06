@@ -30,7 +30,7 @@ class FirebaseAuthorizationService {
     }
     
     func requestOTP(number: String, completion: @escaping (Result<Void, Error>) -> Void) {
-            PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
+            PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { _, error in
                 if let error = error {
                     completion(.failure(error))
                     return

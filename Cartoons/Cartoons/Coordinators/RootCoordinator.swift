@@ -8,6 +8,5 @@
 
 import UIKit
 
-class RootCoordinator {
-    
+class RootCoordinator {    
 }

@@ -24,7 +24,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.3050847053527832" green="0.13623711466789246" blue="0.068447284400463104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="39D-fI-gTT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CKR-7p-5T5"/>
+                            <constraint firstItem="39D-fI-gTT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Baf-4C-qVl"/>
+                            <constraint firstItem="39D-fI-gTT" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="CKR-7p-5T5"/>
+                            <constraint firstItem="39D-fI-gTT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OBy-fa-qKz"/>
                             <constraint firstAttribute="bottom" secondItem="39D-fI-gTT" secondAttribute="bottom" id="kAk-gt-zck"/>
                             <constraint firstItem="39D-fI-gTT" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="oWj-OV-r6I"/>
                             <constraint firstAttribute="trailing" secondItem="39D-fI-gTT" secondAttribute="trailing" id="w0O-Gj-fZS"/>
@@ -37,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch_background" width="835" height="1453"/>
+        <image name="launch_background" width="536" height="933"/>
     </resources>
 </document>
