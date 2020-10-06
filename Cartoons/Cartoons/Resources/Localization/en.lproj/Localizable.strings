@@ -30,8 +30,8 @@ cancel = "Cancel";
 allow = "Allow";
 
 //OnBoarding
-onBoarding_first_logo_key = "Watch cartoons online and offline";
-onBoarding_second_logo_key = "Find your favourite characters";
+onBoarding_first_logo_key = "All your favourite cartoons in one app";
+onBoarding_second_logo_key = "Add to favourites and enjoy offline watching";
 
 //Cartoons flow
 cartoons_screen = "Cartoons";

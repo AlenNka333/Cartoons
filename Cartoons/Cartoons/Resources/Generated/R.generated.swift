@@ -286,6 +286,10 @@ struct R: Rswift.Validatable {
     static let flower = Rswift.ImageResource(bundle: R.hostingBundle, name: "flower")
     /// Image `frozen`.
     static let frozen = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen")
+    /// Image `Ellipse`.
+    static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
+    /// Image `frozen_onBoarding`.
+    static let frozen_onBoarding = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen_onBoarding")
     /// Image `label`.
     static let label = Rswift.ImageResource(bundle: R.hostingBundle, name: "label")
     /// Image `launch_background`.
@@ -302,8 +306,14 @@ struct R: Rswift.Validatable {
     static let profile_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_image")
     /// Image `settings_background`.
     static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
+    /// Image `princess_ariel`.
+    static let princess_ariel = Rswift.ImageResource(bundle: R.hostingBundle, name: "princess_ariel")
+    /// Image `princess_cinderella`.
+    static let princess_cinderella = Rswift.ImageResource(bundle: R.hostingBundle, name: "princess_cinderella")
     /// Image `tree_leave`.
     static let tree_leave = Rswift.ImageResource(bundle: R.hostingBundle, name: "tree_leave")
+    /// Image `tv_model`.
+    static let tv_model = Rswift.ImageResource(bundle: R.hostingBundle, name: "tv_model")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "Ellipse", bundle: ..., traitCollection: ...)`
@@ -344,6 +354,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "frozen", bundle: ..., traitCollection: ...)`
     static func frozen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.frozen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "frozen_onBoarding", bundle: ..., traitCollection: ...)`
+    static func frozen_onBoarding(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.frozen_onBoarding, compatibleWith: traitCollection)
     }
     #endif
 
@@ -404,9 +421,30 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "princess_ariel", bundle: ..., traitCollection: ...)`
+    static func princess_ariel(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.princess_ariel, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "princess_cinderella", bundle: ..., traitCollection: ...)`
+    static func princess_cinderella(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.princess_cinderella, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "tree_leave", bundle: ..., traitCollection: ...)`
     static func tree_leave(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.tree_leave, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tv_model", bundle: ..., traitCollection: ...)`
+    static func tv_model(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tv_model, compatibleWith: traitCollection)
     }
     #endif
 
@@ -479,6 +517,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let choose_from_library = Rswift.StringResource(key: "choose_from_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Add to favourites and enjoy offline watching
+      ///
+      /// Locales: en
+      static let onBoarding_second_logo_key = Rswift.StringResource(key: "onBoarding_second_logo_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: All your favourite cartoons in one app
+      ///
+      /// Locales: en
+      static let onBoarding_first_logo_key = Rswift.StringResource(key: "onBoarding_first_logo_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Error
       ///
       /// Locales: en
@@ -539,6 +585,36 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let onBoarding_first_logo_key = Rswift.StringResource(key: "onBoarding_first_logo_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+
+      /// en translation: Add to favourites and enjoy offline watching
+      ///
+      /// Locales: en
+      static func onBoarding_second_logo_key(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("onBoarding_second_logo_key", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "onBoarding_second_logo_key"
+        }
+
+        return NSLocalizedString("onBoarding_second_logo_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: All your favourite cartoons in one app
+      ///
+      /// Locales: en
+      static func onBoarding_first_logo_key(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("onBoarding_first_logo_key", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "onBoarding_first_logo_key"
+        }
+
+        return NSLocalizedString("onBoarding_first_logo_key", bundle: bundle, comment: "")
+      }
 
       /// en translation: ...offline watching is available
       ///
