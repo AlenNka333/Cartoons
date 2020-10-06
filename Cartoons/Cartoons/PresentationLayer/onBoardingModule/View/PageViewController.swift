@@ -15,28 +15,6 @@ class PageViewController: UIPageViewController {
     var presenter: PageControllerPresenter?
     private var pages = [UIViewController]()
     
-    var skipButton: UIButton = {
-        let button = UIButton()
-        let string = NSAttributedString(string: R.string.localizable.skip(),
-                                        attributes: [NSAttributedString.Key.font:
-                                            UIFont.systemFont(ofSize: 18),
-                                                     .foregroundColor: UIColor.white])
-        let attributedString = NSMutableAttributedString(attributedString: string)
-        button.setAttributedTitle(attributedString, for: .normal)
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.white.cgColor
-        button.addTarget(self, action: #selector(skipButtonAction), for: .touchUpInside)
-        return button
-    }()
-    
-    var contentTextView: UITextView = {
-        let text = UITextView()
-        text.isUserInteractionEnabled = false
-        text.text = "Test"
-        return text
-    }()
-    
     private lazy var pageControl: UIPageControl = {
         let pageC = UIPageControl()
         pageC.frame = CGRect()
@@ -69,29 +47,6 @@ class PageViewController: UIPageViewController {
             $0.width.equalTo(150)
             $0.height.equalTo(50)
         }
-        
-        view.addSubview(contentTextView)
-        contentTextView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        view.addSubview(skipButton)
-        skipButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-10)
-            $0.width.equalTo(100)
-            $0.height.equalTo(30)
-        }
-    }
-}
-
-extension PageViewController {
-    @objc func skipButtonAction() {
-        guard let presenter = self.presenter else {
-            return
-        }
-        presenter.saveUserCame()
-        presenter.showAuthorizationScreen()
     }
 }
 
