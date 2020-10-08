@@ -11,22 +11,22 @@ import Foundation
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
     let firebaseManager: FirebaseManager
-    let router: RouterProtocol
     
-    init(view: SettingsViewProtocol, router: RouterProtocol, manager: FirebaseManager, number: String) {
+    var openAuthorizationClosure: () -> Void = {}
+    
+    init(view: SettingsViewProtocol, firebaseManager: FirebaseManager, number: String) {
         self.view = view
-        self.router = router
-        self.firebaseManager = manager
-        view.setPhoneLabel(number: number)
+        self.firebaseManager = firebaseManager
+        view.showPhoneLabel(number: number)
     }
     
     func showProfileImage() {
         firebaseManager.loadProfileImage { [weak self] result in
             switch result {
             case .failure:
-                self?.view.setDefaultImage()
+                self?.view.showDefaultImage()
             case .success(let path):
-                self?.view.setProfileImage(path: path)
+                self?.view.showProfileImage(path: path)
             }
         }
     }
@@ -34,7 +34,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         firebaseManager.storeUserProfileImage(imageData: imageData) { [weak self] result in
             switch result {
             case .failure(let error):
-                self?.view.setError(error: error)
+                self?.view.showError(error: error)
             case .success:
                 break
             }
@@ -42,30 +42,27 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     }
     func agreeButtonTapped() {
         firebaseManager.signOutUser { [weak self] result in
-            guard let manager = self?.firebaseManager else {
-                return
-            }
             switch result {
             case .success:
-                self?.router.showAuthorizationController(firebaseManager: manager)
+                self?.openAuthorizationClosure()
             case .failure(let error):
-                self?.view.setError(error: error)
+                self?.view.showError(error: error)
             }
         }
     }
     func signOut() {
-        view.setSignOutAlert(message: R.string.localizable.question_to_sign_out())
+        view.showSignOutAlert(message: R.string.localizable.question_to_sign_out())
     }
     func editProfileImage() {
         view.editProfileImage()
     }
     func showPermissionsAlert(error: Error) {
-        view.setPermissionAlert(message: error.localizedDescription)
+        view.showPermissionAlert(message: error.localizedDescription)
     }
     func showSuccess(success: String) {
-        view.setSuccess(success: success)
+        view.showSuccess(success: success)
     }
     func showError(error: Error) {
-        view.setError(error: error)
+        view.showError(error: error)
     }
 }

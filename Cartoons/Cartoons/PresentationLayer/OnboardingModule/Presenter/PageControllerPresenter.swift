@@ -10,18 +10,20 @@ import Foundation
  
 class PageControllerPresenter: PagePresenterProtocol {
     let view: PageViewControllerProtocol
-    let router: RouterProtocol?
     let firebaseManager: FirebaseManager
     
-    init(view: PageViewControllerProtocol, router: RouterProtocol, firebaseManager: FirebaseManager) {
+    var openAuthorizationScreen: () -> Void = {}
+    
+    init(view: PageViewControllerProtocol, firebaseManager: FirebaseManager) {
         self.view = view
-        self.router = router
         self.firebaseManager = firebaseManager
     }
+    
     func saveUserCame() {
         AppData.shouldShowOnBoarding = false
     }
+    
     func showAuthorizationScreen() {
-        router?.showAuthorizationController(firebaseManager: firebaseManager)
+        openAuthorizationScreen()
     }
 }

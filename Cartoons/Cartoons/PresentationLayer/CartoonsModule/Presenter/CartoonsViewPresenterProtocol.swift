@@ -8,7 +8,6 @@
 
 import Foundation
 
-protocol CartoonsViewPresenterProtocol: AnyObject {
-    func showError(error: Error)
+protocol CartoonsViewPresenterProtocol: PresenterProtocol, AnyObject {
     func showSuccess(success: String)
 }

@@ -29,14 +29,14 @@ class ViewController: UIViewController, ViewProtocol {
     func setupNavigationBar() {
     }
     
-    func setError(error: Error) {
+    func showError(error: Error) {
         let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
             return
         }
         present(alertVC, animated: true)
     }
     
-    func startActivityIndicator() {
+    func showActivityIndicator() {
         activityIndicator.style = UIActivityIndicatorView.Style.large
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()

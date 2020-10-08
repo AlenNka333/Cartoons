@@ -8,9 +8,6 @@
 
 import Foundation
 
-protocol VerificationViewProtocol: AnyObject {
-    func setError (error: Error)
+protocol VerificationViewProtocol: ViewProtocol, AnyObject {
     func setLabelText(number: String)
-    func showActivityIndicatorAction()
-    func stopActivityIndicatorAction()
 }

@@ -9,13 +9,13 @@
 import Foundation
 
 class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
-    let view: ViewProtocol
-    let coordinator: CoordinatorProtocol
+    let view: AuthorizationViewProtocol
     let firebaseManager: FirebaseManager
     
-    init(view: ViewProtocol, coordinator: CoordinatorProtocol, firebaseManager: FirebaseManager) {
+    var openVerificationClosure: (String, String) -> Void = { _, _ in }
+    
+    init(view: AuthorizationViewProtocol, firebaseManager: FirebaseManager) {
         self.view = view
-        self.coordinator = coordinator
         self.firebaseManager = firebaseManager
     }
     
@@ -23,12 +23,9 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
         view.showActivityIndicator()
         firebaseManager.sendPhoneNumber(number: number) { [weak self] result in
             self?.view.stopActivityIndicator()
-            guard let manager = self?.firebaseManager else {
-                return
-            }
             switch result {
             case let .success(verificationId):
-                self?.coordinator.showOTPController(verificationId: verificationId, firebaseManager: manager, number: number, animated: true)
+                self?.openVerificationClosure(verificationId, number)
             case .failure(let error):
                 self?.view.showError(error: error)
             }

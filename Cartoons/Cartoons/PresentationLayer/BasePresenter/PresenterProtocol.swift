@@ -9,7 +9,5 @@
 import Foundation
 
 protocol PresenterProtocol {
-    init(view: ViewProtocol, coordinator: CoordinatorProtocol)
-    
     func showError(error: Error)
 }

@@ -23,6 +23,11 @@ class AuthorizationViewController: ViewController {
         self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
     }
     
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     override func setupUI() {
         super.setupUI()
         view.addSubview(appLabelView)
@@ -43,23 +48,24 @@ class AuthorizationViewController: ViewController {
             $0.center.equalToSuperview()
         }
     }
-}
-
-extension AuthorizationViewController: AuthorizationViewProtocol {
-    func showActivityIndicator() {
-        super.startActivityIndicator()
+    
+    override func showActivityIndicator() {
+        super.showActivityIndicator()
         activityIndicator.center = view.center
     }
     
-    func stopActivityIndicatorAction() {
+    override func stopActivityIndicator() {
         super.stopActivityIndicator()
     }
     
-    func showError(error: Error) {
-        super.setError(error: error)
+    override func showError(error: Error) {
+        super.showError(error: error)
         getCodeButton.isEnabled = true
         getCodeButton.backgroundColor = R.color.enabled_button_color()
     }
+}
+
+extension AuthorizationViewController: AuthorizationViewProtocol {
 }
 
 extension AuthorizationViewController {

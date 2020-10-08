@@ -7,13 +7,13 @@
 //
 
 import Foundation
-protocol SettingsViewProtocol: AnyObject {
-    func setPhoneLabel(number: String)
-    func setError (error: Error)
-    func setSuccess(success: String)
-    func setSignOutAlert(message: String)
-    func setPermissionAlert(message: String)
-    func setProfileImage(path: URL?)
-    func setDefaultImage()
+
+protocol SettingsViewProtocol: ViewProtocol, AnyObject {
+    func showPhoneLabel(number: String)
+    func showSuccess(success: String)
+    func showSignOutAlert(message: String)
+    func showPermissionAlert(message: String)
+    func showProfileImage(path: URL?)
+    func showDefaultImage()
     func editProfileImage()
 }

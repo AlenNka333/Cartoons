@@ -7,28 +7,33 @@
 //
 
 import UIKit
-class FavouritesViewController: UIViewController {
+class FavouritesViewController: ViewController {
     var presenter: FavouritesViewPresenterProtocol?
-    let alertService = AlertService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = R.color.main_orange()
+    }
+    
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
         title = R.string.localizable.favourites_screen()
         (navigationController as? BaseNavigationController)?.setSubTitle(title: R.string.localizable.favourites_screen_subtitle())
         (navigationController as? BaseNavigationController)?.setImage(image: R.image.favourites(), isEnabled: false)
     }
+    
+    override func setupUI() {
+        super.setupUI()
+        view.backgroundColor = R.color.main_orange()
+    }
+    
+    override func showError(error: Error) {
+        super.showError(error: error)
+    }
 }
 
 extension FavouritesViewController: FavouritesViewProtocol {
-    func setSuccess(success: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) {_ in
-            return
-        }
-        present(alertVC, animated: true)
-    }
-    func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
+    func showSuccess(success: String) {
+        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) { _ in
             return
         }
         present(alertVC, animated: true)

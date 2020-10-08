@@ -9,22 +9,22 @@
 import Foundation
 
 class VerificationPresenter: VerificationViewPresenterProtocol {
-    let view: VerificationViewProtocol
-    let router: RouterProtocol
-    let verificationId: String
+    var view: VerificationViewProtocol
     let firebaseManager: FirebaseManager
+    let verificationId: String
     let number: String
     
-    init(view: VerificationViewProtocol, router: RouterProtocol, manager: FirebaseManager, verificationId: String, number: String) {
+    var registrationSucceedClosure: (String) -> Void = { _ in }
+    
+    init(view: VerificationViewProtocol, firebaseManager: FirebaseManager, verificationId: String, number: String) {
         self.view = view
-        self.router = router
-        self.firebaseManager = manager
+        self.firebaseManager = firebaseManager
         self.verificationId = verificationId
         self.number = number
         view.setLabelText(number: number)
     }
     func showError(error: Error) {
-        view.setError(error: error)
+        view.showError(error: error)
     }
     func resendVerificationCode() {
         firebaseManager.resendOTPCode(number: number) { [weak self] result in
@@ -32,23 +32,20 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
             case .success:
                 break
             case .failure(let error):
-                self?.view.setError(error: error)
+                self?.view.showError(error: error)
             }
         }
     }
     func verifyUser(verificationCode: String) {
         firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
-            guard let manager = self?.firebaseManager else {
-                return
-            }
             guard let number = self?.number else {
                 return
             }
             switch result {
             case .success:
-                self?.router.showTabBarController(firebaseManager: manager, number: number)
+                self?.registrationSucceedClosure(number)
             case let .failure(error):
-                self?.view.setError(error: error)
+                self?.view.showError(error: error)
             }
         }
     }

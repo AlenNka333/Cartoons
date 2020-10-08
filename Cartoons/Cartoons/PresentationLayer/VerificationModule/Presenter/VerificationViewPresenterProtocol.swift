@@ -8,8 +8,7 @@
 
 import Foundation
 
-protocol VerificationViewPresenterProtocol: AnyObject {
-    func showError(error: Error)
+protocol VerificationViewPresenterProtocol: PresenterProtocol, AnyObject {
     func verifyUser(verificationCode: String)
     func resendVerificationCode()
 }

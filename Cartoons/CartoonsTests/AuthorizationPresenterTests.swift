@@ -10,63 +10,7 @@
 @testable import Cartoons
 import XCTest
 
-class MockView: AuthorizationViewProtocol {
-    
-    var phoneTest: String = "+375298939122"
-    
-    func setError(error: Error) {
-        <#code#>
-    }
-    
-    func showActivityIndicatorAction() {
-        <#code#>
-    }
-    
-    func stopActivityIndicatorAction() {
-        <#code#>
-    }
-    
-}
 
-class MockRouter: RouterProtocol {
-    func start() {
-        <#code#>
-    }
-    
-    func changeRootViewController(with rootViewController: UIViewController) {
-        <#code#>
-    }
-    
-    func showOnBoarding(firebaseManager: FirebaseManager) {
-        <#code#>
-    }
-    
-    func showAuthorizationController(firebaseManager: FirebaseManager) {
-        <#code#>
-    }
-    
-    func showOTPController(verificationId: String, firebaseManager: FirebaseManager, number: String, animated: Bool) {
-        <#code#>
-    }
-    
-    func showTabBarController(firebaseManager: FirebaseManager, number: String) {
-        <#code#>
-    }
-    
-    func popToRoot(animated: Bool) {
-        <#code#>
-    }
-    
-    var assemblyBuilder: AssemblyBuilderProtocol?
-    
-    var navigationController: BaseNavigationController?
-    
-    var onBoarding: UIPageViewController?
-    
-    var tabBarController: UITabBarController?
-    
-    
-}
 
 class MockFirebaseManager: FirebaseManager {
     
@@ -75,23 +19,23 @@ class MockFirebaseManager: FirebaseManager {
 
 class AuthorizationPresenterTests: XCTestCase {
 
-    var view: MockView!
-    var router: MockRouter!
+//    var view: MockView!
+//    var router: MockRouter!
     var manager: MockFirebaseManager!
     var firebaseManager: MockFirebaseManager!
     var presenter: AuthorizationPresenter!
     
     override func setUp() {
-        view = MockView()
-        router = MockRouter()
+//        view = MockView()
+//        router = MockRouter()
         firebaseManager = MockFirebaseManager()
-        presenter = AuthorizationPresenter(view: view, router: router, firebaseManager: firebaseManager)
+//        presenter = AuthorizationPresenter(view: view, router: router, firebaseManager: firebaseManager)
         
     }
     
     override func tearDown() {
-        view = nil
-        router = nil
+//        view = nil
+//        router = nil
         firebaseManager = nil
         presenter = nil
     }

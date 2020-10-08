@@ -1,5 +1,5 @@
 //
-//  VerificationCodeViewController.swift
+//  VerificationViewController.swift
 //  Cartoons
 //
 //  Created by Alena Nesterkina on 9/3/20.
@@ -9,17 +9,15 @@
 import SnapKit
 import UIKit
 
-class VerificationCodeViewController: UIViewController {
+class VerificationViewController: ViewController {
     enum DefaultValues {
         static let totalTime = 60
         static let otpCodeCount = 6
     }
     
     var presenter: VerificationViewPresenterProtocol?
-    let activityIndicator = UIActivityIndicatorView()
     var countdownTimer: Timer?
     var timer = DefaultValues.totalTime
-    let alertService = AlertService()
     
     private lazy var otpCodeTextField = CustomTextField()
     private lazy var resendButton = CustomButton()
@@ -54,8 +52,12 @@ class VerificationCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupToHideKeyboardOnTapOnView()
-        setupUI()
         startTimer()
+    }
+    
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +65,8 @@ class VerificationCodeViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
     }
     
-    private func setupUI() {
+    override func setupUI() {
+        super.setupUI()
         view.addSubview(verificationLabel)
         verificationLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -99,11 +102,29 @@ class VerificationCodeViewController: UIViewController {
             $0.center.equalToSuperview()
         }
     }
+    
+    override func showActivityIndicator() {
+        super.showActivityIndicator()
+        activityIndicator.center = view.center
+    }
+    
+    override func stopActivityIndicator() {
+        super.stopActivityIndicator()
+        activityIndicator.stopAnimating()
+    }
+    
+    override func showError(error: Error) {
+        super.showError(error: error)
+    }
 }
 
-extension VerificationCodeViewController {
+extension VerificationViewController {
     func startTimer() {
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    }
+    
+    func endTimer() {
+        countdownTimer?.invalidate()
     }
     
     @objc func updateTime() {
@@ -115,10 +136,6 @@ extension VerificationCodeViewController {
             resendButton.backgroundColor = R.color.enabled_button_color()
             endTimer()
         }
-    }
-    
-    func endTimer() {
-        countdownTimer?.invalidate()
     }
     
     @objc func textDidChange() {
@@ -145,27 +162,8 @@ extension VerificationCodeViewController {
     }
 }
 
-extension VerificationCodeViewController: VerificationViewProtocol {
+extension VerificationViewController: VerificationViewProtocol {
     func setLabelText(number: String) {
         verificationLabel.text?.append("\n\(number)")
-    }
-    
-    func showActivityIndicatorAction() {
-        activityIndicator.style = UIActivityIndicatorView.Style.large
-        activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
-    }
-    
-    func stopActivityIndicatorAction() {
-        activityIndicator.stopAnimating()
-    }
-    
-    func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
-            return
-        }
-        present(alertVC, animated: true)
     }
 }

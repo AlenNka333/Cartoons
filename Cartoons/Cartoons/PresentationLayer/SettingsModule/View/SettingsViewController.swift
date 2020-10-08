@@ -9,22 +9,19 @@
 import Kingfisher
 import UIKit
 
-class SettingsViewController: UIViewController {
-    let alertService = AlertService()
+class SettingsViewController: ViewController {
     var presenter: SettingsViewPresenterProtocol?
     var imagePicker: ImagePicker?
     
     private lazy var signOutButton: UIButton = CustomButton()
-    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker = ImagePicker(presentationController: self)
-        setupNavigationController()
-        setupUI()
     }
     
-    func setupNavigationController() {
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
         title = R.string.localizable.settings_screen()
         (navigationController as? BaseNavigationController)?.setImage(image: UIImage(), isEnabled: true)
         presenter?.showProfileImage()
@@ -33,7 +30,8 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    func setupUI() {
+    override func setupUI() {
+        super.setupUI()
         view.backgroundColor = R.color.main_pink()
         view.addSubview(signOutButton)
         signOutButton.setTitle(R.string.localizable.sign_out_button(), for: .normal)
@@ -42,10 +40,14 @@ class SettingsViewController: UIViewController {
             $0.center.equalToSuperview()
         }
     }
+    
+    override func showError(error: Error) {
+        super.showError(error: error)
+    }
 }
 
 extension SettingsViewController: SettingsViewProtocol {
-    func setPermissionAlert(message: String) {
+    func showPermissionAlert(message: String) {
         let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
             switch $0 {
                 case .accept:
@@ -71,19 +73,19 @@ extension SettingsViewController: SettingsViewProtocol {
         }
     }
     
-    func setProfileImage(path: URL?) {
+    func showProfileImage(path: URL?) {
         (navigationController as? BaseNavigationController)?.setProfileImage(path: path)
     }
     
-    func setDefaultImage() {
+    func showDefaultImage() {
         (navigationController as? BaseNavigationController)?.setDefaultImage(image: R.image.profile_icon())
     }
     
-    func setPhoneLabel(number: String) {
+    func showPhoneLabel(number: String) {
         title = number
     }
     
-    func setSignOutAlert(message: String) {
+    func showSignOutAlert(message: String) {
         let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
             switch action {
                 case .accept:
@@ -95,13 +97,8 @@ extension SettingsViewController: SettingsViewProtocol {
         present(alertVC, animated: true)
     }
     
-    func setSuccess(success: String) {
+    func showSuccess(success: String) {
         let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success)
-        present(alertVC, animated: true)
-    }
-    
-    func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error)
         present(alertVC, animated: true)
     }
 }

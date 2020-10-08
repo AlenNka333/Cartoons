@@ -14,9 +14,6 @@ class TabBarViewController: UITabBarController {
         setupUI()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .fade }
-    
     func setupUI() {
         tabBar.unselectedItemTintColor = .white
         tabBar.tintColor = R.color.wisteria()
