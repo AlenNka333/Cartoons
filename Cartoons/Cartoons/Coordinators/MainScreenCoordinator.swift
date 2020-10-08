@@ -17,27 +17,15 @@ class MainScreenCoordinator: MainScreenCoordinatorProtocol {
     var successUserSession: () -> Void = {}
     
     init(number: String) {
-        self.root = TabBarViewController()
         self.number = number
         self.window = UIApplication.shared.windows.first { $0.isKeyWindow }
+        self.root = UIViewController()
     }
     
     func start() {
-        var controllers = [UIViewController]()
-        let cartoons = CartoonsAssembly.makeCartoonsController()
-        let favourites = FavouritesAssembly.makeFavouritesController()
-        
-        let settings = SettingsAssembly.makeSettingsController()
-        let presenter = SettingsPresenter(view: (settings as? SettingsViewController)!, firebaseManager: firebaseManager, number: number)
-        presenter.openAuthorizationClosure = { [weak self] in
-            self?.successUserSession()
-        }
-        (settings as? SettingsViewController)?.presenter = presenter
-        
-        controllers.append(cartoons)
-        controllers.append(favourites)
-        controllers.append(settings)
-        (self.root as? TabBarViewController)?.viewControllers = controllers
+        root = MainScreenAssembly.makeTabBarController(number: number, firebaseManager: firebaseManager, completion: {
+            self.successUserSession()
+        })
         guard let window = window else {
             return
         }

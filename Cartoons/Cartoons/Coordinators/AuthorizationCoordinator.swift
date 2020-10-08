@@ -21,8 +21,8 @@ class AuthorizationCoordinator: AuthorizationCoordinatorProtocol {
     func start() {
         let view = AuthorizationAssembly.makeAuthorizationController()
         let presenter = AuthorizationPresenter(view: view, firebaseManager: firebaseManager)
-        presenter.openVerificationClosure = { [weak self] verificationId, number in
-            self?.openVerificationScreen(verificationId: verificationId, number: number)
+        presenter.openVerificationClosure = { verificationId, number in
+            self.openVerificationScreen(verificationId: verificationId, number: number)
         }
         view.presenter = presenter
         (root as? UINavigationController)?.pushViewController(view, animated: true)
@@ -34,8 +34,8 @@ class AuthorizationCoordinator: AuthorizationCoordinatorProtocol {
                                               firebaseManager: firebaseManager,
                                               verificationId: verificationId,
                                               number: number)
-        presenter.registrationSucceedClosure = { [weak self] number in
-            self?.registrationSucceededClosure(number)
+        presenter.registrationSucceedClosure = { number in
+            self.registrationSucceededClosure(number)
         }
         view.presenter = presenter
         (root as? UINavigationController)?.pushViewController(view, animated: true)

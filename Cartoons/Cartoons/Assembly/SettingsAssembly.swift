@@ -9,10 +9,15 @@
 import UIKit
 
 class SettingsAssembly: Assembly {
-    static func makeSettingsController() -> UIViewController {
+    static func makeSettingsController(number: String, firebaseManager: FirebaseManager, completion: @escaping(() -> Void)) -> UIViewController {
         let view = SettingsViewController()
+        let presenter = SettingsPresenter(view: view, firebaseManager: firebaseManager, number: number)
+        presenter.openAuthorizationClosure = {
+            completion()
+        }
+        view.presenter = presenter
         let navigation = BaseNavigationController(rootViewController: view)
-        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.favourites_screen(), image: R.image.clapperboard(), tag: 0)
+        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.favourites_screen(), image: R.image.flower(), tag: 0)
         return navigation
     }
 }

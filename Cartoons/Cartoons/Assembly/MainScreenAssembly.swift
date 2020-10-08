@@ -13,8 +13,15 @@ class MainScreenAssembly: Assembly {
         return MainScreenCoordinator(number: number)
     }
     
-    static func makeTabBarController() -> TabBarViewController {
-        let view = TabBarViewController()
+    static func makeTabBarController(number: String, firebaseManager: FirebaseManager, completion: @escaping(() -> Void)) -> TabBarViewController {
+        var controllers = [UIViewController]()
+        controllers.append(CartoonsAssembly.makeCartoonsController())
+        controllers.append(FavouritesAssembly.makeFavouritesController())
+        let settings = SettingsAssembly.makeSettingsController(number: number, firebaseManager: firebaseManager) {
+            completion()
+        }
+        controllers.append(settings)
+        let view = TabBarViewController(controllers: controllers)
         return view
     }
 }

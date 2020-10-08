@@ -14,7 +14,7 @@ class FavouritesAssembly: Assembly {
         let presenter = FavouritesPresenter(view: view)
         view.presenter = presenter
         let navigation = BaseNavigationController(rootViewController: view)
-        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.favourites_screen(), image: R.image.clapperboard(), tag: 0)
+        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.favourites_screen(), image: R.image.crown(), tag: 0)
         return navigation
     }
 }

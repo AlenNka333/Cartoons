@@ -45,8 +45,8 @@ class RootCoordinator: CoordinatorProtocol {
     
     func showAuthorizationScreen() {
         let authCoordinator = AuthorizationAssembly.makeAuthorizationCoordinator()
-        authCoordinator.registrationSucceededClosure = { [weak self] number in
-            self?.showMainScreen()
+        authCoordinator.registrationSucceededClosure = { number in
+            self.showMainScreen()
         }
         authCoordinator.start()
         window?.rootViewController = authCoordinator.root
@@ -56,8 +56,8 @@ class RootCoordinator: CoordinatorProtocol {
     func showMainScreen() {
         let number = firebaseManager.getUserInfo()
         let mainCoordinator = MainScreenAssembly.makeMainScreenCoordinator(number: number.unwrapped)
-        mainCoordinator.successUserSession = { [weak self] in
-            self?.showOnboarding()
+        mainCoordinator.successUserSession = {
+            self.showAuthorizationScreen()
         }
         mainCoordinator.start()
         window?.rootViewController = mainCoordinator.root
