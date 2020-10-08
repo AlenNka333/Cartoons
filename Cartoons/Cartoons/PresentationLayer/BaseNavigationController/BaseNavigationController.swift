@@ -13,6 +13,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     private enum Const {
         static let titleSize: CGFloat = 40
         static let subtitleSize: CGFloat = 14
+        static let bottomOffset: CGFloat = -16
     }
     
     var imageAction: (() -> Void)?
@@ -65,7 +66,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         imageView.snp.makeConstraints {
             $0.height.width.equalTo(70)
             $0.trailing.equalToSuperview().offset(-20)
-            $0.bottom.equalToSuperview().offset(-15)
+            $0.bottom.equalToSuperview().offset(Const.bottomOffset)
         }
     }
 }
