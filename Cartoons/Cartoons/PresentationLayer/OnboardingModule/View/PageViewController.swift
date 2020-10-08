@@ -72,11 +72,10 @@ extension PageViewController: UIPageViewControllerDelegate {
 extension PageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let viewControllerIndex = self.pages.firstIndex(of: viewController) {
-            if viewControllerIndex == 0 {
-                return pages.last
-            } else {
+            if viewControllerIndex > 0 {
                 return pages[viewControllerIndex - 1]
             }
+           return nil
         }
         return nil
     }
@@ -88,10 +87,9 @@ extension PageViewController: UIPageViewControllerDataSource {
         if let viewControllerIndex = self.pages.firstIndex(of: viewController) {
             if viewControllerIndex < pages.count - 1 {
                 return pages[viewControllerIndex + 1]
-            } else {
-                presenter.saveUserCame()
-                presenter.showAuthorizationScreen()
             }
+            presenter.saveUserCame()
+            presenter.showAuthorizationScreen()
         }
         return nil
     }
