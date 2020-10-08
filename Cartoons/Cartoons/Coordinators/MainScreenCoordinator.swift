@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainScreenCoordinator: MainScreenCoordinatorProtocol {
+class MainScreenCoordinator: CoordinatorProtocol {
     var root: UIViewController
     let number: String
     let window: UIWindow?

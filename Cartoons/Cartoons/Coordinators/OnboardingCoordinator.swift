@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OnboardingCoordinator: OnboardingCoordinatorProtocol {
+class OnboardingCoordinator: CoordinatorProtocol {
     let firebaseManager = FirebaseManager()
     var root: UIViewController
     var successOnboardingSession: (() -> Void)?

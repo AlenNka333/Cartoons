@@ -13,11 +13,9 @@
 		330F4DFA252EEFDC008D0FC8 /* MainScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4DF9252EEFDC008D0FC8 /* MainScreenAssembly.swift */; };
 		330F4DFF252EF697008D0FC8 /* CartoonsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4DFE252EF697008D0FC8 /* CartoonsAssembly.swift */; };
 		330F4E02252EF74D008D0FC8 /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E01252EF74D008D0FC8 /* MainScreenCoordinator.swift */; };
-		330F4E05252EF76F008D0FC8 /* MainScreenCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E04252EF76F008D0FC8 /* MainScreenCoordinatorProtocol.swift */; };
 		330F4E09252F0110008D0FC8 /* FavouritesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E08252F0110008D0FC8 /* FavouritesAssembly.swift */; };
 		330F4E0D252F073D008D0FC8 /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E0C252F073D008D0FC8 /* SettingsAssembly.swift */; };
 		330F4E10252F0D9B008D0FC8 /* OnboardingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E0F252F0D9B008D0FC8 /* OnboardingAssembly.swift */; };
-		330F4E13252F0E41008D0FC8 /* OnboardingCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E12252F0E41008D0FC8 /* OnboardingCoordinatorProtocol.swift */; };
 		330F4E16252F0E84008D0FC8 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E15252F0E84008D0FC8 /* OnboardingCoordinator.swift */; };
 		3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3312EDE824FE859F00158EB6 /* Localizable.strings */; };
 		332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C2251896CF00EF56B8 /* FavouritesViewController.swift */; };
@@ -50,7 +48,6 @@
 		334A51E2252DB9C3003BCF59 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51E1252DB9C3003BCF59 /* Assembly.swift */; };
 		334A51EB252DBAA2003BCF59 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51EA252DBAA2003BCF59 /* RootAssembly.swift */; };
 		334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51EE252DC007003BCF59 /* AuthorizationCoordinator.swift */; };
-		334A51F3252DC0FB003BCF59 /* AuthorizationCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51F2252DC0FB003BCF59 /* AuthorizationCoordinatorProtocol.swift */; };
 		334A51F6252DC742003BCF59 /* AuthorizationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51F5252DC742003BCF59 /* AuthorizationAssembly.swift */; };
 		3373D945250F588A0095F78C /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D944250F588A0095F78C /* PageViewController.swift */; };
 		3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */; };
@@ -122,11 +119,9 @@
 		330F4DF9252EEFDC008D0FC8 /* MainScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenAssembly.swift; sourceTree = "<group>"; };
 		330F4DFE252EF697008D0FC8 /* CartoonsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonsAssembly.swift; sourceTree = "<group>"; };
 		330F4E01252EF74D008D0FC8 /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
-		330F4E04252EF76F008D0FC8 /* MainScreenCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		330F4E08252F0110008D0FC8 /* FavouritesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesAssembly.swift; sourceTree = "<group>"; };
 		330F4E0C252F073D008D0FC8 /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
 		330F4E0F252F0D9B008D0FC8 /* OnboardingAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAssembly.swift; sourceTree = "<group>"; };
-		330F4E12252F0E41008D0FC8 /* OnboardingCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		330F4E15252F0E84008D0FC8 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		3312EDE724FE859F00158EB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		332227C2251896CF00EF56B8 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
@@ -160,7 +155,6 @@
 		334A51E1252DB9C3003BCF59 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		334A51EA252DBAA2003BCF59 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		334A51EE252DC007003BCF59 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
-		334A51F2252DC0FB003BCF59 /* AuthorizationCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		334A51F5252DC742003BCF59 /* AuthorizationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAssembly.swift; sourceTree = "<group>"; };
 		33710661943FC0E3F567D415 /* Pods-CartoonsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CartoonsTests.release.xcconfig"; path = "Target Support Files/Pods-CartoonsTests/Pods-CartoonsTests.release.xcconfig"; sourceTree = "<group>"; };
 		3373D944250F588A0095F78C /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -423,9 +417,6 @@
 			isa = PBXGroup;
 			children = (
 				334A51C8252CAA53003BCF59 /* CoordinatorProtocol.swift */,
-				334A51F2252DC0FB003BCF59 /* AuthorizationCoordinatorProtocol.swift */,
-				330F4E04252EF76F008D0FC8 /* MainScreenCoordinatorProtocol.swift */,
-				330F4E12252F0E41008D0FC8 /* OnboardingCoordinatorProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1048,7 +1039,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				334A51D4252CD780003BCF59 /* ViewProtocol.swift in Sources */,
-				330F4E05252EF76F008D0FC8 /* MainScreenCoordinatorProtocol.swift in Sources */,
 				332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */,
 				332BA3532506014B008A8F29 /* FirebaseManager.swift in Sources */,
 				3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */,
@@ -1056,7 +1046,6 @@
 				33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */,
 				33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */,
 				33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */,
-				334A51F3252DC0FB003BCF59 /* AuthorizationCoordinatorProtocol.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
 				3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */,
 				33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */,
@@ -1069,7 +1058,6 @@
 				3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */,
 				339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */,
 				332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */,
-				330F4E13252F0E41008D0FC8 /* OnboardingCoordinatorProtocol.swift in Sources */,
 				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
 				330F4E09252F0110008D0FC8 /* FavouritesAssembly.swift in Sources */,
 				332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */,

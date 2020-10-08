@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AuthorizationCoordinator: AuthorizationCoordinatorProtocol {
+class AuthorizationCoordinator: CoordinatorProtocol {
     let firebaseManager = FirebaseManager()
     
     var root: UIViewController
