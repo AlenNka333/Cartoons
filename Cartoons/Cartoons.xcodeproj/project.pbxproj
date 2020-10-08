@@ -404,7 +404,7 @@
 		334A5131252B441D003BCF59 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				334A51C7252CAA3C003BCF59 /* Protocols */,
+				334A51C7252CAA3C003BCF59 /* Protocol */,
 				334A5132252B4433003BCF59 /* RootCoordinator.swift */,
 				334A51EE252DC007003BCF59 /* AuthorizationCoordinator.swift */,
 				330F4E01252EF74D008D0FC8 /* MainScreenCoordinator.swift */,
@@ -413,12 +413,12 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
-		334A51C7252CAA3C003BCF59 /* Protocols */ = {
+		334A51C7252CAA3C003BCF59 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
 				334A51C8252CAA53003BCF59 /* CoordinatorProtocol.swift */,
 			);
-			path = Protocols;
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		334A51D2252CD76C003BCF59 /* BaseViewController */ = {

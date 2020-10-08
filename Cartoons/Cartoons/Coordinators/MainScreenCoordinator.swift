@@ -23,7 +23,9 @@ class MainScreenCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        root = MainScreenAssembly.makeTabBarController(number: number, firebaseManager: firebaseManager, completion: {
+        root = MainScreenAssembly.makeTabBarController(number: number,
+                                                       firebaseManager: firebaseManager,
+                                                       completion: {
             self.successUserSession()
         })
         guard let window = window else {

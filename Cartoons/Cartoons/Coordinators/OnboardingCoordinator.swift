@@ -14,11 +14,15 @@ class OnboardingCoordinator: CoordinatorProtocol {
     var successOnboardingSession: (() -> Void)?
     
     init() {
-        self.root = OnboardingAssembly.makeOnboardingController()
+        self.root = UIViewController()
     }
     
     func start() {
-        let presenter = PageControllerPresenter(view: (root as? PageViewController)!, firebaseManager: firebaseManager)
+        root = OnboardingAssembly.makeOnboardingController()
+        guard let view = (root as? PageViewController) else {
+            return
+        }
+        let presenter = PageControllerPresenter(view: view, firebaseManager: firebaseManager)
         presenter.openAuthorizationScreen = {
             self.successOnboardingSession?()
         }

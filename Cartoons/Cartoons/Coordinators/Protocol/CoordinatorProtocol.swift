@@ -10,5 +10,6 @@ import UIKit
 
 protocol CoordinatorProtocol {
     var root: UIViewController { get set }
+    
     func start()
 }
