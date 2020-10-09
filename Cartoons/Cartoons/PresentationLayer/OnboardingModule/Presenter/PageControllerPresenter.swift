@@ -10,13 +10,11 @@ import Foundation
  
 class PageControllerPresenter: PagePresenterProtocol {
     let view: PageViewControllerProtocol
-    let firebaseManager: FirebaseManager
     
     var openAuthorizationScreen: () -> Void = {}
     
-    init(view: PageViewControllerProtocol, firebaseManager: FirebaseManager) {
+    init(view: PageViewControllerProtocol) {
         self.view = view
-        self.firebaseManager = firebaseManager
     }
     
     func saveUserCame() {

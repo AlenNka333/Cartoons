@@ -10,18 +10,20 @@ import Foundation
 
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
-    let firebaseManager: FirebaseManager
+    let storageService: StorageDataService
+    let authorizationService: AuthorizationService
     
     var openAuthorizationClosure: () -> Void = {}
     
-    init(view: SettingsViewProtocol, firebaseManager: FirebaseManager, number: String) {
+    init(view: SettingsViewProtocol, storageService: StorageDataService, authorizationService: AuthorizationService, number: String) {
         self.view = view
-        self.firebaseManager = firebaseManager
+        self.storageService = storageService
+        self.authorizationService = authorizationService
         view.showPhoneLabel(number: number)
     }
     
     func showProfileImage() {
-        firebaseManager.loadProfileImage { [weak self] result in
+        storageService.loadImage { [weak self] result in
             switch result {
             case .failure:
                 self?.view.showDefaultImage()
@@ -31,7 +33,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         }
     }
     func saveProfileImage(imageData: Data) {
-        firebaseManager.storeUserProfileImage(imageData: imageData) { [weak self] result in
+        storageService.saveImage(imageData: imageData) { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.view.showError(error: error)
@@ -41,7 +43,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         }
     }
     func agreeButtonTapped() {
-        firebaseManager.signOutUser { [weak self] result in
+        authorizationService.signOut { [weak self] result in
             switch result {
             case .success:
                 self?.openAuthorizationClosure()

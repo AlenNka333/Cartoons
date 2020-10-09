@@ -9,7 +9,7 @@
 import UIKit
 
 class AuthorizationCoordinator: CoordinatorProtocol {
-    let firebaseManager = FirebaseManager()
+    let authorizationService = AuthorizationService()
     
     var root: UIViewController
     var registrationSucceededClosure: (String) -> Void = { _ in }
@@ -17,10 +17,14 @@ class AuthorizationCoordinator: CoordinatorProtocol {
     init() {
         self.root = UINavigationController()
     }
+    
+    deinit {
+        print("Auth deinit")
+    }
         
     func start() {
         let view = AuthorizationAssembly.makeAuthorizationController()
-        let presenter = AuthorizationPresenter(view: view, firebaseManager: firebaseManager)
+        let presenter = AuthorizationPresenter(view: view, authorizationService: authorizationService)
         presenter.openVerificationClosure = { verificationId, number in
             self.openVerificationScreen(verificationId: verificationId, number: number)
         }
@@ -31,7 +35,7 @@ class AuthorizationCoordinator: CoordinatorProtocol {
     func openVerificationScreen(verificationId: String, number: String) {
         let view = AuthorizationAssembly.makeVerificationController()
         let presenter = VerificationPresenter(view: view,
-                                              firebaseManager: firebaseManager,
+                                              authorizationService: authorizationService,
                                               verificationId: verificationId,
                                               number: number)
         presenter.registrationSucceedClosure = { number in

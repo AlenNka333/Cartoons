@@ -9,7 +9,6 @@
 import UIKit
 
 class OnboardingCoordinator: CoordinatorProtocol {
-    let firebaseManager = FirebaseManager()
     var root: UIViewController
     var successOnboardingSession: (() -> Void)?
     
@@ -17,12 +16,16 @@ class OnboardingCoordinator: CoordinatorProtocol {
         self.root = UIViewController()
     }
     
+    deinit {
+        print("onboarding deinit")
+    }
+    
     func start() {
         root = OnboardingAssembly.makeOnboardingController()
         guard let view = (root as? PageViewController) else {
             return
         }
-        let presenter = PageControllerPresenter(view: view, firebaseManager: firebaseManager)
+        let presenter = PageControllerPresenter(view: view)
         presenter.openAuthorizationScreen = {
             self.successOnboardingSession?()
         }

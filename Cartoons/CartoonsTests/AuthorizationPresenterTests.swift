@@ -12,7 +12,7 @@ import XCTest
 
 
 
-class MockFirebaseManager: FirebaseManager {
+class MockFirebaseManager: FirebaseService {
     
 }
 

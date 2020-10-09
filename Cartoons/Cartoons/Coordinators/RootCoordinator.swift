@@ -11,7 +11,8 @@ import UIKit
 
 class RootCoordinator: CoordinatorProtocol {
     var root: UIViewController
-    let firebaseManager = FirebaseManager()
+    let authorizationService = AuthorizationService()
+    let userService = UserDataService()
     fileprivate var window: UIWindow?
     
     init(window: UIWindow?) {
@@ -20,11 +21,15 @@ class RootCoordinator: CoordinatorProtocol {
         self.window?.rootViewController = root
     }
     
+    deinit {
+        print("Deinit Root")
+    }
+    
     func start() {
         if AppData.shouldShowOnBoarding {
             showOnboarding()
         } else {
-            if firebaseManager.shouldAuthorize {
+            if authorizationService.shouldAuthorize {
                 showAuthorizationScreen()
             } else {
                 showMainScreen()
@@ -71,7 +76,7 @@ class RootCoordinator: CoordinatorProtocol {
         guard let window = window else {
             return
         }
-        let number = firebaseManager.getUserInfo()
+        let number = userService.userPhoneNumber
         let mainCoordinator = MainScreenAssembly.makeMainScreenCoordinator(number: number.unwrapped)
         mainCoordinator.successUserSession = {
             self.showAuthorizationScreen()

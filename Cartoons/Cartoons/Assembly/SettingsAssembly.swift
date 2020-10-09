@@ -9,9 +9,9 @@
 import UIKit
 
 class SettingsAssembly: Assembly {
-    static func makeSettingsController(number: String, firebaseManager: FirebaseManager, completion: @escaping(() -> Void)) -> UIViewController {
+    static func makeSettingsController(number: String, storageService: StorageDataService, authorizationService: AuthorizationService, completion: @escaping(() -> Void)) -> UIViewController {
         let view = SettingsViewController()
-        let presenter = SettingsPresenter(view: view, firebaseManager: firebaseManager, number: number)
+        let presenter = SettingsPresenter(view: view, storageService: storageService, authorizationService: authorizationService, number: number)
         presenter.openAuthorizationClosure = {
             completion()
         }

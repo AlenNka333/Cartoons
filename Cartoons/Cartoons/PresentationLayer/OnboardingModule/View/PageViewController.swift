@@ -30,6 +30,10 @@ class PageViewController: UIPageViewController {
         self.setViewControllers([pages[Constants.initialPage]], direction: .forward, animated: true, completion: nil)
     }
     
+    deinit {
+        print("onboarding deinit")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

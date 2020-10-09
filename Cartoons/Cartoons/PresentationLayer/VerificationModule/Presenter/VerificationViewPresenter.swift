@@ -10,15 +10,15 @@ import Foundation
 
 class VerificationPresenter: VerificationViewPresenterProtocol {
     var view: VerificationViewProtocol
-    let firebaseManager: FirebaseManager
+    let authorizationService: AuthorizationService
     let verificationId: String
     let number: String
     
     var registrationSucceedClosure: (String) -> Void = { _ in }
     
-    init(view: VerificationViewProtocol, firebaseManager: FirebaseManager, verificationId: String, number: String) {
+    init(view: VerificationViewProtocol, authorizationService: AuthorizationService, verificationId: String, number: String) {
         self.view = view
-        self.firebaseManager = firebaseManager
+        self.authorizationService = authorizationService
         self.verificationId = verificationId
         self.number = number
         view.setLabelText(number: number)
@@ -27,7 +27,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         view.showError(error: error)
     }
     func resendVerificationCode() {
-        firebaseManager.resendOTPCode(number: number) { [weak self] result in
+        authorizationService.verifyUser(number: number) { [weak self] result in
             switch result {
             case .success:
                 break
@@ -37,7 +37,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         }
     }
     func verifyUser(verificationCode: String) {
-        firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
+        authorizationService.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             guard let number = self?.number else {
                 return
             }

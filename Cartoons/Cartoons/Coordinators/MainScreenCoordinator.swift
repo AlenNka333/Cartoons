@@ -12,7 +12,8 @@ class MainScreenCoordinator: CoordinatorProtocol {
     var root: UIViewController
     let number: String
     let window: UIWindow?
-    let firebaseManager = FirebaseManager()
+    let storageService = StorageDataService()
+    let authorizationService = AuthorizationService()
     
     var successUserSession: () -> Void = {}
     
@@ -22,9 +23,14 @@ class MainScreenCoordinator: CoordinatorProtocol {
         self.root = UIViewController()
     }
     
+    deinit {
+        print("Main deinit")
+    }
+    
     func start() {
         root = MainScreenAssembly.makeTabBarController(number: number,
-                                                       firebaseManager: firebaseManager,
+                                                       storageService: storageService,
+                                                       authorizationService: authorizationService,
                                                        completion: {
             self.successUserSession()
         })
