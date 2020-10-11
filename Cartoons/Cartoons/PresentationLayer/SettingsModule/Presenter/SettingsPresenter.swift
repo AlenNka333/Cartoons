@@ -10,12 +10,12 @@ import Foundation
 
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
-    let storageService: StorageDataService
-    let authorizationService: AuthorizationService
+    let storageService: StorageDataServiceProtocol
+    let authorizationService: AuthorizationServiceProtocol
     
     var openAuthorizationClosure: () -> Void = {}
     
-    init(view: SettingsViewProtocol, storageService: StorageDataService, authorizationService: AuthorizationService, number: String) {
+    init(view: SettingsViewProtocol, storageService: StorageDataServiceProtocol, authorizationService: AuthorizationServiceProtocol, number: String) {
         self.view = view
         self.storageService = storageService
         self.authorizationService = authorizationService

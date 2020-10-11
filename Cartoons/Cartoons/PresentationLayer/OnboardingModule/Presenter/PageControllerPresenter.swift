@@ -16,11 +16,6 @@ class PageControllerPresenter: PagePresenterProtocol {
     init(view: PageViewControllerProtocol) {
         self.view = view
     }
-    
-    func saveUserCame() {
-        AppData.shouldShowOnBoarding = false
-    }
-    
     func showAuthorizationScreen() {
         openAuthorizationScreen()
     }

@@ -92,7 +92,6 @@ extension PageViewController: UIPageViewControllerDataSource {
             if viewControllerIndex < pages.count - 1 {
                 return pages[viewControllerIndex + 1]
             }
-            presenter.saveUserCame()
             presenter.showAuthorizationScreen()
         }
         return nil

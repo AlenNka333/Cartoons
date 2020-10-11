@@ -10,13 +10,13 @@ import Foundation
 
 class VerificationPresenter: VerificationViewPresenterProtocol {
     var view: VerificationViewProtocol
-    let authorizationService: AuthorizationService
+    let authorizationService: AuthorizationServiceProtocol
     let verificationId: String
     let number: String
     
-    var registrationSucceedClosure: (String) -> Void = { _ in }
+    var registrationSucceedClosure: () -> Void = {}
     
-    init(view: VerificationViewProtocol, authorizationService: AuthorizationService, verificationId: String, number: String) {
+    init(view: VerificationViewProtocol, authorizationService: AuthorizationServiceProtocol, verificationId: String, number: String) {
         self.view = view
         self.authorizationService = authorizationService
         self.verificationId = verificationId
@@ -38,12 +38,9 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
     func verifyUser(verificationCode: String) {
         authorizationService.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
-            guard let number = self?.number else {
-                return
-            }
             switch result {
             case .success:
-                self?.registrationSucceedClosure(number)
+                self?.registrationSucceedClosure()
             case let .failure(error):
                 self?.view.showError(error: error)
             }

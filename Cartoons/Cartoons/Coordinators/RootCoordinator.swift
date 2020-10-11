@@ -10,66 +10,73 @@ import Foundation
 import UIKit
 
 class RootCoordinator: CoordinatorProtocol {
-    var root: UIViewController
     let authorizationService = AuthorizationService()
     let userService = UserDataService()
+    
+    var child: CoordinatorProtocol?
+    var root: UIViewController
+    var parent: CoordinatorProtocol?
     fileprivate var window: UIWindow?
     
     init(window: UIWindow?) {
-        self.root = UINavigationController()
         self.window = window
-        self.window?.rootViewController = root
-    }
-    
-    deinit {
-        print("Deinit Root")
+        self.root = UINavigationController()
+        window?.rootViewController = root
+        window?.makeKeyAndVisible()
     }
     
     func start() {
-        if AppData.shouldShowOnBoarding {
-            showOnboarding()
-        } else {
-            if authorizationService.shouldAuthorize {
-                showAuthorizationScreen()
-            } else {
-                showMainScreen()
-            }
-        }
-        self.window?.makeKeyAndVisible()
+        AppData.shouldShowOnBoarding
+            ? showOnboarding()
+            : authorizationService.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
     }
     
+    func setChild(_ coordinator: CoordinatorProtocol?) {
+        if child != nil {
+            removeChild()
+        }
+        coordinator?.parent = self
+        child = coordinator
+    }
+    
+    func removeChild() {
+        guard let child = child else {
+            return
+        }
+        
+        child.removeParent()
+        self.child = nil
+    }
+}
+
+extension RootCoordinator {
     func showOnboarding() {
         guard let window = window else {
             return
         }
-        let onboardingCoordinator = OnboardingAssembly.makeOnboardingCoordinator()
-        onboardingCoordinator.successOnboardingSession = {
-            self.showAuthorizationScreen()
+        let coordinator = OnboardingAssembly.makeOnboardingCoordinator()
+        coordinator.successOnboardingSession = { [weak self] in
+            AppData.shouldShowOnBoarding = false
+            self?.showAuthorizationScreen()
         }
-        onboardingCoordinator.start()
-        window.rootViewController = onboardingCoordinator.root
-        UIView.transition(with: window,
-                          duration: 0.3,
-                          options: .transitionCrossDissolve,
-                          animations: nil,
-                          completion: nil)
+        coordinator.start()
+        setChild(coordinator)
+        window.rootViewController = coordinator.root
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
     
     func showAuthorizationScreen() {
         guard let window = window else {
             return
         }
-        let authCoordinator = AuthorizationAssembly.makeAuthorizationCoordinator()
-        authCoordinator.registrationSucceededClosure = { number in
-            self.showMainScreen()
+        let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator()
+        coordinator.registrationSucceededClosure = { [weak self] in
+            self?.showMainScreen()
         }
-        authCoordinator.start()
-        window.rootViewController = authCoordinator.root
-        UIView.transition(with: window,
-                          duration: 0.3,
-                          options: .transitionCrossDissolve,
-                          animations: nil,
-                          completion: nil)
+        coordinator.start()
+        setChild(coordinator)
+        window.rootViewController = coordinator.root
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
     
     func showMainScreen() {
@@ -77,16 +84,13 @@ class RootCoordinator: CoordinatorProtocol {
             return
         }
         let number = userService.userPhoneNumber
-        let mainCoordinator = MainScreenAssembly.makeMainScreenCoordinator(number: number.unwrapped)
-        mainCoordinator.successUserSession = {
-            self.showAuthorizationScreen()
+        let coordinator = MainScreenAssembly.makeMainScreenCoordinator(number: number.unwrapped)
+        coordinator.successUserSession = { [weak self] in
+            self?.showAuthorizationScreen()
         }
-        mainCoordinator.start()
-        window.rootViewController = mainCoordinator.root
-        UIView.transition(with: window,
-                          duration: 0.3,
-                          options: .transitionCrossDissolve,
-                          animations: nil,
-                          completion: nil)
+        coordinator.start()
+        setChild(coordinator)
+        window.rootViewController = coordinator.root
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
 }

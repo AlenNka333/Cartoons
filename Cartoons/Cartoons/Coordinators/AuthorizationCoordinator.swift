@@ -11,19 +11,16 @@ import UIKit
 class AuthorizationCoordinator: CoordinatorProtocol {
     let authorizationService = AuthorizationService()
     
+    var parent: CoordinatorProtocol?
     var root: UIViewController
-    var registrationSucceededClosure: (String) -> Void = { _ in }
+    var registrationSucceededClosure: () -> Void = {}
     
     init() {
         self.root = UINavigationController()
     }
     
-    deinit {
-        print("Auth deinit")
-    }
-        
     func start() {
-        let view = AuthorizationAssembly.makeAuthorizationController()
+       let view = AuthorizationAssembly.makeAuthorizationController()
         let presenter = AuthorizationPresenter(view: view, authorizationService: authorizationService)
         presenter.openVerificationClosure = { verificationId, number in
             self.openVerificationScreen(verificationId: verificationId, number: number)
@@ -38,8 +35,8 @@ class AuthorizationCoordinator: CoordinatorProtocol {
                                               authorizationService: authorizationService,
                                               verificationId: verificationId,
                                               number: number)
-        presenter.registrationSucceedClosure = { number in
-            self.registrationSucceededClosure(number)
+        presenter.registrationSucceedClosure = { [weak self] in
+            self?.registrationSucceededClosure()
         }
         view.presenter = presenter
         (root as? UINavigationController)?.pushViewController(view, animated: true)

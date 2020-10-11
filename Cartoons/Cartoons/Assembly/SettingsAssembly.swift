@@ -9,7 +9,10 @@
 import UIKit
 
 class SettingsAssembly: Assembly {
-    static func makeSettingsController(number: String, storageService: StorageDataService, authorizationService: AuthorizationService, completion: @escaping(() -> Void)) -> UIViewController {
+    static func makeSettingsController(number: String,
+                                       storageService: StorageDataService,
+                                       authorizationService: AuthorizationService,
+                                       completion: @escaping(() -> Void)) -> UIViewController {
         let view = SettingsViewController()
         let presenter = SettingsPresenter(view: view, storageService: storageService, authorizationService: authorizationService, number: number)
         presenter.openAuthorizationClosure = {

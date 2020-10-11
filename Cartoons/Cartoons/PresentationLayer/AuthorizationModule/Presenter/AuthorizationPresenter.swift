@@ -10,11 +10,11 @@ import Foundation
 
 class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     let view: AuthorizationViewProtocol
-    let authorizationService: AuthorizationService
+    let authorizationService: AuthorizationServiceProtocol
     
     var openVerificationClosure: (String, String) -> Void = { _, _ in }
     
-    init(view: AuthorizationViewProtocol, authorizationService: AuthorizationService) {
+    init(view: AuthorizationViewProtocol, authorizationService: AuthorizationServiceProtocol) {
         self.view = view
         self.authorizationService = authorizationService
     }

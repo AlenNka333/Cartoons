@@ -9,15 +9,12 @@
 import UIKit
 
 class OnboardingCoordinator: CoordinatorProtocol {
+    var parent: CoordinatorProtocol?
     var root: UIViewController
     var successOnboardingSession: (() -> Void)?
     
     init() {
         self.root = UIViewController()
-    }
-    
-    deinit {
-        print("onboarding deinit")
     }
     
     func start() {
@@ -26,9 +23,9 @@ class OnboardingCoordinator: CoordinatorProtocol {
             return
         }
         let presenter = PageControllerPresenter(view: view)
-        presenter.openAuthorizationScreen = {
-            self.successOnboardingSession?()
+        presenter.openAuthorizationScreen = { [weak self] in
+            self?.successOnboardingSession?()
         }
-        (root as? PageViewController)?.presenter = presenter       
+        (root as? PageViewController)?.presenter = presenter
     }
 }

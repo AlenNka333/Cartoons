@@ -19,12 +19,8 @@
 		330F4E16252F0E84008D0FC8 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E15252F0E84008D0FC8 /* OnboardingCoordinator.swift */; };
 		330F4E3425304759008D0FC8 /* AuthorizationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E3325304759008D0FC8 /* AuthorizationServiceProtocol.swift */; };
 		330F4E3825304D72008D0FC8 /* StorageDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E3725304D72008D0FC8 /* StorageDataServiceProtocol.swift */; };
-		330F4E3E25305ECB008D0FC8 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E3D25305ECB008D0FC8 /* Resolver.swift */; };
 		330F4E4A25309B9C008D0FC8 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E4925309B9C008D0FC8 /* AuthorizationService.swift */; };
 		330F4E4D25309DEB008D0FC8 /* StorageDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E4C25309DEB008D0FC8 /* StorageDataService.swift */; };
-		330F4E552530DFDB008D0FC8 /* ServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E542530DFDB008D0FC8 /* ServiceContainer.swift */; };
-		330F4E582530E211008D0FC8 /* ContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E572530E211008D0FC8 /* ContainerItem.swift */; };
-		330F4E5D2530E29E008D0FC8 /* ContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E5C2530E29E008D0FC8 /* ContainerProtocol.swift */; };
 		330F4E642530ED2D008D0FC8 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E632530ED2D008D0FC8 /* AuthorizationManager.swift */; };
 		330F4E672530EE7B008D0FC8 /* StorageDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E662530EE7B008D0FC8 /* StorageDataManager.swift */; };
 		330F4E702530F5D6008D0FC8 /* UserDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E6F2530F5D6008D0FC8 /* UserDataServiceProtocol.swift */; };
@@ -135,12 +131,8 @@
 		330F4E15252F0E84008D0FC8 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		330F4E3325304759008D0FC8 /* AuthorizationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationServiceProtocol.swift; sourceTree = "<group>"; };
 		330F4E3725304D72008D0FC8 /* StorageDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDataServiceProtocol.swift; sourceTree = "<group>"; };
-		330F4E3D25305ECB008D0FC8 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		330F4E4925309B9C008D0FC8 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
 		330F4E4C25309DEB008D0FC8 /* StorageDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDataService.swift; sourceTree = "<group>"; };
-		330F4E542530DFDB008D0FC8 /* ServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceContainer.swift; sourceTree = "<group>"; };
-		330F4E572530E211008D0FC8 /* ContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerItem.swift; sourceTree = "<group>"; };
-		330F4E5C2530E29E008D0FC8 /* ContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerProtocol.swift; sourceTree = "<group>"; };
 		330F4E632530ED2D008D0FC8 /* AuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		330F4E662530EE7B008D0FC8 /* StorageDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDataManager.swift; sourceTree = "<group>"; };
 		330F4E6F2530F5D6008D0FC8 /* UserDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataServiceProtocol.swift; sourceTree = "<group>"; };
@@ -262,23 +254,6 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		330F4E5A2530E244008D0FC8 /* Container */ = {
-			isa = PBXGroup;
-			children = (
-				330F4E572530E211008D0FC8 /* ContainerItem.swift */,
-				330F4E5C2530E29E008D0FC8 /* ContainerProtocol.swift */,
-			);
-			path = Container;
-			sourceTree = "<group>";
-		};
-		330F4E5B2530E260008D0FC8 /* Resolver */ = {
-			isa = PBXGroup;
-			children = (
-				330F4E3D25305ECB008D0FC8 /* Resolver.swift */,
-			);
-			path = Resolver;
-			sourceTree = "<group>";
-		};
 		330F4E622530ED1A008D0FC8 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +262,60 @@
 				330F4E742530F65C008D0FC8 /* UserDataManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		33127B1725330B4700B84FAE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */,
+				332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		33127B1925330BDD00B84FAE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				332BA36A25076084008A8F29 /* VerificationViewPresenterProtocol.swift */,
+				332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		33127B1A25330C0300B84FAE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				33B2AEB3250A63910006BE31 /* CartoonsViewPresenterProtocol.swift */,
+				33B2AEB5250A63A00006BE31 /* CartoonsViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		33127B1B25330C1700B84FAE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */,
+				332227C82518973500EF56B8 /* FavouritesViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		33127B1C25330C2400B84FAE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				332227CE25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift */,
+				332227D025189D2D00EF56B8 /* SettingsViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		33127B1E25330C5200B84FAE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */,
+				3373D955250F95460095F78C /* PagePresenterProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		3312EDE324FE84FE00158EB6 /* Localization */ = {
@@ -300,6 +329,7 @@
 		332227BC2518967C00EF56B8 /* FavouritesModule */ = {
 			isa = PBXGroup;
 			children = (
+				33127B1B25330C1700B84FAE /* Protocols */,
 				332227BF251896AB00EF56B8 /* Presenter */,
 				332227BE251896A600EF56B8 /* View */,
 			);
@@ -309,6 +339,7 @@
 		332227BD2518968F00EF56B8 /* SettingsModule */ = {
 			isa = PBXGroup;
 			children = (
+				33127B1C25330C2400B84FAE /* Protocols */,
 				332227C1251896B600EF56B8 /* Presenter */,
 				332227C0251896B200EF56B8 /* View */,
 			);
@@ -327,8 +358,6 @@
 			isa = PBXGroup;
 			children = (
 				332227C42518970900EF56B8 /* FavouritesPresenter.swift */,
-				332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */,
-				332227C82518973500EF56B8 /* FavouritesViewProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -345,8 +374,6 @@
 			isa = PBXGroup;
 			children = (
 				332227CC25189A1A00EF56B8 /* SettingsPresenter.swift */,
-				332227CE25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift */,
-				332227D025189D2D00EF56B8 /* SettingsViewProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -355,8 +382,6 @@
 			isa = PBXGroup;
 			children = (
 				33B660D02502E8A700CA562E /* VerificationViewPresenter.swift */,
-				332BA36A25076084008A8F29 /* VerificationViewPresenterProtocol.swift */,
-				332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -382,6 +407,7 @@
 		332BA36225064418008A8F29 /* VerificationModule */ = {
 			isa = PBXGroup;
 			children = (
+				33127B1925330BDD00B84FAE /* Protocols */,
 				332BA35D25060636008A8F29 /* Presenter */,
 				332BA3632506445C008A8F29 /* View */,
 			);
@@ -472,6 +498,7 @@
 		3373D943250F55E90095F78C /* OnboardingModule */ = {
 			isa = PBXGroup;
 			children = (
+				33127B1E25330C5200B84FAE /* Protocols */,
 				3373D94F250F94CC0095F78C /* Presenter */,
 				3373D950250F94D60095F78C /* View */,
 			);
@@ -482,8 +509,6 @@
 			isa = PBXGroup;
 			children = (
 				3373D951250F95100095F78C /* PageControllerPresenter.swift */,
-				3373D955250F95460095F78C /* PagePresenterProtocol.swift */,
-				3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -615,6 +640,7 @@
 		33B2AEAA250A61260006BE31 /* CartoonsModule */ = {
 			isa = PBXGroup;
 			children = (
+				33127B1A25330C0300B84FAE /* Protocols */,
 				33B2AEAC250A613C0006BE31 /* Presenter */,
 				33B2AEAB250A61370006BE31 /* View */,
 			);
@@ -633,8 +659,6 @@
 			isa = PBXGroup;
 			children = (
 				33B2AEB1250A63790006BE31 /* CartoonsPresenter.swift */,
-				33B2AEB3250A63910006BE31 /* CartoonsViewPresenterProtocol.swift */,
-				33B2AEB5250A63A00006BE31 /* CartoonsViewProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -650,6 +674,7 @@
 		33B6608325010F8600CA562E /* AuthorizationModule */ = {
 			isa = PBXGroup;
 			children = (
+				33127B1725330B4700B84FAE /* Protocols */,
 				33B660C525026DA000CA562E /* Presenter */,
 				33B1F0A025002B9100DB6BA8 /* View */,
 			);
@@ -677,8 +702,6 @@
 			isa = PBXGroup;
 			children = (
 				33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */,
-				332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */,
-				332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -701,7 +724,6 @@
 		33D1C3CB2512778A002A9843 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				330F4E542530DFDB008D0FC8 /* ServiceContainer.swift */,
 				330F4E3225304743008D0FC8 /* Protocols */,
 				330F4E622530ED1A008D0FC8 /* Managers */,
 				330F4E4925309B9C008D0FC8 /* AuthorizationService.swift */,
@@ -780,8 +802,6 @@
 				33B660CD2502DBC000CA562E /* Assembly */,
 				33B1F08424FFEEB000DB6BA8 /* PresentationLayer */,
 				33B1F08724FFEEF500DB6BA8 /* Components */,
-				330F4E5B2530E260008D0FC8 /* Resolver */,
-				330F4E5A2530E244008D0FC8 /* Container */,
 				33D1C3CB2512778A002A9843 /* Services */,
 				33FF60BA24FA45F40077D109 /* AppDelegate.swift */,
 				33B1F08124FFA83800DB6BA8 /* Resources */,
@@ -1087,7 +1107,6 @@
 				33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
 				3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */,
-				330F4E5D2530E29E008D0FC8 /* ContainerProtocol.swift in Sources */,
 				33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */,
 				332227CF25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift in Sources */,
 				334A51E2252DB9C3003BCF59 /* Assembly.swift in Sources */,
@@ -1095,7 +1114,6 @@
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				330F4E16252F0E84008D0FC8 /* OnboardingCoordinator.swift in Sources */,
 				33B660C1250246CF00CA562E /* String+Extension.swift in Sources */,
-				330F4E3E25305ECB008D0FC8 /* Resolver.swift in Sources */,
 				330F4E702530F5D6008D0FC8 /* UserDataServiceProtocol.swift in Sources */,
 				3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */,
 				339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */,
@@ -1109,7 +1127,6 @@
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
 				330F4E02252EF74D008D0FC8 /* MainScreenCoordinator.swift in Sources */,
 				334A51EB252DBAA2003BCF59 /* RootAssembly.swift in Sources */,
-				330F4E582530E211008D0FC8 /* ContainerItem.swift in Sources */,
 				330F4E10252F0D9B008D0FC8 /* OnboardingAssembly.swift in Sources */,
 				332227CD25189A1A00EF56B8 /* SettingsPresenter.swift in Sources */,
 				330F4E3425304759008D0FC8 /* AuthorizationServiceProtocol.swift in Sources */,
@@ -1117,7 +1134,6 @@
 				330F4E0D252F073D008D0FC8 /* SettingsAssembly.swift in Sources */,
 				3373D945250F588A0095F78C /* PageViewController.swift in Sources */,
 				33B2AEBB250A702D0006BE31 /* TabBarViewController.swift in Sources */,
-				330F4E552530DFDB008D0FC8 /* ServiceContainer.swift in Sources */,
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */,
 				332227C72518972300EF56B8 /* FavouritesViewPresenterProtocol.swift in Sources */,
