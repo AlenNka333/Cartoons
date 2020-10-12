@@ -39,6 +39,8 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         let subtitle = UILabel()
         return subtitle
     }()
+    
+    private let activityIndicator = UIActivityIndicatorView()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +70,10 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
             $0.trailing.equalToSuperview().offset(-20)
             $0.bottom.equalToSuperview().offset(Const.bottomOffset)
         }
+        navigationBar.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalTo(imageView)
+        }
     }
 }
 
@@ -84,6 +90,7 @@ extension BaseNavigationController {
     }
     
     func setProfileImage(image: UIImage?) {
+        activityIndicator.startAnimating()
         imageView.isUserInteractionEnabled = true
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.image = image
@@ -93,11 +100,13 @@ extension BaseNavigationController {
         imageView.isUserInteractionEnabled = true
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.kf.setImage(with: path)
+        activityIndicator.stopAnimating()
     }
     
     func setDefaultImage(image: UIImage?) {
         imageView.isUserInteractionEnabled = true
         imageView.image = image
+        activityIndicator.stopAnimating()
     }
     
     @objc func editProfileImage() {

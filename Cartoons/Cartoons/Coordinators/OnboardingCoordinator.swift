@@ -11,7 +11,7 @@ import UIKit
 class OnboardingCoordinator: CoordinatorProtocol {
     var parent: CoordinatorProtocol?
     var root: UIViewController
-    var successOnboardingSession: (() -> Void)?
+    var successSessionClosure: (() -> Void)?
     
     init() {
         self.root = UIViewController()
@@ -23,8 +23,8 @@ class OnboardingCoordinator: CoordinatorProtocol {
             return
         }
         let presenter = PageControllerPresenter(view: view)
-        presenter.openAuthorizationScreen = { [weak self] in
-            self?.successOnboardingSession?()
+        presenter.successSessionClosure = { [weak self] in
+            self?.successSessionClosure?()
         }
         (root as? PageViewController)?.presenter = presenter
     }

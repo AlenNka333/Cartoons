@@ -55,7 +55,7 @@ extension RootCoordinator {
             return
         }
         let coordinator = OnboardingAssembly.makeOnboardingCoordinator()
-        coordinator.successOnboardingSession = { [weak self] in
+        coordinator.successSessionClosure = { [weak self] in
             AppData.shouldShowOnBoarding = false
             self?.showAuthorizationScreen()
         }
@@ -70,7 +70,7 @@ extension RootCoordinator {
             return
         }
         let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator()
-        coordinator.registrationSucceededClosure = { [weak self] in
+        coordinator.successSessionClosure = { [weak self] in
             self?.showMainScreen()
         }
         coordinator.start()
@@ -85,7 +85,7 @@ extension RootCoordinator {
         }
         let number = userService.userPhoneNumber
         let coordinator = MainScreenAssembly.makeMainScreenCoordinator(number: number.unwrapped)
-        coordinator.successUserSession = { [weak self] in
+        coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
         }
         coordinator.start()

@@ -15,12 +15,12 @@ class SettingsAssembly: Assembly {
                                        completion: @escaping(() -> Void)) -> UIViewController {
         let view = SettingsViewController()
         let presenter = SettingsPresenter(view: view, storageService: storageService, authorizationService: authorizationService, number: number)
-        presenter.openAuthorizationClosure = {
+        presenter.successSessionClosure = {
             completion()
         }
         view.presenter = presenter
         let navigation = BaseNavigationController(rootViewController: view)
-        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.favourites_screen(), image: R.image.flower(), tag: 0)
+        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.settings_screen(), image: R.image.flower(), tag: 0)
         return navigation
     }
 }

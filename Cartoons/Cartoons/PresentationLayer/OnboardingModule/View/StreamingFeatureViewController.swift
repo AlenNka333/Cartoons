@@ -12,8 +12,11 @@ class StreamingFeatureViewController: UIViewController {
     private lazy var tvModelImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = R.image.tv_model()
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 0.4
+        imageView.layer.cornerRadius = 10
         imageView.layer.shadowColor = UIColor.black.cgColor
-        imageView.layer.shadowOffset = CGSize(width: 4, height: 2)
+        imageView.layer.shadowOffset = CGSize(width: 3, height: 4)
         imageView.layer.shadowOpacity = 0.6
         return imageView
     }()

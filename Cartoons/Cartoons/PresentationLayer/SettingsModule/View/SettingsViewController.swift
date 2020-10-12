@@ -23,7 +23,7 @@ class SettingsViewController: ViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = R.string.localizable.settings_screen()
-        (navigationController as? BaseNavigationController)?.setImage(image: UIImage(), isEnabled: true)
+        (navigationController as? BaseNavigationController)?.setProfileImage(image: UIImage())
         presenter?.showProfileImage()
         (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
             self?.presenter?.editProfileImage()

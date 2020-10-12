@@ -21,6 +21,8 @@ class AuthorizationViewController: ViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
+        getCodeButton.isEnabled = true
+        getCodeButton.backgroundColor = R.color.enabled_button_color()
     }
     
     override func setupNavigationBar() {

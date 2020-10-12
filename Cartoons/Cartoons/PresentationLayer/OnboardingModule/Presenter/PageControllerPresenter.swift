@@ -11,12 +11,12 @@ import Foundation
 class PageControllerPresenter: PagePresenterProtocol {
     let view: PageViewControllerProtocol
     
-    var openAuthorizationScreen: () -> Void = {}
+    var successSessionClosure: () -> Void = {}
     
     init(view: PageViewControllerProtocol) {
         self.view = view
     }
     func showAuthorizationScreen() {
-        openAuthorizationScreen()
+        successSessionClosure()
     }
 }

@@ -13,7 +13,7 @@ class AuthorizationCoordinator: CoordinatorProtocol {
     
     var parent: CoordinatorProtocol?
     var root: UIViewController
-    var registrationSucceededClosure: () -> Void = {}
+    var successSessionClosure: () -> Void = {}
     
     init() {
         self.root = UINavigationController()
@@ -35,8 +35,8 @@ class AuthorizationCoordinator: CoordinatorProtocol {
                                               authorizationService: authorizationService,
                                               verificationId: verificationId,
                                               number: number)
-        presenter.registrationSucceedClosure = { [weak self] in
-            self?.registrationSucceededClosure()
+        presenter.successSessionClosure = { [weak self] in
+            self?.successSessionClosure()
         }
         view.presenter = presenter
         (root as? UINavigationController)?.pushViewController(view, animated: true)
