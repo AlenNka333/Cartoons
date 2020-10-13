@@ -2,21 +2,31 @@
 //  CartoonsViewController.swift
 //  Cartoons
 //
-//  Created by Alena Nesterkina on 9/10/20.
+//  Created by Alena Nesterkina on 10/13/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class CartoonsViewController: ViewController {
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Cartoon>
+    typealias SnapShot = NSDiffableDataSourceSnapshot<Section, Cartoon>
+    
+    var collectionView: UICollectionView?
+    private lazy var dataSource = makeDataSource()
+    var videos = Cartoon.allVideos
     var presenter: CartoonsViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureLayout()
+        applySnapshot(animatingDifferences: false)
     }
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
+        (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
         title = R.string.localizable.cartoons_screen()
         (navigationController as? BaseNavigationController)?.setSubTitle(title: R.string.localizable.cartoons_screen_subtitle())
         (navigationController as? BaseNavigationController)?.setImage(image: R.image.navigation_label(), isEnabled: false)
@@ -24,7 +34,6 @@ class CartoonsViewController: ViewController {
     
     override func setupUI() {
         super.setupUI()
-        view.backgroundColor = R.color.main_orange()
     }
     
     override func showError(error: Error) {
@@ -34,9 +43,55 @@ class CartoonsViewController: ViewController {
 
 extension CartoonsViewController: CartoonsViewProtocol {
     func showSuccess(success: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) {_ in
+        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) { _ in
             return
         }
         present(alertVC, animated: true)
+    }
+}
+
+extension CartoonsViewController {
+    func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = SnapShot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(videos)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+    
+    func makeDataSource() -> DataSource {
+        let dataSource = DataSource(collectionView: collectionView ?? UICollectionView(),
+                                    cellProvider: { (collectionView, indexPath, cartoon) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? CartoonCollectionViewCell
+                                        cell?.layer.shadowColor = UIColor.black.cgColor
+                                        cell?.layer.shadowOffset = CGSize(width: 3, height: 8)
+                                        cell?.layer.shadowOpacity = 0.6
+                                        cell?.layer.masksToBounds = false
+            cell?.video = cartoon
+            return cell
+        })
+        return dataSource
+    }
+    
+    func configureLayout() {
+        let layout = UICollectionViewFlowLayout()
+        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView?.backgroundColor = R.color.main_orange()
+        collectionView?.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5.0, leading: 5.0, bottom: 5.0, trailing: 5.0)
+            
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                                                            heightDimension: .fractionalHeight(0.7)),
+                                                         subitem: item,
+                                                         count: 3)
+            group.interItemSpacing = .fixed(30)
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 30
+            section.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 20, bottom: 0, trailing: 20)
+            return section
+        })
+        collectionView?.register(CartoonCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+        view.addSubview(collectionView ?? UICollectionView())
     }
 }

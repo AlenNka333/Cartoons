@@ -71,6 +71,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
             $0.bottom.equalToSuperview().offset(Const.bottomOffset)
         }
         navigationBar.addSubview(activityIndicator)
+        activityIndicator.color = .white
         activityIndicator.snp.makeConstraints {
             $0.center.equalTo(imageView)
         }
