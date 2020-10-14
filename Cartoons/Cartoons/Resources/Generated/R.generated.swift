@@ -526,8 +526,8 @@ struct R: Rswift.Validatable {
       return R.nib.labelView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
-    static func playerControlsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CustomPlayerControl? {
-      return R.nib.playerControlsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CustomPlayerControl
+    static func playerControlsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.playerControlsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     fileprivate init() {}
@@ -990,6 +990,7 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try _AlertView.validate()
       try _LabelView.validate()
+      try _PlayerControlsView.validate()
     }
 
     struct _AlertView: Rswift.NibResourceType, Rswift.Validatable {
@@ -1026,12 +1027,22 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    struct _PlayerControlsView: Rswift.NibResourceType {
+    struct _PlayerControlsView: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "PlayerControlsView"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CustomPlayerControl? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CustomPlayerControl
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "backward.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'backward.fill' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "forward.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'forward.fill' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "gobackward.10", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'gobackward.10' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "goforward.10", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'goforward.10' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "playButton", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'playButton' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
       }
 
       fileprivate init() {}
