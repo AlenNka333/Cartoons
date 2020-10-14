@@ -1,5 +1,5 @@
 //
-//  CustomVideoPlayer.swift
+//  CustomPlayerControl.swift
 //  Cartoons
 //
 //  Created by Alena Nesterkina on 10/14/20.
