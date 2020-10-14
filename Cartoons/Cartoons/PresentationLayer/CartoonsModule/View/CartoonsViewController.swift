@@ -5,7 +5,9 @@
 //  Created by Alena Nesterkina on 10/13/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-
+//swiftlint:disable all
+import AVFoundation
+import AVKit
 import Foundation
 import UIKit
 
@@ -32,6 +34,11 @@ class CartoonsViewController: ViewController {
         (navigationController as? BaseNavigationController)?.setImage(image: R.image.navigation_label(), isEnabled: false)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     override func setupUI() {
         super.setupUI()
     }
@@ -47,6 +54,14 @@ extension CartoonsViewController: CartoonsViewProtocol {
             return
         }
         present(alertVC, animated: true)
+    }
+}
+
+extension CartoonsViewController: UICollectionViewDelegate {
+     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let playerViewController = VideoPlayerViewController()
+        playerViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(playerViewController, animated: true)
     }
 }
 
@@ -75,6 +90,7 @@ extension CartoonsViewController {
     func configureLayout() {
         let layout = UICollectionViewFlowLayout()
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView?.delegate = self
         collectionView?.backgroundColor = R.color.main_orange()
         collectionView?.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))

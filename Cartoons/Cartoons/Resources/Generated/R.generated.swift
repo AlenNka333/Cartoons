@@ -272,7 +272,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 19 images.
+  /// This `R.image` struct is generated, and contains static references to 21 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -298,6 +298,8 @@ struct R: Rswift.Validatable {
     static let main_screen_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_screen_background")
     /// Image `navigation_label`.
     static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
+    /// Image `playButton`.
+    static let playButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "playButton")
     /// Image `princess_ariel`.
     static let princess_ariel = Rswift.ImageResource(bundle: R.hostingBundle, name: "princess_ariel")
     /// Image `princess_cinderella`.
@@ -308,6 +310,8 @@ struct R: Rswift.Validatable {
     static let profile_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_image")
     /// Image `settings_background`.
     static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
+    /// Image `stopButton`.
+    static let stopButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "stopButton")
     /// Image `tree_leave`.
     static let tree_leave = Rswift.ImageResource(bundle: R.hostingBundle, name: "tree_leave")
     /// Image `tv_model`.
@@ -398,6 +402,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "playButton", bundle: ..., traitCollection: ...)`
+    static func playButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.playButton, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "princess_ariel", bundle: ..., traitCollection: ...)`
     static func princess_ariel(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.princess_ariel, compatibleWith: traitCollection)
@@ -429,6 +440,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "settings_background", bundle: ..., traitCollection: ...)`
     static func settings_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.settings_background, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "stopButton", bundle: ..., traitCollection: ...)`
+    static func stopButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.stopButton, compatibleWith: traitCollection)
     }
     #endif
 

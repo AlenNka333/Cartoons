@@ -28,6 +28,8 @@
 		330F4E792530F7BD008D0FC8 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E782530F7BD008D0FC8 /* UserDataService.swift */; };
 		33104A6E2535846100A90ED7 /* CartoonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33104A6D2535846100A90ED7 /* CartoonCollectionViewCell.swift */; };
 		33104A752535CF9800A90ED7 /* CartoonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33104A742535CF9800A90ED7 /* CartoonsViewController.swift */; };
+		33104A7D2536E8F400A90ED7 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33104A7C2536E8F300A90ED7 /* VideoPlayerView.swift */; };
+		33104A8925370D4400A90ED7 /* CustomPlayerStopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33104A8825370D4400A90ED7 /* CustomPlayerStopButton.swift */; };
 		33127B472534C31300B84FAE /* Cartoon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B462534C31300B84FAE /* Cartoon.swift */; };
 		33127B542534C49300B84FAE /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B532534C49300B84FAE /* DetailsViewController.swift */; };
 		33127B572534C4A700B84FAE /* DetailsViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B562534C4A700B84FAE /* DetailsViewProtocol.swift */; };
@@ -151,6 +153,8 @@
 		330F4E782530F7BD008D0FC8 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		33104A6D2535846100A90ED7 /* CartoonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonCollectionViewCell.swift; sourceTree = "<group>"; };
 		33104A742535CF9800A90ED7 /* CartoonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonsViewController.swift; sourceTree = "<group>"; };
+		33104A7C2536E8F300A90ED7 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		33104A8825370D4400A90ED7 /* CustomPlayerStopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerStopButton.swift; sourceTree = "<group>"; };
 		33127B462534C31300B84FAE /* Cartoon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartoon.swift; sourceTree = "<group>"; };
 		33127B532534C49300B84FAE /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		33127B562534C4A700B84FAE /* DetailsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewProtocol.swift; sourceTree = "<group>"; };
@@ -349,11 +353,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		33127B4A2534C41C00B84FAE /* VideoPlayer */ = {
+		33127B4A2534C41C00B84FAE /* VideoPlayerButtons */ = {
 			isa = PBXGroup;
 			children = (
+				33104A8825370D4400A90ED7 /* CustomPlayerStopButton.swift */,
 			);
-			path = VideoPlayer;
+			path = VideoPlayerButtons;
 			sourceTree = "<group>";
 		};
 		33127B4B2534C42B00B84FAE /* DetailsModule */ = {
@@ -396,6 +401,7 @@
 			isa = PBXGroup;
 			children = (
 				33127B5F2534C4DB00B84FAE /* VideoPlayerViewController.swift */,
+				33104A7C2536E8F300A90ED7 /* VideoPlayerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -719,7 +725,7 @@
 		33B2AE962508AC590006BE31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				33127B4A2534C41C00B84FAE /* VideoPlayer */,
+				33127B4A2534C41C00B84FAE /* VideoPlayerButtons */,
 				33EAD3B12522094200128EEB /* ImagePicker */,
 				33EE7EB02513609D00EA2BF4 /* AppLabel */,
 				33EE7EAD25135D0A00EA2BF4 /* TextField */,
@@ -1242,6 +1248,7 @@
 				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,
 				330F4E3825304D72008D0FC8 /* StorageDataServiceProtocol.swift in Sources */,
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
+				33104A8925370D4400A90ED7 /* CustomPlayerStopButton.swift in Sources */,
 				330F4E02252EF74D008D0FC8 /* MainScreenCoordinator.swift in Sources */,
 				334A51EB252DBAA2003BCF59 /* RootAssembly.swift in Sources */,
 				330F4E10252F0D9B008D0FC8 /* OnboardingAssembly.swift in Sources */,
@@ -1263,6 +1270,7 @@
 				334A51C9252CAA53003BCF59 /* CoordinatorProtocol.swift in Sources */,
 				33127B542534C49300B84FAE /* DetailsViewController.swift in Sources */,
 				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
+				33104A7D2536E8F400A90ED7 /* VideoPlayerView.swift in Sources */,
 				33127B632534C4EF00B84FAE /* VideoPlayerPresenter.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,
 				3334A4D12523344F00AD18C7 /* AccessErrors.swift in Sources */,

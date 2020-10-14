@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class BaseNavigationController: UINavigationController, UINavigationControllerDelegate {
+class BaseNavigationController: UINavigationController {
     private enum Const {
         static let titleSize: CGFloat = 40
         static let subtitleSize: CGFloat = 14
@@ -50,6 +50,7 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
     
     func setupUI() {
         navigationBar.prefersLargeTitles = true
+        delegate = self
         navigationItem.largeTitleDisplayMode = .always
         navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationBar.layer.shadowRadius = 4.0
@@ -76,6 +77,21 @@ class BaseNavigationController: UINavigationController, UINavigationControllerDe
         activityIndicator.snp.makeConstraints {
             $0.center.equalTo(imageView)
         }
+    }
+}
+
+extension BaseNavigationController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == .push {
+            navigationBar.largeContentTitle = ""
+            imageView.removeFromSuperview()
+            subtitle.removeFromSuperview()
+            return nil
+        } else {
+            setupUI()
+            return nil
+        }
+        
     }
 }
 
