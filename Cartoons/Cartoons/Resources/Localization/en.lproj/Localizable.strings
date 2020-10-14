@@ -6,14 +6,36 @@
   Copyright © 2020 AlenaNesterkina. All rights reserved.
 */
 
+//Authorization flow
 phone_label_key = "Phone number";
 otp_code_key = "OTP Code";
-get_code_button_key = "Get verification code";
-sign_out_button = "Sign out";
-error = "Error";
-success = "Success";
-skip = "Skip";
 verification_message_key = "Six-digit security code was send to number:";
+
+//Alert
+success = "Success";
+sign_out_button = "Sign out";
+question_to_sign_out = "Are you sure to sign out?";
+
+//Errors
+error = "Error";
+
+//Buttons
+get_code_button_key = "Get verification code";
+skip = "Skip";
 resend_button_key = "Resend";
+
+//OnBoarding
 onBoarding_first_logo_key = "Watch cartoons online and offline";
 onBoarding_second_logo_key = "Find your favourite characters";
+
+//Cartoons flow
+cartoons_screen = "Cartoons";
+cartoons_screen_subtitle = "...plunge into a fairy tale";
+
+//Favourites flow
+favourites_screen = "Favourites";
+favourites_screen_subtitle = "...offline watching is available";
+
+//Settings flow
+settings_screen = "Settings";
+

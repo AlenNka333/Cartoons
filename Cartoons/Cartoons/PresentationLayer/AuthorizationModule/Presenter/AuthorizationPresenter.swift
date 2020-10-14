@@ -10,21 +10,25 @@ import Foundation
 
 class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     let view: AuthorizationViewProtocol
-    let router: RouterProtocol?
-    let firebaseManager = FirebaseManager()
+    let router: RouterProtocol
+    let firebaseManager: FirebaseManager
     
-    init(view: AuthorizationViewProtocol, router: RouterProtocol) {
+    init(view: AuthorizationViewProtocol, router: RouterProtocol, firebaseManager: FirebaseManager) {
         self.view = view
         self.router = router
+        self.firebaseManager = firebaseManager
     }
     
     func sendPhoneNumberAction(number: String) {
         view.showActivityIndicatorAction()
         firebaseManager.sendPhoneNumber(number: number) { [weak self] result in
             self?.view.stopActivityIndicatorAction()
+            guard let manager = self?.firebaseManager else {
+                return
+            }
             switch result {
             case let .success(verificationId):
-                self?.router?.showOTPController(verificationId: verificationId, number: number, animated: true)
+                self?.router.showOTPController(verificationId: verificationId, firebaseManager: manager, number: number, animated: true)
             case .failure(let error):
                 self?.view.setError(error: error)
             }

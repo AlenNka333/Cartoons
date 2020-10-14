@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class CustomLabelView: UIView {
-    @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet private weak var textLabel: UILabel!
+    @IBOutlet private weak var image: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

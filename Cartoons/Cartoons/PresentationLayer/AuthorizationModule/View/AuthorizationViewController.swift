@@ -4,13 +4,14 @@ class AuthorizationViewController: UIViewController {
     var presenter: AuthorizationViewPresenterProtocol?
     let alertView = CustomAlertView()
     let activityIndicator = UIActivityIndicatorView()
+    let alertService = AlertService()
     
     private lazy var appLabelView = CustomLabelView()
     private lazy var phoneNumberTextField = CustomTextField()
     private lazy var getCodeButton: UIButton = CustomButton()
-    private lazy var ownView: UIView = {
+    private lazy var customView: UIView = {
         view = UIView()
-        view.backgroundColor = UIColor(patternImage: R.image.main_background()!)
+        view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
         return view
     }()
     
@@ -21,7 +22,7 @@ class AuthorizationViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = ownView
+        self.view = customView
     }
     
     private func setupUI() {
@@ -59,7 +60,10 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
     }
     
     func setError(error: Error) {
-        CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
+        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
+            return
+        }
+        present(alertVC, animated: true)
         getCodeButton.isEnabled = true
         getCodeButton.backgroundColor = R.color.enabled_button_color()
     }

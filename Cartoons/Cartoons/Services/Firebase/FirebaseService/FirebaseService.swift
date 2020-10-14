@@ -10,6 +10,11 @@ import FirebaseAuth
 import Foundation
 
 class FirebaseService {
+    var phoneNumber: String? {
+        let firebaseUser = Auth.auth().currentUser
+        return firebaseUser?.phoneNumber
+    }
+
     func sendPhoneToFirebase(number: String, completion: @escaping (Result<String, Error>) -> Void) {
         PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { verificationID, error in
             if let error = error {
