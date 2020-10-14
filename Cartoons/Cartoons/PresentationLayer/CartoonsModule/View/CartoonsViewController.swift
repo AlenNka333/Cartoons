@@ -92,6 +92,7 @@ extension CartoonsViewController {
             return section
         })
         collectionView?.register(CartoonCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+        view.addSubview(UIView(frame: .zero))
         view.addSubview(collectionView ?? UICollectionView())
     }
 }
