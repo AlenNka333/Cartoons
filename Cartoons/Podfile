@@ -16,6 +16,7 @@ target 'Cartoons' do
     pod 'SwiftLint'
     pod 'SnapKit'
     pod 'SwiftFormat/CLI'
+    pod 'Firebase'
     pod 'Firebase/Analytics'
     pod 'Firebase/Auth'
     pod 'Firebase/Storage'

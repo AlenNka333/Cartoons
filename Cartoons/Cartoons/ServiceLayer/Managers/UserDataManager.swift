@@ -6,7 +6,7 @@
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
-import Firebase
+import FirebaseAuth
 import Foundation
 
 class UserDataManager {

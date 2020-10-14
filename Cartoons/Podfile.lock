@@ -1,4 +1,6 @@
 PODS:
+  - Firebase (6.31.0):
+    - Firebase/Core (= 6.31.0)
   - Firebase/Analytics (6.31.0):
     - Firebase/Core
   - Firebase/Auth (6.31.0):
@@ -95,6 +97,7 @@ PODS:
   - SwiftLint (0.40.1)
 
 DEPENDENCIES:
+  - Firebase
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
@@ -152,6 +155,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 49efde7a5820f9a4fc3cfc04c087556e319ad4a1
   SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
 
-PODFILE CHECKSUM: 532d141db7d449697829cb735f987a406613a2d6
+PODFILE CHECKSUM: 2382570887362db3d363408036e3f2e0bb186bc7
 
 COCOAPODS: 1.8.4

@@ -1,5 +1,5 @@
 //
-//  CustomPlayerButton.swift
+//  CustomVideoPlayer.swift
 //  Cartoons
 //
 //  Created by Alena Nesterkina on 10/14/20.
@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-class CustomPlayerStopButton: UIView {
+class CustomPlayerControl: UIView {
     
 }

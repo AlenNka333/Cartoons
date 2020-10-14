@@ -272,7 +272,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 21 images.
+  /// This `R.image` struct is generated, and contains static references to 23 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -310,8 +310,12 @@ struct R: Rswift.Validatable {
     static let profile_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_image")
     /// Image `settings_background`.
     static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
+    /// Image `slider_progress`.
+    static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
     /// Image `stopButton`.
     static let stopButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "stopButton")
+    /// Image `thumb_slider_image`.
+    static let thumb_slider_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "thumb_slider_image")
     /// Image `tree_leave`.
     static let tree_leave = Rswift.ImageResource(bundle: R.hostingBundle, name: "tree_leave")
     /// Image `tv_model`.
@@ -444,9 +448,23 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "slider_progress", bundle: ..., traitCollection: ...)`
+    static func slider_progress(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.slider_progress, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "stopButton", bundle: ..., traitCollection: ...)`
     static func stopButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.stopButton, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "thumb_slider_image", bundle: ..., traitCollection: ...)`
+    static func thumb_slider_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.thumb_slider_image, compatibleWith: traitCollection)
     }
     #endif
 
@@ -467,12 +485,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `AlertView`.
     static let alertView = _R.nib._AlertView()
     /// Nib `LabelView`.
     static let labelView = _R.nib._LabelView()
+    /// Nib `PlayerControlsView`.
+    static let playerControlsView = _R.nib._PlayerControlsView()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "AlertView", in: bundle)`
@@ -490,12 +510,24 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "PlayerControlsView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.playerControlsView) instead")
+    static func playerControlsView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.playerControlsView)
+    }
+    #endif
+
     static func alertView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.alertView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     static func labelView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.labelView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+
+    static func playerControlsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CustomPlayerControl? {
+      return R.nib.playerControlsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CustomPlayerControl
     }
 
     fileprivate init() {}
@@ -989,6 +1021,17 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "tree_leave", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'tree_leave' is used in nib 'LabelView', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _PlayerControlsView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "PlayerControlsView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CustomPlayerControl? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CustomPlayerControl
       }
 
       fileprivate init() {}
