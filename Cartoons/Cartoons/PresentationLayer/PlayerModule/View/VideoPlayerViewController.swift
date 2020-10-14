@@ -13,7 +13,6 @@ import UIKit
 
 class VideoPlayerViewController: ViewController {
     
-    private var playerView = UIView()
     private var playerLayer: AVPlayerLayer?
     
     override func viewDidLoad() {
@@ -38,9 +37,7 @@ class VideoPlayerViewController: ViewController {
         super.setupUI()
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .black
-        view.addSubview(playerView)
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func showError(error: Error) {
