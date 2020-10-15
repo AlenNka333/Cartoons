@@ -89,9 +89,6 @@ PODS:
   - R.swift (5.2.2):
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
-  - SDWebImage (5.9.1):
-    - SDWebImage/Core (= 5.9.1)
-  - SDWebImage/Core (5.9.1)
   - SnapKit (5.0.1)
   - SwiftFormat/CLI (0.46.1)
   - SwiftLint (0.40.1)
@@ -103,7 +100,6 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - R.swift
-  - SDWebImage
   - SnapKit
   - SwiftFormat/CLI
   - SwiftLint
@@ -127,7 +123,6 @@ SPEC REPOS:
     - PromisesObjC
     - R.swift
     - R.swift.Library
-    - SDWebImage
     - SnapKit
     - SwiftFormat
     - SwiftLint
@@ -150,11 +145,10 @@ SPEC CHECKSUMS:
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
-  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftFormat: 49efde7a5820f9a4fc3cfc04c087556e319ad4a1
   SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
 
-PODFILE CHECKSUM: 2382570887362db3d363408036e3f2e0bb186bc7
+PODFILE CHECKSUM: d291561db968fa35dbdd2cb4f64720a2ff748a56
 
 COCOAPODS: 1.8.4
