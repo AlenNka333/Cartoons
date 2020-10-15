@@ -1040,7 +1040,6 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "forward.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'forward.fill' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "gobackward.10", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'gobackward.10' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "goforward.10", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'goforward.10' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "speaker.wave.2.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'speaker.wave.2.fill' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "stopButton", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'stopButton' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }

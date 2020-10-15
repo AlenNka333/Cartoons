@@ -24,6 +24,8 @@ class VideoPlayerViewController: ViewController {
         playerView.player
     }
     var playerState: PlayerState?
+    var timeObserver: Any?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,12 @@ class VideoPlayerViewController: ViewController {
             self?.updateStatus()
             return (self?.playerState)!
         }
+        controlsView.jumpForwardClosure = { [weak self] in
+            self?.jumpForward()
+        }
+        controlsView.jumpBackwardClosure = { [weak self] in
+            self?.jumpBackward()
+        }
     }
     
     override func showError(error: Error) {
@@ -73,6 +81,24 @@ extension VideoPlayerViewController {
         playerView.player = AVPlayer(url: URL(string: url)!)
         player?.play()
         playerState = .playing
+    }
+    
+    private func jumpForward() {
+        guard let player = playerView.player else {
+            return
+        }
+        let currentTimeInSecondsPlus10 =  CMTimeGetSeconds(player.currentTime()).advanced(by: 10)
+        let seekTime = CMTime(value: CMTimeValue(currentTimeInSecondsPlus10), timescale: 1)
+        player.seek(to: seekTime)
+    }
+    
+    private func jumpBackward() {
+        guard let player = playerView.player else {
+            return
+        }
+        let currentTimeInSecondsMinus10 =  CMTimeGetSeconds(player.currentTime()).advanced(by: -10)
+        let seekTime = CMTime(value: CMTimeValue(currentTimeInSecondsMinus10), timescale: 1)
+        player.seek(to: seekTime)
     }
     
     private func updateStatus() {

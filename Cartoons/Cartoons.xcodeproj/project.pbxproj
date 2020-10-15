@@ -365,7 +365,6 @@
 				33A17536253769460062EC8C /* CustomPlayerControl.swift */,
 				33A1753B253769D80062EC8C /* CustomSlider.swift */,
 				33A1755725376B390062EC8C /* PlayerControlsView.xib */,
-				338614B325386B9200A24D4F /* PlayerView.swift */,
 			);
 			path = VideoPlayerControls;
 			sourceTree = "<group>";
@@ -409,6 +408,7 @@
 		33127B4F2534C45500B84FAE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				338614B325386B9200A24D4F /* PlayerView.swift */,
 				33127B5F2534C4DB00B84FAE /* VideoPlayerViewController.swift */,
 			);
 			path = View;

@@ -19,12 +19,13 @@ class CustomPlayerControl: UIView {
     @IBOutlet private weak var goBackwardButton: UIButton!
     @IBOutlet private weak var forwardButton: UIButton!
     @IBOutlet private weak var backwardButton: UIButton!
-    @IBOutlet private weak var sound: UIButton!
     @IBOutlet private weak var currentTime: UILabel!
     @IBOutlet private weak var wholeTime: UILabel!
     
     var videoStateChangedClosure: (() -> (PlayerState))?
-
+    var jumpForwardClosure: (() -> Void)?
+    var jumpBackwardClosure: (() -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         Bundle.main.loadNibNamed("PlayerControlsView", owner: self, options: nil)
@@ -51,9 +52,17 @@ class CustomPlayerControl: UIView {
         }
     }
     @IBAction private func goForwardButtonClicked(_ sender: UIButton) {
+        guard let closure = jumpForwardClosure else {
+            return
+        }
+        closure()
     }
     @IBAction private func goBackwardButtonClicked(_ sender: UIButton) {
+        guard let closure = jumpBackwardClosure else {
+            return
+        }
+        closure()
     }
-    @IBAction private func soundButtonClicked(_ sender: UIButton) {
+    @IBAction func updateProgress(_ sender: CustomSlider) {
     }
 }
