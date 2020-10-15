@@ -10,20 +10,9 @@ import Foundation
 
 class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
-    let firebaseManager = FirebaseManager()
     
     init(view: CartoonsViewProtocol) {
         self.view = view
-    }
-    func signOutUserAction() {
-        firebaseManager.signOutUser { [weak self] result in
-            switch result {
-            case .success(_):
-                self?.view.setSuccess(success: R.string.localizable.success())
-            case let .failure(error):
-                self?.view.setError(error: error)
-            }
-        }
     }
     
     func showSuccess(success: String) {

@@ -10,14 +10,17 @@ import Foundation
 
 class VerificationPresenter: VerificationViewPresenterProtocol {
     let view: VerificationViewProtocol
-    let router: RouterProtocol?
+    let router: RouterProtocol
     let verificationId: String
-    let firebaseManager = FirebaseManager()
+    let firebaseManager: FirebaseManager
+    let number: String
     
-    init(view: VerificationViewProtocol, router: RouterProtocol, verificationId: String, number: String) {
+    init(view: VerificationViewProtocol, router: RouterProtocol, manager: FirebaseManager, verificationId: String, number: String) {
         self.view = view
         self.router = router
+        self.firebaseManager = manager
         self.verificationId = verificationId
+        self.number = number
         view.setLabelText(number: number)
     }
     func showError(error: Error) {
@@ -25,9 +28,15 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
     func verifyUser(verificationCode: String) {
         firebaseManager.authorizeUser(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
+            guard let manager = self?.firebaseManager else {
+                return
+            }
+            guard let number = self?.number else {
+                return
+            }
             switch result {
-            case .success(_):
-                self?.router?.showTabBarController()
+            case .success:
+                self?.router.showTabBarController(firebaseManager: manager, number: number)
             case let .failure(error):
                 self?.view.setError(error: error)
             }

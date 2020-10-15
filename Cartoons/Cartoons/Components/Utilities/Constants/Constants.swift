@@ -13,4 +13,5 @@ enum Constants {
     static let alertClassName: String = "AlertView"
     static let firstComing: String = "first_coming"
     static let labelClassName: String = "LabelView"
+    static let profileClassName: String = "ProfileView"
 }

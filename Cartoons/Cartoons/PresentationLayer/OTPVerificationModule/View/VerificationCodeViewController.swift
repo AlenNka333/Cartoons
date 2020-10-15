@@ -17,8 +17,9 @@ class VerificationCodeViewController: UIViewController {
     
     var presenter: VerificationViewPresenterProtocol?
     let activityIndicator = UIActivityIndicatorView()
-    var countdownTimer: Timer!
+    var countdownTimer: Timer?
     var timer = DefaultValues.totalTime
+    let alertService = AlertService()
     
     private lazy var otpCodeTextField = CustomTextField()
     private lazy var resendButton = CustomButton()
@@ -32,7 +33,7 @@ class VerificationCodeViewController: UIViewController {
         label.text = R.string.localizable.verification_message_key()
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont(name: "Alice-Regular", size: 20)
+        label.font = R.font.aliceRegular(size: 20)
         label.textColor = .white
         return label
     }()
@@ -40,13 +41,13 @@ class VerificationCodeViewController: UIViewController {
            let label = UILabel()
            label.numberOfLines = 0
            label.textAlignment = .center
-           label.font = UIFont(name: "Alice-Regular", size: 30)
+           label.font = R.font.aliceRegular(size: 30)
            label.textColor = .white
            return label
        }()
-    private lazy var ownView: UIView = {
+    private lazy var customView: UIView = {
            view = UIView()
-           view.backgroundColor = UIColor(patternImage: R.image.main_background()!)
+        view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
            return view
        }()
     
@@ -58,7 +59,7 @@ class VerificationCodeViewController: UIViewController {
     }
     
     override func loadView() {
-           self.view = ownView
+        self.view = customView
     }
     
     private func setupUI() {
@@ -81,7 +82,8 @@ class VerificationCodeViewController: UIViewController {
         view.addSubview(otpCodeTextField)
         otpCodeTextField.attributedPlaceholder =
         NSAttributedString(string: R.string.localizable.otp_code_key(),
-                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48), NSAttributedString.Key.font: UIFont(name: "Alice-Regular", size: 15)!])
+                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48),
+                                        NSAttributedString.Key.font: R.font.aliceRegular(size: 15).unwrapped])
         otpCodeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         otpCodeTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -101,6 +103,7 @@ extension VerificationCodeViewController {
     func startTimer() {
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
+    
     @objc func updateTime() {
         timerLabel.text = "\(timer)"
         if timer != 0 {
@@ -111,9 +114,11 @@ extension VerificationCodeViewController {
             endTimer()
         }
     }
+    
     func endTimer() {
-        countdownTimer.invalidate()
+        countdownTimer?.invalidate()
     }
+    
     @objc func textDidChange() {
         guard let presenter = self.presenter else {
             return
@@ -127,6 +132,7 @@ extension VerificationCodeViewController {
             presenter.verifyUser(verificationCode: text)
         }
     }
+    
     @objc func resendButtonTappedAction() {
         resendButton.isEnabled = false
         resendButton.backgroundColor = R.color.disabled_button_color()
@@ -152,7 +158,11 @@ extension VerificationCodeViewController: VerificationViewProtocol {
     func stopActivityIndicatorAction() {
         activityIndicator.stopAnimating()
     }
+    
     func setError(error: Error) {
-        CustomAlertView.instance.showAlert(title: R.string.localizable.error(), message: error.localizedDescription, alertType: .error)
+        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
+            return
+        }
+        present(alertVC, animated: true)
     }
 }
