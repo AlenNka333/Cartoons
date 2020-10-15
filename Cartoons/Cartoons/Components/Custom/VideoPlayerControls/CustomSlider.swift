@@ -13,11 +13,26 @@ import UIKit
 class CustomSlider: UISlider {
     @IBInspectable var thumbHeight: CGFloat = 10
     
-    override func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
-        return CGRect(x: 0, y: 0, width: frame.width, height: thumbHeight)
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
+        return CGRect(origin: bounds.origin, size: CGSize(width: bounds.width, height: thumbHeight))
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupSlider()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupSlider()
+    }
+    
+    func setupSlider() {
+        setThumbImage(R.image.thumb_slider_image()?.withTintColor(R.color.cinnabar().unwrapped), for: .normal)
+        setMinimumTrackImage(R.image.slider_progress(), for: .normal)
     }
     
     override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
         setThumbImage(R.image.thumb_slider_image()?.withTintColor(R.color.cinnabar().unwrapped), for: .normal)
         setMinimumTrackImage(R.image.slider_progress(), for: .normal)
     }

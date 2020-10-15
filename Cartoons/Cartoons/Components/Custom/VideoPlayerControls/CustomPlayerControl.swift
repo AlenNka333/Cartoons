@@ -13,7 +13,7 @@ import UIKit
 
 class CustomPlayerControl: UIView {
     @IBOutlet weak var controlView: UIView!
-    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var slider: CustomSlider!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var goForwardButton: UIButton!
     @IBOutlet weak var goBackwardButton: UIButton!
