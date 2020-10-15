@@ -18,7 +18,6 @@ class CustomSlider: UISlider {
     }
     
     override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
         setThumbImage(R.image.thumb_slider_image()?.withTintColor(R.color.cinnabar().unwrapped), for: .normal)
         setMinimumTrackImage(R.image.slider_progress(), for: .normal)
     }

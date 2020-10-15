@@ -24,6 +24,10 @@ class CustomPlayerControl: UIView {
         super.init(frame: frame)
         Bundle.main.loadNibNamed("PlayerControlsView", owner: self, options: nil)
         addSubview(controlView)
+        controlView.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {
