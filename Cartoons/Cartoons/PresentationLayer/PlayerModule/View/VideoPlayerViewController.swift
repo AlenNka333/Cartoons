@@ -11,6 +11,11 @@ import AVKit
 import Foundation
 import UIKit
 
+enum PlayerState {
+    case playing
+    case stopped
+}
+
 class VideoPlayerViewController: ViewController {
     
     private var playerView = PlayerView()
@@ -18,6 +23,7 @@ class VideoPlayerViewController: ViewController {
     private var player: AVPlayer? {
         playerView.player
     }
+    var playerState: PlayerState?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +56,10 @@ class VideoPlayerViewController: ViewController {
         controlsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        controlsView.videoStateChangedClosure = { [weak self] in
+            self?.updateStatus()
+            return (self?.playerState)!
+        }
     }
     
     override func showError(error: Error) {
@@ -62,5 +72,19 @@ extension VideoPlayerViewController {
         let url = "https://firebasestorage.googleapis.com/v0/b/cartoons-845b3.appspot.com/o/movies%2Ffrozen%2FDisney's%20Frozen%20Official%20Trailer.mp4?alt=media&token=86dd7b16-8322-43a1-a7ed-c4689c8004d4"
         playerView.player = AVPlayer(url: URL(string: url)!)
         player?.play()
+        playerState = .playing
+    }
+    
+    private func updateStatus() {
+        guard let player = playerView.player else {
+            return
+        }
+        if player.isPlaying {
+            player.pause()
+            playerState = .stopped
+        } else {
+            player.play()
+            playerState = .playing
+        }
     }
 }

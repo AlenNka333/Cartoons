@@ -22,6 +22,8 @@ class CustomPlayerControl: UIView {
     @IBOutlet private weak var sound: UIButton!
     @IBOutlet private weak var currentTime: UILabel!
     @IBOutlet private weak var wholeTime: UILabel!
+    
+    var videoStateChangedClosure: (() -> (PlayerState))?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,5 +37,23 @@ class CustomPlayerControl: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    @IBAction private func playPauseButtonClicked(_ sender: UIButton) {
+        guard let closure = videoStateChangedClosure else {
+            return
+        }
+        switch closure() {
+        case .playing:
+            playButton.setImage(R.image.stopButton(), for: .normal)
+        case .stopped:
+            playButton.setImage(R.image.playButton(), for: .normal)
+        }
+    }
+    @IBAction private func goForwardButtonClicked(_ sender: UIButton) {
+    }
+    @IBAction private func goBackwardButtonClicked(_ sender: UIButton) {
+    }
+    @IBAction private func soundButtonClicked(_ sender: UIButton) {
     }
 }
