@@ -17,11 +17,14 @@
             <connections>
                 <outlet property="backwardButton" destination="ra7-74-dRn" id="TAv-sm-IVR"/>
                 <outlet property="controlView" destination="ppD-Or-N6i" id="FUw-TM-wnx"/>
+                <outlet property="currentTime" destination="69m-bc-Y6s" id="7fs-4H-uLa"/>
                 <outlet property="forwardButton" destination="VSg-kO-PkY" id="vg0-GD-A9q"/>
                 <outlet property="goBackwardButton" destination="H4G-XC-Io3" id="7uL-0r-er9"/>
                 <outlet property="goForwardButton" destination="An7-B4-Zl6" id="Gz1-iH-2eZ"/>
                 <outlet property="playButton" destination="bXF-7N-M9K" id="ngD-UQ-NF2"/>
                 <outlet property="slider" destination="VOl-UV-NLp" id="OvA-RJ-TPX"/>
+                <outlet property="sound" destination="J3I-4n-p1w" id="JmQ-bx-hKg"/>
+                <outlet property="wholeTime" destination="aN3-57-dPw" id="poc-tZ-z30"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -30,7 +33,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppD-Or-N6i">
-                    <rect key="frame" x="0.0" y="636" width="414" height="260"/>
+                    <rect key="frame" x="0.0" y="670" width="414" height="226"/>
                     <subviews>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VOl-UV-NLp" customClass="CustomSlider" customModule="Cartoons" customModuleProvider="target">
                             <rect key="frame" x="18" y="8" width="378" height="32"/>
@@ -42,7 +45,11 @@
                             </userDefinedRuntimeAttributes>
                         </slider>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXF-7N-M9K">
-                            <rect key="frame" x="187" y="67" width="40" height="41"/>
+                            <rect key="frame" x="187" y="67" width="45" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="45" id="miI-eN-pdu"/>
+                                <constraint firstAttribute="height" constant="46" id="wWh-Nb-a4h"/>
+                            </constraints>
                             <state key="normal" image="playButton"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An7-B4-Zl6">
@@ -85,30 +92,35 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3I-4n-p1w">
+                            <rect key="frame" x="22" y="79" width="24" height="22"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="speaker.wave.2.fill" catalog="system"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="VSg-kO-PkY" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" constant="37" id="0tQ-eN-fpP"/>
-                        <constraint firstItem="bXF-7N-M9K" firstAttribute="centerY" secondItem="An7-B4-Zl6" secondAttribute="centerY" id="8Ll-rx-1Fi"/>
+                        <constraint firstItem="J3I-4n-p1w" firstAttribute="trailing" secondItem="69m-bc-Y6s" secondAttribute="trailing" id="5GF-wR-Bu1"/>
                         <constraint firstItem="aN3-57-dPw" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" id="8zh-pO-PfF"/>
-                        <constraint firstItem="bXF-7N-M9K" firstAttribute="centerX" secondItem="VOl-UV-NLp" secondAttribute="centerX" id="E4y-Ll-Jvp"/>
+                        <constraint firstItem="bXF-7N-M9K" firstAttribute="leading" secondItem="H4G-XC-Io3" secondAttribute="trailing" constant="20" id="BAa-uW-w7G"/>
                         <constraint firstAttribute="trailing" secondItem="aN3-57-dPw" secondAttribute="trailing" constant="17" id="Kex-1U-vg8"/>
                         <constraint firstItem="H4G-XC-Io3" firstAttribute="leading" secondItem="ra7-74-dRn" secondAttribute="trailing" constant="20" id="Ki7-Au-yrH"/>
-                        <constraint firstItem="An7-B4-Zl6" firstAttribute="leading" secondItem="bXF-7N-M9K" secondAttribute="trailing" constant="20" id="Mhd-Lp-aPs"/>
-                        <constraint firstAttribute="height" constant="260" id="PQA-Ul-wlp"/>
+                        <constraint firstAttribute="height" constant="226" id="PQA-Ul-wlp"/>
+                        <constraint firstItem="bXF-7N-M9K" firstAttribute="centerY" secondItem="J3I-4n-p1w" secondAttribute="centerY" id="Zbc-gF-BbP"/>
                         <constraint firstItem="69m-bc-Y6s" firstAttribute="leading" secondItem="ppD-Or-N6i" secondAttribute="leading" constant="20" id="dGE-Wf-h8W"/>
                         <constraint firstItem="VOl-UV-NLp" firstAttribute="top" secondItem="ppD-Or-N6i" secondAttribute="top" constant="8" id="hVr-Sj-ejD"/>
                         <constraint firstItem="VSg-kO-PkY" firstAttribute="leading" secondItem="An7-B4-Zl6" secondAttribute="trailing" constant="20" id="huo-l4-dZ2"/>
+                        <constraint firstItem="An7-B4-Zl6" firstAttribute="leading" secondItem="bXF-7N-M9K" secondAttribute="trailing" constant="15" id="hvM-re-5ed"/>
                         <constraint firstItem="69m-bc-Y6s" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" id="ljx-6s-KKG"/>
-                        <constraint firstItem="bXF-7N-M9K" firstAttribute="centerX" secondItem="ppD-Or-N6i" secondAttribute="centerX" id="n31-Se-2IO"/>
+                        <constraint firstItem="bXF-7N-M9K" firstAttribute="leading" secondItem="ppD-Or-N6i" secondAttribute="leading" constant="187" id="r1I-Ru-eV5"/>
                         <constraint firstItem="VOl-UV-NLp" firstAttribute="leading" secondItem="ppD-Or-N6i" secondAttribute="leading" constant="20" id="rbx-9T-mlf"/>
                         <constraint firstItem="ra7-74-dRn" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" constant="37" id="sJM-50-HTQ"/>
-                        <constraint firstItem="bXF-7N-M9K" firstAttribute="leading" secondItem="H4G-XC-Io3" secondAttribute="trailing" constant="20" id="trH-4i-e4Q"/>
+                        <constraint firstItem="bXF-7N-M9K" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" constant="28" id="tQa-Hg-atJ"/>
                         <constraint firstAttribute="trailing" secondItem="VOl-UV-NLp" secondAttribute="trailing" constant="20" id="tth-5P-Rl5"/>
                         <constraint firstItem="An7-B4-Zl6" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" constant="37" id="u99-Q8-IFI"/>
                         <constraint firstAttribute="width" constant="414" id="udV-UO-pfq"/>
                         <constraint firstItem="H4G-XC-Io3" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" constant="37" id="um2-i5-vya"/>
-                        <constraint firstItem="bXF-7N-M9K" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" constant="28" id="xgv-A8-Ctq"/>
                     </constraints>
                 </view>
             </subviews>
@@ -117,7 +129,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ppD-Or-N6i" secondAttribute="trailing" id="H1T-q8-gCx"/>
                 <constraint firstAttribute="bottom" secondItem="ppD-Or-N6i" secondAttribute="bottom" id="RXR-7M-AGP"/>
-                <constraint firstItem="ppD-Or-N6i" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="592" id="bLs-qo-6Ze"/>
+                <constraint firstItem="ppD-Or-N6i" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="626" id="bLs-qo-6Ze"/>
                 <constraint firstItem="ppD-Or-N6i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="heC-xx-Kn3"/>
             </constraints>
             <point key="canvasLocation" x="100.00000000000001" y="71.651785714285708"/>
@@ -134,5 +146,6 @@
         <image name="gobackward.10" catalog="system" width="121" height="128"/>
         <image name="goforward.10" catalog="system" width="121" height="128"/>
         <image name="playButton" width="40" height="40"/>
+        <image name="speaker.wave.2.fill" catalog="system" width="128" height="90"/>
     </resources>
 </document>

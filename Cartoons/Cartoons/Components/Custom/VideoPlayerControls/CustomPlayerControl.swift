@@ -12,14 +12,17 @@ import Foundation
 import UIKit
 
 class CustomPlayerControl: UIView {
-    @IBOutlet weak var controlView: UIView!
-    @IBOutlet weak var slider: CustomSlider!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var goForwardButton: UIButton!
-    @IBOutlet weak var goBackwardButton: UIButton!
-    @IBOutlet weak var forwardButton: UIButton!
-    @IBOutlet weak var backwardButton: UIButton!
-    
+    @IBOutlet private weak var controlView: UIView!
+    @IBOutlet private weak var slider: CustomSlider!
+    @IBOutlet private weak var playButton: UIButton!
+    @IBOutlet private weak var goForwardButton: UIButton!
+    @IBOutlet private weak var goBackwardButton: UIButton!
+    @IBOutlet private weak var forwardButton: UIButton!
+    @IBOutlet private weak var backwardButton: UIButton!
+    @IBOutlet private weak var sound: UIButton!
+    @IBOutlet private weak var currentTime: UILabel!
+    @IBOutlet private weak var wholeTime: UILabel!
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         Bundle.main.loadNibNamed("PlayerControlsView", owner: self, options: nil)

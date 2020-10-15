@@ -75,6 +75,8 @@
 		3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D951250F95100095F78C /* PageControllerPresenter.swift */; };
 		3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */; };
 		3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D955250F95460095F78C /* PagePresenterProtocol.swift */; };
+		338614B125385F9D00A24D4F /* AVPlayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338614B025385F9D00A24D4F /* AVPlayer + Extension.swift */; };
+		338614B425386B9200A24D4F /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338614B325386B9200A24D4F /* PlayerView.swift */; };
 		339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339ECE32251A14DC00168C5B /* BaseNavigationController.swift */; };
 		33A17537253769460062EC8C /* CustomPlayerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A17536253769460062EC8C /* CustomPlayerControl.swift */; };
 		33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1753B253769D80062EC8C /* CustomSlider.swift */; };
@@ -204,6 +206,8 @@
 		3373D951250F95100095F78C /* PageControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerPresenter.swift; sourceTree = "<group>"; };
 		3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		3373D955250F95460095F78C /* PagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenterProtocol.swift; sourceTree = "<group>"; };
+		338614B025385F9D00A24D4F /* AVPlayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer + Extension.swift"; sourceTree = "<group>"; };
+		338614B325386B9200A24D4F /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		339ECE32251A14DC00168C5B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		33A17536253769460062EC8C /* CustomPlayerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControl.swift; sourceTree = "<group>"; };
 		33A1753B253769D80062EC8C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 				33A17536253769460062EC8C /* CustomPlayerControl.swift */,
 				33A1753B253769D80062EC8C /* CustomSlider.swift */,
 				33A1755725376B390062EC8C /* PlayerControlsView.xib */,
+				338614B325386B9200A24D4F /* PlayerView.swift */,
 			);
 			path = VideoPlayerControls;
 			sourceTree = "<group>";
@@ -810,6 +815,7 @@
 			children = (
 				33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */,
 				33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */,
+				338614B025385F9D00A24D4F /* AVPlayer + Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1233,6 +1239,7 @@
 				33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */,
 				33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
+				338614B425386B9200A24D4F /* PlayerView.swift in Sources */,
 				33127B602534C4DB00B84FAE /* VideoPlayerViewController.swift in Sources */,
 				3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */,
 				33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */,
@@ -1263,6 +1270,7 @@
 				33127B6A2534C53400B84FAE /* VideoPlayerPresenterProtocol.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				330F4E0D252F073D008D0FC8 /* SettingsAssembly.swift in Sources */,
+				338614B125385F9D00A24D4F /* AVPlayer + Extension.swift in Sources */,
 				3373D945250F588A0095F78C /* PageViewController.swift in Sources */,
 				33B2AEBB250A702D0006BE31 /* TabBarViewController.swift in Sources */,
 				33104A6E2535846100A90ED7 /* CartoonCollectionViewCell.swift in Sources */,
