@@ -13,7 +13,6 @@ protocol VideoPlayerControlsProtocol: AnyObject {
     var jumpForwardClosure: () -> Void { get set }
     var jumpBackwardClosure: () -> Void { get set }
     
-    func updatePlayerButton(state: PlayerState)
     func updateSlider(with value: Float)
     func updateCurrentTime(with time: String)
     func updateWholeTime(with time: String)

@@ -30,6 +30,7 @@ class VideoPlayerViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAVPlayer()
+        setTimeObserver()
     }
     
     override func loadView() {
@@ -78,7 +79,35 @@ extension VideoPlayerViewController {
         let url = "https://firebasestorage.googleapis.com/v0/b/cartoons-845b3.appspot.com/o/movies%2Ffrozen%2FDisney's%20Frozen%20Official%20Trailer.mp4?alt=media&token=86dd7b16-8322-43a1-a7ed-c4689c8004d4"
         playerView.player = AVPlayer(url: URL(string: url)!)
         player?.play()
+        let seconds = player?.currentItem?.asset.duration.seconds
+        let time = (seconds?.asString()).unwrapped
+        presenter?.setDuration(value: time)
         playerState = .playing
+    }
+    
+    func setTimeObserver() {
+        let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        timeObserver = player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { elapsedTime in
+            self.updateVideoPlayerState()
+        })
+    }
+    
+    func updateVideoPlayerState() {
+        guard let currentTime = player?.currentTime() else { return }
+        let currentTimeInSeconds = CMTimeGetSeconds(currentTime)
+        var time = currentTime.seconds.asString()
+        presenter?.updateProgress(value: Float(currentTimeInSeconds))
+        presenter?.updateProgressValue(value: time)
+        if let currentItem = player?.currentItem {
+            let duration = currentItem.duration
+            if (CMTIME_IS_INVALID(duration)) {
+                return;
+            }
+            let currentTime = currentItem.currentTime()
+            time = currentTime.seconds.asString()
+            presenter?.updateProgress(value: Float(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(duration)))
+            presenter?.updateProgressValue(value: time)
+        }
     }
 }
 

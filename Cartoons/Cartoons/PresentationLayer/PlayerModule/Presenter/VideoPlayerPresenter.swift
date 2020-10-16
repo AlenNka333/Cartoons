@@ -29,7 +29,16 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
         }
     }
     
+    func setDuration(value: String) {
+        controls.updateWholeTime(with: value)
+    }
+    
     func updateProgress(value: Float) {
+        controls.updateSlider(with: value)
+    }
+    
+    func updateProgressValue(value: String) {
+        controls.updateCurrentTime(with: value)
     }
     
     func showError(error: Error) {

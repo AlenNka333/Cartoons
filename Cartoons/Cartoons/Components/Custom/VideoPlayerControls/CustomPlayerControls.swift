@@ -62,15 +62,6 @@ class CustomPlayerControls: UIView {
 }
 
 extension CustomPlayerControls: VideoPlayerControlsProtocol {
-    func updatePlayerButton(state: PlayerState) {
-        switch state {
-        case .playing:
-            playButton.setImage(R.image.stopButton(), for: .normal)
-        case .stopped:
-            playButton.setImage(R.image.playButton(), for: .normal)
-        }
-    }
-    
     func updateSlider(with value: Float) {
         slider.value = value
     }
