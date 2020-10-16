@@ -112,6 +112,16 @@ extension VideoPlayerViewController {
 }
 
 extension VideoPlayerViewController: VideoPlayerViewProtocol {
+    func getDuration() -> Double {
+        let seconds = player?.currentItem?.asset.duration.seconds
+        return seconds.unwrapped
+    }
+    
+    func setVideoTime(value: Double) {
+        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
+        player?.seek(to: seekTime)
+    }
+    
     func jumpForward() {
         guard let player = playerView.player else {
             return

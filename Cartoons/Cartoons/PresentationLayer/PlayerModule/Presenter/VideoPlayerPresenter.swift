@@ -27,6 +27,12 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
         controls.jumpBackwardClosure = { [weak self] in
             self?.view.jumpBackward()
         }
+        controls.needVideoDurationClosure = { [weak self] in
+            return (self?.view.getDuration()).unwrapped
+        }
+        controls.setVideoTime = { [weak self] time in
+            self?.view.setVideoTime(value: time)
+        }
     }
     
     func setDuration(value: String) {

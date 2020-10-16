@@ -12,4 +12,6 @@ protocol VideoPlayerViewProtocol: ViewProtocol, AnyObject {
     func updateStatus() -> PlayerState?
     func jumpForward()
     func jumpBackward()
+    func getDuration() -> Double
+    func setVideoTime(value: Double)
 }

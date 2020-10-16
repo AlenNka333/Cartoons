@@ -25,6 +25,10 @@ class CustomPlayerControls: UIView {
     var videoStateChangedClosure: (() -> (PlayerState))?
     var jumpForwardClosure: () -> Void = {}
     var jumpBackwardClosure: () -> Void = {}
+    var setVideoTime: (Double) -> Void = { _ in }
+    var needVideoDurationClosure: (() -> (Double))?
+    
+    private var duration: Double = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,6 +38,7 @@ class CustomPlayerControls: UIView {
             $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
         }
+        slider.isContinuous = false
     }
     
     required init?(coder: NSCoder) {
@@ -58,6 +63,12 @@ class CustomPlayerControls: UIView {
         jumpBackwardClosure()
     }
     @IBAction private func updateProgress(_ sender: CustomSlider) {
+        guard let closure = needVideoDurationClosure else {
+            return
+        }
+        duration = closure()
+        let value = Float64(slider.value) * duration
+        setVideoTime(value)
     }
 }
 
