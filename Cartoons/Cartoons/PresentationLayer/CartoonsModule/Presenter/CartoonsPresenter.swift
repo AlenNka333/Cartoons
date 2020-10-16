@@ -11,6 +11,8 @@ import Foundation
 class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
     
+    var openPlayerClosure: () -> Void = {}
+    
     init(view: CartoonsViewProtocol) {
         self.view = view
     }
@@ -21,5 +23,9 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     
     func showError(error: Error) {
         view.showError(error: error)
+    }
+    
+    func openPlayer() {
+        openPlayerClosure()
     }
 }

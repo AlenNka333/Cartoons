@@ -10,4 +10,5 @@ import Foundation
 
 protocol CartoonsViewPresenterProtocol: PresenterProtocol, AnyObject {
     func showSuccess(success: String)
+    func openPlayer()
 }

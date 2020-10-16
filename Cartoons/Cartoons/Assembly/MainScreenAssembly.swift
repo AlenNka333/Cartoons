@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Action {
+    case openPlayer
+    case successSession
+}
+
 class MainScreenAssembly: Assembly {
     static func makeMainScreenCoordinator(number: String) -> MainScreenCoordinator {
         return MainScreenCoordinator(number: number)
@@ -16,12 +21,15 @@ class MainScreenAssembly: Assembly {
     static func makeTabBarController(number: String,
                                      storageService: StorageDataService,
                                      authorizationService: AuthorizationService,
-                                     completion: @escaping(() -> Void)) -> TabBarViewController {
+                                     completion: @escaping((Action) -> Void)) -> TabBarViewController {
         var controllers = [UIViewController]()
-        controllers.append(CartoonsAssembly.makeCartoonsController())
+        let cartoons = CartoonsAssembly.makeCartoonsController {
+            completion(Action.openPlayer)
+        }
+        controllers.append(cartoons)
         controllers.append(FavouritesAssembly.makeFavouritesController())
         let settings = SettingsAssembly.makeSettingsController(number: number, storageService: storageService, authorizationService: authorizationService) {
-            completion()
+            completion(Action.successSession)
         }
         controllers.append(settings)
         let view = TabBarViewController(controllers: controllers)

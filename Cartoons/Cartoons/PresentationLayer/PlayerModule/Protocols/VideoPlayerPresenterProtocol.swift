@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol VideoPlayerPresenterProtocol: PresenterProtocol, AnyObject {
+    func updateProgress(value: Float)
+}

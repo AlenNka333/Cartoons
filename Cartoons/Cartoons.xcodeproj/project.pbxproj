@@ -76,8 +76,10 @@
 		3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D955250F95460095F78C /* PagePresenterProtocol.swift */; };
 		338614B125385F9D00A24D4F /* AVPlayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338614B025385F9D00A24D4F /* AVPlayer + Extension.swift */; };
 		338614B425386B9200A24D4F /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338614B325386B9200A24D4F /* PlayerView.swift */; };
+		338614BC2539882100A24D4F /* VideoPlayerControlsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338614BB2539882000A24D4F /* VideoPlayerControlsProtocol.swift */; };
+		338614BF2539C01B00A24D4F /* PlayerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338614BE2539C01B00A24D4F /* PlayerAssembly.swift */; };
 		339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339ECE32251A14DC00168C5B /* BaseNavigationController.swift */; };
-		33A17537253769460062EC8C /* CustomPlayerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A17536253769460062EC8C /* CustomPlayerControl.swift */; };
+		33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A17536253769460062EC8C /* CustomPlayerControls.swift */; };
 		33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1753B253769D80062EC8C /* CustomSlider.swift */; };
 		33A1755825376B390062EC8C /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A1755725376B390062EC8C /* PlayerControlsView.xib */; };
 		33A3BA2B251CE142004EA0D9 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2A251CE142004EA0D9 /* General.swift */; };
@@ -206,8 +208,10 @@
 		3373D955250F95460095F78C /* PagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenterProtocol.swift; sourceTree = "<group>"; };
 		338614B025385F9D00A24D4F /* AVPlayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer + Extension.swift"; sourceTree = "<group>"; };
 		338614B325386B9200A24D4F /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		338614BB2539882000A24D4F /* VideoPlayerControlsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlsProtocol.swift; sourceTree = "<group>"; };
+		338614BE2539C01B00A24D4F /* PlayerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAssembly.swift; sourceTree = "<group>"; };
 		339ECE32251A14DC00168C5B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
-		33A17536253769460062EC8C /* CustomPlayerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControl.swift; sourceTree = "<group>"; };
+		33A17536253769460062EC8C /* CustomPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControls.swift; sourceTree = "<group>"; };
 		33A1753B253769D80062EC8C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		33A1755725376B390062EC8C /* PlayerControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
 		33A3BA2A251CE142004EA0D9 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
@@ -362,7 +366,7 @@
 		33127B4A2534C41C00B84FAE /* VideoPlayerControls */ = {
 			isa = PBXGroup;
 			children = (
-				33A17536253769460062EC8C /* CustomPlayerControl.swift */,
+				33A17536253769460062EC8C /* CustomPlayerControls.swift */,
 				33A1753B253769D80062EC8C /* CustomSlider.swift */,
 				33A1755725376B390062EC8C /* PlayerControlsView.xib */,
 			);
@@ -436,6 +440,7 @@
 			children = (
 				33127B652534C51000B84FAE /* VideoPlayerViewProtocol.swift */,
 				33127B692534C53400B84FAE /* VideoPlayerPresenterProtocol.swift */,
+				338614BB2539882000A24D4F /* VideoPlayerControlsProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -844,6 +849,7 @@
 				330F4E08252F0110008D0FC8 /* FavouritesAssembly.swift */,
 				330F4E0C252F073D008D0FC8 /* SettingsAssembly.swift */,
 				330F4E0F252F0D9B008D0FC8 /* OnboardingAssembly.swift */,
+				338614BE2539C01B00A24D4F /* PlayerAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -1227,6 +1233,7 @@
 			files = (
 				33127B7D25357B0200B84FAE /* Section.swift in Sources */,
 				334A51D4252CD780003BCF59 /* ViewProtocol.swift in Sources */,
+				338614BF2539C01B00A24D4F /* PlayerAssembly.swift in Sources */,
 				332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */,
 				330F4E752530F65C008D0FC8 /* UserDataManager.swift in Sources */,
 				3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */,
@@ -1274,6 +1281,7 @@
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				33127B572534C4A700B84FAE /* DetailsViewProtocol.swift in Sources */,
 				33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */,
+				338614BC2539882100A24D4F /* VideoPlayerControlsProtocol.swift in Sources */,
 				332227C72518972300EF56B8 /* FavouritesViewPresenterProtocol.swift in Sources */,
 				33B660D12502E8A700CA562E /* VerificationViewPresenter.swift in Sources */,
 				33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */,
@@ -1284,7 +1292,7 @@
 				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
 				33127B632534C4EF00B84FAE /* VideoPlayerPresenter.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,
-				33A17537253769460062EC8C /* CustomPlayerControl.swift in Sources */,
+				33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */,
 				3334A4D12523344F00AD18C7 /* AccessErrors.swift in Sources */,
 				33A3BA2D251E140F004EA0D9 /* AlertService.swift in Sources */,
 				332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */,

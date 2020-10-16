@@ -13,7 +13,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomPlayerControl" customModule="Cartoons" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomPlayerControls" customModule="Cartoons" customModuleProvider="target">
             <connections>
                 <outlet property="backwardButton" destination="ra7-74-dRn" id="TAv-sm-IVR"/>
                 <outlet property="controlView" destination="ppD-Or-N6i" id="FUw-TM-wnx"/>
@@ -35,7 +35,7 @@
                     <rect key="frame" x="20" y="670" width="374" height="226"/>
                     <subviews>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VOl-UV-NLp" customClass="CustomSlider" customModule="Cartoons" customModuleProvider="target">
-                            <rect key="frame" x="18" y="8" width="348" height="32"/>
+                            <rect key="frame" x="18" y="8" width="348" height="31"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="thumbHeight">
@@ -47,7 +47,7 @@
                             </connections>
                         </slider>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXF-7N-M9K">
-                            <rect key="frame" x="172" y="67" width="45" height="46"/>
+                            <rect key="frame" x="172" y="66" width="45" height="46"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="miI-eN-pdu"/>
                                 <constraint firstAttribute="height" constant="46" id="wWh-Nb-a4h"/>
@@ -58,7 +58,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An7-B4-Zl6">
-                            <rect key="frame" x="232" y="76" width="20" height="23"/>
+                            <rect key="frame" x="232" y="75" width="20" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="SJ8-hW-07K"/>
                                 <constraint firstAttribute="height" constant="23" id="uA3-jD-Plj"/>
@@ -70,7 +70,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4G-XC-Io3">
-                            <rect key="frame" x="132" y="76" width="20" height="23"/>
+                            <rect key="frame" x="132" y="75" width="20" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="033-Yu-t8R"/>
                                 <constraint firstAttribute="height" constant="23" id="ecP-u3-1V2"/>
@@ -82,23 +82,23 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSg-kO-PkY">
-                            <rect key="frame" x="272" y="76" width="25" height="22"/>
+                            <rect key="frame" x="272" y="75" width="25" height="22"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" image="forward.fill" catalog="system"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ra7-74-dRn">
-                            <rect key="frame" x="87" y="76" width="25" height="22"/>
+                            <rect key="frame" x="87" y="75" width="25" height="22"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" image="backward.fill" catalog="system"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69m-bc-Y6s">
-                            <rect key="frame" x="20" y="39" width="26" height="17"/>
+                            <rect key="frame" x="20" y="38" width="26" height="17"/>
                             <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-17:84" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN3-57-dPw">
-                            <rect key="frame" x="329.5" y="39" width="34.5" height="17"/>
+                            <rect key="frame" x="329.5" y="38" width="34.5" height="17"/>
                             <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -146,7 +146,7 @@
     </objects>
     <designables>
         <designable name="VOl-UV-NLp">
-            <size key="intrinsicContentSize" width="197" height="31"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
     </designables>
     <resources>

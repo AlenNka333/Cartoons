@@ -19,13 +19,13 @@ enum PlayerState {
 class VideoPlayerViewController: ViewController {
     
     private var playerView = PlayerView()
-    private lazy var controlsView = CustomPlayerControl()
+    var controlsView: CustomPlayerControls?
     private var player: AVPlayer? {
         playerView.player
     }
+    var presenter: VideoPlayerPresenterProtocol?
     var playerState: PlayerState?
     var timeObserver: Any?
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,11 @@ class VideoPlayerViewController: ViewController {
     override func loadView() {
         super.loadView()
         view = playerView
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        playerView.player = nil
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -54,20 +59,13 @@ class VideoPlayerViewController: ViewController {
         super.setupUI()
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .black
-        playerView.addSubview(controlsView)
-        controlsView.snp.makeConstraints {
+        guard let controls = controlsView else {
+            return
+        }
+        playerView.addSubview(controls)
+        controls.snp.makeConstraints {
             $0.edges.equalToSuperview()
-        }
-        controlsView.videoStateChangedClosure = { [weak self] in
-            self?.updateStatus()
-            return (self?.playerState)!
-        }
-        controlsView.jumpForwardClosure = { [weak self] in
-            self?.jumpForward()
-        }
-        controlsView.jumpBackwardClosure = { [weak self] in
-            self?.jumpBackward()
-        }
+       }
     }
     
     override func showError(error: Error) {
@@ -82,8 +80,10 @@ extension VideoPlayerViewController {
         player?.play()
         playerState = .playing
     }
-    
-    private func jumpForward() {
+}
+
+extension VideoPlayerViewController: VideoPlayerViewProtocol {
+    func jumpForward() {
         guard let player = playerView.player else {
             return
         }
@@ -92,7 +92,7 @@ extension VideoPlayerViewController {
         player.seek(to: seekTime)
     }
     
-    private func jumpBackward() {
+    func jumpBackward() {
         guard let player = playerView.player else {
             return
         }
@@ -101,9 +101,9 @@ extension VideoPlayerViewController {
         player.seek(to: seekTime)
     }
     
-    private func updateStatus() {
+    func updateStatus() -> PlayerState? {
         guard let player = playerView.player else {
-            return
+            return nil
         }
         if player.isPlaying {
             player.pause()
@@ -112,5 +112,6 @@ extension VideoPlayerViewController {
             player.play()
             playerState = .playing
         }
+        return playerState
     }
 }

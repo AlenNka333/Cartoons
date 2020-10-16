@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol VideoPlayerViewProtocol: ViewProtocol, AnyObject {
+    func updateStatus() -> PlayerState?
+    func jumpForward()
+    func jumpBackward()
+}

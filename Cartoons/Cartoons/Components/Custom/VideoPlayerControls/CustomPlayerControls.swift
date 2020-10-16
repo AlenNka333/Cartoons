@@ -11,7 +11,7 @@ import AVKit
 import Foundation
 import UIKit
 
-class CustomPlayerControl: UIView {
+class CustomPlayerControls: UIView {
     @IBOutlet private weak var controlView: UIView!
     @IBOutlet private weak var slider: CustomSlider!
     @IBOutlet private weak var playButton: UIButton!
@@ -23,8 +23,8 @@ class CustomPlayerControl: UIView {
     @IBOutlet private weak var wholeTime: UILabel!
     
     var videoStateChangedClosure: (() -> (PlayerState))?
-    var jumpForwardClosure: (() -> Void)?
-    var jumpBackwardClosure: (() -> Void)?
+    var jumpForwardClosure: () -> Void = {}
+    var jumpBackwardClosure: () -> Void = {}
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,17 +52,34 @@ class CustomPlayerControl: UIView {
         }
     }
     @IBAction private func goForwardButtonClicked(_ sender: UIButton) {
-        guard let closure = jumpForwardClosure else {
-            return
-        }
-        closure()
+        jumpForwardClosure()
     }
     @IBAction private func goBackwardButtonClicked(_ sender: UIButton) {
-        guard let closure = jumpBackwardClosure else {
-            return
-        }
-        closure()
+        jumpBackwardClosure()
     }
-    @IBAction func updateProgress(_ sender: CustomSlider) {
+    @IBAction private func updateProgress(_ sender: CustomSlider) {
+    }
+}
+
+extension CustomPlayerControls: VideoPlayerControlsProtocol {
+    func updatePlayerButton(state: PlayerState) {
+        switch state {
+        case .playing:
+            playButton.setImage(R.image.stopButton(), for: .normal)
+        case .stopped:
+            playButton.setImage(R.image.playButton(), for: .normal)
+        }
+    }
+    
+    func updateSlider(with value: Float) {
+        slider.value = value
+    }
+    
+    func updateCurrentTime(with time: String) {
+        currentTime.text = time
+    }
+    
+    func updateWholeTime(with time: String) {
+        wholeTime.text = time
     }
 }

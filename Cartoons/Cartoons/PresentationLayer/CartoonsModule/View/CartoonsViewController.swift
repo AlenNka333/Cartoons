@@ -60,9 +60,7 @@ extension CartoonsViewController: CartoonsViewProtocol {
 
 extension CartoonsViewController: UICollectionViewDelegate {
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let playerViewController = VideoPlayerViewController()
-        playerViewController.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(playerViewController, animated: true)
+        presenter?.openPlayer()
     }
 }
 

@@ -26,8 +26,18 @@ class MainScreenCoordinator: CoordinatorProtocol {
         root = MainScreenAssembly.makeTabBarController(number: number,
                                                        storageService: storageService,
                                                        authorizationService: authorizationService,
-                                                       completion: { [weak self] in
-            self?.successSessionClosure()
+                                                       completion: { [weak self] action in
+                                                        switch action {
+                                                        case .openPlayer:
+                                                            self?.openVideoPlayer()
+                                                        case .successSession:
+                                                            self?.successSessionClosure()
+                                                        }
         })
+    }
+    
+    func openVideoPlayer() {
+        let view = PlayerAssembly.makePlayerController()
+        ((root as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)
     }
 }
