@@ -33,6 +33,10 @@ class VideoPlayerViewController: ViewController {
         setTimeObserver()
     }
     
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .slide }
+    override var prefersStatusBarHidden: Bool { controlsView?.isHidden == true }
+    override var prefersHomeIndicatorAutoHidden: Bool { true }
+    
     override func loadView() {
         super.loadView()
         view = playerView
@@ -63,14 +67,23 @@ class VideoPlayerViewController: ViewController {
         guard let controls = controlsView else {
             return
         }
-        playerView.addSubview(controls)
+        view.addSubview(controls)
         controls.snp.makeConstraints {
             $0.edges.equalToSuperview()
-       }
+        }
+        view.isUserInteractionEnabled = true
+        controls.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
+        view.addGestureRecognizer(tap)
     }
     
     override func showError(error: Error) {
         super.showError(error: error)
+    }
+    
+    @objc func viewDidTap() {
+        controlsView?.isHidden.toggle()
+        navigationController?.navigationBar.isHidden.toggle()
     }
 }
 
@@ -154,3 +167,5 @@ extension VideoPlayerViewController: VideoPlayerViewProtocol {
         return playerState
     }
 }
+
+extension VideoPlayerViewController: UIGestureRecognizerDelegate { }

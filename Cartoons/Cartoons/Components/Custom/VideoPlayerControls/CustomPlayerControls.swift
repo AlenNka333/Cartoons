@@ -35,8 +35,6 @@ class CustomPlayerControls: UIView {
         controlView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        controlView.backgroundColor = .clear
-        slider.isContinuous = false
     }
     
     required init?(coder: NSCoder) {

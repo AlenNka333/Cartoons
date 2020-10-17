@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="landscape" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -15,7 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomPlayerControls" customModule="Cartoons" customModuleProvider="target">
             <connections>
-                <outlet property="controlView" destination="iN0-l3-epB" id="P5H-44-dXw"/>
+                <outlet property="controlView" destination="iN0-l3-epB" id="KmK-Wg-18Q"/>
                 <outlet property="currentTime" destination="69m-bc-Y6s" id="7fs-4H-uLa"/>
                 <outlet property="goBackwardButton" destination="H4G-XC-Io3" id="7uL-0r-er9"/>
                 <outlet property="goForwardButton" destination="An7-B4-Zl6" id="Gz1-iH-2eZ"/>
@@ -26,14 +26,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomPlayerControls" customModule="Cartoons" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppD-Or-N6i">
-                    <rect key="frame" x="64" y="254" width="684" height="100"/>
+                    <rect key="frame" x="20" y="578" width="335" height="200"/>
                     <subviews>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VOl-UV-NLp" customClass="CustomSlider" customModule="Cartoons" customModuleProvider="target">
-                            <rect key="frame" x="3" y="0.0" width="678" height="32"/>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOl-UV-NLp" customClass="CustomSlider" customModule="Cartoons" customModuleProvider="target">
+                            <rect key="frame" x="3" y="0.0" width="329" height="32"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="thumbHeight">
@@ -45,7 +45,7 @@
                             </connections>
                         </slider>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sdq-5F-w02">
-                            <rect key="frame" x="282.33333333333331" y="30" width="119.33333333333331" height="40"/>
+                            <rect key="frame" x="108" y="80" width="119.33333333333331" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4G-XC-Io3">
                                     <rect key="frame" x="0.0" y="0.0" width="19.666666666666668" height="40"/>
@@ -56,14 +56,14 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXF-7N-M9K">
-                                    <rect key="frame" x="39.666666666666686" y="0.0" width="40" height="40"/>
+                                    <rect key="frame" x="39.666666666666657" y="0.0" width="40" height="40"/>
                                     <state key="normal" image="stopButton"/>
                                     <connections>
                                         <action selector="playPauseButtonClicked:" destination="-1" eventType="touchUpInside" id="9r6-DV-S59"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An7-B4-Zl6">
-                                    <rect key="frame" x="99.666666666666686" y="0.0" width="19.666666666666671" height="40"/>
+                                    <rect key="frame" x="99.666666666666657" y="0.0" width="19.666666666666671" height="40"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" image="goforward.10" catalog="system"/>
                                     <connections>
@@ -79,7 +79,7 @@
                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-17:84" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN3-57-dPw">
-                            <rect key="frame" x="644.33333333333337" y="36" width="34.666666666666629" height="16.333333333333329"/>
+                            <rect key="frame" x="295.33333333333331" y="36" width="34.666666666666686" height="16.333333333333329"/>
                             <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,13 +125,13 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ppD-Or-N6i" secondAttribute="trailing" constant="20" id="Y8m-bu-X1e"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ppD-Or-N6i" secondAttribute="bottom" id="fvy-fD-ip8"/>
                 <constraint firstItem="ppD-Or-N6i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="gYx-a8-P4s"/>
             </constraints>
-            <point key="canvasLocation" x="100.00000000000001" y="71.651785714285708"/>
+            <point key="canvasLocation" x="100" y="76.108374384236456"/>
         </view>
     </objects>
     <designables>
