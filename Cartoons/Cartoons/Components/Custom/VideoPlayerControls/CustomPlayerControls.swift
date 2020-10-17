@@ -17,8 +17,6 @@ class CustomPlayerControls: UIView {
     @IBOutlet private weak var playButton: UIButton!
     @IBOutlet private weak var goForwardButton: UIButton!
     @IBOutlet private weak var goBackwardButton: UIButton!
-    @IBOutlet private weak var forwardButton: UIButton!
-    @IBOutlet private weak var backwardButton: UIButton!
     @IBOutlet private weak var currentTime: UILabel!
     @IBOutlet private weak var wholeTime: UILabel!
     
@@ -35,9 +33,9 @@ class CustomPlayerControls: UIView {
         Bundle.main.loadNibNamed("PlayerControlsView", owner: self, options: nil)
         addSubview(controlView)
         controlView.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
+        controlView.backgroundColor = .clear
         slider.isContinuous = false
     }
     
