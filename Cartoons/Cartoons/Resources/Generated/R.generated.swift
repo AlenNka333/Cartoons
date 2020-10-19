@@ -272,7 +272,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 23 images.
+  /// This `R.image` struct is generated, and contains static references to 25 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -288,6 +288,10 @@ struct R: Rswift.Validatable {
     static let frozen_onBoarding = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen_onBoarding")
     /// Image `frozen`.
     static let frozen = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen")
+    /// Image `go_backward`.
+    static let go_backward = Rswift.ImageResource(bundle: R.hostingBundle, name: "go_backward")
+    /// Image `go_forward`.
+    static let go_forward = Rswift.ImageResource(bundle: R.hostingBundle, name: "go_forward")
     /// Image `label`.
     static let label = Rswift.ImageResource(bundle: R.hostingBundle, name: "label")
     /// Image `launch_background`.
@@ -298,8 +302,8 @@ struct R: Rswift.Validatable {
     static let main_screen_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_screen_background")
     /// Image `navigation_label`.
     static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
-    /// Image `playButton`.
-    static let playButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "playButton")
+    /// Image `play`.
+    static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
     /// Image `princess_ariel`.
     static let princess_ariel = Rswift.ImageResource(bundle: R.hostingBundle, name: "princess_ariel")
     /// Image `princess_cinderella`.
@@ -312,8 +316,8 @@ struct R: Rswift.Validatable {
     static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
     /// Image `slider_progress`.
     static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
-    /// Image `stopButton`.
-    static let stopButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "stopButton")
+    /// Image `stop`.
+    static let stop = Rswift.ImageResource(bundle: R.hostingBundle, name: "stop")
     /// Image `thumb_slider_image`.
     static let thumb_slider_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "thumb_slider_image")
     /// Image `tree_leave`.
@@ -371,6 +375,20 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "go_backward", bundle: ..., traitCollection: ...)`
+    static func go_backward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.go_backward, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "go_forward", bundle: ..., traitCollection: ...)`
+    static func go_forward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.go_forward, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "label", bundle: ..., traitCollection: ...)`
     static func label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.label, compatibleWith: traitCollection)
@@ -406,9 +424,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "playButton", bundle: ..., traitCollection: ...)`
-    static func playButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.playButton, compatibleWith: traitCollection)
+    /// `UIImage(named: "play", bundle: ..., traitCollection: ...)`
+    static func play(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.play, compatibleWith: traitCollection)
     }
     #endif
 
@@ -455,9 +473,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "stopButton", bundle: ..., traitCollection: ...)`
-    static func stopButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.stopButton, compatibleWith: traitCollection)
+    /// `UIImage(named: "stop", bundle: ..., traitCollection: ...)`
+    static func stop(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.stop, compatibleWith: traitCollection)
     }
     #endif
 
@@ -1036,9 +1054,9 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
-        if UIKit.UIImage(named: "gobackward.10", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'gobackward.10' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "goforward.10", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'goforward.10' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "stopButton", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'stopButton' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "go_backward", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'go_backward' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "go_forward", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'go_forward' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "stop", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'stop' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }

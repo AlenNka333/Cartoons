@@ -47,9 +47,9 @@ class CustomPlayerControls: UIView {
         }
         switch closure() {
         case .playing:
-            playButton.setImage(R.image.stopButton(), for: .normal)
+            playButton.setImage(R.image.stop(), for: .normal)
         case .stopped:
-            playButton.setImage(R.image.playButton(), for: .normal)
+            playButton.setImage(R.image.play(), for: .normal)
         }
     }
     @IBAction private func goForwardButtonClicked(_ sender: UIButton) {

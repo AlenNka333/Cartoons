@@ -57,6 +57,7 @@ class VideoPlayerViewController: ViewController {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     

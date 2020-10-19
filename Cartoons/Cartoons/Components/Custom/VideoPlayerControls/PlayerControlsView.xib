@@ -44,43 +44,55 @@
                                 <action selector="updateProgress:" destination="-1" eventType="valueChanged" id="DZr-Mh-Fgm"/>
                             </connections>
                         </slider>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sdq-5F-w02">
-                            <rect key="frame" x="108" y="80" width="119.33333333333331" height="40"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="sdq-5F-w02">
+                            <rect key="frame" x="51.666666666666686" y="78" width="232" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4G-XC-Io3">
-                                    <rect key="frame" x="0.0" y="0.0" width="19.666666666666668" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="KEV-To-cav"/>
+                                        <constraint firstAttribute="width" constant="44" id="ehn-Uo-ngn"/>
+                                    </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" image="gobackward.10" catalog="system"/>
+                                    <state key="normal" image="go_backward"/>
                                     <connections>
                                         <action selector="goBackwardButtonClicked:" destination="-1" eventType="touchUpInside" id="Czc-0T-doQ"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXF-7N-M9K">
-                                    <rect key="frame" x="39.666666666666657" y="0.0" width="40" height="40"/>
-                                    <state key="normal" image="stopButton"/>
+                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXF-7N-M9K">
+                                    <rect key="frame" x="93.999999999999986" y="0.0" width="44.000000000000014" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="N2T-vv-ssK"/>
+                                        <constraint firstAttribute="width" constant="44" id="cEV-ye-kp6"/>
+                                    </constraints>
+                                    <state key="normal" image="stop"/>
                                     <connections>
                                         <action selector="playPauseButtonClicked:" destination="-1" eventType="touchUpInside" id="9r6-DV-S59"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An7-B4-Zl6">
-                                    <rect key="frame" x="99.666666666666657" y="0.0" width="19.666666666666671" height="40"/>
+                                    <rect key="frame" x="188" y="0.0" width="44" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="Kp5-EM-N1U"/>
+                                        <constraint firstAttribute="height" constant="44" id="jWK-Cf-2eR"/>
+                                    </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" image="goforward.10" catalog="system"/>
+                                    <state key="normal" image="go_forward"/>
                                     <connections>
                                         <action selector="goForwardButtonClicked:" destination="-1" eventType="touchUpInside" id="reA-py-xWl"/>
                                     </connections>
                                 </button>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8:20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69m-bc-Y6s">
-                            <rect key="frame" x="5" y="36" width="26" height="16.333333333333329"/>
-                            <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="14"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69m-bc-Y6s">
+                            <rect key="frame" x="5" y="36" width="32.333333333333336" height="18.333333333333329"/>
+                            <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-17:84" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN3-57-dPw">
-                            <rect key="frame" x="295.33333333333331" y="36" width="34.666666666666686" height="16.333333333333329"/>
-                            <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="14"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN3-57-dPw">
+                            <rect key="frame" x="288.33333333333331" y="36" width="41.666666666666686" height="18.333333333333329"/>
+                            <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </label>
@@ -136,12 +148,12 @@
     </objects>
     <designables>
         <designable name="VOl-UV-NLp">
-            <size key="intrinsicContentSize" width="197" height="31"/>
+            <size key="intrinsicContentSize" width="643" height="31"/>
         </designable>
     </designables>
     <resources>
-        <image name="gobackward.10" catalog="system" width="121" height="128"/>
-        <image name="goforward.10" catalog="system" width="121" height="128"/>
-        <image name="stopButton" width="40" height="40"/>
+        <image name="go_backward" width="33" height="38"/>
+        <image name="go_forward" width="33" height="38"/>
+        <image name="stop" width="50" height="50"/>
     </resources>
 </document>
