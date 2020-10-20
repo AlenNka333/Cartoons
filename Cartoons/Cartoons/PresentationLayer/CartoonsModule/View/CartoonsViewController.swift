@@ -15,20 +15,19 @@ class CartoonsViewController: ViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Cartoon>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, Cartoon>
     
-    var collectionView: UICollectionView?
+    private var collectionView: UICollectionView?
     private lazy var dataSource = makeDataSource()
     var videos = Cartoon.allVideos
     var presenter: CartoonsViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.startAnimating()
         presenter?.getData()
-        activityIndicator.stopAnimating()
+        
         configureLayout()
-        applySnapshot(animatingDifferences: false)
+        applySnapshot(animatingDifferences: true)
     }
-    
+
     override func setupNavigationBar() {
         super.setupNavigationBar()
         (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
@@ -59,10 +58,15 @@ extension CartoonsViewController: CartoonsViewProtocol {
         }
         present(alertVC, animated: true)
     }
+    
+    func setDataSource(with array: [Cartoon]) {
+        videos = array
+        applySnapshot()
+    }
 }
 
 extension CartoonsViewController: UICollectionViewDelegate {
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.openPlayer()
     }
 }
@@ -78,14 +82,14 @@ extension CartoonsViewController {
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: collectionView ?? UICollectionView(),
                                     cellProvider: { (collectionView, indexPath, cartoon) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? CartoonCollectionViewCell
+                                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? CartoonCollectionViewCell
                                         cell?.layer.shadowColor = UIColor.black.cgColor
                                         cell?.layer.shadowOffset = CGSize(width: 3, height: 8)
                                         cell?.layer.shadowOpacity = 0.6
                                         cell?.layer.masksToBounds = false
-            cell?.video = cartoon
-            return cell
-        })
+                                        cell?.video = cartoon
+                                        return cell
+                                    })
         return dataSource
     }
     

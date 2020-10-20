@@ -39,8 +39,12 @@ class ViewController: UIViewController, ViewProtocol {
     func showActivityIndicator() {
         activityIndicator.style = UIActivityIndicatorView.Style.large
         activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .white
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+        }
     }
     
     func stopActivityIndicator() {

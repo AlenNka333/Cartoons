@@ -23,25 +23,25 @@ class StorageDataService: StorageDataServiceProtocol {
         storageDataManager.loadImage(completion: completion)
     }
     
-    func checkListAvailable(completion: @escaping (Result<[String], Error>) -> Void) {
-        storageDataManager.getReferenceList { [weak self] result in
+    func checkListAvailable(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
+        self.storageDataManager.getReferenceList { [weak self] result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let list):
                 self?.folders = list
-                completion(.success(list))
+                self?.sendRequest(completion: completion)
             }
         }
     }
-    
+
     func sendRequest(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
         let dispatchQueue = DispatchQueue(label: "get-movies")
         let dispatchGroup = DispatchGroup()
-        let semaphore = DispatchSemaphore(value: 0)
-        dispatchQueue.async {
-            self.folders.forEach { body in
-                dispatchGroup.enter()
+        let semaphore = DispatchSemaphore(value: 1)
+        self.folders.forEach { body in
+            dispatchGroup.enter()
+            dispatchQueue.async {
                 self.storageDataManager.loadData(folder: body) { [weak self] result in
                     switch result {
                     case .failure(let error):
@@ -49,17 +49,13 @@ class StorageDataService: StorageDataServiceProtocol {
                     case .success(let response):
                         let title = response?.lastPathComponent
                         self?.cartoons.append(Cartoon(title: title.unwrapped, link: response))
-                        semaphore.signal()
                         dispatchGroup.leave()
                     }
                 }
-                semaphore.wait()
             }
         }
-        dispatchGroup.notify(queue: dispatchQueue) {
-            DispatchQueue.main.async {
-                completion(.success(self.cartoons))
-            }
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            completion(.success(self.cartoons))
         }
     }
 }

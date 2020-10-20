@@ -10,7 +10,6 @@ import Foundation
 
 protocol CartoonsViewPresenterProtocol: PresenterProtocol, AnyObject {
     func getData()
-    func sendRequest()
     func showSuccess(success: String)
     func openPlayer()
 }

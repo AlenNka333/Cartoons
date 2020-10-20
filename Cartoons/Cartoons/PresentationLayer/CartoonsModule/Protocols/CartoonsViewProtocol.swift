@@ -10,4 +10,5 @@ import Foundation
 
 protocol CartoonsViewProtocol: ViewProtocol, AnyObject {
     func showSuccess(success: String)
+    func setDataSource(with array: [Cartoon])
 }
