@@ -11,7 +11,6 @@ import Foundation
 
 class StorageDataManager {
     private let storageRef = Storage.storage().reference(forURL: "gs://cartoons-845b3.appspot.com/")
-    private let databaseRef = Database.database().reference()
     private let metadata = StorageMetadata()
     
     func saveImage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void) {

@@ -12,7 +12,7 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     let view: AuthorizationViewProtocol
     let authorizationService: AuthorizationServiceProtocol
     
-    var openVerificationClosure: (String, String) -> Void = { _, _ in }
+    var openVerificationClosure: ((String, String) -> Void)?
     
     init(view: AuthorizationViewProtocol, authorizationService: AuthorizationServiceProtocol) {
         self.view = view
@@ -25,7 +25,10 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
             self?.view.stopActivityIndicator()
             switch result {
             case let .success(verificationId):
-                self?.openVerificationClosure(verificationId, number)
+                guard let closure = self?.openVerificationClosure else {
+                    return
+                }
+                closure(verificationId, number)
             case .failure(let error):
                 self?.view.showError(error: error)
             }

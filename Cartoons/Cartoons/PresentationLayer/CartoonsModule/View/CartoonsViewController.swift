@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CartoonsViewController: ViewController {
+class CartoonsViewController: BaseViewController {
     var presenter: CartoonsViewPresenterProtocol?
     
     override func viewDidLoad() {

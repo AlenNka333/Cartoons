@@ -13,7 +13,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     let storageService: StorageDataServiceProtocol
     let authorizationService: AuthorizationServiceProtocol
     
-    var successSessionClosure: () -> Void = {}
+    var successSessionClosure: (() -> Void)?
     
     init(view: SettingsViewProtocol, storageService: StorageDataServiceProtocol, authorizationService: AuthorizationServiceProtocol, number: String) {
         self.view = view
@@ -25,20 +25,20 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     func showProfileImage() {
         storageService.loadImage { [weak self] result in
             switch result {
-            case .failure:
-                self?.view.showDefaultImage()
             case .success(let path):
                 self?.view.showProfileImage(path: path)
+            case .failure:
+                self?.view.showDefaultImage()
             }
         }
     }
     func saveProfileImage(imageData: Data) {
         storageService.saveImage(imageData: imageData) { [weak self] result in
             switch result {
-            case .failure(let error):
-                self?.view.showError(error: error)
             case .success:
                 break
+            case .failure(let error):
+                self?.view.showError(error: error)
             }
         }
     }
@@ -46,7 +46,10 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         authorizationService.signOut { [weak self] result in
             switch result {
             case .success:
-                self?.successSessionClosure()
+                guard let closure = self?.successSessionClosure else {
+                    return
+                }
+                closure()
             case .failure(let error):
                 self?.view.showError(error: error)
             }

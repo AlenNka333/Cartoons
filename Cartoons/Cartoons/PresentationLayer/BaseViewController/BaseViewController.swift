@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, ViewProtocol {
+class BaseViewController: UIViewController, ViewProtocol {
     let alertView = CustomAlertView()
     let activityIndicator = UIActivityIndicatorView()
     let alertService = AlertService()
@@ -41,6 +41,9 @@ class ViewController: UIViewController, ViewProtocol {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
     func stopActivityIndicator() {

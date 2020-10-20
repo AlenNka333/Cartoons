@@ -11,12 +11,15 @@ import Foundation
 class PageControllerPresenter: PagePresenterProtocol {
     let view: PageViewControllerProtocol
     
-    var successSessionClosure: () -> Void = {}
+    var successSessionClosure: (() -> Void)?
     
     init(view: PageViewControllerProtocol) {
         self.view = view
     }
     func showAuthorizationScreen() {
-        successSessionClosure()
+        guard let closure = successSessionClosure else {
+            return
+        }
+        closure()
     }
 }

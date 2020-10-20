@@ -9,15 +9,15 @@
 import SnapKit
 import UIKit
 
-class VerificationViewController: ViewController {
-    enum DefaultValues {
+class VerificationViewController: BaseViewController {
+    enum Constraint {
         static let totalTime = 60
         static let otpCodeCount = 6
     }
     
     var presenter: VerificationViewPresenterProtocol?
     var countdownTimer: Timer?
-    var timer = DefaultValues.totalTime
+    var timer = Constraint.totalTime
     
     private lazy var otpCodeTextField = CustomTextField()
     private lazy var resendButton = CustomButton()
@@ -103,16 +103,6 @@ class VerificationViewController: ViewController {
         }
     }
     
-    override func showActivityIndicator() {
-        super.showActivityIndicator()
-        activityIndicator.center = view.center
-    }
-    
-    override func stopActivityIndicator() {
-        super.stopActivityIndicator()
-        activityIndicator.stopAnimating()
-    }
-    
     override func showError(error: Error) {
         super.showError(error: error)
     }
@@ -145,7 +135,7 @@ extension VerificationViewController {
         guard let text = otpCodeTextField.text else {
             return
         }
-        if text.count == DefaultValues.otpCodeCount {
+        if text.count == Constraint.otpCodeCount {
             endTimer()
             view.endEditing(true)
             presenter.verifyUser(verificationCode: text)
@@ -155,7 +145,7 @@ extension VerificationViewController {
     @objc func resendButtonTappedAction() {
         resendButton.isEnabled = false
         resendButton.backgroundColor = R.color.disabled_button_color()
-        timer = DefaultValues.totalTime
+        timer = Constraint.totalTime
         timerLabel.text = "\(timer)"
         startTimer()
         presenter?.resendVerificationCode()

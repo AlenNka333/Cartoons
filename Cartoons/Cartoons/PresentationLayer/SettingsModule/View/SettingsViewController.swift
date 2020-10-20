@@ -9,7 +9,7 @@
 import Kingfisher
 import UIKit
 
-class SettingsViewController: ViewController {
+class SettingsViewController: BaseViewController {
     var presenter: SettingsViewPresenterProtocol?
     var imagePicker: ImagePicker?
     
@@ -50,14 +50,14 @@ extension SettingsViewController: SettingsViewProtocol {
     func showPermissionAlert(message: String) {
         let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
             switch $0 {
-                case .accept:
-                    guard let url = URL(string: UIApplication.openSettingsURLString) else {
-                        return
-                    }
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                case .cancel:
-                    break
+            case .accept:
+                guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                    return
                 }
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            case .cancel:
+                break
+            }
         }
         present(alertVC, animated: true)
     }
@@ -65,10 +65,11 @@ extension SettingsViewController: SettingsViewProtocol {
     func editProfileImage() {
         imagePicker?.present { [weak self] result in
             switch result {
-                case .failure(let error):
-                    self?.presenter?.showPermissionsAlert(error: error)
             case .success(let image):
                 self?.didSelect(image: image)
+            case .failure(let error):
+                self?.presenter?.showPermissionsAlert(error: error)
+                
             }
         }
     }
@@ -88,11 +89,11 @@ extension SettingsViewController: SettingsViewProtocol {
     func showSignOutAlert(message: String) {
         let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
             switch action {
-                case .accept:
-                    self?.presenter?.agreeButtonTapped()
-                case .cancel:
-                    break
-                }
+            case .accept:
+                self?.presenter?.agreeButtonTapped()
+            case .cancel:
+                break
+            }
         }
         present(alertVC, animated: true)
     }

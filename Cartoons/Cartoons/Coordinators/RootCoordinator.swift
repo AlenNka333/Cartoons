@@ -75,7 +75,7 @@ extension RootCoordinator {
         }
         coordinator.start()
         setChild(coordinator)
-        window.rootViewController = coordinator.root
+        window.rootViewController = coordinator.rootController
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
     

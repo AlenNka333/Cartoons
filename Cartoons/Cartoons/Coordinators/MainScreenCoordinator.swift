@@ -15,7 +15,7 @@ class MainScreenCoordinator: CoordinatorProtocol {
     
     var parent: CoordinatorProtocol?
     var root: UIViewController
-    var successSessionClosure: () -> Void = {}
+    var successSessionClosure: (() -> Void)?
     
     init(number: String) {
         self.number = number
@@ -27,7 +27,10 @@ class MainScreenCoordinator: CoordinatorProtocol {
                                                        storageService: storageService,
                                                        authorizationService: authorizationService,
                                                        completion: { [weak self] in
-            self?.successSessionClosure()
-        })
+                                                        guard let closure = self?.successSessionClosure else {
+                                                            return
+                                                        }
+                                                        closure()
+                                                       })
     }
 }

@@ -14,7 +14,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     let verificationId: String
     let number: String
     
-    var successSessionClosure: () -> Void = {}
+    var successSessionClosure: (() -> Void)?
     
     init(view: VerificationViewProtocol, authorizationService: AuthorizationServiceProtocol, verificationId: String, number: String) {
         self.view = view
@@ -40,7 +40,10 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         authorizationService.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
             case .success:
-                self?.successSessionClosure()
+                guard let closure = self?.successSessionClosure else {
+                    return
+                }
+                closure()
             case let .failure(error):
                 self?.view.showError(error: error)
             }
