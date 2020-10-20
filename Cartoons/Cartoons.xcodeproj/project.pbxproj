@@ -102,6 +102,7 @@
 		33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */; };
 		33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */; };
 		33B660D12502E8A700CA562E /* VerificationViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660D02502E8A700CA562E /* VerificationViewPresenter.swift */; };
+		33B873CF253F3C69008B45B2 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B873CE253F3C68008B45B2 /* UIImage + Extension.swift */; };
 		33EAD3AF2522093000128EEB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EAD3AE2522093000128EEB /* ImagePicker.swift */; };
 		33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EA82513569100EA2BF4 /* CustomButton.swift */; };
 		33EE7EAC25135ADB00EA2BF4 /* Alice-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */; };
@@ -235,6 +236,7 @@
 		33B660C625026DBB00CA562E /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
 		33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		33B660D02502E8A700CA562E /* VerificationViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewPresenter.swift; sourceTree = "<group>"; };
+		33B873CE253F3C68008B45B2 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		33EAD3AE2522093000128EEB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		33EE7EA82513569100EA2BF4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alice-Regular.ttf"; sourceTree = "<group>"; };
@@ -672,7 +674,6 @@
 			isa = PBXGroup;
 			children = (
 				33EE7EAA25135A9600EA2BF4 /* Fonts */,
-				332BA36E25077D80008A8F29 /* PropertyWrappers */,
 				20EEE9CB25014A3000970DA6 /* Generated */,
 				3312EDE324FE84FE00158EB6 /* Localization */,
 				33B1F09525000B7900DB6BA8 /* Colors.xcassets */,
@@ -685,18 +686,15 @@
 		33B1F08424FFEEB000DB6BA8 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				33127B4E2534C44800B84FAE /* PlayerModule */,
-				33127B4B2534C42B00B84FAE /* DetailsModule */,
-				334A51DD252CDB1D003BCF59 /* BasePresenter */,
-				334A51D2252CD76C003BCF59 /* BaseViewController */,
-				33B2AEB7250A6FD90006BE31 /* BaseTabBarController */,
-				339ECE31251A14BF00168C5B /* BaseNavigationController */,
+				33B873D1253F458E008B45B2 /* BaseClasses */,
 				3373D943250F55E90095F78C /* OnboardingModule */,
-				332227BD2518968F00EF56B8 /* SettingsModule */,
-				332227BC2518967C00EF56B8 /* FavouritesModule */,
-				33B2AEAA250A61260006BE31 /* CartoonsModule */,
-				332BA36225064418008A8F29 /* VerificationModule */,
 				33B6608325010F8600CA562E /* AuthorizationModule */,
+				332BA36225064418008A8F29 /* VerificationModule */,
+				33B2AEAA250A61260006BE31 /* CartoonsModule */,
+				332227BC2518967C00EF56B8 /* FavouritesModule */,
+				332227BD2518968F00EF56B8 /* SettingsModule */,
+				33127B4B2534C42B00B84FAE /* DetailsModule */,
+				33127B4E2534C44800B84FAE /* PlayerModule */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -714,6 +712,7 @@
 		33B1F08824FFEF0300DB6BA8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				332BA36E25077D80008A8F29 /* PropertyWrappers */,
 				332BA36725069D11008A8F29 /* Constants */,
 				33B2AEA7250A18670006BE31 /* Helpers */,
 			);
@@ -820,6 +819,7 @@
 				33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */,
 				33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */,
 				338614B025385F9D00A24D4F /* AVPlayer + Extension.swift */,
+				33B873CE253F3C68008B45B2 /* UIImage + Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -855,6 +855,17 @@
 				338614BE2539C01B00A24D4F /* PlayerAssembly.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		33B873D1253F458E008B45B2 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				339ECE31251A14BF00168C5B /* BaseNavigationController */,
+				33B2AEB7250A6FD90006BE31 /* BaseTabBarController */,
+				334A51D2252CD76C003BCF59 /* BaseViewController */,
+				334A51DD252CDB1D003BCF59 /* BasePresenter */,
+			);
+			path = BaseClasses;
 			sourceTree = "<group>";
 		};
 		33D1C3CB2512778A002A9843 /* ServiceLayer */ = {
@@ -1295,6 +1306,7 @@
 				33127B542534C49300B84FAE /* DetailsViewController.swift in Sources */,
 				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
 				33127B632534C4EF00B84FAE /* VideoPlayerPresenter.swift in Sources */,
+				33B873CF253F3C69008B45B2 /* UIImage + Extension.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,
 				33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */,
 				3334A4D12523344F00AD18C7 /* AccessErrors.swift in Sources */,

@@ -10,7 +10,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let rootCoordinator = RootAssembly.makeRootCoordinator(window: window)
         rootCoordinator.start()
-        window?.makeKeyAndVisible()
         return true
     }
 }

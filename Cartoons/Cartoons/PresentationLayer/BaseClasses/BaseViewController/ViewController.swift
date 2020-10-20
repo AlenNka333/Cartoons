@@ -43,7 +43,7 @@ class ViewController: UIViewController, ViewProtocol {
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
+            $0.center.equalToSuperview()
         }
     }
     

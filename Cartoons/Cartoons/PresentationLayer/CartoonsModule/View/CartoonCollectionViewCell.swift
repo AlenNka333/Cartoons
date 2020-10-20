@@ -6,6 +6,8 @@
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
+import AVFoundation
+import Foundation
 import UIKit
 
 class CartoonCollectionViewCell: UICollectionViewCell {
@@ -29,9 +31,20 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     
     var video: Cartoon? {
       didSet {
-        thumbnailView.image = UIImage()
-        titleLabel.text = video?.title
+        if (video?.title != nil) && (video?.link != nil) {
+            generateThumbnail(with: video?.link)
+            titleLabel.text = video?.title
+        }
       }
+    }
+    
+    func generateThumbnail(with url: URL?) {
+        guard let url = url else {
+            return
+        }
+        let avAsset = AVURLAsset(url: url)
+        let img = UIImage.generateThumbnail(asset: avAsset)
+        thumbnailView.image = UIImage.generateThumbnail(asset: avAsset)
     }
     
     override init(frame: CGRect) {

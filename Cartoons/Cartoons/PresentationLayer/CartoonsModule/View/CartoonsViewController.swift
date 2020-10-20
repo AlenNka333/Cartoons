@@ -22,10 +22,10 @@ class CartoonsViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.getData()
-        
         configureLayout()
         applySnapshot(animatingDifferences: true)
+        showActivityIndicator()
+        presenter?.getData()
     }
 
     override func setupNavigationBar() {
@@ -44,6 +44,7 @@ class CartoonsViewController: ViewController {
     
     override func setupUI() {
         super.setupUI()
+        view.addSubview(activityIndicator)
     }
     
     override func showError(error: Error) {
@@ -61,6 +62,7 @@ extension CartoonsViewController: CartoonsViewProtocol {
     
     func setDataSource(with array: [Cartoon]) {
         videos = array
+        stopActivityIndicator()
         applySnapshot()
     }
 }

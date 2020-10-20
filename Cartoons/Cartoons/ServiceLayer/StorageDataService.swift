@@ -38,7 +38,6 @@ class StorageDataService: StorageDataServiceProtocol {
     func sendRequest(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
         let dispatchQueue = DispatchQueue(label: "get-movies")
         let dispatchGroup = DispatchGroup()
-        let semaphore = DispatchSemaphore(value: 1)
         self.folders.forEach { body in
             dispatchGroup.enter()
             dispatchQueue.async {
@@ -47,7 +46,7 @@ class StorageDataService: StorageDataServiceProtocol {
                     case .failure(let error):
                         completion(.failure(error))
                     case .success(let response):
-                        let title = response?.lastPathComponent
+                        let title = response?.deletingPathExtension().lastPathComponent
                         self?.cartoons.append(Cartoon(title: title.unwrapped, link: response))
                         dispatchGroup.leave()
                     }
