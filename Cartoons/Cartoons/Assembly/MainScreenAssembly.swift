@@ -23,7 +23,7 @@ class MainScreenAssembly: Assembly {
                                      authorizationService: AuthorizationService,
                                      completion: @escaping((Action) -> Void)) -> TabBarViewController {
         var controllers = [UIViewController]()
-        let cartoons = CartoonsAssembly.makeCartoonsController {
+        let cartoons = CartoonsAssembly.makeCartoonsController(storageService: storageService) {
             completion(Action.openPlayer)
         }
         controllers.append(cartoons)

@@ -17,20 +17,18 @@ class CustomPlayerControls: UIView {
     @IBOutlet private weak var playButton: UIButton!
     @IBOutlet private weak var goForwardButton: UIButton!
     @IBOutlet private weak var goBackwardButton: UIButton!
-    @IBOutlet private weak var currentTime: UILabel!
-    @IBOutlet private weak var wholeTime: UILabel!
+    @IBOutlet private weak var currentTimeLabel: UILabel!
+    @IBOutlet private weak var durationLabel: UILabel!
     
-    var videoStateChangedClosure: (() -> (PlayerState))?
+    var stateChangedClosure: (() -> (PlayerState))?
     var jumpForwardClosure: () -> Void = {}
     var jumpBackwardClosure: () -> Void = {}
-    var setVideoTime: (Double) -> Void = { _ in }
+    var sendTimeClosure: (Double) -> Void = { _ in }
     var needVideoDurationClosure: (() -> (Double))?
-    
-    private var duration: Double = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        Bundle.main.loadNibNamed("PlayerControlsView", owner: self, options: nil)
+        Bundle.main.loadNibNamed(Constants.controlsClassName, owner: self, options: nil)
         addSubview(controlView)
         controlView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -42,7 +40,7 @@ class CustomPlayerControls: UIView {
     }
     
     @IBAction private func playPauseButtonClicked(_ sender: UIButton) {
-        guard let closure = videoStateChangedClosure else {
+        guard let closure = stateChangedClosure else {
             return
         }
         switch closure() {
@@ -62,9 +60,7 @@ class CustomPlayerControls: UIView {
         guard let closure = needVideoDurationClosure else {
             return
         }
-        duration = closure()
-        let value = Float64(slider.value) * duration
-        setVideoTime(value)
+        sendTimeClosure(Float64(slider.value) * closure())
     }
 }
 
@@ -74,10 +70,10 @@ extension CustomPlayerControls: VideoPlayerControlsProtocol {
     }
     
     func updateCurrentTime(with time: String) {
-        currentTime.text = time
+        currentTimeLabel.text = time
     }
     
     func updateWholeTime(with time: String) {
-        wholeTime.text = time
+        durationLabel.text = time
     }
 }

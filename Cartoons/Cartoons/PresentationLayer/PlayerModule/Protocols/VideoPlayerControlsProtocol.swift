@@ -9,10 +9,10 @@
 import Foundation
 
 protocol VideoPlayerControlsProtocol: AnyObject {
-    var videoStateChangedClosure: (() -> (PlayerState))? { get set }
+    var stateChangedClosure: (() -> (PlayerState))? { get set }
     var jumpForwardClosure: () -> Void { get set }
     var jumpBackwardClosure: () -> Void { get set }
-    var setVideoTime: (Double) -> Void { get set }
+    var sendTimeClosure: (Double) -> Void { get set }
     var needVideoDurationClosure: (() -> (Double))? { get set }
     
     func updateSlider(with value: Float)

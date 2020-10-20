@@ -17,7 +17,6 @@ enum PlayerState {
 }
 
 class VideoPlayerViewController: ViewController {
-    
     private var playerView = PlayerView()
     var controlsView: CustomPlayerControls?
     private var player: AVPlayer? {
@@ -30,7 +29,6 @@ class VideoPlayerViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAVPlayer()
-        setTimeObserver()
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .slide }
@@ -65,17 +63,18 @@ class VideoPlayerViewController: ViewController {
         super.setupUI()
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .black
+        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
+        view.addGestureRecognizer(tap)
+        
         guard let controls = controlsView else {
             return
         }
         view.addSubview(controls)
+        controls.isUserInteractionEnabled = true
         controls.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        view.isUserInteractionEnabled = true
-        controls.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
-        view.addGestureRecognizer(tap)
     }
     
     override func showError(error: Error) {
@@ -90,37 +89,35 @@ class VideoPlayerViewController: ViewController {
 
 extension VideoPlayerViewController {
     func setupAVPlayer() {
-        let url = "https://firebasestorage.googleapis.com/v0/b/cartoons-845b3.appspot.com/o/movies%2Ffrozen%2FDisney's%20Frozen%20Official%20Trailer.mp4?alt=media&token=86dd7b16-8322-43a1-a7ed-c4689c8004d4"
+        let url = "https://firebasestorage.googleapis.com/v0/b/cartoons-845b3.appspot.com/o/movies%2Fthe_lion_king%2FThe%20Lion%20King%20Official%20Trailer.mp4?alt=media&token=879e2abb-86c9-45f3-ab4a-05ebec77efa6"
         playerView.player = AVPlayer(url: URL(string: url)!)
         player?.play()
-        let seconds = player?.currentItem?.asset.duration.seconds
-        let time = (seconds?.asString()).unwrapped
-        presenter?.setDuration(value: time)
-        playerState = .playing
-    }
-    
-    func setTimeObserver() {
+        player?.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
+        
         let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { elapsedTime in
-            self.updateVideoPlayerState()
+            if self.player?.currentItem?.status == .readyToPlay {
+                let currentTimeInSeconds = CMTimeGetSeconds(elapsedTime)
+                    let time = elapsedTime.seconds.asString()
+                    self.presenter?.updateProgressValue(value: time)
+                    if let currentItem = self.player?.currentItem {
+                        let duration = currentItem.duration
+                        if (CMTIME_IS_INVALID(duration)) {
+                            return;
+                        }
+                        self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
+                    }
+            }
         })
     }
     
-    func updateVideoPlayerState() {
-        guard let currentTime = player?.currentTime() else { return }
-        let currentTimeInSeconds = CMTimeGetSeconds(currentTime)
-        var time = currentTime.seconds.asString()
-        presenter?.updateProgress(value: Float(currentTimeInSeconds))
-        presenter?.updateProgressValue(value: time)
-        if let currentItem = player?.currentItem {
-            let duration = currentItem.duration
-            if (CMTIME_IS_INVALID(duration)) {
-                return;
-            }
-            let currentTime = currentItem.currentTime()
-            time = currentTime.seconds.asString()
-            presenter?.updateProgress(value: Float(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(duration)))
-            presenter?.updateProgressValue(value: time)
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "currentItem.loadedTimeRanges" {
+            playerState = .playing
+            
+            let seconds = player?.currentItem?.asset.duration.seconds
+            let time = (seconds?.asString()).unwrapped
+            presenter?.setDuration(value: time)
         }
     }
 }
@@ -158,15 +155,7 @@ extension VideoPlayerViewController: VideoPlayerViewProtocol {
         guard let player = playerView.player else {
             return nil
         }
-        if player.isPlaying {
-            player.pause()
-            playerState = .stopped
-        } else {
-            player.play()
-            playerState = .playing
-        }
+        player.isPlaying ? ( player.pause(), playerState = .stopped ) : ( player.play(), playerState = .playing )
         return playerState
     }
 }
-
-extension VideoPlayerViewController: UIGestureRecognizerDelegate { }

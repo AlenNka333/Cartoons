@@ -17,7 +17,7 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
         self.view = view
         self.controls = controls
         self.playerState = .playing
-        controls.videoStateChangedClosure = { [weak self] in
+        controls.stateChangedClosure = { [weak self] in
             self?.playerState = self?.view.updateStatus()
             return (self?.playerState)!
         }
@@ -30,7 +30,7 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
         controls.needVideoDurationClosure = { [weak self] in
             return (self?.view.getDuration()).unwrapped
         }
-        controls.setVideoTime = { [weak self] time in
+        controls.sendTimeClosure = { [weak self] time in
             self?.view.setVideoTime(value: time)
         }
     }
@@ -48,5 +48,6 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
     }
     
     func showError(error: Error) {
+        view.showError(error: error)
     }
 }

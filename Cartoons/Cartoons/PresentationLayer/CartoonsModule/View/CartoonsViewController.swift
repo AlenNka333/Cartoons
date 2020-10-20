@@ -22,6 +22,9 @@ class CartoonsViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.startAnimating()
+        presenter?.getData()
+        activityIndicator.stopAnimating()
         configureLayout()
         applySnapshot(animatingDifferences: false)
     }

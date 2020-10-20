@@ -10,11 +10,37 @@ import Foundation
 
 class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
+    let storage: StorageDataService
     
+    var folders = [String]()
     var openPlayerClosure: () -> Void = {}
     
-    init(view: CartoonsViewProtocol) {
+    init(view: CartoonsViewProtocol, storageService: StorageDataService) {
         self.view = view
+        self.storage = storageService
+    }
+    
+    func getData() {
+        storage.checkListAvailable { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.view.showError(error: error)
+            case .success:
+                self?.sendRequest()
+            }
+        }
+    }
+    
+    func sendRequest() {
+        storage.sendRequest { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.view.showError(error: error)
+                return
+            case .success(let array):
+                Cartoon.allVideos = array
+            }
+        }
     }
     
     func showSuccess(success: String) {
