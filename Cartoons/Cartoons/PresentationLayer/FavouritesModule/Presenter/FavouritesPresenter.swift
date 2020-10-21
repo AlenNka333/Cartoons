@@ -11,15 +11,15 @@ import Foundation
 class FavouritesPresenter: FavouritesViewPresenterProtocol {
     let view: FavouritesViewProtocol
     
-    required init(view: FavouritesViewProtocol) {
+    init(view: FavouritesViewProtocol) {
         self.view = view
     }
     
     func showSuccess(success: String) {
-        view.setSuccess(success: success)
+        view.showSuccess(success: success)
     }
     
     func showError(error: Error) {
-        view.setError(error: error)
+        view.showError(error: error)
     }
 }

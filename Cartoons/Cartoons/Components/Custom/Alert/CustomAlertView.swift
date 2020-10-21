@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum BTAction {
+    case cancel
+    case accept
+}
+
 class CustomAlertView: UIViewController {
     @IBOutlet private var parentView: UIView!
     @IBOutlet private weak var alertView: UIView!
@@ -26,8 +31,8 @@ class CustomAlertView: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
-    
-    override func loadView() {
+  
+    override func loadView() { //swiftlint:disable:this prohibited_super_call
         super.loadView()
         view = parentView
     }
@@ -76,6 +81,10 @@ class CustomAlertView: UIViewController {
                 }
                 cancelButton.backgroundColor = R.color.cinnabar()
             case .question:
+                agreeButton.backgroundColor = R.color.enabled_button_color()
+                cancelButton.backgroundColor = R.color.cinnabar()
+            case .permission:
+                agreeButton.setTitle(R.string.localizable.allow(), for: .normal)
                 agreeButton.backgroundColor = R.color.enabled_button_color()
                 cancelButton.backgroundColor = R.color.cinnabar()
         }

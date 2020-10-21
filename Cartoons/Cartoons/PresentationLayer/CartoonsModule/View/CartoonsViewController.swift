@@ -8,32 +8,33 @@
 
 import UIKit
 
-class CartoonsViewController: UIViewController {
+class CartoonsViewController: BaseViewController {
     var presenter: CartoonsViewPresenterProtocol?
-    let alertService = AlertService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
     }
     
-    private func setupUI() {
-        view.backgroundColor = R.color.main_background()
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
         title = R.string.localizable.cartoons_screen()
-        navigationController?.setSubTitle(title: R.string.localizable.cartoons_screen_subtitle())
-        navigationController?.setImage(image: R.image.navigation_label())
+        (navigationController as? BaseNavigationController)?.setSubTitle(title: R.string.localizable.cartoons_screen_subtitle())
+        (navigationController as? BaseNavigationController)?.setImage(image: R.image.navigation_label(), isEnabled: false)
+    }
+    
+    override func setupUI() {
+        super.setupUI()
+        view.backgroundColor = R.color.main_orange()
+    }
+    
+    override func showError(error: Error) {
+        super.showError(error: error)
     }
 }
 
 extension CartoonsViewController: CartoonsViewProtocol {
-    func setSuccess(success: String) {
+    func showSuccess(success: String) {
         let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) {_ in
-            return
-        }
-        present(alertVC, animated: true)
-    }
-    func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
             return
         }
         present(alertVC, animated: true)

@@ -16,10 +16,10 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     }
     
     func showSuccess(success: String) {
-        view.setSuccess(success: success)
+        view.showSuccess(success: success)
     }
     
     func showError(error: Error) {
-        view.setError(error: error)
+        view.showError(error: error)
     }
 }
