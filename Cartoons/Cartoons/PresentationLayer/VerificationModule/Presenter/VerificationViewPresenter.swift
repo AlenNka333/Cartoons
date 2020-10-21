@@ -9,10 +9,15 @@
 import Foundation
 
 class VerificationPresenter: VerificationViewPresenterProtocol {
+    enum Constant {
+        static let totalTime = 60
+    }
+
     var view: VerificationViewProtocol
     let authorizationService: AuthorizationServiceProtocol
     let verificationId: String
     let number: String
+    var timer = Constant.totalTime
     
     var successSessionClosure: (() -> Void)?
     
@@ -23,9 +28,20 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         self.number = number
         view.setLabelText(number: number)
     }
+    
+    func startTimer() {
+        timer = Constant.totalTime
+        view.startTimer(timer: Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true), time: timer)
+    }
+    
+    func endTimer() {
+        view.endTimer()
+    }
+
     func showError(error: Error) {
         view.showError(error: error)
     }
+    
     func resendVerificationCode() {
         authorizationService.verifyUser(number: number) { [weak self] result in
             switch result {
@@ -36,6 +52,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
             }
         }
     }
+    
     func verifyUser(verificationCode: String) {
         authorizationService.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
@@ -47,6 +64,17 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
             case let .failure(error):
                 self?.view.showError(error: error)
             }
+        }
+    }
+}
+
+extension VerificationPresenter {
+    @objc func updateTime() {
+        view.updateTime(timer: timer)
+        if timer != 0 {
+            timer -= 1
+        } else {
+            view.endTimer()
         }
     }
 }
