@@ -69,7 +69,6 @@ extension SettingsViewController: SettingsViewProtocol {
                 self?.didSelect(image: image)
             case .failure(let error):
                 self?.presenter?.showPermissionsAlert(error: error)
-                
             }
         }
     }

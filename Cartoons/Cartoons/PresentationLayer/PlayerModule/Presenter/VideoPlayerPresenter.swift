@@ -12,11 +12,13 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
     var view: VideoPlayerViewProtocol
     var controls: VideoPlayerControlsProtocol
     var playerState: PlayerState?
+    let link: URL?
     
-    init(view: VideoPlayerViewProtocol, controls: VideoPlayerControlsProtocol) {
+    init(view: VideoPlayerViewProtocol, controls: VideoPlayerControlsProtocol, link: URL?) {
         self.view = view
         self.controls = controls
         self.playerState = .playing
+        self.link = link
         controls.stateChangedClosure = { [weak self] in
             self?.playerState = self?.view.updateStatus()
             return (self?.playerState)!
@@ -33,6 +35,10 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
         controls.sendTimeClosure = { [weak self] time in
             self?.view.setVideoTime(value: time)
         }
+    }
+    
+    func setupVideoLink() -> URL? {
+        return link
     }
     
     func setDuration(value: String) {

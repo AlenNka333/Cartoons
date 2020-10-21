@@ -10,7 +10,7 @@ import UIKit
 
 class CartoonsAssembly: Assembly {
     static func makeCartoonsController(storageService: StorageDataService,
-                                       completion: @escaping(() -> Void)) -> UIViewController {
+                                       completion: @escaping((URL) -> Void)) -> UIViewController {
         let view = CartoonsViewController()
         let presenter = CartoonsPresenter(view: view, storageService: storageService)
         view.presenter = presenter

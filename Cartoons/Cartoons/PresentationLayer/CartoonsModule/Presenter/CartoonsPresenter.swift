@@ -12,7 +12,7 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
     let storage: StorageDataService
     
-    var openPlayerClosure: () -> Void = {}
+    var openPlayerClosure: ((URL) -> Void)?
     
     init(view: CartoonsViewProtocol, storageService: StorageDataService) {
         self.view = view
@@ -38,7 +38,10 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
         view.showError(error: error)
     }
     
-    func openPlayer() {
-        openPlayerClosure()
+    func openPlayer(with link: URL) {
+        guard let closure = openPlayerClosure else {
+            return
+        }
+        closure(link)
     }
 }

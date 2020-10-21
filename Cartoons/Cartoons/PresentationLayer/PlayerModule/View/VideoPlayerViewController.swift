@@ -18,10 +18,10 @@ enum PlayerState {
 
 class VideoPlayerViewController: BaseViewController {
     private var playerView = PlayerView()
-    var controlsView: CustomPlayerControls?
     private var player: AVPlayer? {
         playerView.player
     }
+    var controlsView: CustomPlayerControls?
     var presenter: VideoPlayerPresenterProtocol?
     var playerState: PlayerState?
     var timeObserver: Any?
@@ -40,13 +40,25 @@ class VideoPlayerViewController: BaseViewController {
         view = playerView
     }
     
+    override public var shouldAutorotate: Bool {
+        return true
+      }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all
+    }
+    
+    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .landscapeRight
+      }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         playerView.player = nil
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-       super.viewWillTransition(to: size, with: coordinator)
+        super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { (context) in
         }) { (context) in
             self.playerView.frame.size = size
@@ -89,8 +101,12 @@ class VideoPlayerViewController: BaseViewController {
 
 extension VideoPlayerViewController {
     func setupAVPlayer() {
-        let url = "https://firebasestorage.googleapis.com/v0/b/cartoons-845b3.appspot.com/o/movies%2Fthe_lion_king%2FThe%20Lion%20King%20Official%20Trailer.mp4?alt=media&token=879e2abb-86c9-45f3-ab4a-05ebec77efa6"
-        playerView.player = AVPlayer(url: URL(string: url)!)
+        let url = presenter?.setupVideoLink()
+        guard let link = url else {
+            presenter?.showError(error: GeneralError.invalidLink)
+            return
+        }
+        playerView.player = AVPlayer(url: link)
         player?.play()
         player?.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
         
@@ -98,15 +114,15 @@ extension VideoPlayerViewController {
         timeObserver = player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { elapsedTime in
             if self.player?.currentItem?.status == .readyToPlay {
                 let currentTimeInSeconds = CMTimeGetSeconds(elapsedTime)
-                    let time = elapsedTime.seconds.asString()
-                    self.presenter?.updateProgressValue(value: time)
-                    if let currentItem = self.player?.currentItem {
-                        let duration = currentItem.duration
-                        if (CMTIME_IS_INVALID(duration)) {
-                            return;
-                        }
-                        self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
+                let time = elapsedTime.seconds.asString()
+                self.presenter?.updateProgressValue(value: time)
+                if let currentItem = self.player?.currentItem {
+                    let duration = currentItem.duration
+                    if (CMTIME_IS_INVALID(duration)) {
+                        return;
                     }
+                    self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
+                }
             }
         })
     }

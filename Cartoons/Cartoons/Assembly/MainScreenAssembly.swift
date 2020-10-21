@@ -21,15 +21,15 @@ class MainScreenAssembly: Assembly {
     static func makeTabBarController(number: String,
                                      storageService: StorageDataService,
                                      authorizationService: AuthorizationService,
-                                     completion: @escaping((Action) -> Void)) -> TabBarViewController {
+                                     completion: @escaping((Action, URL?) -> Void)) -> TabBarViewController {
         var controllers = [UIViewController]()
-        let cartoons = CartoonsAssembly.makeCartoonsController(storageService: storageService) {
-            completion(Action.openPlayer)
+        let cartoons = CartoonsAssembly.makeCartoonsController(storageService: storageService) { url in
+            completion(Action.openPlayer, url)
         }
         controllers.append(cartoons)
         controllers.append(FavouritesAssembly.makeFavouritesController())
         let settings = SettingsAssembly.makeSettingsController(number: number, storageService: storageService, authorizationService: authorizationService) {
-            completion(Action.successSession)
+            completion(Action.successSession, nil)
         }
         controllers.append(settings)
         let view = TabBarViewController(controllers: controllers)

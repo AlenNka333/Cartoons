@@ -27,7 +27,7 @@ class CartoonsViewController: BaseViewController {
         showActivityIndicator()
         presenter?.getData()
     }
-
+    
     override func setupNavigationBar() {
         super.setupNavigationBar()
         (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
@@ -69,7 +69,14 @@ extension CartoonsViewController: CartoonsViewProtocol {
 
 extension CartoonsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.openPlayer()
+        guard let video = dataSource.itemIdentifier(for: indexPath) else {
+          return
+        }
+        guard let link = video.link else {
+          print("Invalid link")
+          return
+        }
+        presenter?.openPlayer(with: link)
     }
 }
 

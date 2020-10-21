@@ -721,6 +721,7 @@
 				33B2AE962508AC590006BE31 /* Custom */,
 				33B1F08924FFEF0B00DB6BA8 /* Extensions */,
 				33B1F08824FFEF0300DB6BA8 /* Utilities */,
+				332BA35E25060722008A8F29 /* Errors */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -893,7 +894,6 @@
 				330F4E4925309B9C008D0FC8 /* AuthorizationService.swift */,
 				330F4E4C25309DEB008D0FC8 /* StorageDataService.swift */,
 				330F4E782530F7BD008D0FC8 /* UserDataService.swift */,
-				332BA35E25060722008A8F29 /* Errors */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";

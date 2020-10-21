@@ -14,33 +14,33 @@ class MainScreenCoordinator: CoordinatorProtocol {
     let authorizationService = AuthorizationService()
     
     var parent: CoordinatorProtocol?
-    var root: UIViewController
+    var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
     init(number: String) {
         self.number = number
-        self.root = UINavigationController()
+        self.rootController = UINavigationController()
     }
     
     func start() {
-        root = MainScreenAssembly.makeTabBarController(number: number,
+        rootController = MainScreenAssembly.makeTabBarController(number: number,
                                                        storageService: storageService,
                                                        authorizationService: authorizationService,
-                                                       completion: { [weak self] action in
+                                                       completion: { [weak self] action, link in
                                                         switch action {
                                                         case .openPlayer:
-                                                            self?.openVideoPlayer()
+                                                            self?.openVideoPlayer(with: link)
                                                         case .successSession:
-guard let closure = self?.successSessionClosure else {
-return
-}
-closure()
+                                                            guard let closure = self?.successSessionClosure else {
+                                                                return
+                                                            }
+                                                            closure()
                                                         }
-        })
+                                                       })
     }
-
-    func openVideoPlayer() {
-        let view = PlayerAssembly.makePlayerController()
-        ((root as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)
+    
+    func openVideoPlayer(with link: URL?) {
+        let view = PlayerAssembly.makePlayerController(with: link)
+        ((rootController as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)
     }
 }
