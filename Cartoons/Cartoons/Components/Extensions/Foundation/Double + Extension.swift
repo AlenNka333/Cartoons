@@ -13,7 +13,9 @@ extension Double {
     let formatter = DateComponentsFormatter()
     formatter.allowedUnits = self > 3600 ? [.hour, .minute, .second] : [.minute, .second]
     formatter.zeroFormattingBehavior = .pad
-    guard let formattedString = formatter.string(from: self) else { return "" }
+    guard let formattedString = formatter.string(from: self) else {
+        return ""
+    }
     return formattedString
   }
 }

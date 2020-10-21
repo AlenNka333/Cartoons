@@ -67,6 +67,10 @@
 		334A51EB252DBAA2003BCF59 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51EA252DBAA2003BCF59 /* RootAssembly.swift */; };
 		334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51EE252DC007003BCF59 /* AuthorizationCoordinator.swift */; };
 		334A51F6252DC742003BCF59 /* AuthorizationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51F5252DC742003BCF59 /* AuthorizationAssembly.swift */; };
+		3355FA73254009B100C0B192 /* CinzelDecorative-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3355FA722540098B00C0B192 /* CinzelDecorative-Black.ttf */; };
+		3355FA75254009B400C0B192 /* CinzelDecorative-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3355FA702540098B00C0B192 /* CinzelDecorative-Bold.ttf */; };
+		3355FA76254009B600C0B192 /* CinzelDecorative-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3355FA712540098B00C0B192 /* CinzelDecorative-Regular.ttf */; };
+		3355FA7B2540182200C0B192 /* BorderedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355FA7A2540182200C0B192 /* BorderedLabel.swift */; };
 		3373D945250F588A0095F78C /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D944250F588A0095F78C /* PageViewController.swift */; };
 		3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */; };
 		3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */; };
@@ -200,6 +204,10 @@
 		334A51EA252DBAA2003BCF59 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		334A51EE252DC007003BCF59 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
 		334A51F5252DC742003BCF59 /* AuthorizationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAssembly.swift; sourceTree = "<group>"; };
+		3355FA702540098B00C0B192 /* CinzelDecorative-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Bold.ttf"; sourceTree = "<group>"; };
+		3355FA712540098B00C0B192 /* CinzelDecorative-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Regular.ttf"; sourceTree = "<group>"; };
+		3355FA722540098B00C0B192 /* CinzelDecorative-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Black.ttf"; sourceTree = "<group>"; };
+		3355FA7A2540182200C0B192 /* BorderedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedLabel.swift; sourceTree = "<group>"; };
 		33710661943FC0E3F567D415 /* Pods-CartoonsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CartoonsTests.release.xcconfig"; path = "Target Support Files/Pods-CartoonsTests/Pods-CartoonsTests.release.xcconfig"; sourceTree = "<group>"; };
 		3373D944250F588A0095F78C /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingFeatureViewController.swift; sourceTree = "<group>"; };
@@ -626,6 +634,14 @@
 			path = BasePresenter;
 			sourceTree = "<group>";
 		};
+		3355FA792540180E00C0B192 /* BorderedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				3355FA7A2540182200C0B192 /* BorderedLabel.swift */,
+			);
+			path = BorderedLabel;
+			sourceTree = "<group>";
+		};
 		3373D943250F55E90095F78C /* OnboardingModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,6 +755,7 @@
 		33B2AE962508AC590006BE31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				3355FA792540180E00C0B192 /* BorderedLabel */,
 				33127B4A2534C41C00B84FAE /* VideoPlayerControls */,
 				33EAD3B12522094200128EEB /* ImagePicker */,
 				33EE7EB02513609D00EA2BF4 /* AppLabel */,
@@ -900,6 +917,9 @@
 		33EE7EAA25135A9600EA2BF4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				3355FA722540098B00C0B192 /* CinzelDecorative-Black.ttf */,
+				3355FA702540098B00C0B192 /* CinzelDecorative-Bold.ttf */,
+				3355FA712540098B00C0B192 /* CinzelDecorative-Regular.ttf */,
 				33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */,
 			);
 			path = Fonts;
@@ -1086,8 +1106,11 @@
 				33FF60C724FA45F80077D109 /* LaunchScreen.storyboard in Resources */,
 				3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */,
 				33B2AEA02508AE170006BE31 /* AlertView.xib in Resources */,
+				3355FA75254009B400C0B192 /* CinzelDecorative-Bold.ttf in Resources */,
 				20EEE9CD25014B4500970DA6 /* GoogleService-Info.plist in Resources */,
+				3355FA73254009B100C0B192 /* CinzelDecorative-Black.ttf in Resources */,
 				33EE7EB62513765500EA2BF4 /* Assets.xcassets in Resources */,
+				3355FA76254009B600C0B192 /* CinzelDecorative-Regular.ttf in Resources */,
 				33EE7EAC25135ADB00EA2BF4 /* Alice-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1263,6 +1286,7 @@
 				33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */,
 				332227CF25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift in Sources */,
 				33127B662534C51000B84FAE /* VideoPlayerViewProtocol.swift in Sources */,
+				3355FA7B2540182200C0B192 /* BorderedLabel.swift in Sources */,
 				334A51E2252DB9C3003BCF59 /* Assembly.swift in Sources */,
 				33127B5D2534C4C400B84FAE /* DetailsViewPresenter.swift in Sources */,
 				334A51F6252DC742003BCF59 /* AuthorizationAssembly.swift in Sources */,

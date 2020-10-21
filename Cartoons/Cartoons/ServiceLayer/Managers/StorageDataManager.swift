@@ -7,7 +7,6 @@
 //
 
 import FirebaseAuth
-import FirebaseDatabase
 import FirebaseStorage
 import Foundation
 

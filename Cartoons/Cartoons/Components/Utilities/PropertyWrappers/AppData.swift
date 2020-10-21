@@ -8,7 +8,7 @@
 
 import Foundation
 struct AppData {
-   @UserDefault(Constants.verificationId, defaultValue: "")
+    @UserDefault(Constants.verificationId, defaultValue: "")
     static var verificationID: String
     
     @UserDefault(Constants.firstComing, defaultValue: true)

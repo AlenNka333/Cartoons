@@ -24,8 +24,15 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
+        let label = BorderedLabel(withInsets: 5, 5, 10, 10)
+        label.textColor = .white
+        label.clipsToBounds = true
+        label.font = UIFont(name: R.font.cinzelDecorativeBold.fontName, size: 25)
+        label.backgroundColor = R.color.navigation_bar_color()?.withAlphaComponent(0.6)
+        label.layer.cornerRadius = 10
+        label.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
+        label.numberOfLines = .zero
+        label.textAlignment = .center
         return label
     }()
     
@@ -43,7 +50,6 @@ class CartoonCollectionViewCell: UICollectionViewCell {
             return
         }
         let avAsset = AVURLAsset(url: url)
-        let img = UIImage.generateThumbnail(asset: avAsset)
         thumbnailView.image = UIImage.generateThumbnail(asset: avAsset)
     }
     
@@ -61,8 +67,11 @@ class CartoonCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview()
         }
         contentView.addSubview(titleLabel)
+        titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints {
-            $0.center.equalTo(thumbnailView)
+            $0.leading.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.width.lessThanOrEqualTo(thumbnailView)
         }
     }
     

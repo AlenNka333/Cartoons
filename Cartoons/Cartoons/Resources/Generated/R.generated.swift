@@ -233,16 +233,40 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
     /// Resource file `Alice-Regular.ttf`.
     static let aliceRegularTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "Alice-Regular", pathExtension: "ttf")
+    /// Resource file `CinzelDecorative-Black.ttf`.
+    static let cinzelDecorativeBlackTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "CinzelDecorative-Black", pathExtension: "ttf")
+    /// Resource file `CinzelDecorative-Bold.ttf`.
+    static let cinzelDecorativeBoldTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "CinzelDecorative-Bold", pathExtension: "ttf")
+    /// Resource file `CinzelDecorative-Regular.ttf`.
+    static let cinzelDecorativeRegularTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "CinzelDecorative-Regular", pathExtension: "ttf")
     /// Resource file `GoogleService-Info.plist`.
     static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
 
     /// `bundle.url(forResource: "Alice-Regular", withExtension: "ttf")`
     static func aliceRegularTtf(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.aliceRegularTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "CinzelDecorative-Black", withExtension: "ttf")`
+    static func cinzelDecorativeBlackTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.cinzelDecorativeBlackTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "CinzelDecorative-Bold", withExtension: "ttf")`
+    static func cinzelDecorativeBoldTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.cinzelDecorativeBoldTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "CinzelDecorative-Regular", withExtension: "ttf")`
+    static func cinzelDecorativeRegularTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.cinzelDecorativeRegularTtf
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -255,18 +279,42 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.font` struct is generated, and contains static references to 1 fonts.
+  /// This `R.font` struct is generated, and contains static references to 4 fonts.
   struct font: Rswift.Validatable {
     /// Font `Alice-Regular`.
     static let aliceRegular = Rswift.FontResource(fontName: "Alice-Regular")
+    /// Font `CinzelDecorative-Black`.
+    static let cinzelDecorativeBlack = Rswift.FontResource(fontName: "CinzelDecorative-Black")
+    /// Font `CinzelDecorative-Bold`.
+    static let cinzelDecorativeBold = Rswift.FontResource(fontName: "CinzelDecorative-Bold")
+    /// Font `CinzelDecorative-Regular`.
+    static let cinzelDecorativeRegular = Rswift.FontResource(fontName: "CinzelDecorative-Regular")
 
     /// `UIFont(name: "Alice-Regular", size: ...)`
     static func aliceRegular(size: CGFloat) -> UIKit.UIFont? {
       return UIKit.UIFont(resource: aliceRegular, size: size)
     }
 
+    /// `UIFont(name: "CinzelDecorative-Black", size: ...)`
+    static func cinzelDecorativeBlack(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: cinzelDecorativeBlack, size: size)
+    }
+
+    /// `UIFont(name: "CinzelDecorative-Bold", size: ...)`
+    static func cinzelDecorativeBold(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: cinzelDecorativeBold, size: size)
+    }
+
+    /// `UIFont(name: "CinzelDecorative-Regular", size: ...)`
+    static func cinzelDecorativeRegular(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: cinzelDecorativeRegular, size: size)
+    }
+
     static func validate() throws {
       if R.font.aliceRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'Alice-Regular' could not be loaded, is 'Alice-Regular.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.cinzelDecorativeBlack(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'CinzelDecorative-Black' could not be loaded, is 'CinzelDecorative-Black.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.cinzelDecorativeBold(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'CinzelDecorative-Bold' could not be loaded, is 'CinzelDecorative-Bold.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.cinzelDecorativeRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'CinzelDecorative-Regular' could not be loaded, is 'CinzelDecorative-Regular.ttf' added to the UIAppFonts array in this targets Info.plist?") }
     }
 
     fileprivate init() {}
