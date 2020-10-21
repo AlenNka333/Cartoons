@@ -6,33 +6,33 @@
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
+import Kingfisher
 import UIKit
 
-enum BTAction {
-    case cancel
-    case accept
-}
-
-class SettingsViewController: UIViewController {
+class SettingsViewController: BaseViewController {
     var presenter: SettingsViewPresenterProtocol?
-    let alertService = AlertService()
+    var imagePicker: ImagePicker?
+    
     private lazy var signOutButton: UIButton = CustomButton()
-    private lazy var customView: UIView = {
-        view = UIView()
-        view.backgroundColor = R.color.main_orange()
-        return view
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = R.string.localizable.settings_screen()
-        navigationController?.setSubTitle(title: "")
-        navigationController?.setImage(image: R.image.favourites())
-        navigationController?.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeProfileImageTapped)))
-        setupUi()
+        imagePicker = ImagePicker(presentationController: self)
     }
     
-    func setupUi() {
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        title = R.string.localizable.settings_screen()
+        (navigationController as? BaseNavigationController)?.setProfileImage(image: UIImage())
+        presenter?.showProfileImage()
+        (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
+            self?.presenter?.editProfileImage()
+        }
+    }
+    
+    override func setupUI() {
+        super.setupUI()
+        view.backgroundColor = R.color.main_pink()
         view.addSubview(signOutButton)
         signOutButton.setTitle(R.string.localizable.sign_out_button(), for: .normal)
         signOutButton.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
@@ -41,36 +41,79 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    override func loadView() {
-        self.view = customView
+    override func showError(error: Error) {
+        super.showError(error: error)
     }
 }
 
 extension SettingsViewController: SettingsViewProtocol {
-    func setPhoneLabel(number: String) {
-        title = number
-    }
-    
-    func setQuestion(question: String) {
-        let alertVC = alertService.alert(title: "Wait...", body: question, alertType: .question) { [weak self] action in
-            switch action {
-                case .accept:
-                    self?.presenter?.agreeButtonTapped()
-                case .cancel:
-                    break
+    func showPermissionAlert(message: String) {
+        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
+            switch $0 {
+            case .accept:
+                guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                    return
                 }
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            case .cancel:
+                break
+            }
         }
         present(alertVC, animated: true)
     }
     
-    func setSuccess(success: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success)
+    func editProfileImage() {
+        imagePicker?.present { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.didSelect(image: image)
+            case .failure(let error):
+                self?.presenter?.showPermissionsAlert(error: error)
+                
+            }
+        }
+    }
+    
+    func showProfileImage(path: URL?) {
+        (navigationController as? BaseNavigationController)?.setProfileImage(path: path)
+    }
+    
+    func showDefaultImage() {
+        (navigationController as? BaseNavigationController)?.setDefaultImage(image: R.image.profile_icon())
+    }
+    
+    func showPhoneLabel(number: String) {
+        title = number
+    }
+    
+    func showSignOutAlert(message: String) {
+        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
+            switch action {
+            case .accept:
+                self?.presenter?.agreeButtonTapped()
+            case .cancel:
+                break
+            }
+        }
         present(alertVC, animated: true)
     }
     
-    func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error)
-       present(alertVC, animated: true)
+    func showSuccess(success: String) {
+        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success)
+        present(alertVC, animated: true)
+    }
+}
+
+extension SettingsViewController {
+    func didSelect(image: UIImage?) {
+        guard let image = image else {
+            return
+        }
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+            return
+        }
+        presenter?.saveProfileImage(imageData: imageData)
+        (navigationController as? BaseNavigationController)?.setProfileImage(image: image)
     }
     
     @objc func buttonTappedToSignOutAction() {
@@ -78,10 +121,5 @@ extension SettingsViewController: SettingsViewProtocol {
             return
         }
         presenter.signOut()
-    }
-}
-
-extension SettingsViewController {
-    @objc func changeProfileImageTapped() {
     }
 }

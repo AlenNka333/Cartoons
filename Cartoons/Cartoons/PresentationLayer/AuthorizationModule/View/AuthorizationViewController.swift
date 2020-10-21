@@ -1,10 +1,7 @@
 import UIKit
 
-class AuthorizationViewController: UIViewController {
+class AuthorizationViewController: BaseViewController {
     var presenter: AuthorizationViewPresenterProtocol?
-    let alertView = CustomAlertView()
-    let activityIndicator = UIActivityIndicatorView()
-    let alertService = AlertService()
     
     private lazy var appLabelView = CustomLabelView()
     private lazy var phoneNumberTextField = CustomTextField()
@@ -21,11 +18,20 @@ class AuthorizationViewController: UIViewController {
         setupToHideKeyboardOnTapOnView()
     }
     
-    override func loadView() {
-        self.view = customView
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
+        getCodeButton.isEnabled = true
+        getCodeButton.backgroundColor = R.color.enabled_button_color()
     }
     
-    private func setupUI() {
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func setupUI() {
+        super.setupUI()
         view.addSubview(appLabelView)
         appLabelView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -44,29 +50,24 @@ class AuthorizationViewController: UIViewController {
             $0.center.equalToSuperview()
         }
     }
-}
-
-extension AuthorizationViewController: AuthorizationViewProtocol {
-    func showActivityIndicatorAction() {
-        activityIndicator.style = UIActivityIndicatorView.Style.large
+    
+    override func showActivityIndicator() {
+        super.showActivityIndicator()
         activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
     }
     
-    func stopActivityIndicatorAction() {
-        activityIndicator.stopAnimating()
+    override func stopActivityIndicator() {
+        super.stopActivityIndicator()
     }
     
-    func setError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
-            return
-        }
-        present(alertVC, animated: true)
+    override func showError(error: Error) {
+        super.showError(error: error)
         getCodeButton.isEnabled = true
         getCodeButton.backgroundColor = R.color.enabled_button_color()
     }
+}
+
+extension AuthorizationViewController: AuthorizationViewProtocol {
 }
 
 extension AuthorizationViewController {

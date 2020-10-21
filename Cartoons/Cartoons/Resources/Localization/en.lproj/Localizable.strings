@@ -15,6 +15,9 @@ verification_message_key = "Six-digit security code was send to number:";
 success = "Success";
 sign_out_button = "Sign out";
 question_to_sign_out = "Are you sure to sign out?";
+take_a_photo = "Take a photo";
+choose_from_library = "Choose from library";
+choice_alert_title = "Wait...";
 
 //Errors
 error = "Error";
@@ -23,10 +26,12 @@ error = "Error";
 get_code_button_key = "Get verification code";
 skip = "Skip";
 resend_button_key = "Resend";
+cancel = "Cancel";
+allow = "Allow";
 
 //OnBoarding
-onBoarding_first_logo_key = "Watch cartoons online and offline";
-onBoarding_second_logo_key = "Find your favourite characters";
+onBoarding_first_logo_key = "All your favourite cartoons in one app";
+onBoarding_second_logo_key = "Add to favourites and enjoy offline watching";
 
 //Cartoons flow
 cartoons_screen = "Cartoons";

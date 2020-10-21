@@ -16,8 +16,15 @@ target 'Cartoons' do
     pod 'SwiftLint'
     pod 'SnapKit'
     pod 'SwiftFormat/CLI'
-    pod 'Firebase/Analytics'
     pod 'Firebase/Auth'
-    pod 'SDWebImage'
+    pod 'Firebase/Storage'
+end
+
+target 'CartoonsTests' do
+  use_frameworks!
+  inhibit_all_warnings!
+  
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
 end
 

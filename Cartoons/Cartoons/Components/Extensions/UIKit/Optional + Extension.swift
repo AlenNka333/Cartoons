@@ -8,6 +8,15 @@
 
 import UIKit
 
+extension Optional where Wrapped == Int {
+    var unwrapped: Int {
+        guard let unwrapped = self else {
+            return 0
+        }
+        return unwrapped
+    }
+}
+
 extension Optional where Wrapped == String {
     var unwrapped: String {
         guard let unwrapped = self else {

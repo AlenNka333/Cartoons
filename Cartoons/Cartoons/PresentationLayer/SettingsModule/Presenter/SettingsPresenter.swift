@@ -10,39 +10,64 @@ import Foundation
 
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
-    let firebaseManager: FirebaseManager
-    let router: RouterProtocol
+    let storageService: StorageDataServiceProtocol
+    let authorizationService: AuthorizationServiceProtocol
     
-    init(view: SettingsViewProtocol, router: RouterProtocol, manager: FirebaseManager, number: String) {
+    var successSessionClosure: (() -> Void)?
+    
+    init(view: SettingsViewProtocol, storageService: StorageDataServiceProtocol, authorizationService: AuthorizationServiceProtocol, number: String) {
         self.view = view
-        self.router = router
-        self.firebaseManager = manager
-        view.setPhoneLabel(number: number)
+        self.storageService = storageService
+        self.authorizationService = authorizationService
+        view.showPhoneLabel(number: number)
     }
     
-    func signOut() {
-        view.setQuestion(question: R.string.localizable.question_to_sign_out())
-    }
-    
-    func showSuccess(success: String) {
-        view.setSuccess(success: success)
-    }
-    
-    func showError(error: Error) {
-        view.setError(error: error)
-    }
-    
-    func agreeButtonTapped() {
-        firebaseManager.signOutUser { [weak self] result in
-            guard let manager = self?.firebaseManager else {
-                return
-            }
+    func showProfileImage() {
+        storageService.loadImage { [weak self] result in
             switch result {
-            case .success:
-                self?.router.showAuthorizationController(firebaseManager: manager)
-            case .failure(let error):
-                self?.view.setError(error: error)
+            case .success(let path):
+                self?.view.showProfileImage(path: path)
+            case .failure:
+                self?.view.showDefaultImage()
             }
         }
+    }
+    func saveProfileImage(imageData: Data) {
+        storageService.saveImage(imageData: imageData) { [weak self] result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                self?.view.showError(error: error)
+            }
+        }
+    }
+    func agreeButtonTapped() {
+        authorizationService.signOut { [weak self] result in
+            switch result {
+            case .success:
+                guard let closure = self?.successSessionClosure else {
+                    return
+                }
+                closure()
+            case .failure(let error):
+                self?.view.showError(error: error)
+            }
+        }
+    }
+    func signOut() {
+        view.showSignOutAlert(message: R.string.localizable.question_to_sign_out())
+    }
+    func editProfileImage() {
+        view.editProfileImage()
+    }
+    func showPermissionsAlert(error: Error) {
+        view.showPermissionAlert(message: error.localizedDescription)
+    }
+    func showSuccess(success: String) {
+        view.showSuccess(success: success)
+    }
+    func showError(error: Error) {
+        view.showError(error: error)
     }
 }
