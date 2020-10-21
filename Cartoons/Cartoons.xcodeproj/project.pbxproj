@@ -60,8 +60,8 @@
 		3334A6282527861100AD18C7 /* AuthorizationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A6272527861100AD18C7 /* AuthorizationPresenterTests.swift */; };
 		334A5133252B4433003BCF59 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A5132252B4433003BCF59 /* RootCoordinator.swift */; };
 		334A51C9252CAA53003BCF59 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51C8252CAA53003BCF59 /* CoordinatorProtocol.swift */; };
-		334A51D4252CD780003BCF59 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51D3252CD780003BCF59 /* ViewProtocol.swift */; };
-		334A51D7252CD7BE003BCF59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51D6252CD7BE003BCF59 /* ViewController.swift */; };
+		334A51D4252CD780003BCF59 /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51D3252CD780003BCF59 /* BaseViewProtocol.swift */; };
+		334A51D7252CD7BE003BCF59 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51D6252CD7BE003BCF59 /* BaseViewController.swift */; };
 		334A51DF252CDB34003BCF59 /* PresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51DE252CDB34003BCF59 /* PresenterProtocol.swift */; };
 		334A51E2252DB9C3003BCF59 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51E1252DB9C3003BCF59 /* Assembly.swift */; };
 		334A51EB252DBAA2003BCF59 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51EA252DBAA2003BCF59 /* RootAssembly.swift */; };
@@ -197,8 +197,8 @@
 		3334A6272527861100AD18C7 /* AuthorizationPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenterTests.swift; sourceTree = "<group>"; };
 		334A5132252B4433003BCF59 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		334A51C8252CAA53003BCF59 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
-		334A51D3252CD780003BCF59 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
-		334A51D6252CD7BE003BCF59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		334A51D3252CD780003BCF59 /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
+		334A51D6252CD7BE003BCF59 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		334A51DE252CDB34003BCF59 /* PresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
 		334A51E1252DB9C3003BCF59 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		334A51EA252DBAA2003BCF59 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
@@ -620,8 +620,8 @@
 		334A51D2252CD76C003BCF59 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
-				334A51D3252CD780003BCF59 /* ViewProtocol.swift */,
-				334A51D6252CD7BE003BCF59 /* ViewController.swift */,
+				334A51D3252CD780003BCF59 /* BaseViewProtocol.swift */,
+				334A51D6252CD7BE003BCF59 /* BaseViewController.swift */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -1269,8 +1269,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				33127B7D25357B0200B84FAE /* Section.swift in Sources */,
-				334A51D4252CD780003BCF59 /* ViewProtocol.swift in Sources */,
 				338614BF2539C01B00A24D4F /* PlayerAssembly.swift in Sources */,
+				334A51D4252CD780003BCF59 /* BaseViewProtocol.swift in Sources */,
 				332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */,
 				330F4E752530F65C008D0FC8 /* UserDataManager.swift in Sources */,
 				3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */,
@@ -1342,7 +1342,7 @@
 				33A3BA2B251CE142004EA0D9 /* General.swift in Sources */,
 				330F4DFF252EF697008D0FC8 /* CartoonsAssembly.swift in Sources */,
 				332227C52518970900EF56B8 /* FavouritesPresenter.swift in Sources */,
-				334A51D7252CD7BE003BCF59 /* ViewController.swift in Sources */,
+				334A51D7252CD7BE003BCF59 /* BaseViewController.swift in Sources */,
 				334A51DF252CDB34003BCF59 /* PresenterProtocol.swift in Sources */,
 				33EE7EB2251360B000EA2BF4 /* CustomLabelView.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationViewController.swift in Sources */,

@@ -51,11 +51,11 @@ class ImagePicker: NSObject {
                 self?.closure?(.failure(AccessErrors.libraryNotAvailable))
                 return
             }
-            self?.checkPhotoAccessPermission {
+            self?.checkPhotoAccessPermission { permission in
                 guard let pickerController = self?.pickerController else {
                     return
                 }
-                if $0 {
+                if permission {
                     self?.pickerController.sourceType = .photoLibrary
                     self?.presentationController?.present(pickerController, animated: true)
                 } else {
@@ -64,7 +64,7 @@ class ImagePicker: NSObject {
             }
         }
         alertController.addAction(libraryAction)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: R.string.localizable.cancel(), style: .cancel, handler: nil))
         self.presentationController?.present(alertController, animated: true)
     }
     

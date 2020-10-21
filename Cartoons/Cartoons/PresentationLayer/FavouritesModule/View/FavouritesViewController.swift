@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class FavouritesViewController: ViewController {
+class FavouritesViewController: BaseViewController {
     var presenter: FavouritesViewPresenterProtocol?
     
     override func viewDidLoad() {

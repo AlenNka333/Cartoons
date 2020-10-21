@@ -10,4 +10,8 @@ import Foundation
 
 protocol VerificationViewProtocol: ViewProtocol, AnyObject {
     func setLabelText(number: String)
+    func startTimer(timer: Timer, time: Int)
+    func endTimer()
+    func updateTime(timer: Int)
+
 }

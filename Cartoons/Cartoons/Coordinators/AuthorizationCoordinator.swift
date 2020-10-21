@@ -12,11 +12,11 @@ class AuthorizationCoordinator: CoordinatorProtocol {
     let authorizationService = AuthorizationService()
     
     var parent: CoordinatorProtocol?
-    var root: UIViewController
-    var successSessionClosure: () -> Void = {}
+    var rootController: UIViewController
+    var successSessionClosure: (() -> Void)?
     
     init() {
-        self.root = UINavigationController()
+        self.rootController = UINavigationController()
     }
     
     func start() {
@@ -26,7 +26,7 @@ class AuthorizationCoordinator: CoordinatorProtocol {
             self.openVerificationScreen(verificationId: verificationId, number: number)
         }
         view.presenter = presenter
-        (root as? UINavigationController)?.pushViewController(view, animated: true)
+        (rootController as? UINavigationController)?.pushViewController(view, animated: true)
     }
     
     func openVerificationScreen(verificationId: String, number: String) {
@@ -36,9 +36,12 @@ class AuthorizationCoordinator: CoordinatorProtocol {
                                               verificationId: verificationId,
                                               number: number)
         presenter.successSessionClosure = { [weak self] in
-            self?.successSessionClosure()
+            guard let closure = self?.successSessionClosure else {
+                return
+            }
+            closure()
         }
         view.presenter = presenter
-        (root as? UINavigationController)?.pushViewController(view, animated: true)
+        (rootController as? UINavigationController)?.pushViewController(view, animated: true)
     }
 }

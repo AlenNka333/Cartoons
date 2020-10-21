@@ -15,7 +15,7 @@ class MainScreenCoordinator: CoordinatorProtocol {
     
     var parent: CoordinatorProtocol?
     var root: UIViewController
-    var successSessionClosure: () -> Void = {}
+    var successSessionClosure: (() -> Void)?
     
     init(number: String) {
         self.number = number
@@ -31,11 +31,14 @@ class MainScreenCoordinator: CoordinatorProtocol {
                                                         case .openPlayer:
                                                             self?.openVideoPlayer()
                                                         case .successSession:
-                                                            self?.successSessionClosure()
+guard let closure = self?.successSessionClosure else {
+return
+}
+closure()
                                                         }
         })
     }
-    
+
     func openVideoPlayer() {
         let view = PlayerAssembly.makePlayerController()
         ((root as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)

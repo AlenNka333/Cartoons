@@ -1,6 +1,6 @@
 import UIKit
 
-class AuthorizationViewController: ViewController {
+class AuthorizationViewController: BaseViewController {
     var presenter: AuthorizationViewPresenterProtocol?
     
     private lazy var appLabelView = CustomLabelView()
@@ -20,7 +20,7 @@ class AuthorizationViewController: ViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
+        view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
         getCodeButton.isEnabled = true
         getCodeButton.backgroundColor = R.color.enabled_button_color()
     }

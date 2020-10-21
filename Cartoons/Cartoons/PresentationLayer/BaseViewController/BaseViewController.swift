@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, ViewProtocol {
+class BaseViewController: UIViewController, ViewProtocol {
     let alertView = CustomAlertView()
     let activityIndicator = UIActivityIndicatorView()
     let alertService = AlertService()
