@@ -7,6 +7,6 @@
 //
 
 import Foundation
-protocol FavouritesViewProtocol: ViewProtocol, AnyObject {
+protocol FavouritesViewProtocol: BaseViewProtocol, AnyObject {
     func showSuccess(success: String)
 }

@@ -8,5 +8,5 @@
 
 import Foundation
 
-protocol AuthorizationViewProtocol: ViewProtocol, AnyObject {
+protocol AuthorizationViewProtocol: BaseViewProtocol, AnyObject {
 }

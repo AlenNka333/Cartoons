@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SettingsViewProtocol: ViewProtocol, AnyObject {
+protocol SettingsViewProtocol: BaseViewProtocol, AnyObject {
     func showPhoneLabel(number: String)
     func showSuccess(success: String)
     func showSignOutAlert(message: String)

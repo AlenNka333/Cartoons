@@ -16,7 +16,7 @@ enum PlayerState {
     case stopped
 }
 
-class VideoPlayerViewController: ViewController {
+class VideoPlayerViewController: BaseViewController {
     private var playerView = PlayerView()
     var controlsView: CustomPlayerControls?
     private var player: AVPlayer? {

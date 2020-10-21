@@ -11,7 +11,7 @@ import AVKit
 import Foundation
 import UIKit
 
-class CartoonsViewController: ViewController {
+class CartoonsViewController: BaseViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Cartoon>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, Cartoon>
     
