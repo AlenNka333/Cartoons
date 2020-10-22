@@ -18,14 +18,29 @@ class CartoonsViewController: BaseViewController {
     private var collectionView: UICollectionView?
     private lazy var dataSource = makeDataSource()
     var videos = Cartoon.allVideos
+    var snapshot = SnapShot()
     var presenter: CartoonsViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureLayout()
         applySnapshot(animatingDifferences: true)
+        
+        guard let collection = collectionView else {
+            return
+        }
+        setupUIRefreshControl(with: collection)
         showActivityIndicator()
         presenter?.getData()
+    }
+    
+    func setupUIRefreshControl(with collectionView: UICollectionView) {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        refreshControl.tintColor = .black
+        collectionView.refreshControl = refreshControl
+        collectionView.refreshControl?.isEnabled = false
     }
     
     override func setupNavigationBar() {
@@ -62,8 +77,17 @@ extension CartoonsViewController: CartoonsViewProtocol {
     
     func setDataSource(with array: [Cartoon]) {
         videos = array
-        stopActivityIndicator()
+        if activityIndicator.isAnimating {
+            stopActivityIndicator()
+        }
+        guard let control = collectionView?.refreshControl else {
+            return
+        }
+        if control.isRefreshing {
+            collectionView?.refreshControl?.endRefreshing()
+        }
         applySnapshot()
+        collectionView?.refreshControl?.isEnabled = true
     }
 }
 
@@ -81,8 +105,12 @@ extension CartoonsViewController: UICollectionViewDelegate {
 }
 
 extension CartoonsViewController {
+    @objc func handleRefresh() {
+        presenter?.getData()
+    }
+    
     func applySnapshot(animatingDifferences: Bool = true) {
-        var snapshot = SnapShot()
+        snapshot.deleteAllItems()
         snapshot.appendSections([.main])
         snapshot.appendItems(videos)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)

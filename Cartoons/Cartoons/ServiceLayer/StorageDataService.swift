@@ -24,6 +24,8 @@ class StorageDataService: StorageDataServiceProtocol {
     }
     
     func checkListAvailable(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
+        folders = [String]()
+        cartoons = [Cartoon]()
         self.storageDataManager.getReferenceList { [weak self] result in
             switch result {
             case .failure(let error):
