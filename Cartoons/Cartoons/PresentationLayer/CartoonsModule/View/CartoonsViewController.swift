@@ -120,10 +120,7 @@ extension CartoonsViewController {
         let dataSource = DataSource(collectionView: collectionView ?? UICollectionView(),
                                     cellProvider: { (collectionView, indexPath, cartoon) -> UICollectionViewCell? in
                                         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? CartoonCollectionViewCell
-                                        cell?.layer.shadowColor = UIColor.black.cgColor
-                                        cell?.layer.shadowOffset = CGSize(width: 3, height: 8)
-                                        cell?.layer.shadowOpacity = 0.6
-                                        cell?.layer.masksToBounds = false
+                                        
                                         cell?.video = cartoon
                                         return cell
                                     })

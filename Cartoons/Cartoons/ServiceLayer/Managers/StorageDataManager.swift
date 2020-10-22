@@ -29,12 +29,12 @@ class StorageDataManager {
         }
     }
     
-    func loadImage(completion: @escaping (Result<URL?, Error>) -> Void) {
+    func loadImage(folder: String, completion: @escaping (Result<URL?, Error>) -> Void) {
         guard let id = Auth.auth().currentUser?.uid else {
             completion(.failure(AuthorizationError.emptyUser))
             return
         }
-        let reference = self.storageRef.child("profile_images/\(id)")
+        let reference = self.storageRef.child("\(folder)/\(id)")
         reference.downloadURL { url, error in
             if let error = error {
                 completion(.failure(error))
@@ -60,19 +60,31 @@ class StorageDataManager {
         }
     }
     
-    func loadData(folder: String, completion: @escaping (Result<URL?, Error>) -> Void) {
+    func loadData(folder: String, completion: @escaping (Result<[URL?], Error>) -> Void) {
         let reference = self.storageRef.child("\(folder)")
-        reference.listAll { response, error in
+        var list = [URL?]()
+        let dispatchGroup = DispatchGroup()
+        let dispatchSemaphore = DispatchSemaphore(value: 0)
+        reference.listAll { [weak self] response, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            response.items[0].downloadURL { url, error in
-                if let error = error {
-                    completion(.failure(error))
-                    return
+            for item in response.items {
+                dispatchGroup.enter()
+                item.downloadURL { url, error in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+                    list.append(url?.absoluteURL)
+                    //dispatchSemaphore.signal()
+                    dispatchGroup.leave()
                 }
-                completion(.success(url?.absoluteURL))
+                //dispatchSemaphore.wait()
+            }
+            dispatchGroup.notify(queue: DispatchQueue.main) {
+                completion(.success(list))
                 return
             }
         }

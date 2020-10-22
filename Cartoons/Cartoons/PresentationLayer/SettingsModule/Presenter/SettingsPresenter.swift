@@ -23,7 +23,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     }
     
     func showProfileImage() {
-        storageService.loadImage { [weak self] result in
+        storageService.loadImage(folder: "profile_Images") { [weak self] result in
             switch result {
             case .success(let path):
                 self?.view.showProfileImage(path: path)

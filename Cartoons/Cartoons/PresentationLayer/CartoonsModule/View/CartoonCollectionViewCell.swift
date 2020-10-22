@@ -17,7 +17,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     var thumbnailView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = R.color.wisteria()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
@@ -38,27 +38,34 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     
     var video: Cartoon? {
       didSet {
-        if (video?.title != nil) && (video?.link != nil) {
-            generateThumbnail(with: video?.link)
-            titleLabel.text = video?.title
+        if let title = video?.title, let thumbnail = video?.thumbnail {
+            thumbnailView.kf.setImage(with: thumbnail, placeholder: R.image.main_background())
+            titleLabel.text = title
+        } else if let title = video?.title, let link = video?.link {
+            generateThumbnail(with: link)
+            titleLabel.text = title
         }
       }
     }
     
-    func generateThumbnail(with url: URL?) {
-        guard let url = url else {
-            return
-        }
+    func generateThumbnail(with url: URL) {
         let avAsset = AVURLAsset(url: url)
-        thumbnailView.image = UIImage.generateThumbnail(asset: avAsset)
+        DispatchQueue.global(qos: .userInteractive).async {
+            let image = UIImage.generateThumbnail(asset: avAsset)
+            DispatchQueue.main.async {
+                self.thumbnailView.image = image
+            }
+        }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: 5, height: 10)
-        self.layer.shadowRadius = 1
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOffset = CGSize(width: 3, height: 8)
+        contentView.layer.shadowOpacity = 0.6
+        contentView.layer.shadowRadius = 10
+        contentView.layer.masksToBounds = false
+        
         contentView.addSubview(thumbnailView)
         thumbnailView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -73,6 +80,12 @@ class CartoonCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview()
             $0.width.lessThanOrEqualTo(thumbnailView)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        thumbnailView.image = nil
     }
     
     required init?(coder: NSCoder) {
