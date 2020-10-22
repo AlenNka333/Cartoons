@@ -84,13 +84,20 @@ extension BaseNavigationController {
                                                                   NSAttributedString.Key.font: R.font.aliceRegular(size: 14).unwrapped])
     }
     
+    func showActivityIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    
     func setImage(image: UIImage?, isEnabled: Bool) {
         imageView.image = image
         imageView.isUserInteractionEnabled = isEnabled
     }
     
     func setProfileImage(image: UIImage?) {
-        activityIndicator.startAnimating()
         imageView.isUserInteractionEnabled = true
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.image = image
@@ -100,13 +107,11 @@ extension BaseNavigationController {
         imageView.isUserInteractionEnabled = true
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.kf.setImage(with: path)
-        activityIndicator.stopAnimating()
     }
     
     func setDefaultImage(image: UIImage?) {
         imageView.isUserInteractionEnabled = true
         imageView.image = image
-        activityIndicator.stopAnimating()
     }
     
     @objc func editProfileImage() {
