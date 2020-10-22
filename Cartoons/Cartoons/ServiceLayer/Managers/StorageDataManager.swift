@@ -64,7 +64,6 @@ class StorageDataManager {
         let reference = self.storageRef.child("\(folder)")
         var list = [URL?]()
         let dispatchGroup = DispatchGroup()
-        let dispatchSemaphore = DispatchSemaphore(value: 0)
         reference.listAll { [weak self] response, error in
             if let error = error {
                 completion(.failure(error))
@@ -78,10 +77,8 @@ class StorageDataManager {
                         return
                     }
                     list.append(url?.absoluteURL)
-                    //dispatchSemaphore.signal()
                     dispatchGroup.leave()
                 }
-                //dispatchSemaphore.wait()
             }
             dispatchGroup.notify(queue: DispatchQueue.main) {
                 completion(.success(list))

@@ -39,7 +39,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     var video: Cartoon? {
       didSet {
         if let title = video?.title, let thumbnail = video?.thumbnail {
-            thumbnailView.kf.setImage(with: thumbnail, placeholder: R.image.main_background())
+            thumbnailView.kf.setImage(with: thumbnail)
             titleLabel.text = title
         } else if let title = video?.title, let link = video?.link {
             generateThumbnail(with: link)
