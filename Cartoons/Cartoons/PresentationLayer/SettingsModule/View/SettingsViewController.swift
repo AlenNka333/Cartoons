@@ -24,6 +24,7 @@ class SettingsViewController: BaseViewController {
         super.setupNavigationBar()
         title = R.string.localizable.settings_screen()
         (navigationController as? BaseNavigationController)?.setProfileImage(image: UIImage())
+        (navigationController as? BaseNavigationController)?.showActivityIndicator()
         presenter?.showProfileImage()
         (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
             self?.presenter?.editProfileImage()
@@ -74,10 +75,12 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func showProfileImage(path: URL?) {
+        (navigationController as? BaseNavigationController)?.stopActivityIndicator()
         (navigationController as? BaseNavigationController)?.setProfileImage(path: path)
     }
     
     func showDefaultImage() {
+        (navigationController as? BaseNavigationController)?.stopActivityIndicator()
         (navigationController as? BaseNavigationController)?.setDefaultImage(image: R.image.profile_icon())
     }
     
