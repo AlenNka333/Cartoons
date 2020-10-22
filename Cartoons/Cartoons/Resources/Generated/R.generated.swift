@@ -272,7 +272,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 19 images.
+  /// This `R.image` struct is generated, and contains static references to 25 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -288,6 +288,10 @@ struct R: Rswift.Validatable {
     static let frozen_onBoarding = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen_onBoarding")
     /// Image `frozen`.
     static let frozen = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen")
+    /// Image `go_backward`.
+    static let go_backward = Rswift.ImageResource(bundle: R.hostingBundle, name: "go_backward")
+    /// Image `go_forward`.
+    static let go_forward = Rswift.ImageResource(bundle: R.hostingBundle, name: "go_forward")
     /// Image `label`.
     static let label = Rswift.ImageResource(bundle: R.hostingBundle, name: "label")
     /// Image `launch_background`.
@@ -298,6 +302,8 @@ struct R: Rswift.Validatable {
     static let main_screen_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_screen_background")
     /// Image `navigation_label`.
     static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
+    /// Image `play`.
+    static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
     /// Image `princess_ariel`.
     static let princess_ariel = Rswift.ImageResource(bundle: R.hostingBundle, name: "princess_ariel")
     /// Image `princess_cinderella`.
@@ -308,6 +314,12 @@ struct R: Rswift.Validatable {
     static let profile_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_image")
     /// Image `settings_background`.
     static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
+    /// Image `slider_progress`.
+    static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
+    /// Image `stop`.
+    static let stop = Rswift.ImageResource(bundle: R.hostingBundle, name: "stop")
+    /// Image `thumb_slider_image`.
+    static let thumb_slider_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "thumb_slider_image")
     /// Image `tree_leave`.
     static let tree_leave = Rswift.ImageResource(bundle: R.hostingBundle, name: "tree_leave")
     /// Image `tv_model`.
@@ -363,6 +375,20 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "go_backward", bundle: ..., traitCollection: ...)`
+    static func go_backward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.go_backward, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "go_forward", bundle: ..., traitCollection: ...)`
+    static func go_forward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.go_forward, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "label", bundle: ..., traitCollection: ...)`
     static func label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.label, compatibleWith: traitCollection)
@@ -398,6 +424,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "play", bundle: ..., traitCollection: ...)`
+    static func play(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.play, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "princess_ariel", bundle: ..., traitCollection: ...)`
     static func princess_ariel(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.princess_ariel, compatibleWith: traitCollection)
@@ -429,6 +462,27 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "settings_background", bundle: ..., traitCollection: ...)`
     static func settings_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.settings_background, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "slider_progress", bundle: ..., traitCollection: ...)`
+    static func slider_progress(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.slider_progress, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "stop", bundle: ..., traitCollection: ...)`
+    static func stop(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.stop, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "thumb_slider_image", bundle: ..., traitCollection: ...)`
+    static func thumb_slider_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.thumb_slider_image, compatibleWith: traitCollection)
     }
     #endif
 
