@@ -14,4 +14,6 @@ protocol VideoPlayerViewProtocol: BaseViewProtocol, AnyObject {
     func jumpBackward()
     func getDuration() -> Double
     func setVideoTime(value: Double)
+    func setupObserver()
+    func removeObserver()
 }

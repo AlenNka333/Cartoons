@@ -25,6 +25,8 @@ class CustomPlayerControls: UIView {
     var jumpBackwardClosure: () -> Void = {}
     var sendTimeClosure: (Double) -> Void = { _ in }
     var needVideoDurationClosure: (() -> (Double))?
+    var removeObserverClosure: (() -> Void)?
+    var setupObserverClosure: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +35,7 @@ class CustomPlayerControls: UIView {
         controlView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        slider.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
     }
     
     required init?(coder: NSCoder) {
@@ -50,17 +53,50 @@ class CustomPlayerControls: UIView {
             playButton.setImage(R.image.play(), for: .normal)
         }
     }
+    
     @IBAction private func goForwardButtonClicked(_ sender: UIButton) {
         jumpForwardClosure()
     }
+    
     @IBAction private func goBackwardButtonClicked(_ sender: UIButton) {
         jumpBackwardClosure()
     }
-    @IBAction private func updateProgress(_ sender: CustomSlider) {
-        guard let closure = needVideoDurationClosure else {
+}
+
+extension CustomPlayerControls {
+    @objc func onSliderValChanged(slider: UISlider, event: UIEvent) {
+        if let durationClosure = needVideoDurationClosure,
+           let removeClosure = removeObserverClosure,
+           let setupClosure = setupObserverClosure {
+            sendTimeClosure(Float64(slider.value) * durationClosure())
+            if let touchEvent = event.allTouches?.first {
+                switch touchEvent.phase {
+                case .began:
+                    removeClosure()
+                    updateState()
+                case .moved:
+                    break
+                case .ended:
+                    setupClosure()
+                    updateState()
+                    playButton.setImage(R.image.stop(), for: .normal)
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    func updateState() {
+        guard let stateChangedClosure = stateChangedClosure else {
             return
         }
-        sendTimeClosure(Float64(slider.value) * closure())
+        switch stateChangedClosure() {
+        case .playing:
+            playButton.setImage(R.image.stop(), for: .normal)
+        case .stopped:
+            playButton.setImage(R.image.play(), for: .normal)
+        }
     }
 }
 

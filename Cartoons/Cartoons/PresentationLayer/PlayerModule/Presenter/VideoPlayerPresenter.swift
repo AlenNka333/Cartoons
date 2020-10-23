@@ -19,6 +19,11 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
         self.controls = controls
         self.playerState = .playing
         self.link = link
+        
+        setupClosures()
+    }
+    
+    func setupClosures() {
         controls.stateChangedClosure = { [weak self] in
             self?.playerState = self?.view.updateStatus()
             return (self?.playerState)!
@@ -34,6 +39,12 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
         }
         controls.sendTimeClosure = { [weak self] time in
             self?.view.setVideoTime(value: time)
+        }
+        controls.removeObserverClosure = { [weak self] in
+            self?.view.removeObserver()
+        }
+        controls.setupObserverClosure = { [weak self] in
+            self?.view.setupObserver()
         }
     }
     

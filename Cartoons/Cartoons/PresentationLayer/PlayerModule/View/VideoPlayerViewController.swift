@@ -107,9 +107,14 @@ extension VideoPlayerViewController {
         playerView.player = AVPlayer(url: link)
         player?.play()
         player?.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
-        
+        setupTimeObserver()
+    }
+    
+    func setupTimeObserver() {
         let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
-        timeObserver = player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { elapsedTime in
+        timeObserver = player?.addPeriodicTimeObserver(forInterval: interval,
+                                                       queue: DispatchQueue.main,
+                                                       using: { elapsedTime in
             if self.player?.currentItem?.status == .readyToPlay {
                 let currentTimeInSeconds = CMTimeGetSeconds(elapsedTime)
                 let time = elapsedTime.seconds.asString()
@@ -174,5 +179,13 @@ extension VideoPlayerViewController: VideoPlayerViewProtocol {
         }
         player.isPlaying ? (player.pause(), playerState = .stopped) : (player.play(), playerState = .playing)
         return playerState
+    }
+    
+    func removeObserver() {
+        player?.removeTimeObserver(timeObserver)
+    }
+    
+    func setupObserver() {
+        setupTimeObserver()
     }
 }
