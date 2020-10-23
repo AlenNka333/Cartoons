@@ -50,7 +50,7 @@ class BaseNavigationController: UINavigationController {
     
     func setupUI() {
         delegate = self
-        navigationItem.largeTitleDisplayMode = .automatic
+        navigationBar.prefersLargeTitles = true
         navigationBar.tintColor = .white
         navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationBar.layer.shadowRadius = 4.0
@@ -88,7 +88,6 @@ extension BaseNavigationController: UINavigationControllerDelegate {
         if operation == .push {
             imageView.removeFromSuperview()
             subtitle.removeFromSuperview()
-            navigationItem.largeTitleDisplayMode = .never
             return nil
         } else {
             setupUI()
