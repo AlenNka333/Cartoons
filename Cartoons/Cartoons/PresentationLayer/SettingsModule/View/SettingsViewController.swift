@@ -5,41 +5,42 @@
 //  Created by Alena Nesterkina on 9/21/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-
+//swiftlint:disable all
 import Kingfisher
 import UIKit
 
 class SettingsViewController: BaseViewController {
     var presenter: SettingsViewPresenterProtocol?
     var imagePicker: ImagePicker?
+    var tableView: UITableView?
+    var userInfoHeader = UserInfoHeader()
     
-    private lazy var signOutButton: UIButton = CustomButton()
+    var clearCacheCell = UITableViewCell()
+    var signOutCell = UITableViewCell()
+    var shareCell = UITableViewCell()
+    var settings = ["Sign Out", "Clear Cache", "Share"]
+    
+    private lazy var signOutButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Sign Out", for: .normal)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker = ImagePicker(presentationController: self)
+        setupTableView()
     }
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = R.string.localizable.settings_screen()
         (navigationController as? BaseNavigationController)?.setProfileImage(image: UIImage())
-        (navigationController as? BaseNavigationController)?.showActivityIndicator()
-        presenter?.showProfileImage()
-        (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
-            self?.presenter?.editProfileImage()
-        }
     }
     
     override func setupUI() {
         super.setupUI()
         view.backgroundColor = R.color.main_pink()
-        view.addSubview(signOutButton)
-        signOutButton.setTitle(R.string.localizable.sign_out_button(), for: .normal)
-        signOutButton.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
-        signOutButton.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
     }
     
     override func showError(error: Error) {
@@ -75,17 +76,17 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func showProfileImage(path: URL?) {
-        (navigationController as? BaseNavigationController)?.stopActivityIndicator()
-        (navigationController as? BaseNavigationController)?.setProfileImage(path: path)
+        userInfoHeader.stopActivityIndicator()
+        userInfoHeader.setProfileImage(path: path)
     }
     
     func showDefaultImage() {
-        (navigationController as? BaseNavigationController)?.stopActivityIndicator()
-        (navigationController as? BaseNavigationController)?.setDefaultImage(image: R.image.profile_icon())
+        userInfoHeader.stopActivityIndicator()
+        userInfoHeader.setDefaultImage()
     }
     
     func showPhoneLabel(number: String) {
-        title = number
+        userInfoHeader.setPhoneNumber(number: number)
     }
     
     func showSignOutAlert(message: String) {
@@ -106,6 +107,35 @@ extension SettingsViewController: SettingsViewProtocol {
     }
 }
 
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return settings.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 20
+        }
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingsTableViewCell
+        cell.setButtonText(string: settings[indexPath.section])
+        if indexPath.section == 0 {
+            cell.button.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
+        }
+        return cell
+    }
+}
+
 extension SettingsViewController {
     func didSelect(image: UIImage?) {
         guard let image = image else {
@@ -115,6 +145,7 @@ extension SettingsViewController {
             return
         }
         presenter?.saveProfileImage(imageData: imageData)
+        userInfoHeader.setProfileImage(image: image)
         (navigationController as? BaseNavigationController)?.setProfileImage(image: image)
     }
     
@@ -123,5 +154,24 @@ extension SettingsViewController {
             return
         }
         presenter.signOut()
+    }
+    
+    func setupTableView() {
+        tableView = UITableView(frame: self.view.frame)
+        tableView?.delegate = self
+        tableView?.dataSource = self
+        tableView?.backgroundColor = R.color.main_blue()
+        view.addSubview(tableView ?? UITableView())
+        tableView?.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
+        userInfoHeader.frame = frame
+        tableView?.tableHeaderView = userInfoHeader
+        
+        userInfoHeader.showActivityIndicator()
+        presenter?.showProfileImage()
+        userInfoHeader.imageAction = { [weak self] in
+            self?.presenter?.editProfileImage()
+        }
     }
 }

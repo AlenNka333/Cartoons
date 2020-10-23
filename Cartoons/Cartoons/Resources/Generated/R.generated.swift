@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 11 colors.
+  /// This `R.color` struct is generated, and contains static references to 12 colors.
   struct color {
     /// Color `cinnabar`.
     static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
@@ -128,6 +128,8 @@ struct R: Rswift.Validatable {
     static let picotee_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picotee_blue")
     /// Color `tab_bar_color`.
     static let tab_bar_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "tab_bar_color")
+    /// Color `table_cell`.
+    static let table_cell = Rswift.ColorResource(bundle: R.hostingBundle, name: "table_cell")
     /// Color `wisteria`.
     static let wisteria = Rswift.ColorResource(bundle: R.hostingBundle, name: "wisteria")
 
@@ -218,6 +220,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func tab_bar_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.tab_bar_color, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "table_cell", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func table_cell(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.table_cell, compatibleWith: traitCollection)
     }
     #endif
 

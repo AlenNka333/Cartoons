@@ -27,6 +27,8 @@
 		330F4E752530F65C008D0FC8 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E742530F65C008D0FC8 /* UserDataManager.swift */; };
 		330F4E792530F7BD008D0FC8 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E782530F7BD008D0FC8 /* UserDataService.swift */; };
 		3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3312EDE824FE859F00158EB6 /* Localizable.strings */; };
+		331912502541C04800DB64ED /* UserInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3319124F2541C04800DB64ED /* UserInfoHeader.swift */; };
+		3319125B2542BAF800DB64ED /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3319125A2542BAF800DB64ED /* SettingsTableViewCell.swift */; };
 		332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C2251896CF00EF56B8 /* FavouritesViewController.swift */; };
 		332227C52518970900EF56B8 /* FavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C42518970900EF56B8 /* FavouritesPresenter.swift */; };
 		332227C72518972300EF56B8 /* FavouritesViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */; };
@@ -139,6 +141,8 @@
 		330F4E742530F65C008D0FC8 /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
 		330F4E782530F7BD008D0FC8 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		3312EDE724FE859F00158EB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3319124F2541C04800DB64ED /* UserInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeader.swift; sourceTree = "<group>"; };
+		3319125A2542BAF800DB64ED /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		332227C2251896CF00EF56B8 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		332227C42518970900EF56B8 /* FavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesPresenter.swift; sourceTree = "<group>"; };
 		332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -326,6 +330,14 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		3319124E2541C03200DB64ED /* UserHeader */ = {
+			isa = PBXGroup;
+			children = (
+				3319124F2541C04800DB64ED /* UserInfoHeader.swift */,
+			);
+			path = UserHeader;
+			sourceTree = "<group>";
+		};
 		332227BC2518967C00EF56B8 /* FavouritesModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				332227CA251899BC00EF56B8 /* SettingsViewController.swift */,
+				3319125A2542BAF800DB64ED /* SettingsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -609,6 +622,7 @@
 		33B2AE962508AC590006BE31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				3319124E2541C03200DB64ED /* UserHeader */,
 				33EAD3B12522094200128EEB /* ImagePicker */,
 				33EE7EB02513609D00EA2BF4 /* AppLabel */,
 				33EE7EAD25135D0A00EA2BF4 /* TextField */,
@@ -1147,6 +1161,7 @@
 				332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */,
 				330F4E4A25309B9C008D0FC8 /* AuthorizationService.swift in Sources */,
 				330F4E672530EE7B008D0FC8 /* StorageDataManager.swift in Sources */,
+				331912502541C04800DB64ED /* UserInfoHeader.swift in Sources */,
 				33A3BA2B251CE142004EA0D9 /* General.swift in Sources */,
 				330F4DFF252EF697008D0FC8 /* CartoonsAssembly.swift in Sources */,
 				332227C52518970900EF56B8 /* FavouritesPresenter.swift in Sources */,
@@ -1156,6 +1171,7 @@
 				33B660BB250166C200CA562E /* VerificationViewController.swift in Sources */,
 				3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */,
 				33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */,
+				3319125B2542BAF800DB64ED /* SettingsTableViewCell.swift in Sources */,
 				334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */,
 				33B2AEB6250A63A00006BE31 /* CartoonsViewProtocol.swift in Sources */,
 				332227C92518973500EF56B8 /* FavouritesViewProtocol.swift in Sources */,
