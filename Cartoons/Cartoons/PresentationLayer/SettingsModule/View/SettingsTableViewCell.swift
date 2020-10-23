@@ -26,13 +26,14 @@ class SettingsTableViewCell: UITableViewCell {
     }
     
     func setupUI() {
+        contentView.frame = CGRect(x: 0, y: 0, width: .zero, height: frame.height + 10)
         contentView.backgroundColor = R.color.main_blue()
         contentView.addSubview(button)
         button.isEnabled = true
         button.backgroundColor = R.color.table_cell()
         button.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.height.equalToSuperview().offset(-5)
+            $0.height.equalToSuperview().offset(-15)
             $0.width.equalToSuperview().offset(-50)
         }
     }

@@ -9,16 +9,23 @@
 import Kingfisher
 import UIKit
 
+enum Section {
+    case main
+}
+
 class SettingsViewController: BaseViewController {
+    typealias DataSource = UITableViewDiffableDataSource<Section, Setting>
+    typealias SnapShot = NSDiffableDataSourceSnapshot<Section, Setting>
+    
+    private lazy var dataSource = makeDataSource()
+    
     var presenter: SettingsViewPresenterProtocol?
     var imagePicker: ImagePicker?
     var tableView: UITableView?
     var userInfoHeader = UserInfoHeader()
     
-    var clearCacheCell = UITableViewCell()
-    var signOutCell = UITableViewCell()
-    var shareCell = UITableViewCell()
-    var settings = ["Sign Out", "Clear Cache", "Share"]
+    var snapshot = SnapShot()
+    var settings = Setting.allSettings
     
     private lazy var signOutButton: UIButton = {
         let button = UIButton()
@@ -30,6 +37,7 @@ class SettingsViewController: BaseViewController {
         super.viewDidLoad()
         imagePicker = ImagePicker(presentationController: self)
         setupTableView()
+        applySnapshot()
     }
     
     override func setupNavigationBar() {
@@ -107,36 +115,40 @@ extension SettingsViewController: SettingsViewProtocol {
     }
 }
 
-extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return settings.count
-    }
+extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 20
-        }
         return 10
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView()
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingsTableViewCell
-        cell.setButtonText(string: settings[indexPath.section])
-        if indexPath.section == 0 {
-            cell.button.addTarget(self, action: #selector(buttonTappedToSignOutAction), for: .touchUpInside)
-        }
-        return cell
-    }
 }
 
 extension SettingsViewController {
+    func applySnapshot(animatingDifferences: Bool = true) {
+        snapshot.deleteAllItems()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(settings)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+    
+    func makeDataSource() -> DataSource {
+        let dataSource = DataSource(tableView: tableView ?? UITableView()) { (tableView, indexPath, setting) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingsTableViewCell
+            cell.setButtonText(string: self.settings[indexPath.row].title)
+            if indexPath.row == 0 {
+                cell.button.addTarget(self, action: #selector(self.buttonTappedToSignOutAction), for: .touchUpInside)
+            }
+            return cell
+        }
+        return dataSource
+    }
+    
     func didSelect(image: UIImage?) {
         guard let image = image else {
             return
@@ -159,7 +171,6 @@ extension SettingsViewController {
     func setupTableView() {
         tableView = UITableView(frame: self.view.frame)
         tableView?.delegate = self
-        tableView?.dataSource = self
         tableView?.backgroundColor = R.color.main_blue()
         view.addSubview(tableView ?? UITableView())
         tableView?.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
