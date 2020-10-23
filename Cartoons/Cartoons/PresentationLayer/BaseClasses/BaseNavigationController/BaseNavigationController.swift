@@ -5,8 +5,9 @@
 //  Created by Alena Nesterkina on 9/22/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-import UIKit
+
 import Kingfisher
+import UIKit
 
 class BaseNavigationController: UINavigationController {
     private enum Const {
@@ -92,8 +93,7 @@ extension BaseNavigationController: UINavigationControllerDelegate {
         } else {
             setupUI()
             return nil
-        }
-        
+        }        
     }
 }
 
@@ -118,7 +118,6 @@ extension BaseNavigationController {
     }
     
     func setProfileImage(image: UIImage?) {
-        
         imageView.isUserInteractionEnabled = true
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.image = image

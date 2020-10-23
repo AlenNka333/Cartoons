@@ -39,7 +39,6 @@ class CartoonsViewController: BaseViewController {
         (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
         title = R.string.localizable.cartoons_screen()
         (navigationController as? BaseNavigationController)?.setSubTitle(title: R.string.localizable.cartoons_screen_subtitle())
-        (navigationController as? BaseNavigationController)?.setImage(image: R.image.navigation_label(), isEnabled: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +57,7 @@ class CartoonsViewController: BaseViewController {
     }
 }
 
-//MARK: - Protocol realisation
+// MARK: - Protocol realisation
 
 extension CartoonsViewController: CartoonsViewProtocol {
     func showSuccess(success: String) {
@@ -84,7 +83,7 @@ extension CartoonsViewController: CartoonsViewProtocol {
     }
 }
 
-//MARK: - CollectionViewDiffableDataSource
+// MARK: - CollectionViewDiffableDataSource
 
 extension CartoonsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -102,9 +101,9 @@ extension CartoonsViewController: UICollectionViewDelegate {
 extension CartoonsViewController {
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: collectionView ?? UICollectionView(),
-                                    cellProvider: { (collectionView, indexPath, cartoon) -> UICollectionViewCell? in
-                                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? CartoonCollectionViewCell
-                                        
+                                    cellProvider: { collectionView, indexPath, cartoon -> UICollectionViewCell? in
+                                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
+                                                                                      for: indexPath) as? CartoonCollectionViewCell
                                         cell?.video = cartoon
                                         return cell
                                     })
@@ -116,7 +115,7 @@ extension CartoonsViewController {
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView?.delegate = self
         collectionView?.backgroundColor = R.color.main_orange()
-        collectionView?.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+        collectionView?.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { _, _ -> NSCollectionLayoutSection? in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: 5.0, leading: 5.0, bottom: 5.0, trailing: 5.0)

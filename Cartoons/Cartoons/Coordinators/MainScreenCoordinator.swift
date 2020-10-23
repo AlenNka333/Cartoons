@@ -24,19 +24,19 @@ class MainScreenCoordinator: CoordinatorProtocol {
     
     func start() {
         rootController = MainScreenAssembly.makeTabBarController(number: number,
-                                                       storageService: storageService,
-                                                       authorizationService: authorizationService,
-                                                       completion: { [weak self] action, link in
-                                                        switch action {
-                                                        case .openPlayer:
-                                                            self?.openVideoPlayer(with: link)
-                                                        case .successSession:
-                                                            guard let closure = self?.successSessionClosure else {
-                                                                return
-                                                            }
-                                                            closure()
-                                                        }
-                                                       })
+                                                                 storageService: storageService,
+                                                                 authorizationService: authorizationService,
+                                                                 completion: { [weak self] action, link in
+                                                                    switch action {
+                                                                    case .openPlayer:
+                                                                        self?.openVideoPlayer(with: link)
+                                                                    case .successSession:
+                                                                        guard let closure = self?.successSessionClosure else {
+                                                                            return
+                                                                        }
+                                                                        closure()
+                                                                    }
+                                                                 })
     }
     
     func openVideoPlayer(with link: URL?) {

@@ -64,7 +64,7 @@ class StorageDataManager {
         let reference = self.storageRef.child("\(folder)")
         var list = [URL?]()
         let dispatchGroup = DispatchGroup()
-        reference.listAll { [weak self] response, error in
+        reference.listAll { response, error in
             if let error = error {
                 completion(.failure(error))
                 return

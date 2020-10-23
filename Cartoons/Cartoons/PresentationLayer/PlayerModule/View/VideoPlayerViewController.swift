@@ -41,7 +41,7 @@ class VideoPlayerViewController: BaseViewController {
     
     override public var shouldAutorotate: Bool {
         return true
-      }
+    }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
@@ -49,7 +49,7 @@ class VideoPlayerViewController: BaseViewController {
     
     override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         return .landscapeRight
-      }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -58,10 +58,9 @@ class VideoPlayerViewController: BaseViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { (context) in
-        }) { (context) in
+        coordinator.animate(alongsideTransition: { _ in
             self.playerView.frame.size = size
-        }
+        })
     }
     
     override func setupNavigationBar() {
@@ -117,8 +116,8 @@ extension VideoPlayerViewController {
                 self.presenter?.updateProgressValue(value: time)
                 if let currentItem = self.player?.currentItem {
                     let duration = currentItem.duration
-                    if (CMTIME_IS_INVALID(duration)) {
-                        return;
+                    if CMTIME_IS_INVALID(duration) {
+                        return
                     }
                     self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
                 }
@@ -126,7 +125,10 @@ extension VideoPlayerViewController {
         })
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [ NSKeyValueChangeKey : Any ]?,
+                               context: UnsafeMutableRawPointer?) {
         if keyPath == "currentItem.loadedTimeRanges" {
             playerState = .playing
             
@@ -152,7 +154,7 @@ extension VideoPlayerViewController: VideoPlayerViewProtocol {
         guard let player = playerView.player else {
             return
         }
-        let currentTimeInSecondsPlus10 =  CMTimeGetSeconds(player.currentTime()).advanced(by: 10)
+        let currentTimeInSecondsPlus10 = CMTimeGetSeconds(player.currentTime()).advanced(by: 10)
         let seekTime = CMTime(value: CMTimeValue(currentTimeInSecondsPlus10), timescale: 1)
         player.seek(to: seekTime)
     }
@@ -161,7 +163,7 @@ extension VideoPlayerViewController: VideoPlayerViewProtocol {
         guard let player = playerView.player else {
             return
         }
-        let currentTimeInSecondsMinus10 =  CMTimeGetSeconds(player.currentTime()).advanced(by: -10)
+        let currentTimeInSecondsMinus10 = CMTimeGetSeconds(player.currentTime()).advanced(by: -10)
         let seekTime = CMTime(value: CMTimeValue(currentTimeInSecondsMinus10), timescale: 1)
         player.seek(to: seekTime)
     }
@@ -170,7 +172,7 @@ extension VideoPlayerViewController: VideoPlayerViewProtocol {
         guard let player = playerView.player else {
             return nil
         }
-        player.isPlaying ? ( player.pause(), playerState = .stopped ) : ( player.play(), playerState = .playing )
+        player.isPlaying ? (player.pause(), playerState = .stopped) : (player.play(), playerState = .playing)
         return playerState
     }
 }
