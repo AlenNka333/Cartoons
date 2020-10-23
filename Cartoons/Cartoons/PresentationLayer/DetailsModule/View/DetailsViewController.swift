@@ -28,7 +28,12 @@ class DetailsViewController: BaseViewController {
         button.setImage(R.image.star(), for: .normal)
         return button
     }()
-    
+    private lazy var titleLabel: UILabel = {
+        let label = BorderedLabel(withInsets: 5, 5, left: 10, 10)
+        label.textAlignment = .center
+        label.numberOfLines = .zero
+        return label
+    }()
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .center
@@ -60,8 +65,8 @@ class DetailsViewController: BaseViewController {
 extension DetailsViewController {
     @objc func openPlayer() {
         guard let link = video?.link else {
-          print("Invalid link")
-          return
+            print("Invalid link")
+            return
         }
         presenter?.openPlayer(with: link)
     }
@@ -88,12 +93,20 @@ extension DetailsViewController: DetailsViewProtocol {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(view.frame.height * 0.5)
         }
+        view.addSubview(titleLabel)
+        titleLabel.attributedText = NSAttributedString(string: video.title,
+                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                    NSAttributedString.Key.font: R.font.cinzelDecorativeBold(size: 50).unwrapped])
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(poster.snp_bottomMargin).offset(-40)
+            $0.leading.trailing.equalToSuperview()
+        }
         stackView.addArrangedSubview(openPlayerButton)
         stackView.addArrangedSubview(addToFavouritesButton)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
         stackView.snp.makeConstraints {
-            $0.top.equalTo(poster.snp_bottomMargin).offset(30)
+            $0.top.equalTo(titleLabel.snp_bottomMargin).offset(30)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
         }
