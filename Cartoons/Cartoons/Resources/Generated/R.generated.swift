@@ -320,7 +320,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 25 images.
+  /// This `R.image` struct is generated, and contains static references to 26 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -364,6 +364,8 @@ struct R: Rswift.Validatable {
     static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
     /// Image `slider_progress`.
     static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
+    /// Image `star`.
+    static let star = Rswift.ImageResource(bundle: R.hostingBundle, name: "star")
     /// Image `stop`.
     static let stop = Rswift.ImageResource(bundle: R.hostingBundle, name: "stop")
     /// Image `thumb_slider_image`.
@@ -517,6 +519,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "slider_progress", bundle: ..., traitCollection: ...)`
     static func slider_progress(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.slider_progress, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "star", bundle: ..., traitCollection: ...)`
+    static func star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.star, compatibleWith: traitCollection)
     }
     #endif
 

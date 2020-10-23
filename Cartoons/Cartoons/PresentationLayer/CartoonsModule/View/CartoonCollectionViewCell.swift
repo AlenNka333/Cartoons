@@ -35,6 +35,11 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         return label
     }()
+    var favouritesIndicatorImage: UIImageView = {
+        let view = UIImageView()
+        view.image = R.image.star()
+        return view
+    }()
     
     var video: Cartoon? {
       didSet {
@@ -79,6 +84,11 @@ class CartoonCollectionViewCell: UICollectionViewCell {
             $0.leading.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.width.lessThanOrEqualTo(thumbnailView)
+        }
+        contentView.addSubview(favouritesIndicatorImage)
+        favouritesIndicatorImage.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.top.equalToSuperview().offset(10)
         }
     }
     
