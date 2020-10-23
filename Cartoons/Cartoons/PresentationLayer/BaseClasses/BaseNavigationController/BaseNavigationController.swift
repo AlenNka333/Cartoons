@@ -86,10 +86,9 @@ extension BaseNavigationController: UINavigationControllerDelegate {
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
-            navigationBar.largeContentTitle = ""
             imageView.removeFromSuperview()
             subtitle.removeFromSuperview()
-            navigationBar.prefersLargeTitles = false
+            navigationItem.largeTitleDisplayMode = .never
             return nil
         } else {
             setupUI()
