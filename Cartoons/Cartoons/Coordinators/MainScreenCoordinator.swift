@@ -13,6 +13,7 @@ class MainScreenCoordinator: CoordinatorProtocol {
     let storageService = StorageDataService()
     let authorizationService = AuthorizationService()
     
+    var child: UIViewController?
     var parent: CoordinatorProtocol?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
@@ -22,14 +23,28 @@ class MainScreenCoordinator: CoordinatorProtocol {
         self.rootController = UINavigationController()
     }
     
+    func setChild(_ controller: UIViewController?) {
+        if child != nil {
+            removeChild()
+        }
+        child = controller
+    }
+    
+    func removeChild() {
+        guard child != nil else {
+            return
+        }
+        self.child = nil
+    }
+    
     func start() {
         rootController = MainScreenAssembly.makeTabBarController(number: number,
                                                                  storageService: storageService,
                                                                  authorizationService: authorizationService,
-                                                                 completion: { [weak self] action, link in
+                                                                 completion: { [weak self] action, video in
                                                                     switch action {
-                                                                    case .openPlayer:
-                                                                        self?.openVideoPlayer(with: link)
+                                                                    case .openDetails:
+                                                                        self?.openDetailsScreen(with: video)
                                                                     case .successSession:
                                                                         guard let closure = self?.successSessionClosure else {
                                                                             return
@@ -39,8 +54,19 @@ class MainScreenCoordinator: CoordinatorProtocol {
                                                                  })
     }
     
+    func openDetailsScreen(with video: Cartoon?) {
+        guard let cartoon = video else {
+            return
+        }
+        let view = DetailsAssembly.makeDetailsController(with: cartoon) { [weak self] url in
+            self?.openVideoPlayer(with: url)
+        }
+        setChild(view)
+        ((rootController as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)
+    }
+    
     func openVideoPlayer(with link: URL?) {
         let view = PlayerAssembly.makePlayerController(with: link)
-        ((rootController as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)
+        (child as? UINavigationController)?.pushViewController(view, animated: true)
     }
 }

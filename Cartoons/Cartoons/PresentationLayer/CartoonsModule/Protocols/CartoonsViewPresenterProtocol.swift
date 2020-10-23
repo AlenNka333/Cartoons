@@ -9,7 +9,9 @@
 import Foundation
 
 protocol CartoonsViewPresenterProtocol: PresenterProtocol, AnyObject {
+    var openDetailsClosure: ((Cartoon) -> Void)? { get set }
+    
     func getData()
     func showSuccess(success: String)
-    func openPlayer(with link: URL)
+    func openDetails(with video: Cartoon)
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 enum Action {
-    case openPlayer
+    case openDetails
     case successSession
 }
 
@@ -21,10 +21,10 @@ class MainScreenAssembly: Assembly {
     static func makeTabBarController(number: String,
                                      storageService: StorageDataService,
                                      authorizationService: AuthorizationService,
-                                     completion: @escaping((Action, URL?) -> Void)) -> TabBarViewController {
+                                     completion: @escaping((Action, Cartoon?) -> Void)) -> TabBarViewController {
         var controllers = [UIViewController]()
         let cartoons = CartoonsAssembly.makeCartoonsController(storageService: storageService) { url in
-            completion(Action.openPlayer, url)
+            completion(Action.openDetails, url)
         }
         controllers.append(cartoons)
         controllers.append(FavouritesAssembly.makeFavouritesController())

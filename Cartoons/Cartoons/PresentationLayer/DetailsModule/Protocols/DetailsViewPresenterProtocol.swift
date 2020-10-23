@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol DetailsViewPresenterProtocol: AnyObject {
+    func openPlayer(with link: URL)
+}

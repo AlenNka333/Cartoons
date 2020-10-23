@@ -32,13 +32,15 @@
 		33127B542534C49300B84FAE /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B532534C49300B84FAE /* DetailsViewController.swift */; };
 		33127B572534C4A700B84FAE /* DetailsViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B562534C4A700B84FAE /* DetailsViewProtocol.swift */; };
 		33127B5A2534C4B700B84FAE /* DetailsViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B592534C4B700B84FAE /* DetailsViewPresenterProtocol.swift */; };
-		33127B5D2534C4C400B84FAE /* DetailsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B5C2534C4C400B84FAE /* DetailsViewPresenter.swift */; };
+		33127B5D2534C4C400B84FAE /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B5C2534C4C400B84FAE /* DetailsPresenter.swift */; };
 		33127B602534C4DB00B84FAE /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B5F2534C4DB00B84FAE /* VideoPlayerViewController.swift */; };
 		33127B632534C4EF00B84FAE /* VideoPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B622534C4EF00B84FAE /* VideoPlayerPresenter.swift */; };
 		33127B662534C51000B84FAE /* VideoPlayerViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B652534C51000B84FAE /* VideoPlayerViewProtocol.swift */; };
 		33127B6A2534C53400B84FAE /* VideoPlayerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B692534C53400B84FAE /* VideoPlayerPresenterProtocol.swift */; };
 		33127B7D25357B0200B84FAE /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B7C25357B0200B84FAE /* Section.swift */; };
 		3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3312EDE824FE859F00158EB6 /* Localizable.strings */; };
+		3319126B2543217800DB64ED /* CartoonPosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3319126A2543217700DB64ED /* CartoonPosterView.swift */; };
+		3319126F2543269900DB64ED /* DetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3319126E2543269900DB64ED /* DetailsAssembly.swift */; };
 		332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C2251896CF00EF56B8 /* FavouritesViewController.swift */; };
 		332227C52518970900EF56B8 /* FavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C42518970900EF56B8 /* FavouritesPresenter.swift */; };
 		332227C72518972300EF56B8 /* FavouritesViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */; };
@@ -168,13 +170,15 @@
 		33127B532534C49300B84FAE /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		33127B562534C4A700B84FAE /* DetailsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewProtocol.swift; sourceTree = "<group>"; };
 		33127B592534C4B700B84FAE /* DetailsViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewPresenterProtocol.swift; sourceTree = "<group>"; };
-		33127B5C2534C4C400B84FAE /* DetailsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewPresenter.swift; sourceTree = "<group>"; };
+		33127B5C2534C4C400B84FAE /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
 		33127B5F2534C4DB00B84FAE /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		33127B622534C4EF00B84FAE /* VideoPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerPresenter.swift; sourceTree = "<group>"; };
 		33127B652534C51000B84FAE /* VideoPlayerViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewProtocol.swift; sourceTree = "<group>"; };
 		33127B692534C53400B84FAE /* VideoPlayerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerPresenterProtocol.swift; sourceTree = "<group>"; };
 		33127B7C25357B0200B84FAE /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		3312EDE724FE859F00158EB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3319126A2543217700DB64ED /* CartoonPosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonPosterView.swift; sourceTree = "<group>"; };
+		3319126E2543269900DB64ED /* DetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAssembly.swift; sourceTree = "<group>"; };
 		332227C2251896CF00EF56B8 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		332227C42518970900EF56B8 /* FavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesPresenter.swift; sourceTree = "<group>"; };
 		332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -406,7 +410,7 @@
 		33127B4D2534C44100B84FAE /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				33127B5C2534C4C400B84FAE /* DetailsViewPresenter.swift */,
+				33127B5C2534C4C400B84FAE /* DetailsPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -463,6 +467,14 @@
 				3312EDE824FE859F00158EB6 /* Localizable.strings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		331912692543215F00DB64ED /* CartoonPoster */ = {
+			isa = PBXGroup;
+			children = (
+				3319126A2543217700DB64ED /* CartoonPosterView.swift */,
+			);
+			path = CartoonPoster;
 			sourceTree = "<group>";
 		};
 		332227BC2518967C00EF56B8 /* FavouritesModule */ = {
@@ -756,6 +768,7 @@
 		33B2AE962508AC590006BE31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				331912692543215F00DB64ED /* CartoonPoster */,
 				3355FA792540180E00C0B192 /* BorderedLabel */,
 				33127B4A2534C41C00B84FAE /* VideoPlayerControls */,
 				33EAD3B12522094200128EEB /* ImagePicker */,
@@ -871,6 +884,7 @@
 				330F4E0C252F073D008D0FC8 /* SettingsAssembly.swift */,
 				330F4E0F252F0D9B008D0FC8 /* OnboardingAssembly.swift */,
 				338614BE2539C01B00A24D4F /* PlayerAssembly.swift */,
+				3319126E2543269900DB64ED /* DetailsAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -1287,7 +1301,7 @@
 				33127B662534C51000B84FAE /* VideoPlayerViewProtocol.swift in Sources */,
 				3355FA7B2540182200C0B192 /* BorderedLabel.swift in Sources */,
 				334A51E2252DB9C3003BCF59 /* Assembly.swift in Sources */,
-				33127B5D2534C4C400B84FAE /* DetailsViewPresenter.swift in Sources */,
+				33127B5D2534C4C400B84FAE /* DetailsPresenter.swift in Sources */,
 				334A51F6252DC742003BCF59 /* AuthorizationAssembly.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				338614CC253A275800A24D4F /* Double + Extension.swift in Sources */,
@@ -1295,11 +1309,13 @@
 				33B660C1250246CF00CA562E /* String+Extension.swift in Sources */,
 				330F4E702530F5D6008D0FC8 /* UserDataServiceProtocol.swift in Sources */,
 				3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */,
+				3319126F2543269900DB64ED /* DetailsAssembly.swift in Sources */,
 				339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */,
 				332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */,
 				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
 				330F4E792530F7BD008D0FC8 /* UserDataService.swift in Sources */,
 				330F4E09252F0110008D0FC8 /* FavouritesAssembly.swift in Sources */,
+				3319126B2543217800DB64ED /* CartoonPosterView.swift in Sources */,
 				3355FA8B2540346100C0B192 /* BaseViewProtocol.swift in Sources */,
 				332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */,
 				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,

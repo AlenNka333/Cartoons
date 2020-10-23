@@ -49,9 +49,9 @@ class BaseNavigationController: UINavigationController {
     }
     
     func setupUI() {
-        navigationBar.prefersLargeTitles = true
         delegate = self
-        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationBar.tintColor = .white
         navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationBar.layer.shadowRadius = 4.0
         navigationBar.layer.shadowOpacity = 1.0
@@ -89,6 +89,7 @@ extension BaseNavigationController: UINavigationControllerDelegate {
             navigationBar.largeContentTitle = ""
             imageView.removeFromSuperview()
             subtitle.removeFromSuperview()
+            navigationBar.prefersLargeTitles = false
             return nil
         } else {
             setupUI()

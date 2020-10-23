@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol DetailsViewProtocol: AnyObject {
+    func setVideo(video: Cartoon)
+}
