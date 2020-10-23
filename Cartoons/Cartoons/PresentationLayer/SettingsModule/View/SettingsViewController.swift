@@ -27,12 +27,6 @@ class SettingsViewController: BaseViewController {
     var snapshot = SnapShot()
     var settings = Setting.allSettings
     
-    private lazy var signOutButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Sign Out", for: .normal)
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker = ImagePicker(presentationController: self)
@@ -55,6 +49,8 @@ class SettingsViewController: BaseViewController {
         super.showError(error: error)
     }
 }
+
+//MARK: - Protocol realisation
 
 extension SettingsViewController: SettingsViewProtocol {
     func showPermissionAlert(message: String) {
@@ -115,11 +111,9 @@ extension SettingsViewController: SettingsViewProtocol {
     }
 }
 
+//MARK: - TableViewDiffableDataSource
+
 extension SettingsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
@@ -130,6 +124,24 @@ extension SettingsViewController: UITableViewDelegate {
 }
 
 extension SettingsViewController {
+    func setupTableView() {
+        tableView = UITableView(frame: self.view.frame)
+        view.addSubview(tableView ?? UITableView())
+        tableView?.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        tableView?.delegate = self
+        tableView?.backgroundColor = R.color.main_blue()
+        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
+        userInfoHeader.frame = frame
+        tableView?.tableHeaderView = userInfoHeader
+        
+        userInfoHeader.showActivityIndicator()
+        presenter?.showProfileImage()
+        userInfoHeader.imageAction = { [weak self] in
+            self?.presenter?.editProfileImage()
+        }
+    }
+    
     func applySnapshot(animatingDifferences: Bool = true) {
         snapshot.deleteAllItems()
         snapshot.appendSections([.main])
@@ -149,6 +161,13 @@ extension SettingsViewController {
         return dataSource
     }
     
+    @objc func buttonTappedToSignOutAction() {
+        guard let presenter = self.presenter else {
+            return
+        }
+        presenter.signOut()
+    }
+    
     func didSelect(image: UIImage?) {
         guard let image = image else {
             return
@@ -158,31 +177,5 @@ extension SettingsViewController {
         }
         presenter?.saveProfileImage(imageData: imageData)
         userInfoHeader.setProfileImage(image: image)
-        (navigationController as? BaseNavigationController)?.setProfileImage(image: image)
-    }
-    
-    @objc func buttonTappedToSignOutAction() {
-        guard let presenter = self.presenter else {
-            return
-        }
-        presenter.signOut()
-    }
-    
-    func setupTableView() {
-        tableView = UITableView(frame: self.view.frame)
-        tableView?.delegate = self
-        tableView?.backgroundColor = R.color.main_blue()
-        view.addSubview(tableView ?? UITableView())
-        tableView?.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
-        userInfoHeader.frame = frame
-        tableView?.tableHeaderView = userInfoHeader
-        
-        userInfoHeader.showActivityIndicator()
-        presenter?.showProfileImage()
-        userInfoHeader.imageAction = { [weak self] in
-            self?.presenter?.editProfileImage()
-        }
     }
 }
