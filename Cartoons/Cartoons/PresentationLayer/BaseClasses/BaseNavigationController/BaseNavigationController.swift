@@ -5,7 +5,6 @@
 //  Created by Alena Nesterkina on 9/22/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-//swiftlint:disable all
 import UIKit
 import Kingfisher
 
@@ -81,7 +80,10 @@ class BaseNavigationController: UINavigationController {
 }
 
 extension BaseNavigationController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationController.Operation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
             navigationBar.largeContentTitle = ""
             imageView.removeFromSuperview()

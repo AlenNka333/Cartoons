@@ -5,7 +5,6 @@
 //  Created by Alena Nesterkina on 10/13/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-//swiftlint:disable all
 import AVFoundation
 import AVKit
 import Foundation
@@ -35,14 +34,6 @@ class CartoonsViewController: BaseViewController {
         presenter?.getData()
     }
     
-    func setupUIRefreshControl(with collectionView: UICollectionView) {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        refreshControl.tintColor = .black
-        collectionView.refreshControl = refreshControl
-        collectionView.refreshControl?.isEnabled = false
-    }
-    
     override func setupNavigationBar() {
         super.setupNavigationBar()
         (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
@@ -66,6 +57,8 @@ class CartoonsViewController: BaseViewController {
         super.showError(error: error)
     }
 }
+
+//MARK: - Protocol realisation
 
 extension CartoonsViewController: CartoonsViewProtocol {
     func showSuccess(success: String) {
@@ -91,6 +84,8 @@ extension CartoonsViewController: CartoonsViewProtocol {
     }
 }
 
+//MARK: - CollectionViewDiffableDataSource
+
 extension CartoonsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let video = dataSource.itemIdentifier(for: indexPath) else {
@@ -105,17 +100,6 @@ extension CartoonsViewController: UICollectionViewDelegate {
 }
 
 extension CartoonsViewController {
-    @objc func handleRefresh() {
-        presenter?.getData()
-    }
-    
-    func applySnapshot(animatingDifferences: Bool = true) {
-        snapshot.deleteAllItems()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(videos)
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
-    }
-    
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: collectionView ?? UICollectionView(),
                                     cellProvider: { (collectionView, indexPath, cartoon) -> UICollectionViewCell? in
@@ -150,5 +134,24 @@ extension CartoonsViewController {
         collectionView?.register(CartoonCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
         view.addSubview(UIView(frame: .zero))
         view.addSubview(collectionView ?? UICollectionView())
+    }
+    
+    func setupUIRefreshControl(with collectionView: UICollectionView) {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        refreshControl.tintColor = .black
+        collectionView.refreshControl = refreshControl
+        collectionView.refreshControl?.isEnabled = false
+    }
+    
+    @objc func handleRefresh() {
+        presenter?.getData()
+    }
+    
+    func applySnapshot(animatingDifferences: Bool = true) {
+        snapshot.deleteAllItems()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(videos)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }

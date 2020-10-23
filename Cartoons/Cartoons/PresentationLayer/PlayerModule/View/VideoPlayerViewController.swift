@@ -5,7 +5,6 @@
 //  Created by Alena Nesterkina on 10/12/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-//swiftlint:disable all
 import AVFoundation
 import AVKit
 import Foundation

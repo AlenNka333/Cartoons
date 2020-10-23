@@ -5,10 +5,9 @@
 //  Created by Alena Nesterkina on 10/15/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-
+//swiftlint:disable all
 import AVFoundation
 import UIKit
-//swiftlint:disable all
 
 final class PlayerView: UIView {
     override class var layerClass: AnyClass {
