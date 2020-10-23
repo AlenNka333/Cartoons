@@ -67,6 +67,6 @@ class MainScreenCoordinator: CoordinatorProtocol {
     
     func openVideoPlayer(with link: URL?) {
         let view = PlayerAssembly.makePlayerController(with: link)
-        (child as? UINavigationController)?.pushViewController(view, animated: true)
+        ((rootController as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)
     }
 }

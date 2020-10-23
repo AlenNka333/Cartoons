@@ -49,7 +49,6 @@ class CartoonsViewController: BaseViewController {
     
     override func setupUI() {
         super.setupUI()
-        hidesBottomBarWhenPushed = true
         view.addSubview(activityIndicator)
     }
     
@@ -91,7 +90,9 @@ extension CartoonsViewController: UICollectionViewDelegate {
         guard let video = dataSource.itemIdentifier(for: indexPath) else {
           return
         }
+        hidesBottomBarWhenPushed = true
         presenter?.openDetails(with: video)
+        hidesBottomBarWhenPushed = false
     }
 }
 
