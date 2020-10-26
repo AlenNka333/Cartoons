@@ -58,18 +58,21 @@ class VerificationViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: R.image.main_background.name)
+        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+        view.insertSubview(backgroundImage, at: 0)
     }
     
     override func setupUI() {
         super.setupUI()
         view.addSubview(verificationLabel)
         verificationLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(200)
             $0.top.equalToSuperview().offset(100)
+            $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
         }
         view.addSubview(circleImage)
         circleImage.snp.makeConstraints {

@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseViewController: UIViewController, BaseViewProtocol {
-    let alertView = CustomAlertView()
+    let alertView = CustomAlertViewController()
     let activityIndicator = UIActivityIndicatorView()
     let alertService = AlertService()
     

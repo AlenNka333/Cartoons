@@ -13,7 +13,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAlertView" customModule="Cartoons" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAlertViewController" customModule="Cartoons" customModuleProvider="target">
             <connections>
                 <outlet property="agreeButton" destination="70E-Ew-7E0" id="hrR-pi-EQN"/>
                 <outlet property="alertView" destination="715-6n-JpH" id="4aZ-bv-xvo"/>

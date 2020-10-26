@@ -6,11 +6,6 @@ class AuthorizationViewController: BaseViewController {
     private lazy var appLabelView = CustomLabelView()
     private lazy var phoneNumberTextField = CustomTextField()
     private lazy var getCodeButton: UIButton = CustomButton()
-    private lazy var customView: UIView = {
-        view = UIView()
-        view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
-        return view
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +15,10 @@ class AuthorizationViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: R.image.main_background.name)
+        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+        view.insertSubview(backgroundImage, at: 0)
         getCodeButton.isEnabled = true
         getCodeButton.backgroundColor = R.color.enabled_button_color()
     }
@@ -34,20 +32,25 @@ class AuthorizationViewController: BaseViewController {
         super.setupUI()
         view.addSubview(appLabelView)
         appLabelView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(160)
+            $0.leading.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-50)
         }
         view.addSubview(phoneNumberTextField)
         phoneNumberTextField.delegate = self
         phoneNumberTextField.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
+            $0.width.equalTo(30)
             $0.centerY.equalToSuperview().offset(-60)
+            $0.leading.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-50)
         }
         view.addSubview(getCodeButton)
         getCodeButton.setTitle(R.string.localizable.get_code_button_key(), for: .normal)
         getCodeButton.addTarget(self, action: #selector(buttonTappedToSendCodeAction), for: .touchUpInside)
         getCodeButton.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.equalTo(phoneNumberTextField.snp_bottomMargin).offset(30)
+            $0.leading.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-50)
         }
     }
     

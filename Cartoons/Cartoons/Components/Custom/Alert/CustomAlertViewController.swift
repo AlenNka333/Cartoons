@@ -13,7 +13,7 @@ enum BTAction {
     case accept
 }
 
-class CustomAlertView: UIViewController {
+class CustomAlertViewController: UIViewController {
     @IBOutlet private var parentView: UIView!
     @IBOutlet private weak var alertView: UIView!
     @IBOutlet private weak var image: UIImageView!
@@ -35,13 +35,13 @@ class CustomAlertView: UIViewController {
     func setupUI() {
         alertView.layer.cornerRadius = 10
         
-        cancelButton.layer.cornerRadius = 20
+        cancelButton.layer.cornerRadius = 10
         cancelButton.layer.shadowColor = UIColor.darkGray.cgColor
         cancelButton.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         cancelButton.layer.shadowRadius = 5.0
         cancelButton.layer.shadowOpacity = 0.3
         
-        agreeButton.layer.cornerRadius = 20
+        agreeButton.layer.cornerRadius = 10
         agreeButton.layer.shadowColor = UIColor.darkGray.cgColor
         agreeButton.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         agreeButton.layer.shadowRadius = 5.0

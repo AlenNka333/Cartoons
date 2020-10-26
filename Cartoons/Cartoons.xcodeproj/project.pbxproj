@@ -92,7 +92,7 @@
 		33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */; };
 		33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */; };
 		33B1F09625000B7900DB6BA8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B1F09525000B7900DB6BA8 /* Colors.xcassets */; };
-		33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */; };
+		33B2AE9E2508AD860006BE31 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AE9D2508AD860006BE31 /* CustomAlertViewController.swift */; };
 		33B2AEA02508AE170006BE31 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33B2AE9F2508AE170006BE31 /* AlertView.xib */; };
 		33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AEA12508B9BA0006BE31 /* AlertType.swift */; };
 		33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2AEA52508EF670006BE31 /* NumberFormats.swift */; };
@@ -230,7 +230,7 @@
 		33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional + Extension.swift"; sourceTree = "<group>"; };
 		33B1F08A24FFEFCF00DB6BA8 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		33B1F09525000B7900DB6BA8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		33B2AE9D2508AD860006BE31 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		33B2AE9F2508AE170006BE31 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		33B2AEA12508B9BA0006BE31 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		33B2AEA52508EF670006BE31 /* NumberFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormats.swift; sourceTree = "<group>"; };
@@ -771,7 +771,7 @@
 			isa = PBXGroup;
 			children = (
 				33A3BA2C251E140F004EA0D9 /* AlertService.swift */,
-				33B2AE9D2508AD860006BE31 /* CustomAlertView.swift */,
+				33B2AE9D2508AD860006BE31 /* CustomAlertViewController.swift */,
 				33B2AE9F2508AE170006BE31 /* AlertView.xib */,
 				33B2AEA12508B9BA0006BE31 /* AlertType.swift */,
 			);
@@ -1275,7 +1275,7 @@
 				3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */,
 				330F4E4D25309DEB008D0FC8 /* StorageDataService.swift in Sources */,
 				33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */,
-				33B2AE9E2508AD860006BE31 /* CustomAlertView.swift in Sources */,
+				33B2AE9E2508AD860006BE31 /* CustomAlertViewController.swift in Sources */,
 				33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */,
 				33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
