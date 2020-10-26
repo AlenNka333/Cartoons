@@ -31,14 +31,8 @@ class CustomAlertView: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
-  
-    override func loadView() {
-        super.loadView()
-        view = parentView
-    }
     
     func setupUI() {
-        parentView.backgroundColor = UIColor.clear
         alertView.layer.cornerRadius = 10
         
         cancelButton.layer.cornerRadius = 20
@@ -46,7 +40,6 @@ class CustomAlertView: UIViewController {
         cancelButton.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         cancelButton.layer.shadowRadius = 5.0
         cancelButton.layer.shadowOpacity = 0.3
-        cancelButton.layer.masksToBounds = false
         
         agreeButton.layer.cornerRadius = 20
         agreeButton.layer.shadowColor = UIColor.darkGray.cgColor
@@ -60,9 +53,6 @@ class CustomAlertView: UIViewController {
         messageLabel.textColor = .black
         messageLabel.text = alertBody
         
-        parentView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        parentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         guard let type = alertType else {
             dismiss(animated: true, completion: nil)
             return
@@ -70,15 +60,9 @@ class CustomAlertView: UIViewController {
         switch type {
             case .success:
                 agreeButton.isHidden = true
-                cancelButton.snp.makeConstraints {
-                    $0.centerX.equalTo(parentView)
-                }
                 cancelButton.backgroundColor = R.color.enabled_button_color()
             case .error:
                 agreeButton.isHidden = true
-                cancelButton.snp.makeConstraints {
-                    $0.centerX.equalTo(parentView)
-                }
                 cancelButton.backgroundColor = R.color.cinnabar()
             case .question:
                 agreeButton.backgroundColor = R.color.enabled_button_color()
