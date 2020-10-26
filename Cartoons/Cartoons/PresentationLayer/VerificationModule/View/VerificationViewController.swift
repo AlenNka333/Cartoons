@@ -77,12 +77,12 @@ class VerificationViewController: BaseViewController {
         view.addSubview(circleImage)
         circleImage.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(190)
+            $0.top.equalTo(verificationLabel.snp_bottomMargin).offset(50)
+            $0.width.height.equalTo(80)
         }
         view.addSubview(timerLabel)
         timerLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(220)
+            $0.center.equalTo(circleImage)
         }
         view.addSubview(otpCodeTextField)
         otpCodeTextField.attributedPlaceholder =
@@ -91,8 +91,14 @@ class VerificationViewController: BaseViewController {
                                             NSAttributedString.Key.font: R.font.aliceRegular(size: 15).unwrapped])
         otpCodeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         otpCodeTextField.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(-60)
+            $0.width.equalTo(30)
+            if UIScreen.main.bounds.height > 736 {
+                $0.centerY.equalToSuperview().offset(-60)
+            } else {
+                $0.top.equalTo(timerLabel.snp_bottomMargin).offset(60)
+            }
+            $0.leading.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-50)
         }
         view.addSubview(resendButton)
         resendButton.isEnabled = false
@@ -100,7 +106,9 @@ class VerificationViewController: BaseViewController {
         resendButton.setTitle(R.string.localizable.resend_button_key(), for: .normal)
         resendButton.addTarget(self, action: #selector(resendButtonTappedAction), for: .touchUpInside)
         resendButton.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.equalTo(otpCodeTextField.snp_bottomMargin).offset(20)
+            $0.leading.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-50)
         }
     }
     

@@ -48,7 +48,7 @@ class AuthorizationViewController: BaseViewController {
         getCodeButton.setTitle(R.string.localizable.get_code_button_key(), for: .normal)
         getCodeButton.addTarget(self, action: #selector(buttonTappedToSendCodeAction), for: .touchUpInside)
         getCodeButton.snp.makeConstraints {
-            $0.top.equalTo(phoneNumberTextField.snp_bottomMargin).offset(30)
+            $0.top.equalTo(phoneNumberTextField.snp_bottomMargin).offset(20)
             $0.leading.equalToSuperview().offset(50)
             $0.trailing.equalToSuperview().offset(-50)
         }
