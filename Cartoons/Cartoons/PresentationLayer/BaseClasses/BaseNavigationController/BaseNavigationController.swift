@@ -9,13 +9,18 @@
 import Kingfisher
 import UIKit
 
+enum NavigationState {
+    case system
+    case custom
+}
+
 class BaseNavigationController: UINavigationController {
     private enum Const {
         static let titleSize: CGFloat = 40
         static let subtitleSize: CGFloat = 14
         static let bottomOffset: CGFloat = -16
     }
-    
+    private var state: NavigationState = NavigationState.system
     var imageAction: (() -> Void)?
     
     private lazy var appearance: UINavigationBarAppearance = {
@@ -35,7 +40,7 @@ class BaseNavigationController: UINavigationController {
         return imageView
     }()
     
-    private let subtitle: UILabel = {
+    private let subtitleLabel: UILabel = {
         let subtitle = UILabel()
         return subtitle
     }()
@@ -49,18 +54,49 @@ class BaseNavigationController: UINavigationController {
     }
     
     func setupUI() {
-        navigationBar.prefersLargeTitles = true
         delegate = self
-        navigationItem.largeTitleDisplayMode = .always
+        navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .automatic
         navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationBar.layer.shadowRadius = 4.0
         navigationBar.layer.shadowOpacity = 1.0
-        navigationBar.layer.masksToBounds = false
+    }
+}
+
+extension BaseNavigationController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationController.Operation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == .push {
+            navigationBar.largeContentTitle = ""
+            imageView.removeFromSuperview()
+            subtitleLabel.removeFromSuperview()
+            return nil
+        } else {
+            setupUI()
+            return nil
+        }        
+    }
+}
+
+extension BaseNavigationController {
+    func setupCustomizedUI(image: UIImage, subtitle: String, isUserInteractionEnabled: Bool) {
+        updateUI()
+        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
+                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.48),
+                                                                  NSAttributedString.Key.font: R.font.aliceRegular(size: 14).unwrapped])
+        imageView.image = image
+        imageView.isUserInteractionEnabled = isUserInteractionEnabled
+    }
+    
+    func updateUI() {
+        navigationBar.prefersLargeTitles = true
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance
-        navigationBar.addSubview(subtitle)
-        subtitle.snp.makeConstraints {
+        navigationBar.addSubview(subtitleLabel)
+        subtitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(25)
             $0.leading.equalToSuperview().offset(20)
         }
@@ -78,43 +114,13 @@ class BaseNavigationController: UINavigationController {
             $0.center.equalTo(imageView)
         }
     }
-}
-
-extension BaseNavigationController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController,
-                              animationControllerFor operation: UINavigationController.Operation,
-                              from fromVC: UIViewController,
-                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if operation == .push {
-            navigationBar.largeContentTitle = ""
-            imageView.removeFromSuperview()
-            subtitle.removeFromSuperview()
-            return nil
-        } else {
-            setupUI()
-            return nil
-        }        
-    }
-}
-
-extension BaseNavigationController {
-    func setSubTitle(title: String) {
-        subtitle.attributedText = NSAttributedString(string: title,
-                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.48),
-                                                                  NSAttributedString.Key.font: R.font.aliceRegular(size: 14).unwrapped])
-    }
-    
+   
     func showActivityIndicator() {
         activityIndicator.startAnimating()
     }
     
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
-    }
-    
-    func setImage(image: UIImage?, isEnabled: Bool) {
-        imageView.image = image
-        imageView.isUserInteractionEnabled = isEnabled
     }
     
     func setProfileImage(image: UIImage?) {
@@ -129,9 +135,9 @@ extension BaseNavigationController {
         imageView.kf.setImage(with: path)
     }
     
-    func setDefaultImage(image: UIImage?) {
+    func setDefaultImage() {
         imageView.isUserInteractionEnabled = true
-        imageView.image = image
+        imageView.image = R.image.profile_icon()
     }
     
     @objc func editProfileImage() {
