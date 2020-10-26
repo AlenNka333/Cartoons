@@ -29,7 +29,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         label.clipsToBounds = true
         label.font = UIFont(name: R.font.cinzelDecorativeBold.fontName, size: 25)
         label.backgroundColor = R.color.navigation_bar_color()?.withAlphaComponent(0.6)
-        label.layer.cornerRadius = 10
+        label.layer.cornerRadius = 15
         label.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         label.numberOfLines = .zero
         label.textAlignment = .center
@@ -73,28 +73,25 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(thumbnailView)
         thumbnailView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.trailing.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         contentView.addSubview(titleLabel)
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview()
             $0.bottom.equalToSuperview()
-            $0.width.lessThanOrEqualTo(thumbnailView)
+            $0.width.equalTo(contentView.frame.width * 0.7)
         }
         contentView.addSubview(favouritesIndicatorImage)
         favouritesIndicatorImage.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-10)
             $0.top.equalToSuperview().offset(10)
+            $0.size.equalTo(40)
         }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         thumbnailView.image = nil
     }
     
