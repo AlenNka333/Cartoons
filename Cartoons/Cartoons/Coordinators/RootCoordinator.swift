@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class RootCoordinator: CoordinatorProtocol {
+class RootCoordinator: Coordinator {
     let authorizationService = AuthorizationService()
     let userService = UserDataService()
     
-    var child: CoordinatorProtocol?
+    var child: Coordinator?
     var root: UIViewController
-    var parent: CoordinatorProtocol?
+    var parent: Coordinator?
     fileprivate var window: UIWindow?
     
     init(window: UIWindow?) {
@@ -31,7 +31,7 @@ class RootCoordinator: CoordinatorProtocol {
             : authorizationService.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
     }
     
-    func setChild(_ coordinator: CoordinatorProtocol?) {
+    func setChild(_ coordinator: Coordinator?) {
         if child != nil {
             removeChild()
         }
@@ -83,8 +83,7 @@ extension RootCoordinator {
         guard let window = window else {
             return
         }
-        let number = userService.userPhoneNumber
-        let coordinator = MainScreenAssembly.makeMainScreenCoordinator(number: number.unwrapped)
+        let coordinator = MainScreenAssembly.makeMainScreenCoordinator()
         coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
         }

@@ -15,11 +15,11 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     
     var successSessionClosure: (() -> Void)?
     
-    init(view: SettingsViewProtocol, storageService: StorageDataServiceProtocol, authorizationService: AuthorizationServiceProtocol, number: String) {
+    init(view: SettingsViewProtocol, storageService: StorageDataServiceProtocol, authorizationService: AuthorizationServiceProtocol) {
         self.view = view
         self.storageService = storageService
         self.authorizationService = authorizationService
-        view.showPhoneLabel(number: number)
+        view.showPhoneLabel(number: authorizationService.phoneNumber.unwrapped)
     }
     
     func showProfileImage() {

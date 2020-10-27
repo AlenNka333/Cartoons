@@ -14,25 +14,7 @@ enum Action {
 }
 
 class MainScreenAssembly: Assembly {
-    static func makeMainScreenCoordinator(number: String) -> MainScreenCoordinator {
-        return MainScreenCoordinator(number: number)
-    }
-    
-    static func makeTabBarController(number: String,
-                                     storageService: StorageDataService,
-                                     authorizationService: AuthorizationService,
-                                     completion: @escaping((Action, Cartoon?) -> Void)) -> TabBarViewController {
-        var controllers = [UIViewController]()
-        let cartoons = CartoonsAssembly.makeCartoonsController(storageService: storageService) { url in
-            completion(Action.openDetails, url)
-        }
-        controllers.append(cartoons)
-        controllers.append(FavouritesAssembly.makeFavouritesController())
-        let settings = SettingsAssembly.makeSettingsController(number: number, storageService: storageService, authorizationService: authorizationService) {
-            completion(Action.successSession, nil)
-        }
-        controllers.append(settings)
-        let view = TabBarViewController(controllers: controllers)
-        return view
+    static func makeMainScreenCoordinator() -> MainScreenCoordinator {
+        return MainScreenCoordinator()
     }
 }

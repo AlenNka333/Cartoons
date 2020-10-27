@@ -8,10 +8,10 @@
 
 import UIKit
 
-class AuthorizationCoordinator: CoordinatorProtocol {
+class AuthorizationCoordinator: Coordinator {
     let authorizationService = AuthorizationService()
     
-    var parent: CoordinatorProtocol?
+    var parent: Coordinator?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     

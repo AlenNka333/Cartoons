@@ -85,7 +85,7 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func showPhoneLabel(number: String) {
-        title = number
+        (navigationController as? BaseNavigationController)?.title = number
     }
     
     func showSignOutAlert(message: String) {

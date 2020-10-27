@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-protocol CoordinatorProtocol: AnyObject {
-    var parent: CoordinatorProtocol? { get set }
+protocol Coordinator: AnyObject {
+    var parent: Coordinator? { get set }
     
     func start()
     func removeParent()
 }
 
-extension CoordinatorProtocol {
+extension Coordinator {
     func removeParent() {
         parent = nil
     }

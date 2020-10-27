@@ -9,18 +9,19 @@
 import UIKit
 
 class SettingsAssembly: Assembly {
-    static func makeSettingsController(number: String,
-                                       storageService: StorageDataService,
+    static func makeSettingsCoordinator(parent: UINavigationController) -> SettingsCoordinator {
+        SettingsCoordinator(parent: parent)
+    }
+    
+    static func makeSettingsController(storageService: StorageDataService,
                                        authorizationService: AuthorizationService,
                                        completion: @escaping(() -> Void)) -> UIViewController {
         let view = SettingsViewController()
-        let presenter = SettingsPresenter(view: view, storageService: storageService, authorizationService: authorizationService, number: number)
+        let presenter = SettingsPresenter(view: view, storageService: storageService, authorizationService: authorizationService)
         presenter.successSessionClosure = {
             completion()
         }
         view.presenter = presenter
-        let navigation = BaseNavigationController(rootViewController: view)
-        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.settings_screen(), image: R.image.flower(), tag: 0)
-        return navigation
+        return view
     }
 }

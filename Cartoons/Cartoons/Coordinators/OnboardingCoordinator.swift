@@ -8,8 +8,8 @@
 
 import UIKit
 
-class OnboardingCoordinator: CoordinatorProtocol {
-    var parent: CoordinatorProtocol?
+class OnboardingCoordinator: Coordinator {
+    var parent: Coordinator?
     var root: UIViewController
     var successSessionClosure: (() -> Void)?
     

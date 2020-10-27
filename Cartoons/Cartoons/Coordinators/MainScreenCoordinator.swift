@@ -8,65 +8,44 @@
 
 import UIKit
 
-class MainScreenCoordinator: CoordinatorProtocol {
-    let number: String
+class MainScreenCoordinator: Coordinator {
+    var parent: Coordinator?
+    
     let storageService = StorageDataService()
     let authorizationService = AuthorizationService()
     
-    var child: UIViewController?
-    var parent: CoordinatorProtocol?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
-    init(number: String) {
-        self.number = number
+    init() {
         self.rootController = UINavigationController()
     }
     
-    func setChild(_ controller: UIViewController?) {
-        if child != nil {
-            removeChild()
-        }
-        child = controller
-    }
-    
-    func removeChild() {
-        guard child != nil else {
-            return
-        }
-        self.child = nil
-    }
-    
     func start() {
-        rootController = MainScreenAssembly.makeTabBarController(number: number,
-                                                                 storageService: storageService,
-                                                                 authorizationService: authorizationService,
-                                                                 completion: { [weak self] action, video in
-                                                                    switch action {
-                                                                    case .openDetails:
-                                                                        self?.openDetailsScreen(with: video)
-                                                                    case .successSession:
-                                                                        guard let closure = self?.successSessionClosure else {
-                                                                            return
-                                                                        }
-                                                                        closure()
-                                                                    }
-                                                                 })
-    }
-    
-    func openDetailsScreen(with video: Cartoon?) {
-        guard let cartoon = video else {
-            return
+        let cartoons = BaseNavigationController()
+        cartoons.tabBarItem = UITabBarItem(title: R.string.localizable.cartoons_screen(), image: R.image.clapperboard(), tag: 0)
+        
+        let favourites = BaseNavigationController()
+        favourites.tabBarItem = UITabBarItem(title: R.string.localizable.favourites_screen(), image: R.image.crown(), tag: 0)
+        
+        let settings = BaseNavigationController()
+        settings.tabBarItem = UITabBarItem(title: R.string.localizable.settings_screen(), image: R.image.flower(), tag: 0)
+        
+        let tabBarController = TabBarViewController(controllers: [cartoons, favourites, settings])
+        rootController = tabBarController
+        
+        let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(parent: cartoons)
+        let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(parent: favourites)
+        let settingsCoordinator = SettingsAssembly.makeSettingsCoordinator(parent: settings)
+        settingsCoordinator.successSessionClosure = { [weak self] in
+            guard let closure = self?.successSessionClosure else {
+                return
+            }
+            closure()
         }
-        let view = DetailsAssembly.makeDetailsController(with: cartoon) { [weak self] url in
-            self?.openVideoPlayer(with: url)
-        }
-        setChild(view)
-        ((rootController as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)
-    }
-    
-    func openVideoPlayer(with link: URL?) {
-        let view = PlayerAssembly.makePlayerController(with: link)
-        ((rootController as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)
+        
+        cartoonsCoordinator.start()
+        favouritesCoordinator.start()
+        settingsCoordinator.start()
     }
 }

@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 class DetailsAssembly: Assembly {
+    static func makeDetailsCoordinator(parent: UINavigationController, movie: Cartoon) -> DetailsCoordinator {
+        DetailsCoordinator(parent: parent, movie: movie)
+    }
+    
     static func makeDetailsController(with video: Cartoon, completion: @escaping((URL) -> Void)) -> UIViewController {
         let view = DetailsViewController()
         let presenter = DetailsPresenter(view: view, video: video)
