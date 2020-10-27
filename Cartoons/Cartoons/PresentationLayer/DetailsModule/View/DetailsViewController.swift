@@ -46,6 +46,19 @@ class DetailsViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func setupNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = R.color.navigation_bar_color()
+        let backButton = UIButton(type: .custom)
+        backButton.frame = CGRect(x: 0, y: 0, width: 45, height:45)
+        backButton.setImage(UIImage(named: "back-arrow-white"), for: .normal)
+        let backBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationController?.navigationItem.leftBarButtonItem = backBarButtonItem
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
     override func setupUI() {
         super.setupUI()
         

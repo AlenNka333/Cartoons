@@ -17,11 +17,13 @@ class DetailsCoordinator: Coordinator {
     }
     var navigationController: UINavigationController
     var successSessionClosure: (() -> Void)?
+    var rootController: UIViewController
     var cartoon: Cartoon
     
     init(parent: UINavigationController, movie: Cartoon) {
         self.cartoon = movie
         self.navigationController = UINavigationController()
+        rootController = UINavigationController()
     }
     
     func start() {
