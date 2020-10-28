@@ -9,23 +9,23 @@
 import UIKit
 
 class OnboardingCoordinator: Coordinator {
-    var parent: Coordinator?
-    var root: UIViewController
+    var parent: UINavigationController?
+    var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
     init() {
-        self.root = UIViewController()
+        self.rootController = UIViewController()
     }
     
     func start() {
-        root = OnboardingAssembly.makeOnboardingController()
-        guard let view = (root as? PageViewController) else {
+        rootController = OnboardingAssembly.makeOnboardingController()
+        guard let view = (rootController as? PageViewController) else {
             return
         }
         let presenter = PageControllerPresenter(view: view)
         presenter.successSessionClosure = { [weak self] in
             self?.successSessionClosure?()
         }
-        (root as? PageViewController)?.presenter = presenter
+        (rootController as? PageViewController)?.presenter = presenter
     }
 }

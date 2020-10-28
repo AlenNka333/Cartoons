@@ -23,7 +23,9 @@ class SettingsViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = R.string.localizable.settings_screen()
-        (navigationController as? BaseNavigationController)?.setProfileImage(image: UIImage())
+        (navigationController as? BaseNavigationController)?.setupCustomizedUI(image: UIImage(),
+                                                                               subtitle: "",
+                                                                               isUserInteractionEnabled: true)
         (navigationController as? BaseNavigationController)?.showActivityIndicator()
         presenter?.showProfileImage()
         (navigationController as? BaseNavigationController)?.imageAction = { [weak self] in
@@ -81,7 +83,7 @@ extension SettingsViewController: SettingsViewProtocol {
     
     func showDefaultImage() {
         (navigationController as? BaseNavigationController)?.stopActivityIndicator()
-        (navigationController as? BaseNavigationController)?.setDefaultImage(image: R.image.profile_icon())
+        (navigationController as? BaseNavigationController)?.setDefaultImage()
     }
     
     func showPhoneLabel(number: String) {

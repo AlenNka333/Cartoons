@@ -9,11 +9,10 @@
 import UIKit
 
 class MainScreenCoordinator: Coordinator {
-    var parent: Coordinator?
-    
     let storageService = StorageDataService()
     let authorizationService = AuthorizationService()
     
+    var parent: UINavigationController?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     

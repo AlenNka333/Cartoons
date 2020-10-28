@@ -9,13 +9,12 @@
 import Foundation
 import UIKit
 
-class RootCoordinator: Coordinator {
+class AppCoordinator: Coordinator {
     let authorizationService = AuthorizationService()
     let userService = UserDataService()
     
-    var child: Coordinator?
     var root: UIViewController
-    var parent: Coordinator?
+    var parent: UINavigationController?
     fileprivate var window: UIWindow?
     
     init(window: UIWindow?) {
@@ -30,26 +29,9 @@ class RootCoordinator: Coordinator {
             ? showOnboarding()
             : authorizationService.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
     }
-    
-    func setChild(_ coordinator: Coordinator?) {
-        if child != nil {
-            removeChild()
-        }
-        coordinator?.parent = self
-        child = coordinator
-    }
-    
-    func removeChild() {
-        guard let child = child else {
-            return
-        }
-        
-        child.removeParent()
-        self.child = nil
-    }
 }
 
-extension RootCoordinator {
+extension AppCoordinator {
     func showOnboarding() {
         guard let window = window else {
             return
@@ -60,8 +42,7 @@ extension RootCoordinator {
             self?.showAuthorizationScreen()
         }
         coordinator.start()
-        setChild(coordinator)
-        window.rootViewController = coordinator.root
+        window.rootViewController = coordinator.rootController
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
     
@@ -74,7 +55,6 @@ extension RootCoordinator {
             self?.showMainScreen()
         }
         coordinator.start()
-        setChild(coordinator)
         window.rootViewController = coordinator.rootController
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
@@ -88,7 +68,6 @@ extension RootCoordinator {
             self?.showAuthorizationScreen()
         }
         coordinator.start()
-        setChild(coordinator)
         window.rootViewController = coordinator.rootController
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }

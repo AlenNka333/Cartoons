@@ -38,8 +38,9 @@ class CartoonsViewController: BaseViewController {
         super.setupNavigationBar()
         (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
         title = R.string.localizable.cartoons_screen()
-        (navigationController as? BaseNavigationController)?.setSubTitle(title: R.string.localizable.cartoons_screen_subtitle())
-        (navigationController as? BaseNavigationController)?.setImage(image: R.image.navigation_label(), isEnabled: false)
+        (navigationController as? BaseNavigationController)?.setupCustomizedUI(image: R.image.navigation_label().unwrapped,
+                                                                               subtitle: R.string.localizable.cartoons_screen_subtitle(),
+                                                                               isUserInteractionEnabled: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,7 +90,7 @@ extension CartoonsViewController: CartoonsViewProtocol {
 extension CartoonsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let video = dataSource.itemIdentifier(for: indexPath) else {
-          return
+            return
         }
         hidesBottomBarWhenPushed = true
         presenter?.openDetails(with: video)

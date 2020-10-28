@@ -9,7 +9,7 @@
 import UIKit
 
 class PlayerAssembly: Assembly {
-    static func makePlayerController(with link: URL?) -> UIViewController {
+    static func makePlayerController(with link: URL?) -> VideoPlayerViewController {
         let view = VideoPlayerViewController()
         let controls = CustomPlayerControls()
         let presenter = VideoPlayerPresenter(view: view, controls: controls, link: link)

@@ -9,7 +9,7 @@
 import UIKit
 
 class RootAssembly: Assembly {
-    static func makeRootCoordinator(window: UIWindow?) -> RootCoordinator {
-        return RootCoordinator(window: window)
+    static func makeRootCoordinator(window: UIWindow?) -> AppCoordinator {
+        return AppCoordinator(window: window)
     }
 }

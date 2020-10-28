@@ -10,16 +10,14 @@ import Foundation
 import UIKit
 
 class SettingsCoordinator: Coordinator {
-    var parent: Coordinator?
-    
     let storageService = StorageDataService()
     let authorizationService = AuthorizationService()
     
-    var navigationController: UINavigationController
+    var parent: UINavigationController?
     var successSessionClosure: (() -> Void)?
     
     init(parent: UINavigationController) {
-        self.navigationController = parent
+        self.parent = parent
     }
     
     func start() {
@@ -30,6 +28,6 @@ class SettingsCoordinator: Coordinator {
             }
             closure()
         }
-        navigationController.pushViewController(settingsController, animated: false)
+        parent?.pushViewController(settingsController, animated: false)
     }
 }

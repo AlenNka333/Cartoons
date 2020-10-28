@@ -16,39 +16,36 @@ enum PlayerState {
 }
 
 class VideoPlayerViewController: BaseViewController {
+    struct Transitions {
+        var close: (() -> Void)?
+    }
+    
+    private let closeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(R.image.done(), for: .normal)
+        return button
+    }()
     private var playerView = PlayerView()
     private var player: AVPlayer? {
         playerView.player
     }
+    var transitions = Transitions()
     var controlsView: CustomPlayerControls?
     var presenter: VideoPlayerPresenterProtocol?
     var playerState: PlayerState?
     var timeObserver: Any?
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .slide }
+    override var prefersStatusBarHidden: Bool { controlsView?.isHidden == true }
+    override var prefersHomeIndicatorAutoHidden: Bool { true }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAVPlayer()
     }
     
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .slide }
-    override var prefersStatusBarHidden: Bool { controlsView?.isHidden == true }
-    override var prefersHomeIndicatorAutoHidden: Bool { true }
-    
     override func loadView() {
-        super.loadView()
         view = playerView
-    }
-    
-    override public var shouldAutorotate: Bool {
-        return true
-    }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .all
-    }
-    
-    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return .landscapeRight
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,8 +62,7 @@ class VideoPlayerViewController: BaseViewController {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func setupUI() {
@@ -85,6 +81,17 @@ class VideoPlayerViewController: BaseViewController {
         controls.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        view.addSubview(closeButton)
+        closeButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        closeButton.snp.makeConstraints {
+            $0.size.equalTo(30)
+            $0.top.leading.equalToSuperview().inset(40)
+        }
+    }
+    
+    @objc func goBack() {
+        transitions.close?()
     }
     
     override func showError(error: Error) {
@@ -93,7 +100,7 @@ class VideoPlayerViewController: BaseViewController {
     
     @objc func viewDidTap() {
         controlsView?.isHidden.toggle()
-        navigationController?.navigationBar.isHidden.toggle()
+        closeButton.isHidden.toggle()
     }
 }
 
@@ -115,19 +122,19 @@ extension VideoPlayerViewController {
         timeObserver = player?.addPeriodicTimeObserver(forInterval: interval,
                                                        queue: DispatchQueue.main,
                                                        using: { elapsedTime in
-            if self.player?.currentItem?.status == .readyToPlay {
-                let currentTimeInSeconds = CMTimeGetSeconds(elapsedTime)
-                let time = elapsedTime.seconds.asString()
-                self.presenter?.updateProgressValue(value: time)
-                if let currentItem = self.player?.currentItem {
-                    let duration = currentItem.duration
-                    if CMTIME_IS_INVALID(duration) {
-                        return
-                    }
-                    self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
-                }
-            }
-        })
+                                                        if self.player?.currentItem?.status == .readyToPlay {
+                                                            let currentTimeInSeconds = CMTimeGetSeconds(elapsedTime)
+                                                            let time = elapsedTime.seconds.asString()
+                                                            self.presenter?.updateProgressValue(value: time)
+                                                            if let currentItem = self.player?.currentItem {
+                                                                let duration = currentItem.duration
+                                                                if CMTIME_IS_INVALID(duration) {
+                                                                    return
+                                                                }
+                                                                self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
+                                                            }
+                                                        }
+                                                       })
     }
     
     override func observeValue(forKeyPath keyPath: String?,

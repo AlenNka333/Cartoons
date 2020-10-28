@@ -10,20 +10,19 @@ import Foundation
 import UIKit
 
 class CartoonsCoordinator: Coordinator {
-    var parent: Coordinator?
-    
-    var navigationController: UINavigationController
     let storageService = StorageDataService()
     
+    var parent: UINavigationController?
+    
     init(parent: UINavigationController) {
-        navigationController = parent
+        self.parent = parent
     }
     
     func start() {
         let cartoonsController = CartoonsAssembly.makeCartoonsController(storageService: storageService) { movie in
             self.openDetailsScreen(with: movie)
         }
-        navigationController.pushViewController(cartoonsController, animated: false)
+        parent?.pushViewController(cartoonsController, animated: false)
     }
 }
 
@@ -32,7 +31,18 @@ extension CartoonsCoordinator {
         guard let cartoon = video else {
             return
         }
-        let detailsCoordinator = DetailsAssembly.makeDetailsCoordinator(parent: navigationController, movie: cartoon)
-        detailsCoordinator.start()
+        let detailsCoordinator = DetailsAssembly.makeDetailsController(with: cartoon) { [weak self] in
+            self?.openVideoPlayer(with: $0)
+        }
+        parent?.pushViewController(detailsCoordinator, animated: true)
+    }
+    
+    func openVideoPlayer(with link: URL?) {
+        let view = PlayerAssembly.makePlayerController(with: link)
+        
+        view.transitions.close = { [weak self] in
+            self?.parent?.popViewController(animated: true)
+        }
+        parent?.pushViewController(view, animated: true)
     }
 }

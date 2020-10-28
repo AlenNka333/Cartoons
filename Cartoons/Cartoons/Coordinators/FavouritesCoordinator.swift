@@ -10,17 +10,15 @@ import Foundation
 import UIKit
 
 class FavouritesCoordinator: Coordinator {
-    var parent: Coordinator?
-    
-    var navigationController: UINavigationController
+    var parent: UINavigationController?
     var successSessionClosure: (() -> Void)?
     
     init(parent: UINavigationController) {
-        navigationController = parent
+        self.parent = parent
     }
     
     func start() {
         let favouritesController = FavouritesAssembly.makeFavouritesController()
-        navigationController.pushViewController(favouritesController, animated: false)
+        parent?.pushViewController(favouritesController, animated: false)
     }
 }
