@@ -10,18 +10,21 @@ import Foundation
 
 class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     let view: AuthorizationViewProtocol
-    let authorizationService: AuthorizationServiceProtocol
+    let locator: Locator?
     
     var openVerificationClosure: ((String, String) -> Void)?
     
-    init(view: AuthorizationViewProtocol, authorizationService: AuthorizationServiceProtocol) {
+    init(view: AuthorizationViewProtocol, locator: Locator) {
         self.view = view
-        self.authorizationService = authorizationService
+        self.locator = locator
     }
     
     func sendPhoneNumberAction(number: String) {
+        guard let service: AuthorizationService = locator?.resolve() else {
+            return
+        }
         view.showActivityIndicator()
-        authorizationService.verifyUser(number: number) { [weak self] result in
+        service.verifyUser(number: number) { [weak self] result in
             self?.view.stopActivityIndicator()
             switch result {
             case let .success(verificationId):

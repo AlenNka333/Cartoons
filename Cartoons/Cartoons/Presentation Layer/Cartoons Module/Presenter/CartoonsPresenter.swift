@@ -10,17 +10,20 @@ import Foundation
 
 class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
-    let storage: StorageDataService
+    let locator: Locator
     
     var openPlayerClosure: ((URL) -> Void)?
     
-    init(view: CartoonsViewProtocol, storageService: StorageDataService) {
+    init(view: CartoonsViewProtocol, locator: Locator) {
         self.view = view
-        self.storage = storageService
+        self.locator = locator
     }
     
     func getData() {
-        storage.checkListAvailable { [weak self] result in
+        guard let service: StorageDataService = locator.resolve() else {
+            return
+        }
+        service.checkListAvailable { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.view.showError(error: error)

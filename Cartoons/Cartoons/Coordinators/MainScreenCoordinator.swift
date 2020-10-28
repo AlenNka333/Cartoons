@@ -9,23 +9,19 @@
 import UIKit
 
 class MainScreenCoordinator: CoordinatorProtocol {
-    let number: String
-    let storageService = StorageDataService()
-    let authorizationService = AuthorizationService()
+    let locator: Locator
     
     var parent: CoordinatorProtocol?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
-    init(number: String) {
-        self.number = number
+    init(locator: Locator) {
+        self.locator = locator
         self.rootController = UINavigationController()
     }
     
     func start() {
-        rootController = MainScreenAssembly.makeTabBarController(number: number,
-                                                                 storageService: storageService,
-                                                                 authorizationService: authorizationService,
+        rootController = MainScreenAssembly.makeTabBarController(locator: locator,
                                                                  completion: { [weak self] action, link in
                                                                     switch action {
                                                                     case .openPlayer:

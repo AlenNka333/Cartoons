@@ -14,16 +14,16 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
 
     var view: VerificationViewProtocol
-    let authorizationService: AuthorizationServiceProtocol
+    let locator: Locator
     let verificationId: String
     let number: String
     var timer = Constant.totalTime
     
     var successSessionClosure: (() -> Void)?
     
-    init(view: VerificationViewProtocol, authorizationService: AuthorizationServiceProtocol, verificationId: String, number: String) {
+    init(view: VerificationViewProtocol, locator: Locator, verificationId: String, number: String) {
         self.view = view
-        self.authorizationService = authorizationService
+        self.locator = locator
         self.verificationId = verificationId
         self.number = number
         view.setLabelText(number: number)
@@ -43,7 +43,10 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
     
     func resendVerificationCode() {
-        authorizationService.verifyUser(number: number) { [weak self] result in
+        guard let service: AuthorizationService = locator.resolve() else {
+            return
+        }
+        service.verifyUser(number: number) { [weak self] result in
             switch result {
             case .success:
                 break
@@ -54,7 +57,10 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
     
     func verifyUser(verificationCode: String) {
-        authorizationService.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
+        guard let service: AuthorizationService = locator.resolve() else {
+            return
+        }
+        service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
             case .success:
                 guard let closure = self?.successSessionClosure else {

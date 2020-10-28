@@ -10,20 +10,24 @@ import Foundation
 
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
-    let storageService: StorageDataServiceProtocol
-    let authorizationService: AuthorizationServiceProtocol
+    let locator: Locator
     
     var successSessionClosure: (() -> Void)?
     
-    init(view: SettingsViewProtocol, storageService: StorageDataServiceProtocol, authorizationService: AuthorizationServiceProtocol, number: String) {
+    init(view: SettingsViewProtocol, locator: Locator) {
         self.view = view
-        self.storageService = storageService
-        self.authorizationService = authorizationService
-        view.showPhoneLabel(number: number)
+        self.locator = locator
+        guard let service: AuthorizationService = locator.resolve() else {
+            return
+        }
+        view.showPhoneLabel(number: service.phoneNumber.unwrapped)
     }
     
     func showProfileImage() {
-        storageService.loadImage(folder: "profile_Images") { [weak self] result in
+        guard let service: StorageDataService = locator.resolve() else {
+            return
+        }
+        service.loadImage(folder: "profile_Images") { [weak self] result in
             switch result {
             case .success(let path):
                 self?.view.showProfileImage(path: path)
@@ -33,7 +37,10 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         }
     }
     func saveProfileImage(imageData: Data) {
-        storageService.saveImage(imageData: imageData) { [weak self] result in
+        guard let service: StorageDataService = locator.resolve() else {
+            return
+        }
+        service.saveImage(imageData: imageData) { [weak self] result in
             switch result {
             case .success:
                 break
@@ -43,7 +50,10 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         }
     }
     func agreeButtonTapped() {
-        authorizationService.signOut { [weak self] result in
+        guard let service: AuthorizationService = locator.resolve() else {
+            return
+        }
+        service.signOut { [weak self] result in
             switch result {
             case .success:
                 guard let closure = self?.successSessionClosure else {

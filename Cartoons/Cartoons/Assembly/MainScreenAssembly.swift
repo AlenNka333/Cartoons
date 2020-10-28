@@ -14,21 +14,19 @@ enum Action {
 }
 
 class MainScreenAssembly: Assembly {
-    static func makeMainScreenCoordinator(number: String) -> MainScreenCoordinator {
-        return MainScreenCoordinator(number: number)
+    static func makeMainScreenCoordinator(locator: Locator) -> MainScreenCoordinator {
+        return MainScreenCoordinator(locator: locator)
     }
     
-    static func makeTabBarController(number: String,
-                                     storageService: StorageDataService,
-                                     authorizationService: AuthorizationService,
+    static func makeTabBarController(locator: Locator,
                                      completion: @escaping((Action, URL?) -> Void)) -> TabBarViewController {
         var controllers = [UIViewController]()
-        let cartoons = CartoonsAssembly.makeCartoonsController(storageService: storageService) { url in
+        let cartoons = CartoonsAssembly.makeCartoonsController(locator: locator) { url in
             completion(Action.openPlayer, url)
         }
         controllers.append(cartoons)
         controllers.append(FavouritesAssembly.makeFavouritesController())
-        let settings = SettingsAssembly.makeSettingsController(number: number, storageService: storageService, authorizationService: authorizationService) {
+        let settings = SettingsAssembly.makeSettingsController(locator: locator) {
             completion(Action.successSession, nil)
         }
         controllers.append(settings)

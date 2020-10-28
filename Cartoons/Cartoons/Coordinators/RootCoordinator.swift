@@ -10,25 +10,28 @@ import Foundation
 import UIKit
 
 class RootCoordinator: CoordinatorProtocol {
-    let authorizationService = AuthorizationService()
-    let userService = UserDataService()
+    private let locator: Locator
     
     var child: CoordinatorProtocol?
     var root: UIViewController
     var parent: CoordinatorProtocol?
     fileprivate var window: UIWindow?
     
-    init(window: UIWindow?) {
+    init(window: UIWindow?, locator: Locator) {
         self.window = window
+        self.locator = locator
         self.root = UINavigationController()
         window?.rootViewController = root
         window?.makeKeyAndVisible()
     }
     
     func start() {
+        guard let service: AuthorizationService = locator.resolve() else {
+            return
+        }
         AppData.shouldShowOnBoarding
             ? showOnboarding()
-            : authorizationService.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
+            : service.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
     }
     
     func setChild(_ coordinator: CoordinatorProtocol?) {
@@ -69,7 +72,7 @@ extension RootCoordinator {
         guard let window = window else {
             return
         }
-        let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator()
+        let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator(locator: locator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showMainScreen()
         }
@@ -83,8 +86,7 @@ extension RootCoordinator {
         guard let window = window else {
             return
         }
-        let number = userService.userPhoneNumber
-        let coordinator = MainScreenAssembly.makeMainScreenCoordinator(number: number.unwrapped)
+        let coordinator = MainScreenAssembly.makeMainScreenCoordinator(locator: locator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
         }

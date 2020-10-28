@@ -9,39 +9,34 @@
 import UIKit
 
 class AuthorizationCoordinator: CoordinatorProtocol {
-    let authorizationService = AuthorizationService()
+    let locator: Locator
     
     var parent: CoordinatorProtocol?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
-    init() {
+    init(locator: Locator) {
         self.rootController = UINavigationController()
+        self.locator = locator
     }
     
     func start() {
-       let view = AuthorizationAssembly.makeAuthorizationController()
-        let presenter = AuthorizationPresenter(view: view, authorizationService: authorizationService)
-        presenter.openVerificationClosure = { verificationId, number in
-            self.openVerificationScreen(verificationId: verificationId, number: number)
+        let view = AuthorizationAssembly.makeAuthorizationController(locator: locator) { [weak self] verificationId, number in
+            self?.openVerificationScreen(verificationId: verificationId, number: number)
         }
-        view.presenter = presenter
+        
         (rootController as? UINavigationController)?.pushViewController(view, animated: true)
     }
     
     func openVerificationScreen(verificationId: String, number: String) {
-        let view = AuthorizationAssembly.makeVerificationController()
-        let presenter = VerificationPresenter(view: view,
-                                              authorizationService: authorizationService,
-                                              verificationId: verificationId,
-                                              number: number)
-        presenter.successSessionClosure = { [weak self] in
+        let view = AuthorizationAssembly.makeVerificationController(locator: locator,
+                                                                    verificationId: verificationId,
+                                                                    number: number) { [weak self] in
             guard let closure = self?.successSessionClosure else {
                 return
             }
             closure()
         }
-        view.presenter = presenter
         (rootController as? UINavigationController)?.pushViewController(view, animated: true)
     }
 }

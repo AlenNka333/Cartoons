@@ -18,14 +18,8 @@ class OnboardingCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        root = OnboardingAssembly.makeOnboardingController()
-        guard let view = (root as? PageViewController) else {
-            return
-        }
-        let presenter = PageControllerPresenter(view: view)
-        presenter.successSessionClosure = { [weak self] in
+        root = OnboardingAssembly.makeOnboardingController { [weak self] in
             self?.successSessionClosure?()
         }
-        (root as? PageViewController)?.presenter = presenter
     }
 }
