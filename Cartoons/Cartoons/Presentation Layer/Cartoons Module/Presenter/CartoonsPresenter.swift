@@ -23,7 +23,7 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
         guard let service: StorageDataService = locator.resolve(StorageDataService.self) else {
             return
         }
-        service.checkListAvailable { [weak self] result in
+        service.checkFoldersExists { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.view.showError(error: error)

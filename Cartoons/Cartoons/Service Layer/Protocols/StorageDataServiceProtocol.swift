@@ -11,6 +11,6 @@ import Foundation
 protocol StorageDataServiceProtocol {
     func saveImage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void)
     func loadImage(folder: String, completion: @escaping (Result<URL?, Error>) -> Void)
-    func checkListAvailable(completion: @escaping (Result<[Cartoon], Error>) -> Void)
-    func sendRequest(completion: @escaping (Result<[Cartoon], Error>) -> Void)
+    func checkFoldersExists(completion: @escaping (Result<[Cartoon], Error>) -> Void)
+    func getData(completion: @escaping (Result<[Cartoon], Error>) -> Void)
 }

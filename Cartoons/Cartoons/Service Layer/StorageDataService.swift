@@ -23,7 +23,7 @@ class StorageDataService: StorageDataServiceProtocol {
         storageDataManager.loadImage(folder: folder, completion: completion)
     }
     
-    func checkListAvailable(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
+    func checkFoldersExists(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
         folders = [String]()
         cartoons = [Cartoon]()
         self.storageDataManager.getReferenceList { [weak self] result in
@@ -32,35 +32,28 @@ class StorageDataService: StorageDataServiceProtocol {
                 completion(.failure(error))
             case .success(let list):
                 self?.folders = list
-                self?.sendRequest(completion: completion)
+                self?.getData(completion: completion)
             }
         }
     }
     
-    func sendRequest(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
+    func getData(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
         let dispatchQueue = DispatchQueue(label: "get-movies")
         let dispatchGroup = DispatchGroup()
-        self.folders.forEach { body in
+        self.folders.forEach { folderName in
             dispatchGroup.enter()
             dispatchQueue.async {
-                self.storageDataManager.loadData(folder: body) { [weak self] result in
+                self.storageDataManager.loadData(folder: folderName) { [weak self] result in
                     switch result {
                     case .failure(let error):
                         completion(.failure(error))
                     case .success(let response):
-                        if response.count == 1 {
-                            let title = response[0]?.deletingPathExtension().lastPathComponent
-                            self?.cartoons.append(Cartoon(title: title.unwrapped, link: response[0]))
+                        let cartoon = findItemByType(response: response, ".mp4")
+                        let thumbnail = findItemByType(response: response, ".png")
+                        if let image = thumbnail {
+                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped, thumbnail: image.absoluteURL, link: cartoon))
                         } else {
-                            let title = response[0]?.deletingPathExtension().lastPathComponent
-                            let item = response[0]?.absoluteString
-                            if item.unwrapped.contains(".mp4") {
-                                let thumbnail = response[1]?.absoluteURL
-                                self?.cartoons.append(Cartoon(title: title.unwrapped, thumbnail: thumbnail, link: URL(string: item.unwrapped)))
-                            } else {
-                                let thumbnail = response[0]?.absoluteURL
-                                self?.cartoons.append(Cartoon(title: title.unwrapped, thumbnail: thumbnail, link: response[1]?.absoluteURL))
-                            }
+                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped, link: cartoon))
                         }
                         dispatchGroup.leave()
                     }
@@ -70,5 +63,10 @@ class StorageDataService: StorageDataServiceProtocol {
         dispatchGroup.notify(queue: DispatchQueue.main) {
             completion(.success(self.cartoons))
         }
+        
+        func findItemByType(response: [URL?], _ type: String) -> URL? {
+            response.first { $0?.absoluteString.contains("\(type)") ?? false } ?? nil
+        }
+        func getTitleFromUrl(url: URL?) -> String? { url?.deletingPathExtension().lastPathComponent }
     }
 }

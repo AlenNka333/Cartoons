@@ -62,7 +62,7 @@ class StorageDataManager {
     
     func loadData(folder: String, completion: @escaping (Result<[URL?], Error>) -> Void) {
         let reference = self.storageRef.child("\(folder)")
-        var list = [URL?]()
+        var folderItems = [URL?]()
         let dispatchGroup = DispatchGroup()
         reference.listAll { response, error in
             if let error = error {
@@ -76,12 +76,12 @@ class StorageDataManager {
                         completion(.failure(error))
                         return
                     }
-                    list.append(url?.absoluteURL)
+                    folderItems.append(url?.absoluteURL)
                     dispatchGroup.leave()
                 }
             }
             dispatchGroup.notify(queue: DispatchQueue.main) {
-                completion(.success(list))
+                completion(.success(folderItems))
                 return
             }
         }
