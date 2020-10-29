@@ -9,8 +9,8 @@
 import UIKit
 
 class CartoonsAssembly: Assembly {
-    static func makeCartoonsCoordinator(parent: UINavigationController) -> CartoonsCoordinator {
-        CartoonsCoordinator(parent: parent)
+    static func makeCartoonsCoordinator(rootController: UINavigationController) -> CartoonsCoordinator {
+        CartoonsCoordinator(rootController: rootController)
     }
     
     static func makeCartoonsController(storageService: StorageDataService) -> CartoonsViewController {

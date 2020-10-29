@@ -9,8 +9,8 @@
 import UIKit
 
 class FavouritesAssembly: Assembly {
-    static func makeFavouritesCoordinator(parent: UINavigationController) -> FavouritesCoordinator {
-        FavouritesCoordinator(parent: parent)
+    static func makeFavouritesCoordinator(rootController: UINavigationController) -> FavouritesCoordinator {
+        FavouritesCoordinator(rootController: rootController)
     }
     
     static func makeFavouritesController() -> FavouritesViewController {

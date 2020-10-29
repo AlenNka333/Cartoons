@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol Coordinator: AnyObject {
-    var parent: UINavigationController? { get set }
+    var parent: Coordinator? { get set }
     
     func start()
     func removeParent()

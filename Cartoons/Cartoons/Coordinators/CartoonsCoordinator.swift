@@ -12,16 +12,21 @@ import UIKit
 class CartoonsCoordinator: Coordinator {
     let storageService = StorageDataService()
     
-    var parent: UINavigationController?
+    var parent: Coordinator?
+    var rootController: UINavigationController?
     
-    init(parent: UINavigationController) {
-        self.parent = parent
+    init(rootController: UINavigationController) {
+        self.rootController = rootController
     }
     
     func start() {
         let cartoonsController = CartoonsAssembly.makeCartoonsController(storageService: storageService)
         cartoonsController.transitionDelegate = self
-        parent?.pushViewController(cartoonsController, animated: false)
+        rootController?.pushViewController(cartoonsController, animated: false)
+    }
+    
+    deinit {
+        print("Cartoons Fail")
     }
 }
 
@@ -32,13 +37,13 @@ extension CartoonsCoordinator {
         }
         let detailsController = DetailsAssembly.makeDetailsController(with: cartoon)
         detailsController.transitionDelegate = self
-        parent?.pushViewController(detailsController, animated: true)
+        rootController?.pushViewController(detailsController, animated: true)
     }
     
     func openVideoPlayer(with link: URL?) {
         let player = PlayerAssembly.makePlayerController(with: link)
         player.transitionDelegate = self
-        parent?.pushViewController(player, animated: true)
+        rootController?.pushViewController(player, animated: true)
     }
 }
 
@@ -56,6 +61,6 @@ extension CartoonsCoordinator: DetailsTransitionDelegate {
 
 extension CartoonsCoordinator: PlayerTransitionDelegate {
     func transit() {
-        parent?.popViewController(animated: true)
+        rootController?.popViewController(animated: true)
     }
 }

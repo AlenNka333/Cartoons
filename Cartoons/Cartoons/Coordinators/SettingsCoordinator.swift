@@ -14,17 +14,22 @@ class SettingsCoordinator: Coordinator {
     let authorizationService = AuthorizationService()
     
     weak var transitionDelegate: TransitionDelegate?
-    var parent: UINavigationController?
+    var parent: Coordinator?
+    var rootController: UINavigationController?
     
-    init(parent: UINavigationController) {
-        self.parent = parent
+    init(rootController: UINavigationController) {
+        self.rootController = rootController
     }
     
     func start() {
         let settingsController = SettingsAssembly.makeSettingsController(storageService: storageService,
                                                                          authorizationService: authorizationService)
         settingsController.transitionDelegate = self
-        parent?.pushViewController(settingsController, animated: false)
+        rootController?.pushViewController(settingsController, animated: false)
+    }
+    
+    deinit {
+        print("Settings Fail")
     }
 }
 

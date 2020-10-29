@@ -11,7 +11,7 @@ import UIKit
 class AuthorizationCoordinator: Coordinator {
     let authorizationService = AuthorizationService()
     
-    var parent: UINavigationController?
+    var parent: Coordinator?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
