@@ -44,3 +44,5 @@ favourites_screen_subtitle = "...offline watching is available";
 //Settings flow
 settings_screen = "Settings";
 
+//Details flow
+start_watching = "Start watching";

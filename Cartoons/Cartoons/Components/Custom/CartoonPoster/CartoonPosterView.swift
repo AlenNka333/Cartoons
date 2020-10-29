@@ -20,21 +20,24 @@ class CartoonPosterView: UIView {
     }()
     private lazy var gradientView = UIImageView(image: R.image.gradient_borders())
     
-    init(frame: CGRect, link: URL) {
-        super.init(frame: frame)
-        setupUI(link: link)
+    init() {
+        super.init(frame: .zero)
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupUI(link: URL) {
+    func setImage(with link: URL) {
+        mainImageView.kf.setImage(with: link)
+    }
+    
+    func setupUI() {
         addSubview(mainImageView)
         mainImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        mainImageView.kf.setImage(with: link)
         mainImageView.addSubview(gradientView)
         gradientView.snp.makeConstraints {
             $0.edges.equalToSuperview()

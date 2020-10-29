@@ -16,11 +16,11 @@ enum PlayerState {
 }
 
 class VideoPlayerViewController: BaseViewController {
-   private let closeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(R.image.done(), for: .normal)
-        return button
-    }()
+//   private let closeButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(R.image.done(), for: .normal)
+//        return button
+//    }()
     private var playerView = PlayerView()
     private var player: AVPlayer? {
         playerView.player
@@ -56,9 +56,10 @@ class VideoPlayerViewController: BaseViewController {
         })
     }
     
-    override func setupNavigationBar() {
-        super.setupNavigationBar()
-        navigationController?.navigationBar.isHidden = true
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     override func setupUI() {
@@ -78,12 +79,12 @@ class VideoPlayerViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
         
-        view.addSubview(closeButton)
-        closeButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        closeButton.snp.makeConstraints {
-            $0.size.equalTo(30)
-            $0.top.leading.equalToSuperview().inset(40)
-        }
+//        view.addSubview(closeButton)
+//        closeButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+//        closeButton.snp.makeConstraints {
+//            $0.size.equalTo(30)
+//            $0.top.leading.equalToSuperview().inset(40)
+//        }
     }
     
     @objc func goBack() {
@@ -96,7 +97,8 @@ class VideoPlayerViewController: BaseViewController {
     
     @objc func viewDidTap() {
         controlsView?.isHidden.toggle()
-        closeButton.isHidden.toggle()
+        navigationController?.navigationBar.isHidden.toggle()
+        //closeButton.isHidden.toggle()
     }
 }
 

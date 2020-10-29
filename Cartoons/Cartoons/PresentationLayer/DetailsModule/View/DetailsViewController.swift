@@ -17,14 +17,14 @@ class DetailsViewController: BaseViewController {
     
     private lazy var openPlayerButton: CustomButton = {
         let button = CustomButton()
-        button.backgroundColor = .white
-        button.setAttributedTitle(NSAttributedString(string: "Start Watching",
-                                                     attributes: [NSAttributedString.Key.foregroundColor: R.color.sky_blue(),
+        button.backgroundColor = R.color.sea_blue()
+        button.setAttributedTitle(NSAttributedString(string: R.string.localizable.start_watching(),
+                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.black,
                                                                   NSAttributedString.Key.font: R.font.aliceRegular(size: 20).unwrapped]),
                                   for: .normal)
         return button
     }()
-    private var mainPoster: CartoonPosterView?
+    private var mainPoster = CartoonPosterView()
     private lazy var addToFavouritesButton: CustomButton = {
         let button = CustomButton()
         button.backgroundColor = R.color.sky_blue()
@@ -32,26 +32,21 @@ class DetailsViewController: BaseViewController {
         return button
     }()
     private lazy var titleLabel: UILabel = {
-        let label = BorderedLabel(withInsets: 5, 5, left: 10, 10)
+        let label = BorderedLabel(with: .init(top: 5, left: 10, bottom: 5, right: 10))
         label.textAlignment = .center
         label.numberOfLines = .zero
+        label.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
         return label
     }()
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
-        stack.alignment = .center
+        stack.alignment = .fill
         stack.spacing = 10
-        stack.distribution = .fill
         return stack
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func setupNavigationBar() {
-        super.setupNavigationBar()
-        navigationController?.navigationBar.isHidden = false
     }
     
     override func setupUI() {
@@ -63,6 +58,31 @@ class DetailsViewController: BaseViewController {
         
         openPlayerButton.addTarget(self, action: #selector(openPlayer), for: .touchUpInside)
         addToFavouritesButton.addTarget(self, action: #selector(addToFavourites), for: .touchUpInside)
+        
+        view.addSubview(mainPoster)
+        mainPoster.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(88)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(UIScreen.main.bounds.height * 0.5)
+        }
+        
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(mainPoster.snp.bottom).offset(40)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(openPlayerButton)
+        addToFavouritesButton.snp.makeConstraints {
+            $0.size.equalTo(50)
+        }
+        stackView.addArrangedSubview(addToFavouritesButton)
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(40)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().offset(-60)
+        }
     }
     
     override func showError(error: Error) {
@@ -71,13 +91,13 @@ class DetailsViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
@@ -99,36 +119,12 @@ extension DetailsViewController {
 extension DetailsViewController: DetailsViewProtocol {
     func setVideo(video: Cartoon) {
         self.video = video
-        let frame = CGRect(x: 0, y: 0, width: .zero, height: view.frame.height / 3)
         guard let url = video.thumbnail else {
             return
         }
-        mainPoster = CartoonPosterView(frame: frame, link: url)
-        guard let poster = mainPoster else {
-            return
-        }
-        view.addSubview(poster)
-        poster.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(88)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(view.frame.height * 0.5)
-        }
-        view.addSubview(titleLabel)
+        mainPoster.setImage(with: url)
         titleLabel.attributedText = NSAttributedString(string: video.title,
-                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                                    NSAttributedString.Key.font: R.font.cinzelDecorativeBold(size: 50).unwrapped])
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(poster.snp_bottomMargin).offset(-40)
-            $0.leading.trailing.equalToSuperview()
-        }
-        stackView.addArrangedSubview(openPlayerButton)
-        stackView.addArrangedSubview(addToFavouritesButton)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
-        stackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp_bottomMargin).offset(30)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-        }
+                                                       attributes: [.foregroundColor: UIColor.white,
+                                                                    .font: R.font.cinzelDecorativeBold(size: 45).unwrapped])
     }
 }

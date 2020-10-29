@@ -20,10 +20,6 @@ class CustomButton: UIButton {
     }
     
     func setupButton() {
-        snp.makeConstraints {
-            $0.width.equalTo(300)
-            $0.height.equalTo(50)
-        }
         isEnabled = true
         setTitleColor(.white, for: .normal)
         titleLabel?.layer.shadowColor = UIColor.black.cgColor

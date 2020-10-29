@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 12 colors.
+  /// This `R.color` struct is generated, and contains static references to 13 colors.
   struct color {
     /// Color `cinnabar`.
     static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
@@ -126,6 +126,8 @@ struct R: Rswift.Validatable {
     static let navigation_bar_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "navigation_bar_color")
     /// Color `picotee_blue`.
     static let picotee_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picotee_blue")
+    /// Color `sea_blue`.
+    static let sea_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "sea_blue")
     /// Color `sky_blue`.
     static let sky_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "sky_blue")
     /// Color `tab_bar_color`.
@@ -211,6 +213,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func picotee_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.picotee_blue, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "sea_blue", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func sea_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.sea_blue, compatibleWith: traitCollection)
     }
     #endif
 
@@ -648,7 +659,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 22 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -726,6 +737,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let skip = Rswift.StringResource(key: "skip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Start watching
+      ///
+      /// Locales: en
+      static let start_watching = Rswift.StringResource(key: "start_watching", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Success
       ///
       /// Locales: en
@@ -1022,6 +1037,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("skip", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Start watching
+      ///
+      /// Locales: en
+      static func start_watching(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("start_watching", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "start_watching"
+        }
+
+        return NSLocalizedString("start_watching", bundle: bundle, comment: "")
       }
 
       /// en translation: Success
