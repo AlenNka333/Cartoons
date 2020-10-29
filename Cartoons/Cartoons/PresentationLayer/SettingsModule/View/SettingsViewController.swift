@@ -10,6 +10,7 @@ import Kingfisher
 import UIKit
 
 class SettingsViewController: BaseViewController {
+    weak var transitionDelegate: SettingsTransitionDelegate?
     var presenter: SettingsViewPresenterProtocol?
     var imagePicker: ImagePicker?
     
@@ -50,6 +51,10 @@ class SettingsViewController: BaseViewController {
 }
 
 extension SettingsViewController: SettingsViewProtocol {
+    func transit() {
+        
+    }
+    
     func showPermissionAlert(message: String) {
         let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
             switch $0 {

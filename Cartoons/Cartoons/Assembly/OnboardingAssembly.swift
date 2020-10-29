@@ -17,13 +17,12 @@ class OnboardingAssembly: Assembly {
         return OnboardingCoordinator()
     }
     
-    static func makeOnboardingController(completion: @escaping (() -> Void)) -> PageViewController {
+    static func makeOnboardingController() -> PageViewController {
         var pages = [UIViewController]()
         pages.append(StreamingFeatureViewController())
         pages.append(OfflineWatchingFeatureViewController())
         let view = PageViewController(pages: pages)
         let presenter = PageControllerPresenter(view: view)
-        presenter.successSessionClosure = completion
         view.presenter = presenter
         return view
     }

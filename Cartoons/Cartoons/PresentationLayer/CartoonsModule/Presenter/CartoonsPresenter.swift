@@ -12,8 +12,6 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
     let storage: StorageDataService
     
-    var openDetailsClosure: ((Cartoon) -> Void)?
-    
     init(view: CartoonsViewProtocol, storageService: StorageDataService) {
         self.view = view
         self.storage = storageService
@@ -36,12 +34,5 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     
     func showError(error: Error) {
         view.showError(error: error)
-    }
-    
-    func openDetails(with video: Cartoon) {
-        guard let closure = openDetailsClosure else {
-            return
-        }
-        closure(video)
     }
 }

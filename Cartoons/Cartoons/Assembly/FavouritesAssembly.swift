@@ -13,7 +13,7 @@ class FavouritesAssembly: Assembly {
         FavouritesCoordinator(parent: parent)
     }
     
-    static func makeFavouritesController() -> UIViewController {
+    static func makeFavouritesController() -> FavouritesViewController {
         let view = FavouritesViewController()
         let presenter = FavouritesPresenter(view: view)
         view.presenter = presenter

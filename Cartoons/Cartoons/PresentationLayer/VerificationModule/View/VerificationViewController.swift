@@ -14,6 +14,7 @@ class VerificationViewController: BaseViewController {
         static let otpCodeCount = 6
     }
     
+    weak var transitionDelegate: VerificationTransitionDelegate?
     var presenter: VerificationViewPresenterProtocol?
     var countdownTimer: Timer?
     
@@ -147,5 +148,9 @@ extension VerificationViewController: VerificationViewProtocol {
     
     func updateTime(timer: Int) {
         timerLabel.text = "\(timer)"
+    }
+    
+    func transit() {
+        transitionDelegate?.transit()
     }
 }

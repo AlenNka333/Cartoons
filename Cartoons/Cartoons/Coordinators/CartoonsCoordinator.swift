@@ -19,9 +19,8 @@ class CartoonsCoordinator: Coordinator {
     }
     
     func start() {
-        let cartoonsController = CartoonsAssembly.makeCartoonsController(storageService: storageService) { movie in
-            self.openDetailsScreen(with: movie)
-        }
+        let cartoonsController = CartoonsAssembly.makeCartoonsController(storageService: storageService)
+        cartoonsController.transitionDelegate = self
         parent?.pushViewController(cartoonsController, animated: false)
     }
 }
@@ -31,18 +30,32 @@ extension CartoonsCoordinator {
         guard let cartoon = video else {
             return
         }
-        let detailsCoordinator = DetailsAssembly.makeDetailsController(with: cartoon) { [weak self] in
-            self?.openVideoPlayer(with: $0)
-        }
-        parent?.pushViewController(detailsCoordinator, animated: true)
+        let detailsController = DetailsAssembly.makeDetailsController(with: cartoon)
+        detailsController.transitionDelegate = self
+        parent?.pushViewController(detailsController, animated: true)
     }
     
     func openVideoPlayer(with link: URL?) {
-        let view = PlayerAssembly.makePlayerController(with: link)
-        
-        view.closeClosure = { [weak self] in
-            self?.parent?.popViewController(animated: true)
-        }
-        parent?.pushViewController(view, animated: true)
+        let player = PlayerAssembly.makePlayerController(with: link)
+        player.transitionDelegate = self
+        parent?.pushViewController(player, animated: true)
+    }
+}
+
+extension CartoonsCoordinator: CartoonsTransitionDelegate {
+    func transit(cartoon: Cartoon) {
+        openDetailsScreen(with: cartoon)
+    }
+}
+
+extension CartoonsCoordinator: DetailsTransitionDelegate {
+    func transit(with link: URL) {
+        openVideoPlayer(with: link)
+    }
+}
+
+extension CartoonsCoordinator: PlayerTransitionDelegate {
+    func transit() {
+        parent?.popViewController(animated: true)
     }
 }

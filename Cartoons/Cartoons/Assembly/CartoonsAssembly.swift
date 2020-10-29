@@ -13,12 +13,10 @@ class CartoonsAssembly: Assembly {
         CartoonsCoordinator(parent: parent)
     }
     
-    static func makeCartoonsController(storageService: StorageDataService,
-                                       completion: @escaping((Cartoon) -> Void)) -> UIViewController {
+    static func makeCartoonsController(storageService: StorageDataService) -> CartoonsViewController {
         let view = CartoonsViewController()
         let presenter = CartoonsPresenter(view: view, storageService: storageService)
         view.presenter = presenter
-        presenter.openDetailsClosure = completion
         return view
     }
 }

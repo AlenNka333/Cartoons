@@ -39,6 +39,14 @@
 		33127B6A2534C53400B84FAE /* VideoPlayerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B692534C53400B84FAE /* VideoPlayerPresenterProtocol.swift */; };
 		33127B7D25357B0200B84FAE /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B7C25357B0200B84FAE /* Section.swift */; };
 		3312EDE624FE859F00158EB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3312EDE824FE859F00158EB6 /* Localizable.strings */; };
+		3318E2C3254AC414001838E2 /* TransitionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E2C2254AC414001838E2 /* TransitionProtocol.swift */; };
+		3318E2C6254AC5AF001838E2 /* AuthorizationTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E2C5254AC5AF001838E2 /* AuthorizationTransitionDelegate.swift */; };
+		3318E2C9254AC6C5001838E2 /* VerificationTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E2C8254AC6C5001838E2 /* VerificationTransitionDelegate.swift */; };
+		3318E2D1254AC9AB001838E2 /* OnboardingTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E2D0254AC9AB001838E2 /* OnboardingTransitionDelegate.swift */; };
+		3318E2D4254ACA7D001838E2 /* CartoonsTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E2D3254ACA7D001838E2 /* CartoonsTransitionDelegate.swift */; };
+		3318E2D7254ACC26001838E2 /* DetailsTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E2D6254ACC26001838E2 /* DetailsTransitionDelegate.swift */; };
+		3318E2DA254ACD14001838E2 /* PlayerTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E2D9254ACD14001838E2 /* PlayerTransitionDelegate.swift */; };
+		3318E2DD254ACDD4001838E2 /* SettingsTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318E2DC254ACDD4001838E2 /* SettingsTransitionDelegate.swift */; };
 		3319126B2543217800DB64ED /* CartoonPosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3319126A2543217700DB64ED /* CartoonPosterView.swift */; };
 		3319126F2543269900DB64ED /* DetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3319126E2543269900DB64ED /* DetailsAssembly.swift */; };
 		332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332227C2251896CF00EF56B8 /* FavouritesViewController.swift */; };
@@ -180,6 +188,14 @@
 		33127B692534C53400B84FAE /* VideoPlayerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerPresenterProtocol.swift; sourceTree = "<group>"; };
 		33127B7C25357B0200B84FAE /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		3312EDE724FE859F00158EB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3318E2C2254AC414001838E2 /* TransitionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionProtocol.swift; sourceTree = "<group>"; };
+		3318E2C5254AC5AF001838E2 /* AuthorizationTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationTransitionDelegate.swift; sourceTree = "<group>"; };
+		3318E2C8254AC6C5001838E2 /* VerificationTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationTransitionDelegate.swift; sourceTree = "<group>"; };
+		3318E2D0254AC9AB001838E2 /* OnboardingTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTransitionDelegate.swift; sourceTree = "<group>"; };
+		3318E2D3254ACA7D001838E2 /* CartoonsTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonsTransitionDelegate.swift; sourceTree = "<group>"; };
+		3318E2D6254ACC26001838E2 /* DetailsTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTransitionDelegate.swift; sourceTree = "<group>"; };
+		3318E2D9254ACD14001838E2 /* PlayerTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTransitionDelegate.swift; sourceTree = "<group>"; };
+		3318E2DC254ACDD4001838E2 /* SettingsTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTransitionDelegate.swift; sourceTree = "<group>"; };
 		3319126A2543217700DB64ED /* CartoonPosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonPosterView.swift; sourceTree = "<group>"; };
 		3319126E2543269900DB64ED /* DetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAssembly.swift; sourceTree = "<group>"; };
 		332227C2251896CF00EF56B8 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +343,7 @@
 			children = (
 				332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */,
 				332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */,
+				3318E2C5254AC5AF001838E2 /* AuthorizationTransitionDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -336,6 +353,7 @@
 			children = (
 				332BA36A25076084008A8F29 /* VerificationViewPresenterProtocol.swift */,
 				332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */,
+				3318E2C8254AC6C5001838E2 /* VerificationTransitionDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -345,6 +363,7 @@
 			children = (
 				33B2AEB3250A63910006BE31 /* CartoonsViewPresenterProtocol.swift */,
 				33B2AEB5250A63A00006BE31 /* CartoonsViewProtocol.swift */,
+				3318E2D3254ACA7D001838E2 /* CartoonsTransitionDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -363,6 +382,7 @@
 			children = (
 				332227CE25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift */,
 				332227D025189D2D00EF56B8 /* SettingsViewProtocol.swift */,
+				3318E2DC254ACDD4001838E2 /* SettingsTransitionDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -372,6 +392,7 @@
 			children = (
 				3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */,
 				3373D955250F95460095F78C /* PagePresenterProtocol.swift */,
+				3318E2D0254AC9AB001838E2 /* OnboardingTransitionDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -453,6 +474,7 @@
 			children = (
 				33127B562534C4A700B84FAE /* DetailsViewProtocol.swift */,
 				33127B592534C4B700B84FAE /* DetailsViewPresenterProtocol.swift */,
+				3318E2D6254ACC26001838E2 /* DetailsTransitionDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -463,6 +485,7 @@
 				33127B652534C51000B84FAE /* VideoPlayerViewProtocol.swift */,
 				33127B692534C53400B84FAE /* VideoPlayerPresenterProtocol.swift */,
 				338614BB2539882000A24D4F /* VideoPlayerControlsProtocol.swift */,
+				3318E2D9254ACD14001838E2 /* PlayerTransitionDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -634,6 +657,7 @@
 			isa = PBXGroup;
 			children = (
 				334A51C8252CAA53003BCF59 /* Coordinator.swift */,
+				3318E2C2254AC414001838E2 /* TransitionProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1311,12 +1335,15 @@
 				33127B662534C51000B84FAE /* VideoPlayerViewProtocol.swift in Sources */,
 				3355FA7B2540182200C0B192 /* BorderedLabel.swift in Sources */,
 				334A51E2252DB9C3003BCF59 /* Assembly.swift in Sources */,
+				3318E2DD254ACDD4001838E2 /* SettingsTransitionDelegate.swift in Sources */,
 				33127B5D2534C4C400B84FAE /* DetailsPresenter.swift in Sources */,
 				334A51F6252DC742003BCF59 /* AuthorizationAssembly.swift in Sources */,
+				3318E2D1254AC9AB001838E2 /* OnboardingTransitionDelegate.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				338614CC253A275800A24D4F /* Double + Extension.swift in Sources */,
 				330F4E16252F0E84008D0FC8 /* OnboardingCoordinator.swift in Sources */,
 				33B660C1250246CF00CA562E /* String+Extension.swift in Sources */,
+				3318E2D4254ACA7D001838E2 /* CartoonsTransitionDelegate.swift in Sources */,
 				330F4E702530F5D6008D0FC8 /* UserDataServiceProtocol.swift in Sources */,
 				3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */,
 				3319126F2543269900DB64ED /* DetailsAssembly.swift in Sources */,
@@ -1347,6 +1374,7 @@
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				3355FA882540343D00C0B192 /* BaseViewController.swift in Sources */,
 				33127B572534C4A700B84FAE /* DetailsViewProtocol.swift in Sources */,
+				3318E2DA254ACD14001838E2 /* PlayerTransitionDelegate.swift in Sources */,
 				33B2AEA62508EF670006BE31 /* NumberFormats.swift in Sources */,
 				338614BC2539882100A24D4F /* VideoPlayerControlsProtocol.swift in Sources */,
 				332227C72518972300EF56B8 /* FavouritesViewPresenterProtocol.swift in Sources */,
@@ -1369,10 +1397,12 @@
 				330F4E672530EE7B008D0FC8 /* StorageDataManager.swift in Sources */,
 				33A3BA2B251CE142004EA0D9 /* General.swift in Sources */,
 				330F4DFF252EF697008D0FC8 /* CartoonsAssembly.swift in Sources */,
+				3318E2C3254AC414001838E2 /* TransitionProtocol.swift in Sources */,
 				332227C52518970900EF56B8 /* FavouritesPresenter.swift in Sources */,
 				334A51DF252CDB34003BCF59 /* PresenterProtocol.swift in Sources */,
 				33EE7EB2251360B000EA2BF4 /* CustomLabelView.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationViewController.swift in Sources */,
+				3318E2C6254AC5AF001838E2 /* AuthorizationTransitionDelegate.swift in Sources */,
 				3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */,
 				33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */,
 				334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */,
@@ -1381,11 +1411,13 @@
 				332227C92518973500EF56B8 /* FavouritesViewProtocol.swift in Sources */,
 				334A5133252B4433003BCF59 /* AppCoordinator.swift in Sources */,
 				33127B5A2534C4B700B84FAE /* DetailsViewPresenterProtocol.swift in Sources */,
+				3318E2D7254ACC26001838E2 /* DetailsTransitionDelegate.swift in Sources */,
 				33B2AEA9250A18860006BE31 /* PhoneNumberValidationHelper.swift in Sources */,
 				332BA36B25076084008A8F29 /* VerificationViewPresenterProtocol.swift in Sources */,
 				330F4E642530ED2D008D0FC8 /* AuthorizationManager.swift in Sources */,
 				330F4DFA252EEFDC008D0FC8 /* MainScreenAssembly.swift in Sources */,
 				332BA36925069D38008A8F29 /* Constants.swift in Sources */,
+				3318E2C9254AC6C5001838E2 /* VerificationTransitionDelegate.swift in Sources */,
 				3373D94E250F63CA0095F78C /* AppData.swift in Sources */,
 				33EAD3AF2522093000128EEB /* ImagePicker.swift in Sources */,
 				332227CB251899BC00EF56B8 /* SettingsViewController.swift in Sources */,

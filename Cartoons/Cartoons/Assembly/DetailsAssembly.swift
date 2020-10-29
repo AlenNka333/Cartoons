@@ -10,10 +10,9 @@ import Foundation
 import UIKit
 
 class DetailsAssembly: Assembly {
-    static func makeDetailsController(with video: Cartoon, completion: @escaping((URL) -> Void)) -> UIViewController {
+    static func makeDetailsController(with video: Cartoon) -> DetailsViewController {
         let view = DetailsViewController()
         let presenter = DetailsPresenter(view: view, video: video)
-        presenter.openPlayerClosure = completion
         view.presenter = presenter
         return view
     }

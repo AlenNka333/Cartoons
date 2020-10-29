@@ -25,7 +25,7 @@ class VideoPlayerViewController: BaseViewController {
     private var player: AVPlayer? {
         playerView.player
     }
-    var closeClosure: (() -> Void)?
+    weak var transitionDelegate: PlayerTransitionDelegate?
     var controlsView: CustomPlayerControls?
     var presenter: VideoPlayerPresenterProtocol?
     var playerState: PlayerState?
@@ -87,7 +87,7 @@ class VideoPlayerViewController: BaseViewController {
     }
     
     @objc func goBack() {
-        closeClosure?()
+        transitionDelegate?.transit()
     }
     
     override func showError(error: Error) {

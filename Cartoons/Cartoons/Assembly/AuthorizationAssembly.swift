@@ -13,23 +13,20 @@ class AuthorizationAssembly: Assembly {
         return AuthorizationCoordinator()
     }
     
-    static func makeAuthorizationController(authorizationService: AuthorizationService, completion: @escaping ((String, String) -> Void)) -> AuthorizationViewController {
+    static func makeAuthorizationController(authorizationService: AuthorizationService) -> AuthorizationViewController {
         let view = AuthorizationViewController()
-        let presenter = AuthorizationPresenter(view: view, authorizationService: authorizationService)
-        presenter.openVerificationClosure = completion
+        let presenter = AuthorizationPresenter(view: view,
+                                               authorizationService: authorizationService)
         view.presenter = presenter
         return view
     }
     
     static func makeVerificationController(authorizationService: AuthorizationService,
-                                           verificationId: String,
-                                           number: String, completion: @escaping (() -> Void)) -> VerificationViewController {
+                                           verificationId: String) -> VerificationViewController {
         let view = VerificationViewController()
         let presenter = VerificationPresenter(view: view,
                                               authorizationService: authorizationService,
-                                              verificationId: verificationId,
-                                              number: number)
-        presenter.successSessionClosure = completion
+                                              verificationId: verificationId)
         view.presenter = presenter
         return view
     }

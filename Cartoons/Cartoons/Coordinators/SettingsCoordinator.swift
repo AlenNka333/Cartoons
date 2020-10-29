@@ -13,8 +13,8 @@ class SettingsCoordinator: Coordinator {
     let storageService = StorageDataService()
     let authorizationService = AuthorizationService()
     
+    weak var transitionDelegate: TransitionDelegate?
     var parent: UINavigationController?
-    var successSessionClosure: (() -> Void)?
     
     init(parent: UINavigationController) {
         self.parent = parent
@@ -22,12 +22,14 @@ class SettingsCoordinator: Coordinator {
     
     func start() {
         let settingsController = SettingsAssembly.makeSettingsController(storageService: storageService,
-                                                                         authorizationService: authorizationService) { [weak self] in
-            guard let closure = self?.successSessionClosure else {
-                return
-            }
-            closure()
-        }
+                                                                         authorizationService: authorizationService)
+        settingsController.transitionDelegate = self
         parent?.pushViewController(settingsController, animated: false)
+    }
+}
+
+extension SettingsCoordinator: SettingsTransitionDelegate {
+    func transit() {
+        transitionDelegate?.transit()
     }
 }

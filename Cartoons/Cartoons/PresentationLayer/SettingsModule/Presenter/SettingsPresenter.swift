@@ -13,8 +13,6 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     let storageService: StorageDataServiceProtocol
     let authorizationService: AuthorizationServiceProtocol
     
-    var successSessionClosure: (() -> Void)?
-    
     init(view: SettingsViewProtocol, storageService: StorageDataServiceProtocol, authorizationService: AuthorizationServiceProtocol) {
         self.view = view
         self.storageService = storageService
@@ -46,10 +44,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         authorizationService.signOut { [weak self] result in
             switch result {
             case .success:
-                guard let closure = self?.successSessionClosure else {
-                    return
-                }
-                closure()
+                self?.view.transit()
             case .failure(let error):
                 self?.view.showError(error: error)
             }

@@ -20,21 +20,27 @@ class AuthorizationCoordinator: Coordinator {
     }
     
     func start() {
-        let view = AuthorizationAssembly.makeAuthorizationController(authorizationService: authorizationService) { verificationId, number in
-            self.openVerificationScreen(verificationId: verificationId, number: number)
-        }
+        let view = AuthorizationAssembly.makeAuthorizationController(authorizationService: authorizationService)
+        view.transitionDelegate = self
         (rootController as? UINavigationController)?.pushViewController(view, animated: true)
     }
     
-    func openVerificationScreen(verificationId: String, number: String) {
+    func openVerificationScreen(verificationId: String) {
         let view = AuthorizationAssembly.makeVerificationController(authorizationService: authorizationService,
-                                                                    verificationId: verificationId,
-                                                                    number: number) { [weak self] in
-            guard let closure = self?.successSessionClosure else {
-                return
-            }
-            closure()
-        }
+                                                                    verificationId: verificationId)
+        view.transitionDelegate = self
         (rootController as? UINavigationController)?.pushViewController(view, animated: true)
+    }
+}
+
+extension AuthorizationCoordinator: AuthorizationTransitionDelegate {
+    func transit(_ verificationId: String) {
+        openVerificationScreen(verificationId: verificationId)
+    }
+}
+
+extension AuthorizationCoordinator: VerificationTransitionDelegate {
+    func transit() {
+        successSessionClosure?()
     }
 }

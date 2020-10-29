@@ -36,15 +36,16 @@ class MainScreenCoordinator: Coordinator {
         let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(parent: cartoons)
         let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(parent: favourites)
         let settingsCoordinator = SettingsAssembly.makeSettingsCoordinator(parent: settings)
-        settingsCoordinator.successSessionClosure = { [weak self] in
-            guard let closure = self?.successSessionClosure else {
-                return
-            }
-            closure()
-        }
+        settingsCoordinator.transitionDelegate = self
         
         cartoonsCoordinator.start()
         favouritesCoordinator.start()
         settingsCoordinator.start()
+    }
+}
+
+extension MainScreenCoordinator: TransitionDelegate {
+    func transit() {
+        successSessionClosure?()
     }
 }

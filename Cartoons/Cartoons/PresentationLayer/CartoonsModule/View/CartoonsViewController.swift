@@ -16,6 +16,7 @@ class CartoonsViewController: BaseViewController {
     
     private var collectionView: UICollectionView?
     private lazy var dataSource = makeDataSource()
+    weak var transitionDelegate: CartoonsTransitionDelegate?
     var videos = Cartoon.allVideos
     var snapshot = SnapShot()
     var presenter: CartoonsViewPresenterProtocol?
@@ -89,11 +90,11 @@ extension CartoonsViewController: CartoonsViewProtocol {
 
 extension CartoonsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let video = dataSource.itemIdentifier(for: indexPath) else {
+        guard let cartoon = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
         hidesBottomBarWhenPushed = true
-        presenter?.openDetails(with: video)
+        transitionDelegate?.transit(cartoon: cartoon)
         hidesBottomBarWhenPushed = false
     }
 }

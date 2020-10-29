@@ -18,8 +18,14 @@ class OnboardingCoordinator: Coordinator {
     }
     
     func start() {
-        rootController = OnboardingAssembly.makeOnboardingController { [weak self] in
-            self?.successSessionClosure?()
-        }
+        let view = OnboardingAssembly.makeOnboardingController()
+        view.transitionDelegate = self
+        rootController = view
+    }
+}
+
+extension OnboardingCoordinator: OnboardingTransitionDelegate {
+    func transit() {
+        successSessionClosure?()
     }
 }

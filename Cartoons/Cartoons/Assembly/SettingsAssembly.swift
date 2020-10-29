@@ -14,13 +14,9 @@ class SettingsAssembly: Assembly {
     }
     
     static func makeSettingsController(storageService: StorageDataService,
-                                       authorizationService: AuthorizationService,
-                                       completion: @escaping(() -> Void)) -> UIViewController {
+                                       authorizationService: AuthorizationService) -> SettingsViewController {
         let view = SettingsViewController()
         let presenter = SettingsPresenter(view: view, storageService: storageService, authorizationService: authorizationService)
-        presenter.successSessionClosure = {
-            completion()
-        }
         view.presenter = presenter
         return view
     }

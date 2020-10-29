@@ -11,7 +11,10 @@ import UIKit
 
 class DetailsViewController: BaseViewController {
     private var video: Cartoon?
+    
+    weak var transitionDelegate: DetailsTransitionDelegate?
     var presenter: DetailsViewPresenterProtocol?
+    
     private lazy var openPlayerButton: CustomButton = {
         let button = CustomButton()
         button.backgroundColor = .white
@@ -85,7 +88,7 @@ extension DetailsViewController {
             print("Invalid link")
             return
         }
-        presenter?.openPlayer(with: link)
+        transitionDelegate?.transit(with: link)
     }
     
     @objc func addToFavourites() {
