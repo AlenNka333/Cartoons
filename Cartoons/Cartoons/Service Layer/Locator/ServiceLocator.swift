@@ -13,7 +13,7 @@ protocol Locator {
     func register<T>(_ service: T)
 }
 
-final class ServiceLocator: Locator {
+class ServiceLocator: Locator {
     private var services: [ObjectIdentifier: Any] = [:]
     
     func register<T>(_ service: T) {
