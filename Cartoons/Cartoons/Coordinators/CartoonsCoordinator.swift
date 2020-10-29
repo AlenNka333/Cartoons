@@ -40,7 +40,7 @@ extension CartoonsCoordinator {
     func openVideoPlayer(with link: URL?) {
         let view = PlayerAssembly.makePlayerController(with: link)
         
-        view.transitions.close = { [weak self] in
+        view.closeClosure = { [weak self] in
             self?.parent?.popViewController(animated: true)
         }
         parent?.pushViewController(view, animated: true)

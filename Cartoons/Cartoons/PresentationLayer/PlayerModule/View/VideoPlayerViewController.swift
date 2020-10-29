@@ -16,11 +16,7 @@ enum PlayerState {
 }
 
 class VideoPlayerViewController: BaseViewController {
-    struct Transitions {
-        var close: (() -> Void)?
-    }
-    
-    private let closeButton: UIButton = {
+   private let closeButton: UIButton = {
         let button = UIButton()
         button.setImage(R.image.done(), for: .normal)
         return button
@@ -29,7 +25,7 @@ class VideoPlayerViewController: BaseViewController {
     private var player: AVPlayer? {
         playerView.player
     }
-    var transitions = Transitions()
+    var closeClosure: (() -> Void)?
     var controlsView: CustomPlayerControls?
     var presenter: VideoPlayerPresenterProtocol?
     var playerState: PlayerState?
@@ -91,7 +87,7 @@ class VideoPlayerViewController: BaseViewController {
     }
     
     @objc func goBack() {
-        transitions.close?()
+        closeClosure?()
     }
     
     override func showError(error: Error) {
