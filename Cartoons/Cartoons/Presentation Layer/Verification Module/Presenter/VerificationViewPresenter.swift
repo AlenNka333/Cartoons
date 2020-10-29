@@ -14,7 +14,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
 
     var view: VerificationViewProtocol
-    let locator: Locator
+    let serviceLocator: Locator
     let verificationId: String
     let number: String
     var timer = Constant.totalTime
@@ -23,7 +23,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     
     init(view: VerificationViewProtocol, locator: Locator, verificationId: String, number: String) {
         self.view = view
-        self.locator = locator
+        self.serviceLocator = locator
         self.verificationId = verificationId
         self.number = number
         view.setLabelText(number: number)
@@ -43,7 +43,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
     
     func resendVerificationCode() {
-        guard let service: AuthorizationService = locator.resolve() else {
+        guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
         service.verifyUser(number: number) { [weak self] result in
@@ -57,7 +57,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
     
     func verifyUser(verificationCode: String) {
-        guard let service: AuthorizationService = locator.resolve() else {
+        guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
         service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in

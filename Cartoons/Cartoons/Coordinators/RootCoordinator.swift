@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class RootCoordinator: CoordinatorProtocol {
-    private let locator: Locator
+    private let serviceLocator: Locator
     
     var child: CoordinatorProtocol?
     var root: UIViewController
@@ -19,14 +19,14 @@ class RootCoordinator: CoordinatorProtocol {
     
     init(window: UIWindow?, locator: Locator) {
         self.window = window
-        self.locator = locator
+        self.serviceLocator = locator
         self.root = UINavigationController()
         window?.rootViewController = root
         window?.makeKeyAndVisible()
     }
     
     func start() {
-        guard let service: AuthorizationService = locator.resolve() else {
+        guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
         AppData.shouldShowOnBoarding
@@ -72,7 +72,7 @@ extension RootCoordinator {
         guard let window = window else {
             return
         }
-        let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator(locator: locator)
+        let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator(locator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showMainScreen()
         }
@@ -86,7 +86,7 @@ extension RootCoordinator {
         guard let window = window else {
             return
         }
-        let coordinator = MainScreenAssembly.makeMainScreenCoordinator(locator: locator)
+        let coordinator = MainScreenAssembly.makeMainScreenCoordinator(locator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
         }

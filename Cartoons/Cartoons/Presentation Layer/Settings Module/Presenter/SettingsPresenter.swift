@@ -10,21 +10,21 @@ import Foundation
 
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
-    let locator: Locator
+    let serviceLocator: Locator
     
     var successSessionClosure: (() -> Void)?
     
     init(view: SettingsViewProtocol, locator: Locator) {
         self.view = view
-        self.locator = locator
-        guard let service: AuthorizationService = locator.resolve() else {
+        self.serviceLocator = locator
+        guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
         view.showPhoneLabel(number: service.phoneNumber.unwrapped)
     }
     
     func showProfileImage() {
-        guard let service: StorageDataService = locator.resolve() else {
+        guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
         service.loadImage(folder: "profile_Images") { [weak self] result in
@@ -37,7 +37,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         }
     }
     func saveProfileImage(imageData: Data) {
-        guard let service: StorageDataService = locator.resolve() else {
+        guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
         service.saveImage(imageData: imageData) { [weak self] result in
@@ -50,7 +50,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         }
     }
     func agreeButtonTapped() {
-        guard let service: AuthorizationService = locator.resolve() else {
+        guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
         service.signOut { [weak self] result in

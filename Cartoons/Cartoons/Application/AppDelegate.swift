@@ -8,11 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
-        let locator = ServiceLocator()
-        locator.register(AuthorizationService())
-        locator.register(StorageDataService())
-        locator.register(UserDataService())
-        let rootCoordinator = RootAssembly.makeRootCoordinator(window: window, locator: locator)
+        let serviceLocator = ServiceLocator()
+        let rootCoordinator = RootAssembly.makeRootCoordinator(window: window, locator: serviceLocator)
         rootCoordinator.start()
         return true
     }

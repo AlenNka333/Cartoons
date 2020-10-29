@@ -20,7 +20,7 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     }
     
     func getData() {
-        guard let service: StorageDataService = locator.resolve() else {
+        guard let service: StorageDataService = locator.resolve(StorageDataService.self) else {
             return
         }
         service.checkListAvailable { [weak self] result in
