@@ -23,6 +23,13 @@ class VideoPlayerViewController: BaseViewController {
     var presenter: VideoPlayerPresenterProtocol?
     var playerState: PlayerState?
     var timeObserver: Any?
+    private lazy var closeButton: UIButton = {
+        var button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.tintColor = .white
+        button.setTitle(R.string.localizable.back(), for: .normal)
+        return button
+    }()
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .slide }
     override var prefersStatusBarHidden: Bool { controlsView?.isHidden == true }
@@ -50,10 +57,7 @@ class VideoPlayerViewController: BaseViewController {
     }
     
     override func setupNavigationBar() {
-        navigationController?.view.backgroundColor = .black
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func setupUI() {
@@ -72,6 +76,12 @@ class VideoPlayerViewController: BaseViewController {
         controls.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        view.addSubview(closeButton)
+        closeButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        closeButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(50)
+            $0.leading.equalToSuperview().offset(20)
+        }
     }
     
     @objc func goBack() {
@@ -84,7 +94,7 @@ class VideoPlayerViewController: BaseViewController {
     
     @objc func viewDidTap() {
         controlsView?.isHidden.toggle()
-        navigationController?.navigationBar.isHidden.toggle()
+        closeButton.isHidden.toggle()
     }
 }
 
