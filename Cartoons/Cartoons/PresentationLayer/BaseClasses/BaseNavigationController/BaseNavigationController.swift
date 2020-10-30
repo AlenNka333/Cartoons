@@ -14,7 +14,7 @@ class BaseNavigationController: UINavigationController {
         case system
         case custom
     }
-
+    
     private enum Const {
         static let titleSize: CGFloat = 40
         static let subtitleSize: CGFloat = 14
@@ -57,8 +57,7 @@ class BaseNavigationController: UINavigationController {
     func setupUI() {
         delegate = self
         navigationBar.tintColor = .white
-        navigationBar.prefersLargeTitles = false
-        navigationItem.largeTitleDisplayMode = .automatic
+        //navigationItem.largeTitleDisplayMode = .never
         navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationBar.layer.shadowRadius = 4.0
         navigationBar.layer.shadowOpacity = 1.0
@@ -72,10 +71,8 @@ extension BaseNavigationController: UINavigationControllerDelegate {
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
-            if state == NavigationState.custom {
-                imageView.removeFromSuperview()
-                subtitleLabel.removeFromSuperview()
-            }
+            imageView.removeFromSuperview()
+            subtitleLabel.removeFromSuperview()
             navigationBar.isHidden = false
             return nil
         } else if operation == .pop {

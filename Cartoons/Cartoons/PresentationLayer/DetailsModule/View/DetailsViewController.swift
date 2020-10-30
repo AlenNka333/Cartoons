@@ -14,7 +14,7 @@ class DetailsViewController: BaseViewController {
     
     weak var transitionDelegate: DetailsTransitionDelegate?
     var presenter: DetailsViewPresenterProtocol?
-
+    
     private lazy var openPlayerButton: CustomButton = {
         let button = CustomButton()
         button.backgroundColor = R.color.sea_blue()
@@ -91,13 +91,7 @@ class DetailsViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = false
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .never
     }
 }
 
