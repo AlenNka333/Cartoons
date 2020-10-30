@@ -9,10 +9,10 @@
 import UIKit
 
 class SettingsAssembly: Assembly {
-    static func makeSettingsController(locator: Locator,
+    static func makeSettingsController(serviceLocator: Locator,
                                        completion: @escaping(() -> Void)) -> UIViewController {
         let view = SettingsViewController()
-        let presenter = SettingsPresenter(view: view, locator: locator)
+        let presenter = SettingsPresenter(view: view, serviceLocator: serviceLocator)
         presenter.successSessionClosure = {
             completion()
         }

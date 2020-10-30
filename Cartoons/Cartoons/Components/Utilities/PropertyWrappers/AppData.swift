@@ -8,9 +8,9 @@
 
 import Foundation
 struct AppData {
-    @UserDefault(Constants.verificationId, defaultValue: "")
+    @UserDefault(AppEnvironment.Firebase.verificationId, defaultValue: "")
     static var verificationID: String
     
-    @UserDefault(Constants.firstComing, defaultValue: true)
+    @UserDefault(AppEnvironment.Firebase.firstComing, defaultValue: true)
     static var shouldShowOnBoarding: Bool
 }

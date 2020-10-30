@@ -14,9 +14,9 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     
     var successSessionClosure: (() -> Void)?
     
-    init(view: SettingsViewProtocol, locator: Locator) {
+    init(view: SettingsViewProtocol, serviceLocator: Locator) {
         self.view = view
-        self.serviceLocator = locator
+        self.serviceLocator = serviceLocator
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }

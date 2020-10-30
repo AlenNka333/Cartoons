@@ -11,7 +11,7 @@ import Foundation
 class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
     var view: VideoPlayerViewProtocol
     var controls: VideoPlayerControlsProtocol
-    var playerState: PlayerState?
+    var playerState: PlayerState
     let link: URL?
     
     init(view: VideoPlayerViewProtocol, controls: VideoPlayerControlsProtocol, link: URL?) {
@@ -25,8 +25,11 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
     
     func setupClosures() {
         controls.stateChangedClosure = { [weak self] in
-            self?.playerState = self?.view.updateStatus()
-            return (self?.playerState)!
+            if let state = self?.view.updateStatus() {
+                self?.playerState = state
+                return state
+            }
+            return .stopped
         }
         controls.jumpForwardClosure = { [weak self] in
             self?.view.jumpForward()

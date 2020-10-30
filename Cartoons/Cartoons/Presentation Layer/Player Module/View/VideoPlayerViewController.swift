@@ -39,7 +39,7 @@ class VideoPlayerViewController: BaseViewController {
         view = playerView
     }
     
-    override public var shouldAutorotate: Bool {
+    override var shouldAutorotate: Bool {
         return true
     }
     

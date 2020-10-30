@@ -9,19 +9,19 @@
 import UIKit
 
 class AuthorizationCoordinator: CoordinatorProtocol {
-    let locator: Locator
+    let serviceLocator: Locator
     
     var parent: CoordinatorProtocol?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
-    init(locator: Locator) {
+    init(serviceLocator: Locator) {
         self.rootController = UINavigationController()
-        self.locator = locator
+        self.serviceLocator = serviceLocator
     }
     
     func start() {
-        let view = AuthorizationAssembly.makeAuthorizationController(locator: locator) { [weak self] verificationId, number in
+        let view = AuthorizationAssembly.makeAuthorizationController(serviceLocator: serviceLocator) { [weak self] verificationId, number in
             self?.openVerificationScreen(verificationId: verificationId, number: number)
         }
         
@@ -29,7 +29,7 @@ class AuthorizationCoordinator: CoordinatorProtocol {
     }
     
     func openVerificationScreen(verificationId: String, number: String) {
-        let view = AuthorizationAssembly.makeVerificationController(locator: locator,
+        let view = AuthorizationAssembly.makeVerificationController(serviceLocator: serviceLocator,
                                                                     verificationId: verificationId,
                                                                     number: number) { [weak self] in
             guard let closure = self?.successSessionClosure else {

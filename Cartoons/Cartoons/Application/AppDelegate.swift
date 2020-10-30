@@ -9,7 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
         let serviceLocator = ServiceLocator()
-        let rootCoordinator = RootAssembly.makeRootCoordinator(window: window, locator: serviceLocator)
+        let rootCoordinator = RootAssembly.makeRootCoordinator(window: window, serviceLocator: serviceLocator)
         rootCoordinator.start()
         return true
     }

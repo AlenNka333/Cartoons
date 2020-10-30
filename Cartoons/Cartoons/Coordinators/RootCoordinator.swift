@@ -17,9 +17,9 @@ class RootCoordinator: CoordinatorProtocol {
     var parent: CoordinatorProtocol?
     fileprivate var window: UIWindow?
     
-    init(window: UIWindow?, locator: Locator) {
+    init(window: UIWindow?, serviceLocator: Locator) {
         self.window = window
-        self.serviceLocator = locator
+        self.serviceLocator = serviceLocator
         self.root = UINavigationController()
         window?.rootViewController = root
         window?.makeKeyAndVisible()
@@ -72,7 +72,7 @@ extension RootCoordinator {
         guard let window = window else {
             return
         }
-        let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator(locator: serviceLocator)
+        let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator(serviceLocator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showMainScreen()
         }
@@ -86,7 +86,7 @@ extension RootCoordinator {
         guard let window = window else {
             return
         }
-        let coordinator = MainScreenAssembly.makeMainScreenCoordinator(locator: serviceLocator)
+        let coordinator = MainScreenAssembly.makeMainScreenCoordinator(serviceLocator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
         }

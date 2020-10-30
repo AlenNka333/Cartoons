@@ -9,7 +9,7 @@
 import AVFoundation
 import UIKit
 
-final class PlayerView: UIView {
+class PlayerView: UIView {
     override class var layerClass: AnyClass {
         AVPlayerLayer.self
     }

@@ -9,10 +9,10 @@
 import UIKit
 
 class CartoonsAssembly: Assembly {
-    static func makeCartoonsController(locator: Locator,
+    static func makeCartoonsController(serviceLocator: Locator,
                                        completion: @escaping((URL) -> Void)) -> UIViewController {
         let view = CartoonsViewController()
-        let presenter = CartoonsPresenter(view: view, locator: locator)
+        let presenter = CartoonsPresenter(view: view, serviceLocator: serviceLocator)
         view.presenter = presenter
         presenter.openPlayerClosure = completion
         let navigation = BaseNavigationController(rootViewController: view)

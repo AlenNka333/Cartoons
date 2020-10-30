@@ -10,17 +10,17 @@ import Foundation
 
 class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
-    let locator: Locator
+    let serviceLocator: Locator
     
     var openPlayerClosure: ((URL) -> Void)?
     
-    init(view: CartoonsViewProtocol, locator: Locator) {
+    init(view: CartoonsViewProtocol, serviceLocator: Locator) {
         self.view = view
-        self.locator = locator
+        self.serviceLocator = serviceLocator
     }
     
     func getData() {
-        guard let service: StorageDataService = locator.resolve(StorageDataService.self) else {
+        guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
         service.checkFoldersExists { [weak self] result in

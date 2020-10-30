@@ -21,16 +21,16 @@ class CustomPlayerControls: UIView {
     @IBOutlet private weak var durationLabel: UILabel!
     
     var stateChangedClosure: (() -> (PlayerState))?
-    var jumpForwardClosure: () -> Void = {}
-    var jumpBackwardClosure: () -> Void = {}
-    var sendTimeClosure: (Double) -> Void = { _ in }
+    var jumpForwardClosure: (() -> Void)?
+    var jumpBackwardClosure: (() -> Void)?
+    var sendTimeClosure: ((Double) -> Void)?
     var needVideoDurationClosure: (() -> (Double))?
     var removeObserverClosure: (() -> Void)?
     var setupObserverClosure: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        Bundle.main.loadNibNamed(Constants.controlsClassName, owner: self, options: nil)
+        Bundle.main.loadNibNamed(AppEnvironment.Classes.controlsClassName, owner: self, options: nil)
         addSubview(controlView)
         controlView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -55,12 +55,17 @@ class CustomPlayerControls: UIView {
     }
     
     @IBAction private func goForwardButtonClicked(_ sender: UIButton) {
-        jumpForwardClosure()
+        guard let closure = jumpForwardClosure else {
+            return
+        }
+        closure()
     }
     
     @IBAction private func goBackwardButtonClicked(_ sender: UIButton) {
-        jumpBackwardClosure()
-    }
+        guard let closure = jumpBackwardClosure else {
+            return
+        }
+        closure()    }
 }
 
 extension CustomPlayerControls {
@@ -68,7 +73,10 @@ extension CustomPlayerControls {
         if let durationClosure = needVideoDurationClosure,
            let removeClosure = removeObserverClosure,
            let setupClosure = setupObserverClosure {
-            sendTimeClosure(Float64(slider.value) * durationClosure())
+            guard let closure = sendTimeClosure else {
+                return
+            }
+            closure(Float64(slider.value) * durationClosure())
             if let touchEvent = event.allTouches?.first {
                 switch touchEvent.phase {
                 case .began:

@@ -21,9 +21,9 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     
     var successSessionClosure: (() -> Void)?
     
-    init(view: VerificationViewProtocol, locator: Locator, verificationId: String, number: String) {
+    init(view: VerificationViewProtocol, serviceLocator: Locator, verificationId: String, number: String) {
         self.view = view
-        self.serviceLocator = locator
+        self.serviceLocator = serviceLocator
         self.verificationId = verificationId
         self.number = number
         view.setLabelText(number: number)

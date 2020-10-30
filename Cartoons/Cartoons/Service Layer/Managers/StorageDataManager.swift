@@ -48,7 +48,7 @@ class StorageDataManager {
     
     func getReferenceList(completion: @escaping (Result<[String], Error>) -> Void) {
         var references = [String]()
-        storageRef.child("movies").listAll { result, error in
+        storageRef.child(AppEnvironment.Firebase.moviesParam).listAll { result, error in
             if let error = error {
                 completion(.failure(error))
                 return

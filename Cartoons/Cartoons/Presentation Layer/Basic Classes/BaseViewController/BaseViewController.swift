@@ -49,6 +49,5 @@ class BaseViewController: UIViewController, BaseViewProtocol {
     
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
     }
 }

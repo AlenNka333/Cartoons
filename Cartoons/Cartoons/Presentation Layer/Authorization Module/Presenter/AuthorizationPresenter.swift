@@ -14,9 +14,9 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     
     var openVerificationClosure: ((String, String) -> Void)?
     
-    init(view: AuthorizationViewProtocol, locator: Locator) {
+    init(view: AuthorizationViewProtocol, serviceLocator: Locator) {
         self.view = view
-        self.serviceLocator = locator
+        self.serviceLocator = serviceLocator
     }
     
     func sendPhoneNumberAction(number: String) {
