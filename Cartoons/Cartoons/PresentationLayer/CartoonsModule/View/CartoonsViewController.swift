@@ -17,7 +17,7 @@ class CartoonsViewController: BaseViewController {
     private var collectionView: UICollectionView?
     private lazy var dataSource = makeDataSource()
     weak var transitionDelegate: CartoonsTransitionDelegate?
-    var videos = Cartoon.allVideos
+    var videos = [Cartoon]()
     var snapshot = SnapShot()
     var presenter: CartoonsViewPresenterProtocol?
     

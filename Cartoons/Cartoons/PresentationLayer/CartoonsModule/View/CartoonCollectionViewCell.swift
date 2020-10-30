@@ -29,7 +29,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         label.clipsToBounds = true
         label.font = UIFont(name: R.font.cinzelDecorativeBold.fontName, size: 25)
         label.backgroundColor = R.color.navigation_bar_color()?.withAlphaComponent(0.6)
-        label.layer.cornerRadius = 10
+        label.layer.cornerRadius = 15
         label.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         label.numberOfLines = .zero
         label.textAlignment = .center

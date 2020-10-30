@@ -59,7 +59,7 @@
 		332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */; };
 		332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */; };
 		332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36025060746008A8F29 /* AuthorizationErrors.swift */; };
-		332BA36925069D38008A8F29 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36825069D38008A8F29 /* Constants.swift */; };
+		332BA36925069D38008A8F29 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36825069D38008A8F29 /* AppEnvironment.swift */; };
 		332BA36B25076084008A8F29 /* VerificationViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36A25076084008A8F29 /* VerificationViewPresenterProtocol.swift */; };
 		332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */; };
 		332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36F25077D9E008A8F29 /* UserDefault.swift */; };
@@ -207,7 +207,7 @@
 		332BA35825060346008A8F29 /* AuthorizationViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewPresenterProtocol.swift; sourceTree = "<group>"; };
 		332BA35A25060543008A8F29 /* AuthorizationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewProtocol.swift; sourceTree = "<group>"; };
 		332BA36025060746008A8F29 /* AuthorizationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationErrors.swift; sourceTree = "<group>"; };
-		332BA36825069D38008A8F29 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		332BA36825069D38008A8F29 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		332BA36A25076084008A8F29 /* VerificationViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewPresenterProtocol.swift; sourceTree = "<group>"; };
 		332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewProtocol.swift; sourceTree = "<group>"; };
 		332BA36F25077D9E008A8F29 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -603,7 +603,7 @@
 		332BA36725069D11008A8F29 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				332BA36825069D38008A8F29 /* Constants.swift */,
+				332BA36825069D38008A8F29 /* AppEnvironment.swift */,
 				33B2AEA52508EF670006BE31 /* NumberFormats.swift */,
 			);
 			path = Constants;
@@ -1205,7 +1205,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/Cartoons/Resources/Generated/R.generated.swift",
+				$SRCROOT/Cartoons/Resources/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1408,7 +1408,7 @@
 				332BA36B25076084008A8F29 /* VerificationViewPresenterProtocol.swift in Sources */,
 				330F4E642530ED2D008D0FC8 /* AuthorizationManager.swift in Sources */,
 				330F4DFA252EEFDC008D0FC8 /* MainScreenAssembly.swift in Sources */,
-				332BA36925069D38008A8F29 /* Constants.swift in Sources */,
+				332BA36925069D38008A8F29 /* AppEnvironment.swift in Sources */,
 				3318E2C9254AC6C5001838E2 /* VerificationTransitionDelegate.swift in Sources */,
 				3373D94E250F63CA0095F78C /* AppData.swift in Sources */,
 				33EAD3AF2522093000128EEB /* ImagePicker.swift in Sources */,

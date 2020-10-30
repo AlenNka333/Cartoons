@@ -19,8 +19,8 @@ class DetailsViewController: BaseViewController {
         let button = CustomButton()
         button.backgroundColor = R.color.sea_blue()
         button.setAttributedTitle(NSAttributedString(string: R.string.localizable.start_watching(),
-                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                  NSAttributedString.Key.font: R.font.aliceRegular(size: 20).unwrapped]),
+                                                     attributes: [.foregroundColor: UIColor.white,
+                                                                  .font: R.font.aliceRegular(size: 20).unwrapped]),
                                   for: .normal)
         return button
     }()

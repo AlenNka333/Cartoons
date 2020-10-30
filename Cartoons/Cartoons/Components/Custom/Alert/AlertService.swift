@@ -10,7 +10,7 @@ import UIKit
 
 class AlertService {    
     func alert(title: String, body: String, alertType: AlertType, completion: ((BTAction) -> Void)? = nil) -> CustomAlertView {
-        let alertVC = CustomAlertView(nibName: Constants.alertClassName, bundle: .main)
+        let alertVC = CustomAlertView(nibName: AppEnvironment.alertClassName, bundle: .main)
         alertVC.alertTitle = title
         alertVC.alertBody = body
         alertVC.alertType = alertType

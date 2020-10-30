@@ -30,7 +30,7 @@ class CustomPlayerControls: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        Bundle.main.loadNibNamed(Constants.controlsClassName, owner: self, options: nil)
+        Bundle.main.loadNibNamed(AppEnvironment.controlsClassName, owner: self, options: nil)
         addSubview(controlView)
         controlView.snp.makeConstraints {
             $0.edges.equalToSuperview()

@@ -8,9 +8,9 @@
 
 import Foundation
 struct AppData {
-    @UserDefault(Constants.verificationId, defaultValue: "")
+    @UserDefault(AppEnvironment.verificationId, defaultValue: "")
     static var verificationID: String
     
-    @UserDefault(Constants.firstComing, defaultValue: true)
+    @UserDefault(AppEnvironment.firstComing, defaultValue: true)
     static var shouldShowOnBoarding: Bool
 }
