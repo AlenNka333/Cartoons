@@ -42,6 +42,9 @@ PODS:
   - GoogleUtilities/Reachability (6.7.2):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.4.0)
+  - Kingfisher (5.15.7):
+    - Kingfisher/Core (= 5.15.7)
+  - Kingfisher/Core (5.15.7)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -58,6 +61,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Storage
+  - Kingfisher
   - R.swift
   - SnapKit
   - SwiftFormat/CLI
@@ -73,6 +77,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - Kingfisher
     - nanopb
     - PromisesObjC
     - R.swift
@@ -90,6 +95,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
@@ -98,6 +104,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 49efde7a5820f9a4fc3cfc04c087556e319ad4a1
   SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
 
-PODFILE CHECKSUM: d135eaac36a64b9ce43885288a575500366db791
+PODFILE CHECKSUM: 87f197c7695d3d50955daec9b9064c67afde884a
 
 COCOAPODS: 1.8.4
