@@ -16,11 +16,11 @@ class BaseViewController: UIViewController, BaseViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupNavigationBar()
     }
     
     func setupUI() {

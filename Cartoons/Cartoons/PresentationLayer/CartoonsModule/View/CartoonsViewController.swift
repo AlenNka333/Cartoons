@@ -35,19 +35,18 @@ class CartoonsViewController: BaseViewController {
         presenter?.getData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func setupNavigationBar() {
-        super.setupNavigationBar()
+        navigationController?.navigationBar.prefersLargeTitles = true
         (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
         title = R.string.localizable.cartoons_screen()
         (navigationController as? BaseNavigationController)?.setupCustomizedUI(image: R.image.navigation_label().unwrapped,
                                                                                subtitle: R.string.localizable.cartoons_screen_subtitle(),
                                                                                isUserInteractionEnabled: false)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func setupUI() {
