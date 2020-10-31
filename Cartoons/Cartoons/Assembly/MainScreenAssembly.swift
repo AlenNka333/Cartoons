@@ -25,7 +25,7 @@ class MainScreenAssembly: Assembly {
             completion(Action.openPlayer, url)
         }
         controllers.append(cartoons)
-        controllers.append(FavouritesAssembly.makeFavouritesController())
+        controllers.append(FavouritesAssembly.makeFavouritesController(serviceLocator: serviceLocator))
         let settings = SettingsAssembly.makeSettingsController(serviceLocator: serviceLocator) {
             completion(Action.successSession, nil)
         }

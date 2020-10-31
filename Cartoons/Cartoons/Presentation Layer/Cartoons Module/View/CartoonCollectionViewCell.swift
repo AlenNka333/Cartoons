@@ -11,20 +11,16 @@ import Foundation
 import UIKit
 
 class CartoonCollectionViewCell: UICollectionViewCell {
-    static var reuseIdentifier: String {
-      return String(describing: CartoonCollectionViewCell.self)
-    }
-    var thumbnailView: UIImageView = {
+    private var thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = R.color.wisteria()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
         return imageView
     }()
-    var titleLabel: UILabel = {
-        let label = BorderedLabel(withInsets: 5, 5, left: 10, 10)
+    private var titleLabel: UILabel = {
+        let label = BorderedLabel(withInsets: 5, bottom: 5, left: 10, right: 10)
         label.textColor = .white
         label.clipsToBounds = true
         label.font = UIFont(name: R.font.cinzelDecorativeBold.fontName, size: 25)
@@ -35,7 +31,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         return label
     }()
-    var favouritesIndicatorImage: UIImageView = {
+    private var favouritesIndicatorImage: UIImageView = {
         let view = UIImageView()
         view.image = R.image.star()
         return view
@@ -44,7 +40,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     var video: Cartoon? {
       didSet {
         if let title = video?.title, let thumbnail = video?.thumbnail {
-            thumbnailView.kf.setImage(with: thumbnail)
+            thumbnailImageView.kf.setImage(with: thumbnail)
             titleLabel.text = title
         } else if let title = video?.title, let link = video?.link {
             generateThumbnail(with: link)
@@ -58,7 +54,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         DispatchQueue.global(qos: .userInteractive).async {
             let image = UIImage.generateThumbnail(asset: avAsset)
             DispatchQueue.main.async {
-                self.thumbnailView.image = image
+                self.thumbnailImageView.image = image
             }
         }
     }
@@ -69,10 +65,9 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOffset = CGSize(width: 3, height: 8)
         contentView.layer.shadowOpacity = 0.6
         contentView.layer.shadowRadius = 10
-        contentView.layer.masksToBounds = false
-        
-        contentView.addSubview(thumbnailView)
-        thumbnailView.snp.makeConstraints {
+
+        contentView.addSubview(thumbnailImageView)
+        thumbnailImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         contentView.addSubview(titleLabel)
@@ -92,7 +87,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        thumbnailView.image = nil
+        thumbnailImageView.image = nil
     }
     
     required init?(coder: NSCoder) {

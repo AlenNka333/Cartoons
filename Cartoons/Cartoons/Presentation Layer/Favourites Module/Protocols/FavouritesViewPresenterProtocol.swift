@@ -9,4 +9,5 @@
 import Foundation
 protocol FavouritesViewPresenterProtocol: PresenterProtocol, AnyObject {
     func showSuccess(success: String)
+    func getData()
 }

@@ -320,7 +320,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 26 images.
+  /// This `R.image` struct is generated, and contains static references to 28 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -328,6 +328,8 @@ struct R: Rswift.Validatable {
     static let clapperboard = Rswift.ImageResource(bundle: R.hostingBundle, name: "clapperboard")
     /// Image `crown`.
     static let crown = Rswift.ImageResource(bundle: R.hostingBundle, name: "crown")
+    /// Image `download_button`.
+    static let download_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "download_button")
     /// Image `favourites`.
     static let favourites = Rswift.ImageResource(bundle: R.hostingBundle, name: "favourites")
     /// Image `flower`.
@@ -350,6 +352,8 @@ struct R: Rswift.Validatable {
     static let main_screen_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_screen_background")
     /// Image `navigation_label`.
     static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
+    /// Image `pause`.
+    static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
     /// Image `play`.
     static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
     /// Image `princess_ariel`.
@@ -393,6 +397,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "crown", bundle: ..., traitCollection: ...)`
     static func crown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.crown, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "download_button", bundle: ..., traitCollection: ...)`
+    static func download_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.download_button, compatibleWith: traitCollection)
     }
     #endif
 
@@ -470,6 +481,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "navigation_label", bundle: ..., traitCollection: ...)`
     static func navigation_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.navigation_label, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "pause", bundle: ..., traitCollection: ...)`
+    static func pause(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.pause, compatibleWith: traitCollection)
     }
     #endif
 

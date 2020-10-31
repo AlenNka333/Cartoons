@@ -27,8 +27,3 @@ class Cartoon: Hashable {
         lhs.id == rhs.id
     }
 }
-
-// MARK: - Video Sample Data
-extension Cartoon {
-  static var allVideos = [Cartoon]()
-}

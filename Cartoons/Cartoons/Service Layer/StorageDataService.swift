@@ -13,7 +13,7 @@ import Foundation
 class StorageDataService: StorageDataServiceProtocol {
     private let storageDataManager = StorageDataManager()
     private var folders = [String]()
-    private var cartoons = [Cartoon]()
+    var cartoons = [Cartoon]()
     
     func saveImage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void) {
         storageDataManager.saveImage(imageData: imageData, completion: completion)
