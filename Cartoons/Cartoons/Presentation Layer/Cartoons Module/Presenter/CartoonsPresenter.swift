@@ -12,8 +12,6 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
     let serviceLocator: Locator
     
-    var openPlayerClosure: ((URL) -> Void)?
-    
     init(view: CartoonsViewProtocol, serviceLocator: Locator) {
         self.view = view
         self.serviceLocator = serviceLocator
@@ -39,12 +37,5 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     
     func showError(error: Error) {
         view.showError(error: error)
-    }
-    
-    func openPlayer(with link: URL) {
-        guard let closure = openPlayerClosure else {
-            return
-        }
-        closure(link)
     }
 }

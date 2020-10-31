@@ -13,6 +13,7 @@ class PageViewController: UIPageViewController {
         static let initialPage: Int = 0
     }
     
+    weak var transitionDelegate: OnboardingTransitionDelegate?
     var presenter: PageControllerPresenter?
     private var pages = [UIViewController]()
     private lazy var pageControl: UIPageControl = {
@@ -88,7 +89,7 @@ extension PageViewController: UIPageViewControllerDataSource {
             if viewControllerIndex < pages.count - 1 {
                 return pages[viewControllerIndex + 1]
             }
-            presenter.showAuthorizationScreen()
+           transitionDelegate?.transit()
         }
         return nil
     }

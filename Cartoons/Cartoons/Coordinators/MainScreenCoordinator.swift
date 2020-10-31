@@ -8,35 +8,59 @@
 
 import UIKit
 
-class MainScreenCoordinator: CoordinatorProtocol {
+class MainScreenCoordinator: Coordinator {
     let serviceLocator: Locator
     
-    var parent: CoordinatorProtocol?
+    var childCoordinators: [Coordinator?]
+    var parent: Coordinator?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
     init(serviceLocator: Locator) {
         self.serviceLocator = serviceLocator
         self.rootController = UINavigationController()
+        self.childCoordinators = [Coordinator?]()
+    }
+    
+    func addChild(_ coordinator: Coordinator?) {
+        coordinator?.parent = self
+        childCoordinators.append(coordinator)
     }
     
     func start() {
-        rootController = MainScreenAssembly.makeTabBarController(serviceLocator: serviceLocator,
-                                                                 completion: { [weak self] action, link in
-                                                                    switch action {
-                                                                    case .openPlayer:
-                                                                        self?.openVideoPlayer(with: link)
-                                                                    case .successSession:
-                                                                        guard let closure = self?.successSessionClosure else {
-                                                                            return
-                                                                        }
-                                                                        closure()
-                                                                    }
-                                                                 })
+        let cartoons = BaseNavigationController()
+        cartoons.tabBarItem = UITabBarItem(title: R.string.localizable.cartoons_screen(), image: R.image.clapperboard(), tag: 0)
+        
+        let favourites = BaseNavigationController()
+        favourites.tabBarItem = UITabBarItem(title: R.string.localizable.favourites_screen(), image: R.image.crown(), tag: 0)
+        
+        let settings = BaseNavigationController()
+        settings.tabBarItem = UITabBarItem(title: R.string.localizable.settings_screen(), image: R.image.flower(), tag: 0)
+        
+        let tabBarController = TabBarViewController(controllers: [cartoons, favourites, settings])
+        rootController = tabBarController
+        
+        let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(rootController: cartoons)
+        addChild(cartoonsCoordinator)
+        let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(rootController: favourites)
+        addChild(favouritesCoordinator)
+        let settingsCoordinator = SettingsAssembly.makeSettingsCoordinator(rootController: settings)
+        addChild(settingsCoordinator)
+        settingsCoordinator.transitionDelegate = self
+        
+        cartoonsCoordinator.start()
+        favouritesCoordinator.start()
+        settingsCoordinator.start()
     }
-    
-    func openVideoPlayer(with link: URL?) {
-        let view = PlayerAssembly.makePlayerController(with: link)
-        ((rootController as? TabBarViewController)?.selectedViewController as? UINavigationController)?.pushViewController(view, animated: true)
+    deinit {
+        print("Main Fail")
+    }
+}
+
+extension MainScreenCoordinator: TransitionDelegate {
+    func transit() {
+        successSessionClosure?()
+        childCoordinators.forEach {  $0?.parent = nil }
+        childCoordinators.removeAll()
     }
 }

@@ -15,11 +15,11 @@ class BorderedLabel: UILabel {
         var leftInset: CGFloat
         var rightInset: CGFloat
 
-        required init(withInsets top: CGFloat, bottom: CGFloat, left: CGFloat, right: CGFloat) {
-            self.topInset = top
-            self.bottomInset = bottom
-            self.leftInset = left
-            self.rightInset = right
+        required init(with inset: UIEdgeInsets) {
+            topInset = inset.top
+            bottomInset = inset.bottom
+            leftInset = inset.left
+            rightInset = inset.right
             super.init(frame: CGRect.zero)
         }
 

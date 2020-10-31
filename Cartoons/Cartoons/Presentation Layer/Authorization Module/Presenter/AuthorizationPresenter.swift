@@ -12,8 +12,6 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
     let view: AuthorizationViewProtocol
     let serviceLocator: Locator
     
-    var openVerificationClosure: ((String, String) -> Void)?
-    
     init(view: AuthorizationViewProtocol, serviceLocator: Locator) {
         self.view = view
         self.serviceLocator = serviceLocator
@@ -28,10 +26,7 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
             self?.view.stopActivityIndicator()
             switch result {
             case let .success(verificationId):
-                guard let closure = self?.openVerificationClosure else {
-                    return
-                }
-                closure(verificationId, number)
+                self?.view.transit(verificationId: verificationId)
             case .failure(let error):
                 self?.view.showError(error: error)
             }

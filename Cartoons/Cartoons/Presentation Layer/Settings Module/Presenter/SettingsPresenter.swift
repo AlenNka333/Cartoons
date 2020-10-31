@@ -12,8 +12,6 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
     let serviceLocator: Locator
     
-    var successSessionClosure: (() -> Void)?
-    
     init(view: SettingsViewProtocol, serviceLocator: Locator) {
         self.view = view
         self.serviceLocator = serviceLocator
@@ -22,7 +20,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         }
         view.showPhoneLabel(number: service.phoneNumber.unwrapped)
     }
-    
+
     func showProfileImage() {
         guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
@@ -56,10 +54,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         service.signOut { [weak self] result in
             switch result {
             case .success:
-                guard let closure = self?.successSessionClosure else {
-                    return
-                }
-                closure()
+                self?.view.transit()
             case .failure(let error):
                 self?.view.showError(error: error)
             }

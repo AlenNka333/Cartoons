@@ -8,10 +8,10 @@
 
 import UIKit
 
-class AuthorizationCoordinator: CoordinatorProtocol {
+class AuthorizationCoordinator: Coordinator {
     let serviceLocator: Locator
     
-    var parent: CoordinatorProtocol?
+    var parent: Coordinator?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
@@ -21,22 +21,27 @@ class AuthorizationCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        let view = AuthorizationAssembly.makeAuthorizationController(serviceLocator: serviceLocator) { [weak self] verificationId, number in
-            self?.openVerificationScreen(verificationId: verificationId, number: number)
-        }
-        
+        let view = AuthorizationAssembly.makeAuthorizationController(serviceLocator: serviceLocator)
+        view.transitionDelegate = self
         (rootController as? UINavigationController)?.pushViewController(view, animated: true)
     }
     
-    func openVerificationScreen(verificationId: String, number: String) {
+    func openVerificationScreen(verificationId: String) {
         let view = AuthorizationAssembly.makeVerificationController(serviceLocator: serviceLocator,
-                                                                    verificationId: verificationId,
-                                                                    number: number) { [weak self] in
-            guard let closure = self?.successSessionClosure else {
-                return
-            }
-            closure()
-        }
+                                                                    verificationId: verificationId)
+        view.transitionDelegate = self
         (rootController as? UINavigationController)?.pushViewController(view, animated: true)
+    }
+}
+
+extension AuthorizationCoordinator: AuthorizationTransitionDelegate {
+    func transit(_ verificationId: String) {
+        openVerificationScreen(verificationId: verificationId)
+    }
+}
+
+extension AuthorizationCoordinator: VerificationTransitionDelegate {
+    func transit() {
+        successSessionClosure?()
     }
 }

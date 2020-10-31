@@ -1,6 +1,7 @@
 import UIKit
 
 class AuthorizationViewController: BaseViewController {
+    weak var transitionDelegate: AuthorizationTransitionDelegate?
     var presenter: AuthorizationViewPresenterProtocol?
     
     private lazy var appLabelView = CustomLabelView()
@@ -71,6 +72,9 @@ class AuthorizationViewController: BaseViewController {
 }
 
 extension AuthorizationViewController: AuthorizationViewProtocol {
+    func transit(verificationId: String) {
+        transitionDelegate?.transit(verificationId)
+    }
 }
 
 extension AuthorizationViewController {

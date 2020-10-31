@@ -63,10 +63,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
             case .success:
-                guard let closure = self?.successSessionClosure else {
-                    return
-                }
-                closure()
+                self?.view.transit()
             case let .failure(error):
                 self?.view.showError(error: error)
             }

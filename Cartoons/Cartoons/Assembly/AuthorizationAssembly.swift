@@ -16,21 +16,16 @@ class AuthorizationAssembly: Assembly {
     static func makeAuthorizationController(serviceLocator: Locator, completion: @escaping (String, String) -> Void) -> AuthorizationViewController {
         let view = AuthorizationViewController()
         let presenter = AuthorizationPresenter(view: view, serviceLocator: serviceLocator)
-        presenter.openVerificationClosure = completion
         view.presenter = presenter
         return view
     }
     
     static func makeVerificationController(serviceLocator: Locator,
-                                           verificationId: String,
-                                           number: String,
-                                           completion: @escaping (() -> Void)) -> VerificationViewController {
+                                           verificationId: String) -> VerificationViewController {
         let view = VerificationViewController()
         let presenter = VerificationPresenter(view: view,
                                               serviceLocator: serviceLocator,
-                                              verificationId: verificationId,
-                                              number: number)
-        presenter.successSessionClosure = completion
+                                              verificationId: verificationId)
         view.presenter = presenter
         return view
     }

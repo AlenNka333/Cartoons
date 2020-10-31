@@ -11,15 +11,7 @@ import Foundation
 class PageControllerPresenter: PagePresenterProtocol {
     let view: PageViewControllerProtocol
     
-    var successSessionClosure: (() -> Void)?
-    
     init(view: PageViewControllerProtocol) {
         self.view = view
-    }
-    func showAuthorizationScreen() {
-        guard let closure = successSessionClosure else {
-            return
-        }
-        closure()
     }
 }

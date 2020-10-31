@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<<<<<<< HEAD
     <device id="retina6_1" orientation="portrait" appearance="light"/>
+=======
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+>>>>>>> feature/details_flow
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
@@ -36,6 +40,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="715-6n-JpH">
                             <rect key="frame" x="40" y="184" width="295" height="250"/>
                             <subviews>
+<<<<<<< HEAD
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cL5-MU-yi9">
                                     <rect key="frame" x="20" y="190" width="255" height="32"/>
                                     <subviews>
@@ -81,6 +86,49 @@
                                         </label>
                                     </subviews>
                                 </stackView>
+=======
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTG-r8-od5">
+                                    <rect key="frame" x="20" y="190" width="115" height="40"/>
+                                    <color key="backgroundColor" red="0.083722442957390592" green="0.73233264593908631" blue="0.083488200497050663" alpha="0.79989833047945202" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="ow7-z2-zNV"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="17"/>
+                                    <state key="normal" title="Cancel">
+                                        <color key="titleColor" red="0.993053138256073" green="0.99322277307510376" blue="0.99304240942001343" alpha="0.9995117188" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onClickCancelAction:" destination="-1" eventType="touchUpInside" id="tiq-sd-WN4"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSF-1V-CHJ">
+                                    <rect key="frame" x="20" y="98.5" width="255" height="51.5"/>
+                                    <string key="text">messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessage</string>
+                                    <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQn-ZA-pHb">
+                                    <rect key="frame" x="20" y="52" width="255" height="23"/>
+                                    <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70E-Ew-7E0">
+                                    <rect key="frame" x="159" y="190" width="115" height="40"/>
+                                    <color key="backgroundColor" red="0.083722442960000004" green="0.73233264590000002" blue="0.083488200499999998" alpha="0.79989833050000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="115" id="HNx-kt-KUp"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="17"/>
+                                    <state key="normal" title="Yes">
+                                        <color key="titleColor" red="0.99305313829999997" green="0.99322277309999996" blue="0.99304240939999999" alpha="0.9995117188" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onClickAgreeAction:" destination="-1" eventType="touchUpInside" id="U0A-Wh-NQr"/>
+                                    </connections>
+                                </button>
+>>>>>>> feature/details_flow
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -112,6 +160,10 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+<<<<<<< HEAD
+=======
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+>>>>>>> feature/details_flow
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="bU0-do-5ea" secondAttribute="trailing" id="20H-dH-qjE"/>
                 <constraint firstItem="bU0-do-5ea" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="PNG-cm-mFa"/>

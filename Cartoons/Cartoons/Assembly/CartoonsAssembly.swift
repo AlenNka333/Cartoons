@@ -9,14 +9,14 @@
 import UIKit
 
 class CartoonsAssembly: Assembly {
-    static func makeCartoonsController(serviceLocator: Locator,
-                                       completion: @escaping((URL) -> Void)) -> UIViewController {
+    static func makeCartoonsCoordinator(rootController: UINavigationController) -> CartoonsCoordinator {
+        CartoonsCoordinator(rootController: rootController)
+    }
+    
+    static func makeCartoonsController(serviceLocator: Locator) -> CartoonsViewController {
         let view = CartoonsViewController()
         let presenter = CartoonsPresenter(view: view, serviceLocator: serviceLocator)
         view.presenter = presenter
-        presenter.openPlayerClosure = completion
-        let navigation = BaseNavigationController(rootViewController: view)
-        navigation.tabBarItem = UITabBarItem(title: R.string.localizable.cartoons_screen(), image: R.image.clapperboard(), tag: 0)
-        return navigation
+        return view
     }
 }

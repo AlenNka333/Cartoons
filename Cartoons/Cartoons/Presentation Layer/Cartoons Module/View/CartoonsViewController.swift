@@ -16,6 +16,7 @@ class CartoonsViewController: BaseViewController {
     
     private var collectionView: UICollectionView?
     private lazy var dataSource = makeDataSource()
+    weak var transitionDelegate: CartoonsTransitionDelegate?
     var videos = [Cartoon]()
     var snapshot = SnapShot()
     var presenter: CartoonsViewPresenterProtocol?
@@ -34,19 +35,18 @@ class CartoonsViewController: BaseViewController {
         presenter?.getData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func setupNavigationBar() {
-        super.setupNavigationBar()
+        navigationController?.navigationBar.prefersLargeTitles = true
         (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
         title = R.string.localizable.cartoons_screen()
         (navigationController as? BaseNavigationController)?.setupCustomizedUI(image: R.image.navigation_label().unwrapped,
                                                                                subtitle: R.string.localizable.cartoons_screen_subtitle(),
                                                                                isUserInteractionEnabled: false)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func setupUI() {
@@ -89,14 +89,12 @@ extension CartoonsViewController: CartoonsViewProtocol {
 
 extension CartoonsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let video = dataSource.itemIdentifier(for: indexPath) else {
-          return
+        guard let cartoon = dataSource.itemIdentifier(for: indexPath) else {
+            return
         }
-        guard let link = video.link else {
-          print("Invalid link")
-          return
-        }
-        presenter?.openPlayer(with: link)
+        hidesBottomBarWhenPushed = true
+        transitionDelegate?.transit(cartoon: cartoon)
+        hidesBottomBarWhenPushed = false
     }
 }
 
