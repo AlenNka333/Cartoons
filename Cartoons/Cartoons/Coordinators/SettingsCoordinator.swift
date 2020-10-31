@@ -10,20 +10,19 @@ import Foundation
 import UIKit
 
 class SettingsCoordinator: Coordinator {
-    let storageService = StorageDataService()
-    let authorizationService = AuthorizationService()
+    let serviceLocator: Locator
     
     weak var transitionDelegate: TransitionDelegate?
     var parent: Coordinator?
     var rootController: UINavigationController?
     
-    init(rootController: UINavigationController) {
+    init(rootController: UINavigationController, serviceLocator: Locator) {
         self.rootController = rootController
+        self.serviceLocator = serviceLocator
     }
     
     func start() {
-        let settingsController = SettingsAssembly.makeSettingsController(storageService: storageService,
-                                                                         authorizationService: authorizationService)
+        let settingsController = SettingsAssembly.makeSettingsController(serviceLocator: serviceLocator)
         settingsController.transitionDelegate = self
         rootController?.pushViewController(settingsController, animated: false)
     }

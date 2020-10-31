@@ -38,7 +38,7 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
         return button
     }()
     private var titleLabel: UILabel = {
-        let label = BorderedLabel(withInsets: 5, bottom: 5, left: 5, right: 5)
+        let label = BorderedLabel(with: .init(top: 5, left: 10, bottom: 10, right: 5))
         label.textColor = .white
         label.clipsToBounds = true
         label.font = UIFont(name: R.font.cinzelDecorativeBold.fontName, size: 18)

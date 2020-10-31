@@ -14,7 +14,7 @@ enum Action {
 }
 
 class MainScreenAssembly: Assembly {
-    static func makeMainScreenCoordinator() -> MainScreenCoordinator {
-        return MainScreenCoordinator()
+    static func makeMainScreenCoordinator(serviceLocator: Locator) -> MainScreenCoordinator {
+        return MainScreenCoordinator(serviceLocator: serviceLocator)
     }
 }

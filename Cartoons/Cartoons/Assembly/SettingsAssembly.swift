@@ -9,8 +9,8 @@
 import UIKit
 
 class SettingsAssembly: Assembly {
-    static func makeSettingsCoordinator(rootController: UINavigationController) -> SettingsCoordinator {
-        SettingsCoordinator(rootController: rootController)
+    static func makeSettingsCoordinator(rootController: UINavigationController, serviceLocator: Locator) -> SettingsCoordinator {
+        SettingsCoordinator(rootController: rootController, serviceLocator: serviceLocator)
     }
     
     static func makeSettingsController(serviceLocator: Locator) -> SettingsViewController {

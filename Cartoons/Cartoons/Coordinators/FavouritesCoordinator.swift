@@ -10,16 +10,19 @@ import Foundation
 import UIKit
 
 class FavouritesCoordinator: Coordinator {
+    let serviceLocator: Locator
+    
     var parent: Coordinator?
     var rootController: UINavigationController?
     var successSessionClosure: (() -> Void)?
     
-    init(rootController: UINavigationController) {
+    init(rootController: UINavigationController, serviceLocator: Locator) {
         self.rootController = rootController
+        self.serviceLocator = serviceLocator
     }
     
     func start() {
-        let favouritesController = FavouritesAssembly.makeFavouritesController()
+        let favouritesController = FavouritesAssembly.makeFavouritesController(serviceLocator: serviceLocator)
         rootController?.pushViewController(favouritesController, animated: false)
     }
     

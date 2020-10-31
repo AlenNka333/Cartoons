@@ -13,7 +13,7 @@ class AuthorizationAssembly: Assembly {
         return AuthorizationCoordinator(serviceLocator: serviceLocator)
     }
     
-    static func makeAuthorizationController(serviceLocator: Locator, completion: @escaping (String, String) -> Void) -> AuthorizationViewController {
+    static func makeAuthorizationController(serviceLocator: Locator) -> AuthorizationViewController {
         let view = AuthorizationViewController()
         let presenter = AuthorizationPresenter(view: view, serviceLocator: serviceLocator)
         view.presenter = presenter

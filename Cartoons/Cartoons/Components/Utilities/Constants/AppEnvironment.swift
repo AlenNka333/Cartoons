@@ -9,10 +9,15 @@
 import Foundation
 
 enum AppEnvironment {
-    static let verificationId: String = "firebase_verification"
-    static let alertClassName: String = "AlertView"
-    static let firstComing: String = "first_coming"
-    static let labelClassName: String = "LabelView"
-    static let profileClassName: String = "ProfileView"
-    static let controlsClassName: String = "PlayerControlsView"
+    enum Firebase {
+        static let verificationId: String = "firebase_verification"
+        static let moviesParam: String = "movies"
+        static let firstComing: String = "first_coming"
+    }
+    enum Classes {
+        static let alertClassName: String = "AlertView"
+        static let labelClassName: String = "LabelView"
+        static let profileClassName: String = "ProfileView"
+        static let controlsClassName: String = "PlayerControlsView"
+    }
 }

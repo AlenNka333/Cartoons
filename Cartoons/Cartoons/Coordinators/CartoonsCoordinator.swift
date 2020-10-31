@@ -10,17 +10,18 @@ import Foundation
 import UIKit
 
 class CartoonsCoordinator: Coordinator {
-    let storageService = StorageDataService()
+    let serviceLocator: Locator
     
     var parent: Coordinator?
     var rootController: UINavigationController?
     
-    init(rootController: UINavigationController) {
+    init(rootController: UINavigationController, serviceLocator: Locator) {
         self.rootController = rootController
+        self.serviceLocator = serviceLocator
     }
     
     func start() {
-        let cartoonsController = CartoonsAssembly.makeCartoonsController(storageService: storageService)
+        let cartoonsController = CartoonsAssembly.makeCartoonsController(serviceLocator: serviceLocator)
         cartoonsController.transitionDelegate = self
         rootController?.pushViewController(cartoonsController, animated: false)
     }

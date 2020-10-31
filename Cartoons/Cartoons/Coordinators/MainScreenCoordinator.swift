@@ -40,11 +40,11 @@ class MainScreenCoordinator: Coordinator {
         let tabBarController = TabBarViewController(controllers: [cartoons, favourites, settings])
         rootController = tabBarController
         
-        let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(rootController: cartoons)
+        let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(rootController: cartoons, serviceLocator: serviceLocator)
         addChild(cartoonsCoordinator)
-        let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(rootController: favourites)
+        let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(rootController: favourites, serviceLocator: serviceLocator)
         addChild(favouritesCoordinator)
-        let settingsCoordinator = SettingsAssembly.makeSettingsCoordinator(rootController: settings)
+        let settingsCoordinator = SettingsAssembly.makeSettingsCoordinator(rootController: settings, serviceLocator: serviceLocator)
         addChild(settingsCoordinator)
         settingsCoordinator.transitionDelegate = self
         
