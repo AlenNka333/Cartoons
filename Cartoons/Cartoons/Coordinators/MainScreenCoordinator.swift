@@ -52,9 +52,6 @@ class MainScreenCoordinator: Coordinator {
         favouritesCoordinator.start()
         settingsCoordinator.start()
     }
-    deinit {
-        print("Main Fail")
-    }
 }
 
 extension MainScreenCoordinator: TransitionDelegate {

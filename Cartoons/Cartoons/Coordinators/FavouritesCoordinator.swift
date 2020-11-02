@@ -14,7 +14,6 @@ class FavouritesCoordinator: Coordinator {
     
     var parent: Coordinator?
     var rootController: UINavigationController?
-    var successSessionClosure: (() -> Void)?
     
     init(rootController: UINavigationController, serviceLocator: Locator) {
         self.rootController = rootController
@@ -23,10 +22,28 @@ class FavouritesCoordinator: Coordinator {
     
     func start() {
         let favouritesController = FavouritesAssembly.makeFavouritesController(serviceLocator: serviceLocator)
+        favouritesController.transitionDelegate = self
         rootController?.pushViewController(favouritesController, animated: false)
     }
-    
-    deinit {
-        print("Fav Fail")
+}
+
+extension FavouritesCoordinator {
+    func openVideoPlayer(with link: URL?) {
+        let player = PlayerAssembly.makePlayerController(with: link)
+        player.transitionDelegate = self
+        rootController?.pushViewController(player, animated: true)
     }
 }
+
+extension FavouritesCoordinator: FavouritesTransitionDelegate {
+    func transit(link: URL) {
+        openVideoPlayer(with: link)
+    }
+}
+
+extension FavouritesCoordinator: PlayerTransitionDelegate {
+    func transit() {
+        rootController?.popViewController(animated: true)
+    }
+}
+

@@ -14,6 +14,7 @@ class FavouritesViewController: BaseViewController {
     
     private var collectionView: UICollectionView?
     private var dataSource: DataSource?
+    weak var transitionDelegate: FavouritesTransitionDelegate?
     var presenter: FavouritesViewPresenterProtocol?
     var videos = [Cartoon]()
     var snapshot = SnapShot()
@@ -80,13 +81,16 @@ extension FavouritesViewController: FavouritesViewProtocol {
 
 extension FavouritesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let video = dataSource?.itemIdentifier(for: indexPath) else {
+        guard let cartoon = dataSource?.itemIdentifier(for: indexPath) else {
             return
         }
-        guard let link = video.link else {
+        guard let link = cartoon.link else {
             print("Invalid link")
             return
         }
+        hidesBottomBarWhenPushed = true
+        transitionDelegate?.transit(link: link)
+        hidesBottomBarWhenPushed = false
     }
 }
 
@@ -94,7 +98,8 @@ extension FavouritesViewController {
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: collectionView ?? UICollectionView(),
                                     cellProvider: { collectionView, indexPath, cartoon -> UICollectionViewCell? in
-                                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? FavouritesCollectionViewCell
+                                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
+                                                                                      for: indexPath) as? FavouritesCollectionViewCell
                                         cell?.video = cartoon
                                         return cell
                                     })
@@ -109,7 +114,7 @@ extension FavouritesViewController {
     }
     
     func configureLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout { _, _ -> NSCollectionLayoutSection in
             return self.createMainSection()
         }
         return layout

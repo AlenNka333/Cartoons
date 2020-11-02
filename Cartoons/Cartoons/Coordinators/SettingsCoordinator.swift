@@ -26,10 +26,6 @@ class SettingsCoordinator: Coordinator {
         settingsController.transitionDelegate = self
         rootController?.pushViewController(settingsController, animated: false)
     }
-    
-    deinit {
-        print("Settings Fail")
-    }
 }
 
 extension SettingsCoordinator: SettingsTransitionDelegate {

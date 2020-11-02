@@ -22,12 +22,7 @@ class CartoonsCoordinator: Coordinator {
     
     func start() {
         let cartoonsController = CartoonsAssembly.makeCartoonsController(serviceLocator: serviceLocator)
-        cartoonsController.transitionDelegate = self
         rootController?.pushViewController(cartoonsController, animated: false)
-    }
-    
-    deinit {
-        print("Cartoons Fail")
     }
 }
 

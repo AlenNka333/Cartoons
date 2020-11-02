@@ -97,6 +97,7 @@
 		33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A17536253769460062EC8C /* CustomPlayerControls.swift */; };
 		33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1753B253769D80062EC8C /* CustomSlider.swift */; };
 		33A1755825376B390062EC8C /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A1755725376B390062EC8C /* PlayerControlsView.xib */; };
+		33A1F7B1254FE9CB00407056 /* FavouritesTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7B0254FE9CB00407056 /* FavouritesTransitionDelegate.swift */; };
 		33A3BA2B251CE142004EA0D9 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2A251CE142004EA0D9 /* General.swift */; };
 		33A3BA2D251E140F004EA0D9 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2C251E140F004EA0D9 /* AlertService.swift */; };
 		33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */; };
@@ -250,6 +251,7 @@
 		33A17536253769460062EC8C /* CustomPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControls.swift; sourceTree = "<group>"; };
 		33A1753B253769D80062EC8C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		33A1755725376B390062EC8C /* PlayerControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
+		33A1F7B0254FE9CB00407056 /* FavouritesTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTransitionDelegate.swift; sourceTree = "<group>"; };
 		33A3BA2A251CE142004EA0D9 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		33A3BA2C251E140F004EA0D9 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional + Extension.swift"; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 			children = (
 				332227C62518972300EF56B8 /* FavouritesViewPresenterProtocol.swift */,
 				332227C82518973500EF56B8 /* FavouritesViewProtocol.swift */,
+				33A1F7B0254FE9CB00407056 /* FavouritesTransitionDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1386,6 +1389,7 @@
 				3373D945250F588A0095F78C /* PageViewController.swift in Sources */,
 				33B2AEBB250A702D0006BE31 /* TabBarViewController.swift in Sources */,
 				33104A6E2535846100A90ED7 /* CartoonCollectionViewCell.swift in Sources */,
+				33A1F7B1254FE9CB00407056 /* FavouritesTransitionDelegate.swift in Sources */,
 				337BF2C4254DB6260057D685 /* VideoPlayerViewController.swift in Sources */,
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				3355FA882540343D00C0B192 /* BaseViewController.swift in Sources */,

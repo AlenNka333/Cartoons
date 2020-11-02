@@ -28,7 +28,7 @@ class DetailsViewController: BaseViewController {
     private lazy var addToFavouritesButton: CustomButton = {
         let button = CustomButton()
         button.backgroundColor = R.color.sky_blue()
-        button.setImage(R.image.star(), for: .normal)
+        button.setImage(R.image.download_button(), for: .normal)
         return button
     }()
     private lazy var titleLabel: UILabel = {
