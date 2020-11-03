@@ -17,4 +17,8 @@ class UserDataService: UserDataServiceProtocol {
     var userPhoneNumber: String? {
         userDataManager.getUserPhoneNumber()
     }
+    
+    func getLoadedFiles() {
+        
+    }
 }

@@ -100,6 +100,8 @@
 		33A1F7B1254FE9CB00407056 /* FavouritesTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7B0254FE9CB00407056 /* FavouritesTransitionDelegate.swift */; };
 		33A1F7B6254FF56300407056 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7B5254FF56300407056 /* LoadingService.swift */; };
 		33A1F7B9254FF5E000407056 /* LoadingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7B8254FF5E000407056 /* LoadingServiceProtocol.swift */; };
+		33A1F7C82551605800407056 /* UserDataServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7C72551605800407056 /* UserDataServiceDelegate.swift */; };
+		33A1F7CC2551823B00407056 /* FilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7CB2551823A00407056 /* FilesManager.swift */; };
 		33A3BA2B251CE142004EA0D9 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2A251CE142004EA0D9 /* General.swift */; };
 		33A3BA2D251E140F004EA0D9 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2C251E140F004EA0D9 /* AlertService.swift */; };
 		33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */; };
@@ -256,6 +258,8 @@
 		33A1F7B0254FE9CB00407056 /* FavouritesTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTransitionDelegate.swift; sourceTree = "<group>"; };
 		33A1F7B5254FF56300407056 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
 		33A1F7B8254FF5E000407056 /* LoadingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingServiceProtocol.swift; sourceTree = "<group>"; };
+		33A1F7C72551605800407056 /* UserDataServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataServiceDelegate.swift; sourceTree = "<group>"; };
+		33A1F7CB2551823A00407056 /* FilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesManager.swift; sourceTree = "<group>"; };
 		33A3BA2A251CE142004EA0D9 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		33A3BA2C251E140F004EA0D9 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional + Extension.swift"; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 				330F4E3725304D72008D0FC8 /* StorageDataServiceProtocol.swift */,
 				330F4E6F2530F5D6008D0FC8 /* UserDataServiceProtocol.swift */,
 				33A1F7B8254FF5E000407056 /* LoadingServiceProtocol.swift */,
+				33A1F7C72551605800407056 /* UserDataServiceDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				330F4E632530ED2D008D0FC8 /* AuthorizationManager.swift */,
 				330F4E662530EE7B008D0FC8 /* StorageDataManager.swift */,
 				330F4E742530F65C008D0FC8 /* UserDataManager.swift */,
+				33A1F7CB2551823A00407056 /* FilesManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1354,6 +1360,7 @@
 				338614B425386B9200A24D4F /* PlayerView.swift in Sources */,
 				3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */,
 				33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */,
+				33A1F7C82551605800407056 /* UserDataServiceDelegate.swift in Sources */,
 				332227CF25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift in Sources */,
 				33127B662534C51000B84FAE /* VideoPlayerViewProtocol.swift in Sources */,
 				3355FA7B2540182200C0B192 /* BorderedLabel.swift in Sources */,
@@ -1407,6 +1414,7 @@
 				332227C72518972300EF56B8 /* FavouritesViewPresenterProtocol.swift in Sources */,
 				33B660D12502E8A700CA562E /* VerificationViewPresenter.swift in Sources */,
 				33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */,
+				33A1F7CC2551823B00407056 /* FilesManager.swift in Sources */,
 				33104A752535CF9800A90ED7 /* CartoonsViewController.swift in Sources */,
 				3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */,
 				334A51C9252CAA53003BCF59 /* Coordinator.swift in Sources */,

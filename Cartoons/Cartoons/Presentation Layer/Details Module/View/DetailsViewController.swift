@@ -120,8 +120,14 @@ extension DetailsViewController: DetailsViewProtocol {
             return
         }
         mainPoster.setImage(with: url)
-        titleLabel.attributedText = NSAttributedString(string: video.title,
-                                                       attributes: [.foregroundColor: UIColor.white,
-                                                                    .font: R.font.cinzelDecorativeBold(size: 45).unwrapped])
+        if UIScreen.main.bounds.height > 736 {
+            titleLabel.attributedText = NSAttributedString(string: video.title,
+                                                           attributes: [.foregroundColor: UIColor.white,
+                                                                        .font: R.font.cinzelDecorativeBold(size: 45).unwrapped])
+        } else {
+            titleLabel.attributedText = NSAttributedString(string: video.title,
+                                                           attributes: [.foregroundColor: UIColor.white,
+                                                                        .font: R.font.cinzelDecorativeBold(size: 30).unwrapped])
+        }
     }
 }

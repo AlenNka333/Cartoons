@@ -10,6 +10,4 @@ import Foundation
 
 protocol LoadingServiceProtocol: AnyObject {
     func downloadFile(from url: URL)
-    func stopLoading()
-    func continueLoading()
 }
