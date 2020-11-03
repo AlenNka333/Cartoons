@@ -20,10 +20,6 @@ class CustomTextField: UITextField {
     }
     
     func setupTextField() {
-        snp.makeConstraints {
-            $0.width.equalTo(300)
-            $0.height.equalTo(50)
-        }
         keyboardType = .numberPad
         borderStyle = .none
         textColor = .black

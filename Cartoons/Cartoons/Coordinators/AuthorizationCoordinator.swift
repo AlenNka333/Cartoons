@@ -26,17 +26,18 @@ class AuthorizationCoordinator: Coordinator {
         (rootController as? UINavigationController)?.pushViewController(view, animated: true)
     }
     
-    func openVerificationScreen(verificationId: String) {
+    func openVerificationScreen(verificationId: String, number: String) {
         let view = AuthorizationAssembly.makeVerificationController(serviceLocator: serviceLocator,
-                                                                    verificationId: verificationId)
+                                                                    verificationId: verificationId,
+                                                                    number: number)
         view.transitionDelegate = self
         (rootController as? UINavigationController)?.pushViewController(view, animated: true)
     }
 }
 
 extension AuthorizationCoordinator: AuthorizationTransitionDelegate {
-    func transit(_ verificationId: String) {
-        openVerificationScreen(verificationId: verificationId)
+    func transit(_ verificationId: String, _ number: String) {
+        openVerificationScreen(verificationId: verificationId, number: number)
     }
 }
 
