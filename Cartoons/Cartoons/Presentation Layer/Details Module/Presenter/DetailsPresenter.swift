@@ -18,10 +18,10 @@ class DetailsPresenter: DetailsViewPresenterProtocol {
         self.serviceLocator = serviceLocator
     }
     
-    func downloadFile(from url: URL) {
+    func downloadFile(_ file: Cartoon) {
         guard let loadingService: LoadingService = serviceLocator.resolve(LoadingService.self) else {
             return
         }
-        loadingService.downloadFile(from: url)
+        loadingService.downloadFile(file)
     }
 }

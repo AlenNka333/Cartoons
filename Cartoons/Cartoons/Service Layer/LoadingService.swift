@@ -20,7 +20,6 @@ class LoadingService: NSObject {
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
-    
     private lazy var session: URLSession = {
         let configuration = URLSessionConfiguration.background(withIdentifier: "Cartoons")
         configuration.sessionSendsLaunchEvents = true
@@ -31,22 +30,32 @@ class LoadingService: NSObject {
         
         return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     }()
+    private var operationQueue = Queue<Cartoon>()
+    weak var loadingServiceDelegate: LoadingServiceDelegate?
     
-    private var loadedFiles: [Cartoon] = []
-    
-    func downloadFile(from url: URL) {
+    func downloadFile(_ file: Cartoon) {
+        guard let link = file.link else {
+            print("Invalid link")
+            return
+        }
+        operationQueue.enqueue(file)
         loadingQueue.addOperation { [weak self] in
-            let task = self?.session.downloadTask(with: url)
+            let task = self?.session.downloadTask(with: link)
             task?.resume()
         }
     }
 }
 
 extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+    func urlSession(_ session: URLSession,
+                    downloadTask: URLSessionDownloadTask,
+                    didWriteData bytesWritten: Int64,
+                    totalBytesWritten: Int64,
+                    totalBytesExpectedToWrite: Int64) {
         if totalBytesExpectedToWrite > 0 {
-            let progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
-            let result = String (format: "% .2f", progress * 100) + "%"
+            let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+            loadingServiceDelegate?.setProgress(progress)
+            let result = String(format: "% .2f", progress * 100) + "%"
             os_log("Progress %@", log: Log.table, result)
         }
     }

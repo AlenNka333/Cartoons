@@ -86,6 +86,9 @@
 		3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D951250F95100095F78C /* PageControllerPresenter.swift */; };
 		3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */; };
 		3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D955250F95460095F78C /* PagePresenterProtocol.swift */; };
+		33778C0425518E00002D1F05 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C0325518E00002D1F05 /* CircleProgressBar.swift */; };
+		33778C072551E463002D1F05 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C062551E463002D1F05 /* Queue.swift */; };
+		33778C0A2551E695002D1F05 /* LoadingServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */; };
 		337BF2C4254DB6260057D685 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337BF2C3254DB6260057D685 /* VideoPlayerViewController.swift */; };
 		337BF2C8254DB9900057D685 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 337BF2C7254DB9900057D685 /* AlertView.xib */; };
 		338614B125385F9D00A24D4F /* AVPlayer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338614B025385F9D00A24D4F /* AVPlayer + Extension.swift */; };
@@ -244,6 +247,9 @@
 		3373D951250F95100095F78C /* PageControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerPresenter.swift; sourceTree = "<group>"; };
 		3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		3373D955250F95460095F78C /* PagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenterProtocol.swift; sourceTree = "<group>"; };
+		33778C0325518E00002D1F05 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
+		33778C062551E463002D1F05 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingServiceDelegate.swift; sourceTree = "<group>"; };
 		337BF2C3254DB6260057D685 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		337BF2C7254DB9900057D685 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		338614B025385F9D00A24D4F /* AVPlayer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer + Extension.swift"; sourceTree = "<group>"; };
@@ -338,6 +344,7 @@
 				330F4E6F2530F5D6008D0FC8 /* UserDataServiceProtocol.swift */,
 				33A1F7B8254FF5E000407056 /* LoadingServiceProtocol.swift */,
 				33A1F7C72551605800407056 /* UserDataServiceDelegate.swift */,
+				33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -418,6 +425,7 @@
 			children = (
 				33127B462534C31300B84FAE /* Cartoon.swift */,
 				33127B7C25357B0200B84FAE /* Section.swift */,
+				33778C062551E463002D1F05 /* Queue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -732,6 +740,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		33778C0225518DE8002D1F05 /* CircleProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				33778C0325518E00002D1F05 /* CircleProgressBar.swift */,
+			);
+			path = CircleProgressBar;
+			sourceTree = "<group>";
+		};
 		339ECE31251A14BF00168C5B /* BaseNavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +851,7 @@
 		33B2AE962508AC590006BE31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				33778C0225518DE8002D1F05 /* CircleProgressBar */,
 				331912692543215F00DB64ED /* CartoonPoster */,
 				3355FA792540180E00C0B192 /* BorderedLabel */,
 				33127B4A2534C41C00B84FAE /* VideoPlayerControls */,
@@ -1353,6 +1370,7 @@
 				3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */,
 				330F4E4D25309DEB008D0FC8 /* StorageDataService.swift in Sources */,
 				33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */,
+				33778C0A2551E695002D1F05 /* LoadingServiceDelegate.swift in Sources */,
 				33B2AE9E2508AD860006BE31 /* CustomAlertViewController.swift in Sources */,
 				33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */,
 				33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */,
@@ -1389,6 +1407,7 @@
 				332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */,
 				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,
 				330F4E3825304D72008D0FC8 /* StorageDataServiceProtocol.swift in Sources */,
+				33778C072551E463002D1F05 /* Queue.swift in Sources */,
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
 				33B0AE33254859EA00EA71CC /* FavouritesCoordinator.swift in Sources */,
 				330F4E02252EF74D008D0FC8 /* MainScreenCoordinator.swift in Sources */,
@@ -1440,6 +1459,7 @@
 				33B660BB250166C200CA562E /* VerificationViewController.swift in Sources */,
 				3318E2C6254AC5AF001838E2 /* AuthorizationTransitionDelegate.swift in Sources */,
 				3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */,
+				33778C0425518E00002D1F05 /* CircleProgressBar.swift in Sources */,
 				33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */,
 				334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */,
 				33B2AEB6250A63A00006BE31 /* CartoonsViewProtocol.swift in Sources */,

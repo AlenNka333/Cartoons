@@ -15,6 +15,7 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
     init(view: FavouritesViewProtocol, serviceLocator: Locator) {
         self.view = view
         self.serviceLocator = serviceLocator
+        getData()
     }
     
     func showSuccess(success: String) {
@@ -26,9 +27,12 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
     }
     
     func getData() {
-        guard let storageService: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
+        guard let storageService: StorageDataService = serviceLocator.resolve(StorageDataService.self),
+              let fileManager: FilesManager = serviceLocator.resolve(FilesManager.self) else {
             return
         }
+        let files = fileManager.getLocalData()
         view.setData(data: storageService.cartoons)
+        
     }
 }

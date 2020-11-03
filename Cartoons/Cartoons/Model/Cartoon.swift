@@ -18,6 +18,7 @@ class Cartoon: Hashable {
     var title: String
     var thumbnail: URL?
     var link: URL?
+    var localPath: URL?
     var state: FileState = .onServer
     
     init(title: String, thumbnail: URL? = nil, link: URL?) {

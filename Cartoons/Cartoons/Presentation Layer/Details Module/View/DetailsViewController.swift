@@ -105,15 +105,17 @@ extension DetailsViewController {
     }
     
     @objc func addToFavourites() {
-        guard let link = video?.link else {
-            print("Invalid link")
+        guard let file = video else {
             return
         }
-        presenter?.downloadFile(from: link)
+        presenter?.downloadFile(file)
     }
 }
 
 extension DetailsViewController: DetailsViewProtocol {
+    func updateProgress(_ value: Float) {
+    }
+    
     func setVideo(video: Cartoon) {
         self.video = video
         guard let url = video.thumbnail else {
