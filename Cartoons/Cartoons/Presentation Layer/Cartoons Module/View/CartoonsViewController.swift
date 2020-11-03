@@ -23,10 +23,7 @@ class CartoonsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configureLayout()
         applySnapshot(animatingDifferences: true)
-        
         guard let collection = collectionView else {
             return
         }
@@ -52,6 +49,12 @@ class CartoonsViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         view.addSubview(activityIndicator)
+        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: configureLayout())
+        collectionView?.delegate = self
+        collectionView?.backgroundColor = R.color.main_orange()
+        view.addSubview(UIView(frame: .zero))
+        view.addSubview(collectionView ?? UICollectionView())
+        collectionView?.register(CartoonCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
     }
     
     override func showError(error: Error) {
@@ -110,29 +113,24 @@ extension CartoonsViewController {
         return dataSource
     }
     
-    func configureLayout() {
-        let layout = UICollectionViewFlowLayout()
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        collectionView?.delegate = self
-        collectionView?.backgroundColor = R.color.main_orange()
-        collectionView?.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { _, _ -> NSCollectionLayoutSection? in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 5.0, leading: 5.0, bottom: 5.0, trailing: 5.0)
-            
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                                                            heightDimension: .fractionalHeight(0.7)),
-                                                         subitem: item,
-                                                         count: 3)
-            group.interItemSpacing = .fixed(30)
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 30
-            section.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 20, bottom: 0, trailing: 20)
-            return section
-        })
-        collectionView?.register(CartoonCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
-        view.addSubview(UIView(frame: .zero))
-        view.addSubview(collectionView ?? UICollectionView())
+    func configureLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { _, _ -> NSCollectionLayoutSection in
+            return self.createMainSection()
+        }
+        return layout
+    }
+    
+    func createMainSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 20.0, bottom: 20.0, trailing: 20.0)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .fractionalHeight(0.4))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 5
+        return section
     }
     
     func setupUIRefreshControl(with collectionView: UICollectionView) {

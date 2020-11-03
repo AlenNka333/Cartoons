@@ -41,7 +41,7 @@ class LoadingService: NSObject {
     
     func downloadFile(from url: URL) {
         loadingQueue.addOperation { [weak self] in
-            let task = self?.session.dataTask(with: url)
+            let task = self?.session.downloadTask(with: url)
             task?.resume()
         }
     }
