@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class DetailsAssembly: Assembly {
-    static func makeDetailsController(with video: Cartoon) -> DetailsViewController {
+    static func makeDetailsController(with video: Cartoon, serviceLocator: Locator) -> DetailsViewController {
         let view = DetailsViewController()
-        let presenter = DetailsPresenter(view: view, video: video)
+        let presenter = DetailsPresenter(view: view, video: video, serviceLocator: serviceLocator)
         view.presenter = presenter
         return view
     }

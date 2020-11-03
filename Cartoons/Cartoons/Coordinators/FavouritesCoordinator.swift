@@ -46,4 +46,3 @@ extension FavouritesCoordinator: PlayerTransitionDelegate {
         rootController?.popViewController(animated: true)
     }
 }
-

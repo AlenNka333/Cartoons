@@ -9,4 +9,5 @@
 import Foundation
 
 protocol DetailsViewPresenterProtocol: AnyObject {
+    func downloadFile(from url: URL)
 }

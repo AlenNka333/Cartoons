@@ -98,6 +98,9 @@
 		33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1753B253769D80062EC8C /* CustomSlider.swift */; };
 		33A1755825376B390062EC8C /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A1755725376B390062EC8C /* PlayerControlsView.xib */; };
 		33A1F7B1254FE9CB00407056 /* FavouritesTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7B0254FE9CB00407056 /* FavouritesTransitionDelegate.swift */; };
+		33A1F7B6254FF56300407056 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7B5254FF56300407056 /* LoadingService.swift */; };
+		33A1F7B9254FF5E000407056 /* LoadingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7B8254FF5E000407056 /* LoadingServiceProtocol.swift */; };
+		33A1F7BC255014FC00407056 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1F7BB255014FC00407056 /* Queue.swift */; };
 		33A3BA2B251CE142004EA0D9 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2A251CE142004EA0D9 /* General.swift */; };
 		33A3BA2D251E140F004EA0D9 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA2C251E140F004EA0D9 /* AlertService.swift */; };
 		33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */; };
@@ -252,6 +255,9 @@
 		33A1753B253769D80062EC8C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		33A1755725376B390062EC8C /* PlayerControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
 		33A1F7B0254FE9CB00407056 /* FavouritesTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTransitionDelegate.swift; sourceTree = "<group>"; };
+		33A1F7B5254FF56300407056 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
+		33A1F7B8254FF5E000407056 /* LoadingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingServiceProtocol.swift; sourceTree = "<group>"; };
+		33A1F7BB255014FC00407056 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		33A3BA2A251CE142004EA0D9 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		33A3BA2C251E140F004EA0D9 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		33A3BA32251E2E86004EA0D9 /* Optional + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional + Extension.swift"; sourceTree = "<group>"; };
@@ -328,6 +334,7 @@
 				330F4E3325304759008D0FC8 /* AuthorizationServiceProtocol.swift */,
 				330F4E3725304D72008D0FC8 /* StorageDataServiceProtocol.swift */,
 				330F4E6F2530F5D6008D0FC8 /* UserDataServiceProtocol.swift */,
+				33A1F7B8254FF5E000407056 /* LoadingServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -407,6 +414,7 @@
 			children = (
 				33127B462534C31300B84FAE /* Cartoon.swift */,
 				33127B7C25357B0200B84FAE /* Section.swift */,
+				33A1F7BB255014FC00407056 /* Queue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -965,6 +973,7 @@
 				330F4E4925309B9C008D0FC8 /* AuthorizationService.swift */,
 				330F4E4C25309DEB008D0FC8 /* StorageDataService.swift */,
 				330F4E782530F7BD008D0FC8 /* UserDataService.swift */,
+				33A1F7B5254FF56300407056 /* LoadingService.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -1360,6 +1369,7 @@
 				338614CC253A275800A24D4F /* Double + Extension.swift in Sources */,
 				330F4E16252F0E84008D0FC8 /* OnboardingCoordinator.swift in Sources */,
 				33B660C1250246CF00CA562E /* String+Extension.swift in Sources */,
+				33A1F7B6254FF56300407056 /* LoadingService.swift in Sources */,
 				3318E2D4254ACA7D001838E2 /* CartoonsTransitionDelegate.swift in Sources */,
 				330F4E702530F5D6008D0FC8 /* UserDataServiceProtocol.swift in Sources */,
 				3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */,
@@ -1374,6 +1384,7 @@
 				3355FA8B2540346100C0B192 /* BaseViewProtocol.swift in Sources */,
 				332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */,
 				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,
+				33A1F7BC255014FC00407056 /* Queue.swift in Sources */,
 				330F4E3825304D72008D0FC8 /* StorageDataServiceProtocol.swift in Sources */,
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
 				33B0AE33254859EA00EA71CC /* FavouritesCoordinator.swift in Sources */,
@@ -1406,6 +1417,7 @@
 				33127B542534C49300B84FAE /* DetailsViewController.swift in Sources */,
 				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
 				33127B632534C4EF00B84FAE /* VideoPlayerPresenter.swift in Sources */,
+				33A1F7B9254FF5E000407056 /* LoadingServiceProtocol.swift in Sources */,
 				33B873CF253F3C69008B45B2 /* UIImage + Extension.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,
 				33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */,

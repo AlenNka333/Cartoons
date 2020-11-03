@@ -105,7 +105,11 @@ extension DetailsViewController {
     }
     
     @objc func addToFavourites() {
-        addToFavouritesButton.setImage(R.image.star_yellow(), for: .normal)
+        guard let link = video?.link else {
+            print("Invalid link")
+            return
+        }
+        presenter?.downloadFile(from: link)
     }
 }
 

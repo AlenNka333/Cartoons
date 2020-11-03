@@ -22,6 +22,7 @@ class CartoonsCoordinator: Coordinator {
     
     func start() {
         let cartoonsController = CartoonsAssembly.makeCartoonsController(serviceLocator: serviceLocator)
+        cartoonsController.transitionDelegate = self
         rootController?.pushViewController(cartoonsController, animated: false)
     }
 }
@@ -31,7 +32,7 @@ extension CartoonsCoordinator {
         guard let cartoon = video else {
             return
         }
-        let detailsController = DetailsAssembly.makeDetailsController(with: cartoon)
+        let detailsController = DetailsAssembly.makeDetailsController(with: cartoon, serviceLocator: serviceLocator)
         detailsController.transitionDelegate = self
         rootController?.pushViewController(detailsController, animated: true)
     }

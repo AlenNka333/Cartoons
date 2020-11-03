@@ -7,16 +7,27 @@
 //
 import UIKit
 
+enum FileState {
+    case onServer
+    case inProgress
+    case loaded
+}
+
 class Cartoon: Hashable {
     var id = UUID()
     var title: String
     var thumbnail: URL?
     var link: URL?
+    var state: FileState = .onServer
     
     init(title: String, thumbnail: URL? = nil, link: URL?) {
         self.title = title
         self.thumbnail = thumbnail
         self.link = link
+    }
+    
+    func setState(_ state: FileState) {
+        self.state = state
     }
     
     func hash(into hasher: inout Hasher) {
