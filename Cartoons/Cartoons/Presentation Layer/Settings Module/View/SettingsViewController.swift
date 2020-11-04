@@ -52,11 +52,11 @@ class SettingsViewController: BaseViewController {
 
 extension SettingsViewController: SettingsViewProtocol {
     func transit() {
-        
+        transitionDelegate?.transit()
     }
     
     func showPermissionAlert(message: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
+        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
             switch $0 {
             case .accept:
                 guard let url = URL(string: UIApplication.openSettingsURLString) else {
@@ -96,7 +96,7 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func showSignOutAlert(message: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
+        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
             switch action {
             case .accept:
                 self?.presenter?.agreeButtonTapped()
@@ -108,7 +108,7 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func showSuccess(success: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success)
+        let alertVC = AlertService.alert(title: R.string.localizable.success(), body: success, alertType: .success)
         present(alertVC, animated: true)
     }
 }

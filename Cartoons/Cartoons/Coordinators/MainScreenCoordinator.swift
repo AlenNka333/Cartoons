@@ -10,6 +10,7 @@ import UIKit
 
 class MainScreenCoordinator: Coordinator {
     let serviceLocator: Locator
+    let dataFacade: DataFacade
     
     var childCoordinators: [Coordinator?]
     var parent: Coordinator?
@@ -20,6 +21,8 @@ class MainScreenCoordinator: Coordinator {
         self.serviceLocator = serviceLocator
         self.rootController = UINavigationController()
         self.childCoordinators = [Coordinator?]()
+        self.dataFacade = DataFacade(serviceLocator: serviceLocator)
+        dataFacade.errorDelegate = self
     }
     
     func addChild(_ coordinator: Coordinator?) {
@@ -40,7 +43,7 @@ class MainScreenCoordinator: Coordinator {
         let tabBarController = TabBarViewController(controllers: [cartoons, favourites, settings])
         rootController = tabBarController
         
-        let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(rootController: cartoons, serviceLocator: serviceLocator)
+        let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(rootController: cartoons, serviceLocator: serviceLocator, dataFacade: dataFacade)
         addChild(cartoonsCoordinator)
         let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(rootController: favourites, serviceLocator: serviceLocator)
         addChild(favouritesCoordinator)
@@ -60,4 +63,17 @@ extension MainScreenCoordinator: TransitionDelegate {
         childCoordinators.forEach {  $0?.parent = nil }
         childCoordinators.removeAll()
     }
+}
+
+extension MainScreenCoordinator: ErrorPresentable {
+    func show(error: Error) {
+        let alert = AlertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) { _ in
+            return
+        }
+        rootController.present(alert, animated: true)
+    }
+}
+
+protocol ErrorPresentable: Coordinator {
+    func show(error: Error)
 }

@@ -10,4 +10,6 @@ import Foundation
 
 protocol LoadingServiceDelegate: AnyObject {
     func setProgress(_ progress: Float)
+    func updateDataSource(_ data: Cartoon)
+    func updateOperationQueue(_ operation: Cartoon)
 }

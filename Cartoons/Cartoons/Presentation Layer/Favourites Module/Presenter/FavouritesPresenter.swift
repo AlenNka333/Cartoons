@@ -27,12 +27,9 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
     }
     
     func getData() {
-        guard let storageService: StorageDataService = serviceLocator.resolve(StorageDataService.self),
-              let fileManager: FilesManager = serviceLocator.resolve(FilesManager.self) else {
+        guard let storageService: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
-        let files = fileManager.getLocalData()
         view.setData(data: storageService.cartoons)
-        
     }
 }

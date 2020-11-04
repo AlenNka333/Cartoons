@@ -14,7 +14,11 @@ class LoadingService: NSObject {
     struct Log {
         static let table = OSLog(subsystem: "com.AlenaNesterkina.kids-cartoons", category: "table")
     }
+
     private let fileManager = FilesManager()
+    
+    weak var loadingServiceDelegate: LoadingServiceDelegate?
+    
     private lazy var loadingQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
@@ -30,8 +34,15 @@ class LoadingService: NSObject {
         
         return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     }()
-    private var operationQueue = Queue<Cartoon>()
-    weak var loadingServiceDelegate: LoadingServiceDelegate?
+    private var operationQueue = Queue<Cartoon>() {
+        didSet {
+            guard let tail = operationQueue.tail else {
+                return
+            }
+            tail.state = .inProgress
+            loadingServiceDelegate?.updateOperationQueue(tail)
+        }
+    }
     
     func downloadFile(_ file: Cartoon) {
         guard let link = file.link else {
@@ -44,6 +55,8 @@ class LoadingService: NSObject {
             task?.resume()
         }
     }
+    
+    func getOperationQueue() -> Queue<Cartoon> { operationQueue }
 }
 
 extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
@@ -63,7 +76,19 @@ extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession,
                     downloadTask: URLSessionDownloadTask,
                     didFinishDownloadingTo location: URL) {
-        fileManager.saveData(by: location, with: downloadTask)
+        fileManager.saveData(by: location, with: downloadTask) { [weak self] result in
+            switch result {
+            case .success(let localPath):
+                guard let currentTask = self?.operationQueue.head else {
+                    return
+                }
+                self?.operationQueue.dequeue()
+                currentTask.localPath = localPath
+                self?.loadingServiceDelegate?.updateDataSource(currentTask)
+            case .failure(_):
+                break
+            }
+        }
         os_log("Download finished: %d", log: Log.table, location.absoluteString)
     }
     

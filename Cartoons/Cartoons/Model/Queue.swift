@@ -15,11 +15,11 @@ struct Queue<T> {
         elements.append(value)
     }
     
-    mutating func dequeue() -> T? {
+    mutating func dequeue() {
         guard !elements.isEmpty else {
-            return nil
+            return
         }
-        return elements.removeFirst()
+        elements.removeFirst()
     }
     
     var head: T? {
@@ -29,4 +29,8 @@ struct Queue<T> {
     var tail: T? {
         return elements.last
     }
+}
+
+extension Queue {
+    func getElements() -> [T] { elements }
 }

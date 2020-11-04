@@ -58,7 +58,7 @@ class FavouritesViewController: BaseViewController {
 
 extension FavouritesViewController: FavouritesViewProtocol {
     func showSuccess(success: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) { _ in
+        let alertVC = AlertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) { _ in
             return
         }
         present(alertVC, animated: true)

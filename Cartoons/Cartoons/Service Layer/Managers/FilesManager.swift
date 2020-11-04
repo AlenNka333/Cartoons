@@ -10,9 +10,8 @@ import Foundation
 
 class FilesManager {
     private let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    var cartoonURL: URL?
     
-    func saveData(by location: URL, with downloadTask: URLSessionDownloadTask) {
+    func saveData(by location: URL, with downloadTask: URLSessionDownloadTask, completion: @escaping ((Result<URL, Error>) -> Void)) {
         guard let url = downloadTask.originalRequest?.url else {
             return
         }
@@ -20,20 +19,19 @@ class FilesManager {
         try? FileManager.default.removeItem(at: destinationURL)
         do {
             try FileManager.default.copyItem(at: location, to: destinationURL)
-            self.cartoonURL = destinationURL
+            completion(.success(destinationURL))
         } catch {
-            print("Copy Error: \(error.localizedDescription)")
+            completion(.failure(error))
         }
     }
     
-    func getLocalData() -> [URL]? {
+    func getLocalData(completion: @escaping ((Result<[URL], Error>) -> Void)) {
         do {
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsPath, includingPropertiesForKeys: nil)
             let videoFiles = directoryContents.filter { $0.pathExtension == "mp4" }
-            return videoFiles
+            completion(.success(videoFiles))
         } catch {
-            print(error)
+            completion(.failure(error))
         }
-        return nil
     }
 }
