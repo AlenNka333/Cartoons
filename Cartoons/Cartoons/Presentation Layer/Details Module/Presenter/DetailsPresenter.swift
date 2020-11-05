@@ -22,6 +22,13 @@ class DetailsPresenter: DetailsViewPresenterProtocol {
         guard let loadingService: LoadingService = serviceLocator.resolve(LoadingService.self) else {
             return
         }
-        loadingService.downloadFile(file)
+        loadingService.downloadFile(file) { [weak self] result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                self?.view.setError(error)
+            }
+        }
     }
 }

@@ -11,19 +11,20 @@ import UIKit
 
 class CartoonsCoordinator: Coordinator {
     let serviceLocator: Locator
-    let dataFacade: DataFacade
+    let serviceProviderFacade: ServiceProviderFacade
     
     var parent: Coordinator?
     var rootController: UINavigationController?
     
-    init(rootController: UINavigationController, serviceLocator: Locator, dataFacade: DataFacade) {
+    init(rootController: UINavigationController, serviceLocator: Locator, serviceProviderFacade: ServiceProviderFacade) {
         self.rootController = rootController
         self.serviceLocator = serviceLocator
-        self.dataFacade = dataFacade
+        self.serviceProviderFacade = serviceProviderFacade
     }
     
     func start() {
-        let cartoonsController = CartoonsAssembly.makeCartoonsController(serviceLocator: serviceLocator, dataFacade: dataFacade)
+        let cartoonsController = CartoonsAssembly.makeCartoonsController(serviceLocator: serviceLocator,
+                                                                         serviceProviderFacade: serviceProviderFacade)
         cartoonsController.transitionDelegate = self
         rootController?.pushViewController(cartoonsController, animated: false)
     }

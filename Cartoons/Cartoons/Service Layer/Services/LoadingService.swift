@@ -26,7 +26,7 @@ class LoadingService: NSObject {
     }()
     private lazy var session: URLSession = {
         let configuration = URLSessionConfiguration.background(withIdentifier: "Cartoons")
-        configuration.sessionSendsLaunchEvents = true
+        configuration.sessionSendsLaunchEvents = false
         configuration.isDiscretionary = true
         configuration.allowsCellularAccess = false
         configuration.shouldUseExtendedBackgroundIdleMode = true
@@ -34,29 +34,24 @@ class LoadingService: NSObject {
         
         return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     }()
-    private var operationQueue = Queue<Cartoon>() {
-        didSet {
-            guard let tail = operationQueue.tail else {
-                return
-            }
-            tail.state = .inProgress
-            loadingServiceDelegate?.updateOperationQueue(tail)
-        }
-    }
     
-    func downloadFile(_ file: Cartoon) {
+    func downloadFile(_ file: Cartoon, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let link = file.link else {
             print("Invalid link")
             return
         }
-        operationQueue.enqueue(file)
-        loadingQueue.addOperation { [weak self] in
-            let task = self?.session.downloadTask(with: link)
-            task?.resume()
+        if loadingQueue.operationCount >= 1 {
+            completion(.failure(ServiceErrors.operationQueueOverflow))
+        }
+        if !fileManager.checkExitingFile(with: link) {
+            loadingQueue.addOperation { [weak self] in
+                let task = self?.session.downloadTask(with: link)
+                task?.resume()
+            }
+        } else {
+            completion(.failure(ServiceErrors.fileExists))
         }
     }
-    
-    func getOperationQueue() -> Queue<Cartoon> { operationQueue }
 }
 
 extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
@@ -67,7 +62,7 @@ extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
                     totalBytesExpectedToWrite: Int64) {
         if totalBytesExpectedToWrite > 0 {
             let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-            loadingServiceDelegate?.setProgress(progress)
+            //loadingServiceDelegate?.setProgress(progress)
             let result = String(format: "% .2f", progress * 100) + "%"
             os_log("Progress %@", log: Log.table, result)
         }
@@ -79,12 +74,7 @@ extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
         fileManager.saveData(by: location, with: downloadTask) { [weak self] result in
             switch result {
             case .success(let localPath):
-                guard let currentTask = self?.operationQueue.head else {
-                    return
-                }
-                self?.operationQueue.dequeue()
-                currentTask.localPath = localPath
-                self?.loadingServiceDelegate?.updateDataSource(currentTask)
+                self?.loadingServiceDelegate?.updateDataSource(localPath)
             case .failure(_):
                 break
             }

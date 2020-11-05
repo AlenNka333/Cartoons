@@ -13,8 +13,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootCoordinator.start()
         return true
     }
-    
-    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
-        completionHandler()
-    }
 }

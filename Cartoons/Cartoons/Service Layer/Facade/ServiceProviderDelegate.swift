@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol DataSourceDelegate: AnyObject {
+protocol ServiceProviderDelegate: AnyObject {
     func updateDataSource(_ data: [Cartoon]?)
 }

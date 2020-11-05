@@ -9,7 +9,6 @@
 import Foundation
 
 protocol Facade: AnyObject {
-    func getProgressData() -> [Cartoon]?
     func getServerData()
     func getLocalData()
 }

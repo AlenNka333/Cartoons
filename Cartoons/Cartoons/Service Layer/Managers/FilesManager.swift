@@ -10,6 +10,7 @@ import Foundation
 
 class FilesManager {
     private let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    private var directoryContents: [URL]?
     
     func saveData(by location: URL, with downloadTask: URLSessionDownloadTask, completion: @escaping ((Result<URL, Error>) -> Void)) {
         guard let url = downloadTask.originalRequest?.url else {
@@ -25,11 +26,16 @@ class FilesManager {
         }
     }
     
+    func checkExitingFile(with path: URL) -> Bool {
+        let localPath = documentsPath.appendingPathComponent(path.lastPathComponent).path
+        return FileManager.default.fileExists(atPath: localPath)
+    }
+    
     func getLocalData(completion: @escaping ((Result<[URL], Error>) -> Void)) {
         do {
-            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsPath, includingPropertiesForKeys: nil)
-            let videoFiles = directoryContents.filter { $0.pathExtension == "mp4" }
-            completion(.success(videoFiles))
+            directoryContents = try FileManager.default.contentsOfDirectory(at: documentsPath, includingPropertiesForKeys: nil)
+            let videoFiles = directoryContents?.filter { $0.pathExtension == "mp4" }
+            completion(.success(videoFiles!))
         } catch {
             completion(.failure(error))
         }

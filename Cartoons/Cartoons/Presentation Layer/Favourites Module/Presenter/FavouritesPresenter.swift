@@ -10,11 +10,12 @@ import Foundation
 
 class FavouritesPresenter: FavouritesViewPresenterProtocol {
     let view: FavouritesViewProtocol
-    let serviceLocator: Locator
+    let serviceProviderFacade: ServiceProviderFacade
     
-    init(view: FavouritesViewProtocol, serviceLocator: Locator) {
+    init(view: FavouritesViewProtocol, serviceProviderFacade: ServiceProviderFacade) {
         self.view = view
-        self.serviceLocator = serviceLocator
+        self.serviceProviderFacade = serviceProviderFacade
+        serviceProviderFacade.favouritesDataSourceDelegate = self
         getData()
     }
     
@@ -27,9 +28,12 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
     }
     
     func getData() {
-        guard let storageService: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
-            return
-        }
-        view.setData(data: storageService.cartoons)
+        serviceProviderFacade.getLocalData()
+    }
+}
+
+extension FavouritesPresenter: ServiceProviderDelegate {
+    func updateDataSource(_ data: [Cartoon]?) {
+        view.setData(data: data ?? [Cartoon]())
     }
 }

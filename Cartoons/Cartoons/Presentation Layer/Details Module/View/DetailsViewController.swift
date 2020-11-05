@@ -113,7 +113,8 @@ extension DetailsViewController {
 }
 
 extension DetailsViewController: DetailsViewProtocol {
-    func updateProgress(_ value: Float) {
+    func setError(_ error: Error) {
+        showError(error: error)
     }
     
     func setVideo(video: Cartoon) {
@@ -123,11 +124,11 @@ extension DetailsViewController: DetailsViewProtocol {
         }
         mainPoster.setImage(with: url)
         if UIScreen.main.bounds.height > 736 {
-            titleLabel.attributedText = NSAttributedString(string: video.title,
+            titleLabel.attributedText = NSAttributedString(string: video.title ?? "",
                                                            attributes: [.foregroundColor: UIColor.white,
                                                                         .font: R.font.cinzelDecorativeBold(size: 45).unwrapped])
         } else {
-            titleLabel.attributedText = NSAttributedString(string: video.title,
+            titleLabel.attributedText = NSAttributedString(string: video.title ?? "",
                                                            attributes: [.foregroundColor: UIColor.white,
                                                                         .font: R.font.cinzelDecorativeBold(size: 30).unwrapped])
         }

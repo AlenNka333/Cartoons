@@ -10,8 +10,8 @@ import UIKit
 
 class MainScreenCoordinator: Coordinator {
     let serviceLocator: Locator
-    let dataFacade: DataFacade
     
+    var serviceProviderFacade: ServiceProviderFacade?
     var childCoordinators: [Coordinator?]
     var parent: Coordinator?
     var rootController: UIViewController
@@ -21,8 +21,16 @@ class MainScreenCoordinator: Coordinator {
         self.serviceLocator = serviceLocator
         self.rootController = UINavigationController()
         self.childCoordinators = [Coordinator?]()
-        self.dataFacade = DataFacade(serviceLocator: serviceLocator)
-        dataFacade.errorDelegate = self
+        
+        guard let storageService: StorageDataService = serviceLocator.resolve(StorageDataService.self),
+              let loadingService: LoadingService = serviceLocator.resolve(LoadingService.self),
+              let fileManager: FilesManager = serviceLocator.resolve(FilesManager.self) else {
+            return
+        }
+        self.serviceProviderFacade = ServiceProviderFacade(storageService: storageService,
+                                                loadingService: loadingService,
+                                                fileManager: fileManager)
+        serviceProviderFacade?.errorDelegate = self
     }
     
     func addChild(_ coordinator: Coordinator?) {
@@ -43,9 +51,15 @@ class MainScreenCoordinator: Coordinator {
         let tabBarController = TabBarViewController(controllers: [cartoons, favourites, settings])
         rootController = tabBarController
         
-        let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(rootController: cartoons, serviceLocator: serviceLocator, dataFacade: dataFacade)
+        guard let serviceProviderFacade = serviceProviderFacade else {
+            return
+        }
+        let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(rootController: cartoons,
+                                                                           serviceLocator: serviceLocator,
+                                                                           serviceProviderFacade: serviceProviderFacade)
         addChild(cartoonsCoordinator)
-        let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(rootController: favourites, serviceLocator: serviceLocator)
+        let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(rootController: favourites,
+                                                                                 serviceProviderFacade: serviceProviderFacade)
         addChild(favouritesCoordinator)
         let settingsCoordinator = SettingsAssembly.makeSettingsCoordinator(rootController: settings, serviceLocator: serviceLocator)
         addChild(settingsCoordinator)

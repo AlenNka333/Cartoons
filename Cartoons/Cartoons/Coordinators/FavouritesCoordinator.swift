@@ -10,18 +10,18 @@ import Foundation
 import UIKit
 
 class FavouritesCoordinator: Coordinator {
-    let serviceLocator: Locator
+    let serviceProviderFacade: ServiceProviderFacade
     
     var parent: Coordinator?
     var rootController: UINavigationController?
     
-    init(rootController: UINavigationController, serviceLocator: Locator) {
+    init(rootController: UINavigationController, serviceProviderFacade: ServiceProviderFacade) {
         self.rootController = rootController
-        self.serviceLocator = serviceLocator
+        self.serviceProviderFacade = serviceProviderFacade
     }
     
     func start() {
-        let favouritesController = FavouritesAssembly.makeFavouritesController(serviceLocator: serviceLocator)
+        let favouritesController = FavouritesAssembly.makeFavouritesController(serviceProviderFacade: serviceProviderFacade)
         favouritesController.transitionDelegate = self
         rootController?.pushViewController(favouritesController, animated: false)
     }

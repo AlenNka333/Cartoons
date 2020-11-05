@@ -53,6 +53,7 @@ class FavouritesViewController: BaseViewController {
     
     override func showError(error: Error) {
         super.showError(error: error)
+        stopActivityIndicator()
     }
 }
 
@@ -63,6 +64,7 @@ extension FavouritesViewController: FavouritesViewProtocol {
         }
         present(alertVC, animated: true)
     }
+    
     func setData(data: [Cartoon]) {
         videos = data
         if activityIndicator.isAnimating {
@@ -84,7 +86,7 @@ extension FavouritesViewController: UICollectionViewDelegate {
         guard let cartoon = dataSource?.itemIdentifier(for: indexPath) else {
             return
         }
-        guard let link = cartoon.link else {
+        guard let link = cartoon.localPath else {
             print("Invalid link")
             return
         }
@@ -96,13 +98,12 @@ extension FavouritesViewController: UICollectionViewDelegate {
 
 extension FavouritesViewController {
     func makeDataSource() -> DataSource {
-        let dataSource = DataSource(collectionView: collectionView ?? UICollectionView(),
-                                    cellProvider: { collectionView, indexPath, cartoon -> UICollectionViewCell? in
-                                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
-                                                                                      for: indexPath) as? FavouritesCollectionViewCell
-                                        cell?.video = cartoon
-                                        return cell
-                                    })
+        let dataSource = DataSource(collectionView: collectionView ?? UICollectionView()) { collectionView, indexPath, cartoon -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
+                                                          for: indexPath) as? FavouritesCollectionViewCell
+            cell?.video = cartoon
+            return cell
+        }
         return dataSource
     }
     
