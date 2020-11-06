@@ -73,7 +73,7 @@ extension BaseNavigationController: UINavigationControllerDelegate {
         if operation == .push {
             imageView.removeFromSuperview()
             subtitleLabel.removeFromSuperview()
-            navigationBar.isHidden = false
+            setNavigationBarHidden(false, animated: true)
             return nil
         } else if operation == .pop {
             navigationBar.isHidden = false

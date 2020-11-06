@@ -87,7 +87,6 @@
 		3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */; };
 		3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D955250F95460095F78C /* PagePresenterProtocol.swift */; };
 		33778C0425518E00002D1F05 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C0325518E00002D1F05 /* CircleProgressBar.swift */; };
-		33778C072551E463002D1F05 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C062551E463002D1F05 /* Queue.swift */; };
 		33778C0A2551E695002D1F05 /* LoadingServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */; };
 		33778C0F2552A48E002D1F05 /* ServiceProviderFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C0E2552A48E002D1F05 /* ServiceProviderFacade.swift */; };
 		33778C162553321A002D1F05 /* ServiceProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C152553321A002D1F05 /* ServiceProviderDelegate.swift */; };
@@ -251,7 +250,6 @@
 		3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		3373D955250F95460095F78C /* PagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenterProtocol.swift; sourceTree = "<group>"; };
 		33778C0325518E00002D1F05 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
-		33778C062551E463002D1F05 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingServiceDelegate.swift; sourceTree = "<group>"; };
 		33778C0E2552A48E002D1F05 /* ServiceProviderFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderFacade.swift; sourceTree = "<group>"; };
 		33778C152553321A002D1F05 /* ServiceProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderDelegate.swift; sourceTree = "<group>"; };
@@ -430,7 +428,6 @@
 			children = (
 				33127B462534C31300B84FAE /* Cartoon.swift */,
 				33127B7C25357B0200B84FAE /* Section.swift */,
-				33778C062551E463002D1F05 /* Queue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1440,7 +1437,6 @@
 				332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */,
 				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,
 				330F4E3825304D72008D0FC8 /* StorageDataServiceProtocol.swift in Sources */,
-				33778C072551E463002D1F05 /* Queue.swift in Sources */,
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
 				33B0AE33254859EA00EA71CC /* FavouritesCoordinator.swift in Sources */,
 				330F4E02252EF74D008D0FC8 /* MainScreenCoordinator.swift in Sources */,

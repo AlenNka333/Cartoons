@@ -96,7 +96,6 @@ extension CartoonsViewController: UICollectionViewDelegate {
             return
         }
         hidesBottomBarWhenPushed = true
-        navigationController?.navigationBar.isHidden = false
         transitionDelegate?.transit(cartoon: cartoon)
         hidesBottomBarWhenPushed = false
     }
