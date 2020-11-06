@@ -33,7 +33,7 @@ class LoadingService: NSObject {
         configuration.isDiscretionary = true
         configuration.allowsCellularAccess = false
         configuration.shouldUseExtendedBackgroundIdleMode = true
-        configuration.waitsForConnectivity = true
+        //configuration.waitsForConnectivity = true
         
         return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     }()
@@ -45,12 +45,6 @@ class LoadingService: NSObject {
             tasks.forEach { task in
                 task.resume()
             }
-        }
-    }
-    
-    func restartSession() {
-        session.getAllTasks { tasks in
-            os_log("Restart")
         }
     }
     
