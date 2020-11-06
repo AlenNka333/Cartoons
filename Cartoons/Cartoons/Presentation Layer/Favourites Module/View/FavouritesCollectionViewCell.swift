@@ -53,6 +53,11 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
         }
       }
     }
+    var progress: String? {
+        willSet(newValue) {
+            titleLabel.text = newValue
+        }
+    }
     
     var state: ProgressState = .done
     
@@ -71,10 +76,10 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
 extension FavouritesCollectionViewCell {
     func setProgressView() {
         contentView.addSubview(progressView)
-        progressView.addSubview(downloadButton)
-        downloadButton.snp.makeConstraints {
-            $0.size.equalTo(40)
+        progressView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
         }
         progressView.snp.makeConstraints {
             $0.edges.equalToSuperview()

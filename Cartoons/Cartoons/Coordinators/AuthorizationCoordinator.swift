@@ -16,21 +16,22 @@ class AuthorizationCoordinator: Coordinator {
     var successSessionClosure: (() -> Void)?
     
     init(serviceLocator: Locator) {
-        self.rootController = UINavigationController()
+        self.rootController = UIViewController()
         self.serviceLocator = serviceLocator
     }
     
     func start() {
         let view = AuthorizationAssembly.makeAuthorizationController(serviceLocator: serviceLocator)
         view.transitionDelegate = self
-        (rootController as? UINavigationController)?.pushViewController(view, animated: true)
+        rootController = view
     }
     
     func openVerificationScreen(verificationId: String) {
         let view = AuthorizationAssembly.makeVerificationController(serviceLocator: serviceLocator,
                                                                     verificationId: verificationId)
         view.transitionDelegate = self
-        (rootController as? UINavigationController)?.pushViewController(view, animated: true)
+        view.modalPresentationStyle = .fullScreen
+        rootController.present(view, animated: true, completion: nil)
     }
 }
 

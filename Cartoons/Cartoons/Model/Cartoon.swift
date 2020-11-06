@@ -20,6 +20,7 @@ class Cartoon: Hashable {
     var thumbnail: URL?
     var link: URL?
     var localPath: URL?
+    var progress: String = "0%"
     
     init(title: String? = nil, state: FileState, thumbnail: URL? = nil, link: URL? = nil, localPath: URL? = nil) {
         self.title = title
@@ -30,6 +31,10 @@ class Cartoon: Hashable {
     
     func setState(_ state: FileState) {
         self.state = state
+    }
+    
+    func setProgress(_ progress: String) {
+        self.progress = progress
     }
     
     func hash(into hasher: inout Hasher) {

@@ -21,11 +21,11 @@ class FavouritesViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         guard let collection = collectionView else {
             return
         }
         dataSource = makeDataSource()
-        setupUIRefreshControl(with: collection)
         showActivityIndicator()
         presenter?.getData()
     }
@@ -70,14 +70,13 @@ extension FavouritesViewController: FavouritesViewProtocol {
         if activityIndicator.isAnimating {
             stopActivityIndicator()
         }
-        guard let control = collectionView?.refreshControl else {
-            return
-        }
-        if control.isRefreshing {
-            collectionView?.refreshControl?.endRefreshing()
-        }
         applySnapshot()
-        collectionView?.refreshControl?.isEnabled = true
+    }
+    
+    func updateProgress(_ progress: String) {
+        let cartoons = snapshot.itemIdentifiers
+        cartoons.last?.setProgress(progress)
+        snapshot.reloadItems(cartoons)
     }
 }
 
@@ -97,11 +96,22 @@ extension FavouritesViewController: UICollectionViewDelegate {
 }
 
 extension FavouritesViewController {
+    //MARK: - Notification oberserver methods
+    
+    @objc func didBecomeActive() {
+        presenter?.getData()
+    }
+    
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(collectionView: collectionView ?? UICollectionView()) { collectionView, indexPath, cartoon -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
                                                           for: indexPath) as? FavouritesCollectionViewCell
-            cell?.video = cartoon
+            if cartoon.state == .inProgress {
+                cell?.setProgressView()
+                cell?.progress = cartoon.progress
+            } else {
+                cell?.video = cartoon
+            }
             return cell
         }
         return dataSource
@@ -131,17 +141,5 @@ extension FavouritesViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
-    }
-    
-    func setupUIRefreshControl(with collectionView: UICollectionView) {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        refreshControl.tintColor = .black
-        collectionView.refreshControl = refreshControl
-        collectionView.refreshControl?.isEnabled = false
-    }
-    
-    @objc func handleRefresh() {
-        presenter?.getData()
     }
 }

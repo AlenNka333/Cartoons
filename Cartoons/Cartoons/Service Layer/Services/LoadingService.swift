@@ -14,10 +14,12 @@ class LoadingService: NSObject {
     struct Log {
         static let table = OSLog(subsystem: "com.AlenaNesterkina.kids-cartoons", category: "table")
     }
-
+    static let shared = LoadingService()
+    
     private let fileManager = FilesManager()
     
     weak var loadingServiceDelegate: LoadingServiceDelegate?
+    var backgroundCompletionHandler: (() -> Void)?
     
     private lazy var loadingQueue: OperationQueue = {
         let queue = OperationQueue()
@@ -25,31 +27,65 @@ class LoadingService: NSObject {
         return queue
     }()
     private lazy var session: URLSession = {
-        let configuration = URLSessionConfiguration.background(withIdentifier: "Cartoons")
-        configuration.sessionSendsLaunchEvents = false
-        configuration.isDiscretionary = true
-        configuration.allowsCellularAccess = false
-        configuration.shouldUseExtendedBackgroundIdleMode = true
-        configuration.waitsForConnectivity = true
-        
-        return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
+            let configuration = URLSessionConfiguration.background(withIdentifier: "Cartoons")
+            configuration.sessionSendsLaunchEvents = true
+            configuration.isDiscretionary = true
+            configuration.allowsCellularAccess = false
+            configuration.shouldUseExtendedBackgroundIdleMode = true
+            configuration.waitsForConnectivity = true
+            
+            return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     }()
+    
+    override init() {
+        super.init()
+        session.getAllTasks { tasks in
+            os_log("Items count = %@", log: Log.table, tasks.count)
+            tasks.forEach { item in
+                item.resume()
+            }
+        }
+    }
     
     func downloadFile(_ file: Cartoon, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let link = file.link else {
             print("Invalid link")
             return
         }
-        if loadingQueue.operationCount >= 1 {
-            completion(.failure(ServiceErrors.operationQueueOverflow))
-        }
         if !fileManager.checkExitingFile(with: link) {
-            loadingQueue.addOperation { [weak self] in
-                let task = self?.session.downloadTask(with: link)
-                task?.resume()
+            checkOperationQueue { [weak self] operationsCount in
+                if operationsCount != 0 {
+                    completion(.failure(ServiceErrors.operationQueueOverflow))
+                }
+                self?.loadingServiceDelegate?.setOperation()
+                self?.loadingQueue.addOperation { [weak self] in
+                    let task = self?.session.downloadTask(with: link)
+                    task?.resume()
+                }
             }
         } else {
             completion(.failure(ServiceErrors.fileExists))
+        }
+    }
+    
+    func checkOperationQueue(completion: @escaping ((Int) -> Void)) {
+        session.getAllTasks { task in
+            completion(task.count)
+        }
+    }
+}
+
+extension LoadingService: URLSessionDelegate {
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        DispatchQueue.main.async {
+            guard
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                let completionHandler = appDelegate.backgroundSessionCompletionHandler
+            else {
+                return
+            }
+            appDelegate.backgroundSessionCompletionHandler = nil
+            completionHandler()
         }
     }
 }
@@ -62,8 +98,8 @@ extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
                     totalBytesExpectedToWrite: Int64) {
         if totalBytesExpectedToWrite > 0 {
             let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-            //loadingServiceDelegate?.setProgress(progress)
             let result = String(format: "% .2f", progress * 100) + "%"
+            loadingServiceDelegate?.updateProgress(result)
             os_log("Progress %@", log: Log.table, result)
         }
     }
@@ -75,7 +111,7 @@ extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
             switch result {
             case .success(let localPath):
                 self?.loadingServiceDelegate?.updateDataSource(localPath)
-            case .failure(_):
+            case .failure:
                 break
             }
         }

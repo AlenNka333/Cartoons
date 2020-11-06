@@ -16,7 +16,7 @@ class ServiceLocator: Locator {
     private lazy var authorizationService: AuthorizationService = { AuthorizationService() }()
     private lazy var storageService: StorageDataService = { StorageDataService() }()
     private lazy var userService: UserDataService = { UserDataService() }()
-    private lazy var loadingService: LoadingService = { LoadingService() }()
+    private lazy var loadingService: LoadingService = { LoadingService.shared }()
     private lazy var fileManager: FilesManager = { FilesManager() }()
     
     func resolve<T>(_ type: T.Type) -> T? {

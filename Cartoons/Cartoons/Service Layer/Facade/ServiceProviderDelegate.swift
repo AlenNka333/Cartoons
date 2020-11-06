@@ -9,5 +9,6 @@
 import Foundation
 
 protocol ServiceProviderDelegate: AnyObject {
+    func updateProgress(_ progress: String)
     func updateDataSource(_ data: [Cartoon]?)
 }
