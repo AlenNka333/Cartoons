@@ -15,8 +15,6 @@ class LoadingService: NSObject {
         static let table = OSLog(subsystem: "com.AlenaNesterkina.kids-cartoons", category: "table")
     }
     
-    static let shared = LoadingService()
-    
     private let fileManager = FilesManager()
     
     weak var loadingServiceDelegate: LoadingServiceDelegate?
@@ -59,7 +57,7 @@ class LoadingService: NSObject {
                     completion(.failure(ServiceErrors.operationQueueOverflow))
                     return
                 }
-                self?.loadingServiceDelegate?.setOperation()
+                self?.loadingServiceDelegate?.setOperation(with: link)
                 self?.loadingQueue.addOperation { [weak self] in
                     let task = self?.session.downloadTask(with: link)
                     task?.resume()

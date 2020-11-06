@@ -93,8 +93,8 @@ class ServiceProviderFacade: Facade {
 }
 
 extension ServiceProviderFacade: LoadingServiceDelegate {
-    func setOperation() {
-        localData.append(Cartoon(state: .inProgress))
+    func setOperation(with link: URL) {
+        localData.append(Cartoon(title: link.deletingPathExtension().lastPathComponent, state: .inProgress))
         favouritesDataSourceDelegate?.updateDataSource(localData)
     }
     

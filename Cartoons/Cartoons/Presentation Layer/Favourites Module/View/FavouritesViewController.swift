@@ -64,7 +64,6 @@ extension FavouritesViewController: FavouritesViewProtocol {
     
     func setData(data: [Cartoon]) {
         videos = data
-        print("VIDEOS = \(videos.count)")
         if activityIndicator.isAnimating {
             stopActivityIndicator()
         }
@@ -113,6 +112,7 @@ extension FavouritesViewController {
             if cartoon.state == .inProgress {
                 cell?.setProgressView()
                 cell?.progress = cartoon.progress
+                cell?.video = cartoon
             } else {
                 cell?.video = cartoon
             }

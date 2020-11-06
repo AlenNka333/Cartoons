@@ -14,7 +14,9 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
     private lazy var progressView: UIProgressView = {
         let progress = UIProgressView()
         progress.progressTintColor = .white
-        progress.progressImage = R.image.slider_progress()
+        progress.progress = 0.5
+        progress.transform = CGAffineTransform(scaleX: 1, y: 2)
+        progress.clipsToBounds = true
         return progress
     }()
     private lazy var downloadButton: UIButton = {
@@ -37,12 +39,6 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
       didSet {
         if let title = video?.title {
             titleLabel.text = title
-            contentView.addSubview(titleLabel)
-            titleLabel.sizeToFit()
-            titleLabel.snp.makeConstraints {
-                $0.leading.trailing.equalToSuperview()
-                $0.center.equalToSuperview()
-            }
         }
       }
     }
@@ -57,6 +53,12 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 15
         contentView.backgroundColor = R.color.main_blue()
+        contentView.addSubview(titleLabel)
+        titleLabel.sizeToFit()
+        titleLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.center.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -66,11 +68,17 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
 
 extension FavouritesCollectionViewCell {
     func setProgressView() {
-        contentView.backgroundColor = .black
-        contentView.addSubview(progressView)
+        let darkView = UIView()
+        darkView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        darkView.addSubview(progressView)
+        progressView.layer.cornerRadius = 3
         progressView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.center.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().offset(-40)
+        }
+        contentView.addSubview(darkView)
+        darkView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }

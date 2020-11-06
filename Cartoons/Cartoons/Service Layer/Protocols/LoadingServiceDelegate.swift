@@ -9,7 +9,7 @@
 import Foundation
 
 protocol LoadingServiceDelegate: AnyObject {
-    func setOperation()
+    func setOperation(with link: URL)
     func updateProgress(_ progress: Float)
     func updateDataSource(_ data: URL)
 }
