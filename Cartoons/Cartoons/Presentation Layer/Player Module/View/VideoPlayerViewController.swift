@@ -52,9 +52,9 @@ class VideoPlayerViewController: BaseViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { _ in
+        coordinator.animate { _ in
             self.playerView.frame.size = size
-        })
+        }
     }
     
     override func setupNavigationBar() {
@@ -115,21 +115,20 @@ extension VideoPlayerViewController {
     func setupTimeObserver() {
         let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = player?.addPeriodicTimeObserver(forInterval: interval,
-                                                       queue: DispatchQueue.main,
-                                                       using: { elapsedTime in
-                                                        if self.player?.currentItem?.status == .readyToPlay {
-                                                            let currentTimeInSeconds = CMTimeGetSeconds(elapsedTime)
-                                                            let time = elapsedTime.seconds.asString()
-                                                            self.presenter?.updateProgressValue(value: time)
-                                                            if let currentItem = self.player?.currentItem {
-                                                                let duration = currentItem.duration
-                                                                if CMTIME_IS_INVALID(duration) {
-                                                                    return
-                                                                }
-                                                                self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
-                                                            }
-                                                        }
-                                                       })
+                                                       queue: DispatchQueue.main) { elapsedTime in
+            if self.player?.currentItem?.status == .readyToPlay {
+                let currentTimeInSeconds = CMTimeGetSeconds(elapsedTime)
+                let time = elapsedTime.seconds.asString()
+                self.presenter?.updateProgressValue(value: time)
+                if let currentItem = self.player?.currentItem {
+                    let duration = currentItem.duration
+                    if CMTIME_IS_INVALID(duration) {
+                        return
+                    }
+                    self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
+                }
+            }
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?,

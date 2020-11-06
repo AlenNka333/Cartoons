@@ -10,6 +10,6 @@ import Foundation
 
 protocol LoadingServiceDelegate: AnyObject {
     func setOperation()
-    func updateProgress(_ progress: String)
+    func updateProgress(_ progress: Float)
     func updateDataSource(_ data: URL)
 }

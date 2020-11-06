@@ -14,6 +14,7 @@ class LoadingService: NSObject {
     struct Log {
         static let table = OSLog(subsystem: "com.AlenaNesterkina.kids-cartoons", category: "table")
     }
+    
     static let shared = LoadingService()
     
     private let fileManager = FilesManager()
@@ -27,23 +28,29 @@ class LoadingService: NSObject {
         return queue
     }()
     private lazy var session: URLSession = {
-            let configuration = URLSessionConfiguration.background(withIdentifier: "Cartoons")
-            configuration.sessionSendsLaunchEvents = true
-            configuration.isDiscretionary = true
-            configuration.allowsCellularAccess = false
-            configuration.shouldUseExtendedBackgroundIdleMode = true
-            configuration.waitsForConnectivity = true
-            
-            return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
+        let configuration = URLSessionConfiguration.background(withIdentifier: "Cartoons")
+        configuration.sessionSendsLaunchEvents = true
+        configuration.isDiscretionary = true
+        configuration.allowsCellularAccess = false
+        configuration.shouldUseExtendedBackgroundIdleMode = true
+        configuration.waitsForConnectivity = true
+        
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     }()
     
     override init() {
         super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(willTerminate), name: UIApplication.willTerminateNotification, object: nil)
         session.getAllTasks { tasks in
-            os_log("Items count = %@", log: Log.table, tasks.count)
-            tasks.forEach { item in
-                item.resume()
+            tasks.forEach { task in
+                task.resume()
             }
+        }
+    }
+    
+    func restartSession() {
+        session.getAllTasks { tasks in
+            os_log("Restart")
         }
     }
     
@@ -56,6 +63,7 @@ class LoadingService: NSObject {
             checkOperationQueue { [weak self] operationsCount in
                 if operationsCount != 0 {
                     completion(.failure(ServiceErrors.operationQueueOverflow))
+                    return
                 }
                 self?.loadingServiceDelegate?.setOperation()
                 self?.loadingQueue.addOperation { [weak self] in
@@ -71,6 +79,14 @@ class LoadingService: NSObject {
     func checkOperationQueue(completion: @escaping ((Int) -> Void)) {
         session.getAllTasks { task in
             completion(task.count)
+        }
+    }
+    
+    @objc func willTerminate() {
+        session.getAllTasks { tasks in
+            tasks.forEach { task in
+                task.suspend()
+            }
         }
     }
 }
@@ -98,9 +114,11 @@ extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
                     totalBytesExpectedToWrite: Int64) {
         if totalBytesExpectedToWrite > 0 {
             let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-            let result = String(format: "% .2f", progress * 100) + "%"
-            loadingServiceDelegate?.updateProgress(result)
-            os_log("Progress %@", log: Log.table, result)
+            if progress.truncatingRemainder(dividingBy: 10.0) == 0 {
+                let result = String(format: "% .1f", Float(progress) * 100) + "%"
+                loadingServiceDelegate?.updateProgress(progress)
+                os_log("Progress %@", log: Log.table, result)
+            }
         }
     }
     

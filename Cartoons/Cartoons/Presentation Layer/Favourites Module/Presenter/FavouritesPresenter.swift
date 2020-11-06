@@ -16,7 +16,6 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
         self.view = view
         self.serviceProviderFacade = serviceProviderFacade
         serviceProviderFacade.favouritesDataSourceDelegate = self
-        getData()
     }
     
     func showSuccess(success: String) {
@@ -32,8 +31,8 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
     }
 }
 
-extension FavouritesPresenter: ServiceProviderDelegate {
-    func updateProgress(_ progress: String) {
+extension FavouritesPresenter: FavouritesServiceProviderDelegate {
+    func updateProgress(_ progress: Float) {
         view.updateProgress(progress)
     }
     

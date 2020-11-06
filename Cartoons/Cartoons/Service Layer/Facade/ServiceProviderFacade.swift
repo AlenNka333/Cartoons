@@ -10,15 +10,15 @@ import Foundation
 
 class ServiceProviderFacade: Facade {
     weak var cartoonsDataSourceDelegate: ServiceProviderDelegate?
-    weak var favouritesDataSourceDelegate: ServiceProviderDelegate?
+    weak var favouritesDataSourceDelegate: FavouritesServiceProviderDelegate?
     weak var errorDelegate: ErrorPresentable?
     
     private var storageService: StorageDataService
     private var loadingService: LoadingService
     private var fileManager: FilesManager
     
-    private var localData: [Cartoon]?
-    private var serverData: [Cartoon]? {
+    private var localData: [Cartoon]
+    private var serverData: [Cartoon] {
         didSet {
             cartoonsDataSourceDelegate?.updateDataSource(serverData)
         }
@@ -29,6 +29,8 @@ class ServiceProviderFacade: Facade {
         self.loadingService = loadingService
         self.fileManager = fileManager
         
+        localData = []
+        serverData = []
         loadingService.loadingServiceDelegate = self
     }
     
@@ -47,7 +49,7 @@ class ServiceProviderFacade: Facade {
         fileManager.getLocalData { [weak self] result in
             switch result {
             case .success(let data):
-                self?.localData = self?.makeDataSource(data)
+                self?.makeDataSource(data)
                 self?.checkBackgroundOperation()
                 self?.favouritesDataSourceDelegate?.updateDataSource(self?.localData)
             case .failure(let error):
@@ -56,18 +58,35 @@ class ServiceProviderFacade: Facade {
         }
     }
     
-    func makeDataSource(_ data: [URL]) -> [Cartoon] {
-        var result = [Cartoon]()
-        data.forEach { item in
-            result.append(Cartoon(title: item.deletingPathExtension().lastPathComponent, state: .loaded, localPath: item))
+    func makeDataSource(_ data: [URL]) {
+        if localData.isEmpty {
+            data.forEach { item in
+                localData.append(Cartoon(title: item.deletingPathExtension().lastPathComponent, state: .loaded, localPath: item))
+            }
+        } else {
+            data.forEach { item in
+                let index = localData.firstIndex { cartoon -> Bool in
+                    cartoon.title == item.deletingPathExtension().lastPathComponent
+                }
+                if index == nil {
+                    localData.append(Cartoon(title: item.deletingPathExtension().lastPathComponent, state: .loaded, localPath: item))
+                }
+            }
         }
-        return result
+        localData.sort { lhs, rhs -> Bool in
+            lhs.title.unwrapped > rhs.title.unwrapped
+        }
     }
     
     func checkBackgroundOperation() {
-        loadingService.checkOperationQueue { [weak self] operationCount in
-            if operationCount != 0 {
-                self?.localData?.append(Cartoon(state: .inProgress))
+        let index = localData.firstIndex { element -> Bool in
+            element.state == .inProgress
+        }
+        if index == nil {
+            loadingService.checkOperationQueue { [weak self] operationCount in
+                if operationCount != 0 {
+                    self?.localData.append(Cartoon(state: .inProgress))
+                }
             }
         }
     }
@@ -75,21 +94,26 @@ class ServiceProviderFacade: Facade {
 
 extension ServiceProviderFacade: LoadingServiceDelegate {
     func setOperation() {
-        localData?.append(Cartoon(state: .inProgress))
+        localData.append(Cartoon(state: .inProgress))
         favouritesDataSourceDelegate?.updateDataSource(localData)
     }
     
-    func updateProgress(_ progress: String) {
-        localData?.last?.progress = progress
-        favouritesDataSourceDelegate?.updateDataSource(localData)
+    func updateProgress(_ progress: Float) {
+        favouritesDataSourceDelegate?.updateProgress(progress)
     }
     
     func updateDataSource(_ localPath: URL) {
-        localData?.removeLast()
-        localData?.append(Cartoon(title: localPath.deletingPathExtension().lastPathComponent,
-                                  state: .loaded,
-                                  localPath: localPath))
-        checkBackgroundOperation()
-        favouritesDataSourceDelegate?.updateDataSource(localData)
+        localData.removeAll { item -> Bool in
+            item.state == .inProgress
+        }
+        fileManager.getLocalData { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.makeDataSource(data)
+                self?.favouritesDataSourceDelegate?.updateDataSource(self?.localData)
+            case .failure(let error):
+                self?.errorDelegate?.show(error: error)
+            }
+        }
     }
 }

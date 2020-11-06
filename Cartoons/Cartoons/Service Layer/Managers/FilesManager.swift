@@ -32,10 +32,24 @@ class FilesManager {
     func getLocalData(completion: @escaping ((Result<[URL], Error>) -> Void)) {
         do {
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsPath, includingPropertiesForKeys: nil)
-            let videoFiles = directoryContents.filter { $0.pathExtension == "mp4" }
+            var videoFiles = directoryContents.filter { $0.pathExtension == "mp4" }
+            videoFiles.sort { lhs, rhs -> Bool in
+                lhs.lastPathComponent > rhs.lastPathComponent
+            }
             completion(.success(videoFiles))
         } catch {
             completion(.failure(error))
+        }
+    }
+    
+    func clearCache() {
+        do {
+            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsPath, includingPropertiesForKeys: nil)
+            try directoryContents.forEach { item in
+                try FileManager.default.removeItem(atPath: item.path)
+            }
+        } catch {
+            print(error)
         }
     }
 }

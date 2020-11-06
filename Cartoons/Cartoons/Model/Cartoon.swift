@@ -16,24 +16,31 @@ enum FileState {
 class Cartoon: Hashable {
     var id = UUID()
     var title: String?
-    var state: FileState = .onServer
+    var state: FileState
     var thumbnail: URL?
     var link: URL?
     var localPath: URL?
-    var progress: String = "0%"
+    var progress: Float
     
-    init(title: String? = nil, state: FileState, thumbnail: URL? = nil, link: URL? = nil, localPath: URL? = nil) {
+    init(title: String? = nil,
+         state: FileState = .onServer,
+         thumbnail: URL? = nil,
+         link: URL? = nil,
+         localPath: URL? = nil,
+         progress: Float = 0.0) {
         self.title = title
         self.thumbnail = thumbnail
         self.link = link
         self.localPath = localPath
+        self.state = state
+        self.progress = progress
     }
     
     func setState(_ state: FileState) {
         self.state = state
     }
     
-    func setProgress(_ progress: String) {
+    func setProgress(_ progress: Float) {
         self.progress = progress
     }
     

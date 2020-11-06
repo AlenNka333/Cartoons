@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
-          backgroundSessionCompletionHandler = completionHandler
+        backgroundSessionCompletionHandler = completionHandler
+        LoadingService.shared.restartSession()
     }
 }

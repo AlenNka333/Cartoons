@@ -20,7 +20,8 @@ class BaseNavigationController: UINavigationController {
         static let subtitleSize: CGFloat = 14
         static let bottomOffset: CGFloat = -16
     }
-    private var state: NavigationState = NavigationState.system
+    
+    private var state = NavigationState.system
     var imageAction: (() -> Void)?
     
     private lazy var appearance: UINavigationBarAppearance = {

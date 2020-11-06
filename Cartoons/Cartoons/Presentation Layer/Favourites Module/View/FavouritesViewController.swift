@@ -22,9 +22,6 @@ class FavouritesViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-        guard let collection = collectionView else {
-            return
-        }
         dataSource = makeDataSource()
         showActivityIndicator()
         presenter?.getData()
@@ -67,16 +64,24 @@ extension FavouritesViewController: FavouritesViewProtocol {
     
     func setData(data: [Cartoon]) {
         videos = data
+        print("VIDEOS = \(videos.count)")
         if activityIndicator.isAnimating {
             stopActivityIndicator()
         }
         applySnapshot()
     }
     
-    func updateProgress(_ progress: String) {
-        let cartoons = snapshot.itemIdentifiers
-        cartoons.last?.setProgress(progress)
-        snapshot.reloadItems(cartoons)
+    func updateProgress(_ progress: Float) {
+        let item = videos.last
+        item?.setProgress(progress)
+        snapshot.reloadItems([item!])
+        collectionView?.reloadItems(at: [IndexPath(item: videos.count - 1, section: 0)])
+    }
+    
+    func updateData(_ data: [Cartoon]) {
+        data.forEach { item in
+            snapshot.reloadItems([item])
+        }
     }
 }
 
@@ -96,8 +101,6 @@ extension FavouritesViewController: UICollectionViewDelegate {
 }
 
 extension FavouritesViewController {
-    //MARK: - Notification oberserver methods
-    
     @objc func didBecomeActive() {
         presenter?.getData()
     }

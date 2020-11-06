@@ -104,13 +104,12 @@ extension CartoonsViewController: UICollectionViewDelegate {
 
 extension CartoonsViewController {
     func makeDataSource() -> DataSource {
-        let dataSource = DataSource(collectionView: collectionView ?? UICollectionView(),
-                                    cellProvider: { collectionView, indexPath, cartoon -> UICollectionViewCell? in
-                                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
-                                                                                      for: indexPath) as? CartoonCollectionViewCell
-                                        cell?.video = cartoon
-                                        return cell
-                                    })
+        let dataSource = DataSource(collectionView: collectionView ?? UICollectionView()) { collectionView, indexPath, cartoon -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
+                                                          for: indexPath) as? CartoonCollectionViewCell
+            cell?.video = cartoon
+            return cell
+        }
         return dataSource
     }
     

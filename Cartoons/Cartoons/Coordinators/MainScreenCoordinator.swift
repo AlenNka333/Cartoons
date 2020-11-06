@@ -74,7 +74,7 @@ class MainScreenCoordinator: Coordinator {
 extension MainScreenCoordinator: TransitionDelegate {
     func transit() {
         successSessionClosure?()
-        childCoordinators.forEach {  $0?.parent = nil }
+        childCoordinators.forEach { $0?.parent = nil }
         childCoordinators.removeAll()
     }
 }

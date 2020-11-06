@@ -10,19 +10,12 @@ import AVFoundation
 import Foundation
 import UIKit
 
-enum ProgressState {
-    case inProgress
-    case stopped
-    case done
-}
-
 class FavouritesCollectionViewCell: UICollectionViewCell {
-    private lazy var progressView: UIView = {
-        let view = UIView()
-        view.layer.backgroundColor = UIColor.black.withAlphaComponent(0.6).cgColor
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 15
-        return view
+    private lazy var progressView: UIProgressView = {
+        let progress = UIProgressView()
+        progress.progressTintColor = .white
+        progress.progressImage = R.image.slider_progress()
+        return progress
     }()
     private lazy var downloadButton: UIButton = {
         let button = UIButton()
@@ -53,13 +46,11 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
         }
       }
     }
-    var progress: String? {
+    var progress: Float? {
         willSet(newValue) {
-            titleLabel.text = newValue
+            progressView.progress = newValue ?? 0.0
         }
     }
-    
-    var state: ProgressState = .done
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,26 +66,11 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
 
 extension FavouritesCollectionViewCell {
     func setProgressView() {
+        contentView.backgroundColor = .black
         contentView.addSubview(progressView)
-        progressView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
-        }
         progressView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-    
-    func setState(state: ProgressState) {
-        self.state = state
-        switch state {
-        case .inProgress:
-            setProgressView()
-        case .done:
-            progressView.removeFromSuperview()
-        case .stopped:
-            downloadButton.setImage(R.image.pause(), for: .normal)
+            $0.leading.trailing.equalToSuperview()
+            $0.center.equalToSuperview()
         }
     }
 }
