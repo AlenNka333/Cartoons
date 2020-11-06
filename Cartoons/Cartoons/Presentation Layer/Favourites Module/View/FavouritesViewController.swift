@@ -72,10 +72,11 @@ extension FavouritesViewController: FavouritesViewProtocol {
     }
     
     func updateProgress(_ progress: Float) {
-        let item = videos.last
-        item?.setProgress(progress)
-        snapshot.reloadItems([item!])
-        collectionView?.reloadItems(at: [IndexPath(item: videos.count - 1, section: 0)])
+        if let downloadingCell = collectionView?.cellForItem(at: IndexPath(item: videos.count - 1, section: 0)) as? FavouritesCollectionViewCell {
+            downloadingCell.progress = progress
+            downloadingCell.setNeedsDisplay()
+            downloadingCell.isUserInteractionEnabled = false
+        }
     }
     
     func updateData(_ data: [Cartoon]) {
@@ -121,7 +122,7 @@ extension FavouritesViewController {
     }
     
     func applySnapshot(animatingDifferences: Bool = true) {
-        snapshot.deleteAllItems()
+        snapshot = SnapShot()
         snapshot.appendSections([.main])
         snapshot.appendItems(videos, toSection: .main)
         dataSource?.apply(snapshot)

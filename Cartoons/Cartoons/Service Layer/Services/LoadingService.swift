@@ -114,11 +114,9 @@ extension LoadingService: URLSessionTaskDelegate, URLSessionDownloadDelegate {
                     totalBytesExpectedToWrite: Int64) {
         if totalBytesExpectedToWrite > 0 {
             let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-            if progress.truncatingRemainder(dividingBy: 10.0) == 0 {
-                let result = String(format: "% .1f", Float(progress) * 100) + "%"
-                loadingServiceDelegate?.updateProgress(progress)
-                os_log("Progress %@", log: Log.table, result)
-            }
+            let result = String(format: "% .1f", Float(progress) * 100) + "%"
+            loadingServiceDelegate?.updateProgress(progress)
+            os_log("Progress %@", log: Log.table, result)
         }
     }
     
