@@ -9,13 +9,13 @@
 import UIKit
 
 class SettingsAssembly: Assembly {
-    static func makeSettingsCoordinator(rootController: UINavigationController, serviceLocator: Locator) -> SettingsCoordinator {
-        SettingsCoordinator(rootController: rootController, serviceLocator: serviceLocator)
+    static func makeSettingsCoordinator(rootController: UINavigationController, serviceLocator: Locator, serviceProvider: ServiceProviderFacade) -> SettingsCoordinator {
+        SettingsCoordinator(rootController: rootController, serviceLocator: serviceLocator, serviceProvider: serviceProvider)
     }
     
-    static func makeSettingsController(serviceLocator: Locator) -> SettingsViewController {
+    static func makeSettingsController(serviceLocator: Locator, serviceProvider: ServiceProviderFacade) -> SettingsViewController {
         let view = SettingsViewController()
-        let presenter = SettingsPresenter(view: view, serviceLocator: serviceLocator)
+        let presenter = SettingsPresenter(view: view, serviceLocator: serviceLocator, serviceProvider: serviceProvider)
         view.presenter = presenter
         return view
     }

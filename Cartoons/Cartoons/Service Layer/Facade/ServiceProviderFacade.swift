@@ -54,6 +54,14 @@ class ServiceProviderFacade: Facade {
         }
     }
     
+    func clearCache() {
+        fileManager.clearCache()
+        localData.removeAll { item -> Bool in
+            item.state != .inProgress
+        }
+        favouritesDataSourceDelegate?.updateDataSource(localData)
+    }
+    
     func getLocalData() {
         fileManager.getLocalData { [weak self] result in
             switch result {

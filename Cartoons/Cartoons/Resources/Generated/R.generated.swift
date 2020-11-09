@@ -688,7 +688,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 24 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 25 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -710,6 +710,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let allow = Rswift.StringResource(key: "allow", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Are you sure to clear cache folder?
+      ///
+      /// Locales: en
+      static let question_to_clear_cache = Rswift.StringResource(key: "question_to_clear_cache", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Are you sure to sign out?
       ///
       /// Locales: en
@@ -860,6 +864,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("allow", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Are you sure to clear cache folder?
+      ///
+      /// Locales: en
+      static func question_to_clear_cache(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("question_to_clear_cache", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "question_to_clear_cache"
+        }
+
+        return NSLocalizedString("question_to_clear_cache", bundle: bundle, comment: "")
       }
 
       /// en translation: Are you sure to sign out?

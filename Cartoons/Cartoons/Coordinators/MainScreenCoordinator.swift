@@ -61,7 +61,9 @@ class MainScreenCoordinator: Coordinator {
         let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(rootController: favourites,
                                                                                  serviceProviderFacade: serviceProviderFacade)
         addChild(favouritesCoordinator)
-        let settingsCoordinator = SettingsAssembly.makeSettingsCoordinator(rootController: settings, serviceLocator: serviceLocator)
+        let settingsCoordinator = SettingsAssembly.makeSettingsCoordinator(rootController: settings,
+                                                                           serviceLocator: serviceLocator,
+                                                                           serviceProvider: serviceProviderFacade)
         addChild(settingsCoordinator)
         settingsCoordinator.transitionDelegate = self
         

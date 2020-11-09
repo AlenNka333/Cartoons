@@ -69,18 +69,12 @@ extension FavouritesViewController: FavouritesViewProtocol {
         }
         applySnapshot()
     }
-    
+
     func updateProgress(_ progress: Float) {
         if let downloadingCell = collectionView?.cellForItem(at: IndexPath(item: videos.count - 1, section: 0)) as? FavouritesCollectionViewCell {
             downloadingCell.progress = progress
             downloadingCell.setNeedsDisplay()
             downloadingCell.isUserInteractionEnabled = false
-        }
-    }
-    
-    func updateData(_ data: [Cartoon]) {
-        data.forEach { item in
-            snapshot.reloadItems([item])
         }
     }
 }

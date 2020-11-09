@@ -11,18 +11,20 @@ import UIKit
 
 class SettingsCoordinator: Coordinator {
     let serviceLocator: Locator
+    let serviceProvider: ServiceProviderFacade
     
     weak var transitionDelegate: TransitionDelegate?
     var parent: Coordinator?
     var rootController: UINavigationController?
     
-    init(rootController: UINavigationController, serviceLocator: Locator) {
+    init(rootController: UINavigationController, serviceLocator: Locator, serviceProvider: ServiceProviderFacade) {
         self.rootController = rootController
         self.serviceLocator = serviceLocator
+        self.serviceProvider = serviceProvider
     }
     
     func start() {
-        let settingsController = SettingsAssembly.makeSettingsController(serviceLocator: serviceLocator)
+        let settingsController = SettingsAssembly.makeSettingsController(serviceLocator: serviceLocator, serviceProvider: serviceProvider)
         settingsController.transitionDelegate = self
         rootController?.pushViewController(settingsController, animated: false)
     }

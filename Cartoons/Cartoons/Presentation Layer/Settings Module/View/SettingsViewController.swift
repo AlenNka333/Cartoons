@@ -114,6 +114,18 @@ extension SettingsViewController: SettingsViewProtocol {
         present(alertVC, animated: true)
     }
     
+    func showClearCachePermissionAlert(message: String) {
+        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
+            switch action {
+            case .accept:
+                self?.presenter?.clearCache()
+            case .cancel:
+                break
+            }
+        }
+        present(alertVC, animated: true)
+    }
+    
     func showSuccess(success: String) {
         let alertVC = AlertService.alert(title: R.string.localizable.success(), body: success, alertType: .success)
         present(alertVC, animated: true)
@@ -187,7 +199,7 @@ extension SettingsViewController {
         guard let presenter = self.presenter else {
             return
         }
-        presenter.clearCache()
+        presenter.askPermission()
     }
     
     func didSelect(image: UIImage?) {

@@ -12,6 +12,7 @@ protocol SettingsViewProtocol: BaseViewProtocol, AnyObject {
     func showPhoneLabel(number: String)
     func showSuccess(success: String)
     func showSignOutAlert(message: String)
+    func showClearCachePermissionAlert(message: String)
     func showPermissionAlert(message: String)
     func showProfileImage(path: URL?)
     func showDefaultImage()
