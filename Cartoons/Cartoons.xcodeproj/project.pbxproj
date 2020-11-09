@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EEE9C9250148DC00970DA6 /* R.generated.swift */; };
 		20EEE9CD25014B4500970DA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */; };
 		330F4DFA252EEFDC008D0FC8 /* MainScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4DF9252EEFDC008D0FC8 /* MainScreenAssembly.swift */; };
 		330F4DFF252EF697008D0FC8 /* CartoonsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4DFE252EF697008D0FC8 /* CartoonsAssembly.swift */; };
@@ -167,7 +166,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		20EEE9C9250148DC00970DA6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Cartoons/Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		32435F09C4C2FF8D6487E69C /* Pods_Cartoons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cartoons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		330F4DF9252EEFDC008D0FC8 /* MainScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenAssembly.swift; sourceTree = "<group>"; };
@@ -334,7 +332,6 @@
 		20EEE9CB25014A3000970DA6 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				20EEE9C9250148DC00970DA6 /* R.generated.swift */,
 				20EEE9CC25014B4500970DA6 /* GoogleService-Info.plist */,
 			);
 			path = Generated;
@@ -1299,7 +1296,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/Cartoons/Resources/Generated/R.generated.swift",
+				$SRCROOT/Cartoons/Resources/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1428,7 +1425,6 @@
 				3319126F2543269900DB64ED /* DetailsAssembly.swift in Sources */,
 				339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */,
 				332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */,
-				20EEE9CA250148DC00970DA6 /* R.generated.swift in Sources */,
 				330F4E792530F7BD008D0FC8 /* UserDataService.swift in Sources */,
 				33B0AE732549F85200EA71CC /* ServiceLocator.swift in Sources */,
 				330F4E09252F0110008D0FC8 /* FavouritesAssembly.swift in Sources */,
