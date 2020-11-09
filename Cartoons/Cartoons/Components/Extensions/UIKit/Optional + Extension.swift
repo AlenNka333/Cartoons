@@ -17,6 +17,15 @@ extension Optional where Wrapped == Int {
     }
 }
 
+extension Optional where Wrapped == Double {
+    var unwrapped: Double {
+        guard let unwrapped = self else {
+            return 0
+        }
+        return unwrapped
+    }
+}
+
 extension Optional where Wrapped == String {
     var unwrapped: String {
         guard let unwrapped = self else {

@@ -15,7 +15,7 @@ class CustomLabelView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        Bundle.main.loadNibNamed(Constants.labelClassName, owner: self, options: nil)
+        Bundle.main.loadNibNamed(AppEnvironment.Classes.labelClassName, owner: self, options: nil)
         addSubview(textLabel)
         addSubview(image)
         textLabel.snp.makeConstraints {

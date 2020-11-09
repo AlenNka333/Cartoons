@@ -8,23 +8,13 @@
 
 import UIKit
 
+enum Action {
+    case openDetails
+    case successSession
+}
+
 class MainScreenAssembly: Assembly {
-    static func makeMainScreenCoordinator(number: String) -> MainScreenCoordinator {
-        return MainScreenCoordinator(number: number)
-    }
-    
-    static func makeTabBarController(number: String,
-                                     storageService: StorageDataService,
-                                     authorizationService: AuthorizationService,
-                                     completion: @escaping(() -> Void)) -> TabBarViewController {
-        var controllers = [UIViewController]()
-        controllers.append(CartoonsAssembly.makeCartoonsController())
-        controllers.append(FavouritesAssembly.makeFavouritesController())
-        let settings = SettingsAssembly.makeSettingsController(number: number, storageService: storageService, authorizationService: authorizationService) {
-            completion()
-        }
-        controllers.append(settings)
-        let view = TabBarViewController(controllers: controllers)
-        return view
+    static func makeMainScreenCoordinator(serviceLocator: Locator) -> MainScreenCoordinator {
+        return MainScreenCoordinator(serviceLocator: serviceLocator)
     }
 }

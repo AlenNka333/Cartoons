@@ -22,6 +22,8 @@ class OnboardingAssembly: Assembly {
         pages.append(StreamingFeatureViewController())
         pages.append(OfflineWatchingFeatureViewController())
         let view = PageViewController(pages: pages)
+        let presenter = PageControllerPresenter(view: view)
+        view.presenter = presenter
         return view
     }
 }

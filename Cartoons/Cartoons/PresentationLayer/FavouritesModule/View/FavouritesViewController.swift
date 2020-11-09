@@ -17,8 +17,9 @@ class FavouritesViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = R.string.localizable.favourites_screen()
-        (navigationController as? BaseNavigationController)?.setSubTitle(title: R.string.localizable.favourites_screen_subtitle())
-        (navigationController as? BaseNavigationController)?.setImage(image: R.image.favourites(), isEnabled: false)
+        (navigationController as? BaseNavigationController)?.setupCustomizedUI(image: R.image.favourites().unwrapped,
+                                                                               subtitle: R.string.localizable.favourites_screen_subtitle(),
+                                                                               isUserInteractionEnabled: false)
     }
     
     override func setupUI() {
