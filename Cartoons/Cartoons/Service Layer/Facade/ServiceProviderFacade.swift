@@ -18,11 +18,7 @@ class ServiceProviderFacade: Facade {
     private var fileManager: FilesManager
     
     private var localData: [Cartoon]
-    private var serverData: [Cartoon] {
-        didSet {
-            cartoonsDataSourceDelegate?.updateDataSource(serverData)
-        }
-    }
+    private var serverData: [Cartoon]
     
     init(storageService: StorageDataService, loadingService: LoadingService, fileManager: FilesManager) {
         self.storageService = storageService
@@ -39,8 +35,21 @@ class ServiceProviderFacade: Facade {
             switch result {
             case .success(let cartoons):
                 self?.serverData = cartoons
+                self?.findInLocalFolder()
+                self?.cartoonsDataSourceDelegate?.updateDataSource(self?.serverData)
             case .failure(let error):
                 self?.errorDelegate?.show(error: error)
+            }
+        }
+    }
+    
+    func findInLocalFolder() {
+        serverData.forEach { item in
+            guard let url = item.link else {
+                return
+            }
+            if fileManager.checkExitingFile(with: url) {
+                item.state = .loaded
             }
         }
     }
@@ -103,6 +112,7 @@ extension ServiceProviderFacade: LoadingServiceDelegate {
     }
     
     func updateDataSource(_ localPath: URL) {
+        getServerData()
         localData.removeAll { item -> Bool in
             item.state == .inProgress
         }

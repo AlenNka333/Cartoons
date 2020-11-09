@@ -34,9 +34,6 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
 }
 
 extension CartoonsPresenter: ServiceProviderDelegate {
-    func updateProgress(_ progress: String) {
-    }
-    
     func updateDataSource(_ data: [Cartoon]?) {
         guard let data = data else {
             return

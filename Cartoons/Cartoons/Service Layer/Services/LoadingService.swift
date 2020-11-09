@@ -31,14 +31,13 @@ class LoadingService: NSObject {
         configuration.isDiscretionary = true
         configuration.allowsCellularAccess = false
         configuration.shouldUseExtendedBackgroundIdleMode = true
-        //configuration.waitsForConnectivity = true
+        configuration.waitsForConnectivity = true
         
         return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     }()
     
     override init() {
         super.init()
-        NotificationCenter.default.addObserver(self, selector: #selector(willTerminate), name: UIApplication.willTerminateNotification, object: nil)
         session.getAllTasks { tasks in
             tasks.forEach { task in
                 task.resume()
@@ -71,14 +70,6 @@ class LoadingService: NSObject {
     func checkOperationQueue(completion: @escaping ((Int) -> Void)) {
         session.getAllTasks { task in
             completion(task.count)
-        }
-    }
-    
-    @objc func willTerminate() {
-        session.getAllTasks { tasks in
-            tasks.forEach { task in
-                task.suspend()
-            }
         }
     }
 }

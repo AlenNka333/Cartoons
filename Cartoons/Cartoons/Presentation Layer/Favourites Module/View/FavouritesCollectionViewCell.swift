@@ -14,7 +14,6 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
     private lazy var progressView: UIProgressView = {
         let progress = UIProgressView()
         progress.progressTintColor = .white
-        progress.progress = 0.5
         progress.transform = CGAffineTransform(scaleX: 1, y: 2)
         progress.clipsToBounds = true
         return progress

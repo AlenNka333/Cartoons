@@ -107,6 +107,9 @@ extension CartoonsViewController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
                                                           for: indexPath) as? CartoonCollectionViewCell
             cell?.video = cartoon
+            if cartoon.state == .loaded {
+                cell?.setToFavourites()
+            }
             return cell
         }
         return dataSource
@@ -135,7 +138,7 @@ extension CartoonsViewController {
     func setupUIRefreshControl(with collectionView: UICollectionView) {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        refreshControl.tintColor = .black
+        refreshControl.tintColor = .white
         collectionView.refreshControl = refreshControl
         collectionView.refreshControl?.isEnabled = false
     }
@@ -145,9 +148,9 @@ extension CartoonsViewController {
     }
     
     func applySnapshot(animatingDifferences: Bool = true) {
-        snapshot.deleteAllItems()
+        snapshot = SnapShot()
         snapshot.appendSections([.main])
-        snapshot.appendItems(videos)
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        snapshot.appendItems(videos, toSection: .main)
+        dataSource.apply(snapshot)
     }
 }
