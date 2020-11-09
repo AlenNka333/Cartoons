@@ -9,18 +9,19 @@
 import Kingfisher
 import UIKit
 
-enum NavigationState {
-    case system
-    case custom
-}
-
 class BaseNavigationController: UINavigationController {
+    private enum NavigationState {
+        case system
+        case custom
+    }
+    
     private enum Const {
         static let titleSize: CGFloat = 40
         static let subtitleSize: CGFloat = 14
         static let bottomOffset: CGFloat = -16
     }
-    private var state: NavigationState = NavigationState.system
+    
+    private var state = NavigationState.system
     var imageAction: (() -> Void)?
     
     private lazy var appearance: UINavigationBarAppearance = {
@@ -46,7 +47,7 @@ class BaseNavigationController: UINavigationController {
     }()
     
     private let activityIndicator = UIActivityIndicatorView()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
@@ -55,11 +56,12 @@ class BaseNavigationController: UINavigationController {
     
     func setupUI() {
         delegate = self
-        navigationBar.prefersLargeTitles = false
-        navigationItem.largeTitleDisplayMode = .automatic
+        navigationBar.tintColor = .white
+        //navigationItem.largeTitleDisplayMode = .never
         navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationBar.layer.shadowRadius = 4.0
         navigationBar.layer.shadowOpacity = 1.0
+        state = NavigationState.system
     }
 }
 
@@ -69,14 +71,17 @@ extension BaseNavigationController: UINavigationControllerDelegate {
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
-            navigationBar.largeContentTitle = ""
             imageView.removeFromSuperview()
             subtitleLabel.removeFromSuperview()
+            setNavigationBarHidden(false, animated: true)
+            return nil
+        } else if operation == .pop {
+            navigationBar.isHidden = false
             return nil
         } else {
             setupUI()
             return nil
-        }        
+        }
     }
 }
 
@@ -84,13 +89,15 @@ extension BaseNavigationController {
     func setupCustomizedUI(image: UIImage, subtitle: String, isUserInteractionEnabled: Bool) {
         updateUI()
         subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.48),
-                                                                       .font: R.font.aliceRegular(size: 14).unwrapped])
+                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.48),
+                                                                       NSAttributedString.Key.font: R.font.aliceRegular(size: 14).unwrapped])
         imageView.image = image
         imageView.isUserInteractionEnabled = isUserInteractionEnabled
+        state = NavigationState.custom
     }
     
     func updateUI() {
+        navigationBar.tintColor = .white
         navigationBar.prefersLargeTitles = true
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance

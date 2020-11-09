@@ -13,4 +13,5 @@ protocol VerificationViewProtocol: BaseViewProtocol, AnyObject {
     func startTimer(timer: Timer, time: Int)
     func endTimer()
     func updateTime(timer: Int)
+    func transit()
 }

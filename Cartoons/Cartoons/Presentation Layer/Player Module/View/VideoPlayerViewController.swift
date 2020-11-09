@@ -2,9 +2,10 @@
 //  VideoPlayerViewController.swift
 //  Cartoons
 //
-//  Created by Alena Nesterkina on 10/12/20.
+//  Created by Alena Nesterkina on 10/31/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
+
 import AVFoundation
 import AVKit
 import Foundation
@@ -17,38 +18,31 @@ enum PlayerState {
 
 class VideoPlayerViewController: BaseViewController {
     private var playerView = PlayerView()
-    private var player: AVPlayer? {
-        playerView.player
-    }
+    private var player: AVPlayer? { playerView.player }
+    weak var transitionDelegate: PlayerTransitionDelegate?
     var controlsView: CustomPlayerControls?
     var presenter: VideoPlayerPresenterProtocol?
     var playerState: PlayerState?
     var timeObserver: Any?
+    private lazy var closeButton: UIButton = {
+        var button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.tintColor = .white
+        button.setTitle(R.string.localizable.back(), for: .normal)
+        return button
+    }()
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .slide }
+    override var prefersStatusBarHidden: Bool { controlsView?.isHidden == true }
+    override var prefersHomeIndicatorAutoHidden: Bool { true }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAVPlayer()
     }
     
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .slide }
-    override var prefersStatusBarHidden: Bool { controlsView?.isHidden == true }
-    override var prefersHomeIndicatorAutoHidden: Bool { true }
-    
     override func loadView() {
-        super.loadView()
         view = playerView
-    }
-    
-    override var shouldAutorotate: Bool {
-        return true
-    }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .all
-    }
-    
-    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return .landscapeRight
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,15 +52,13 @@ class VideoPlayerViewController: BaseViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { _ in
+        coordinator.animate { _ in
             self.playerView.frame.size = size
-        })
+        }
     }
     
     override func setupNavigationBar() {
-        super.setupNavigationBar()
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func setupUI() {
@@ -85,6 +77,16 @@ class VideoPlayerViewController: BaseViewController {
         controls.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        view.addSubview(closeButton)
+        closeButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        closeButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(50)
+            $0.leading.equalToSuperview().offset(20)
+        }
+    }
+    
+    @objc func goBack() {
+        transitionDelegate?.transit()
     }
     
     override func showError(error: Error) {
@@ -93,7 +95,7 @@ class VideoPlayerViewController: BaseViewController {
     
     @objc func viewDidTap() {
         controlsView?.isHidden.toggle()
-        navigationController?.navigationBar.isHidden.toggle()
+        closeButton.isHidden.toggle()
     }
 }
 
@@ -113,8 +115,7 @@ extension VideoPlayerViewController {
     func setupTimeObserver() {
         let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = player?.addPeriodicTimeObserver(forInterval: interval,
-                                                       queue: DispatchQueue.main,
-                                                       using: { elapsedTime in
+                                                       queue: DispatchQueue.main) { elapsedTime in
             if self.player?.currentItem?.status == .readyToPlay {
                 let currentTimeInSeconds = CMTimeGetSeconds(elapsedTime)
                 let time = elapsedTime.seconds.asString()
@@ -127,7 +128,7 @@ extension VideoPlayerViewController {
                     self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
                 }
             }
-        })
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?,

@@ -16,4 +16,5 @@ protocol SettingsViewProtocol: BaseViewProtocol, AnyObject {
     func showProfileImage(path: URL?)
     func showDefaultImage()
     func editProfileImage()
+    func transit()
 }

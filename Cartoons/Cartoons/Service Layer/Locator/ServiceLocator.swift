@@ -16,6 +16,8 @@ class ServiceLocator: Locator {
     private lazy var authorizationService: AuthorizationService = { AuthorizationService() }()
     private lazy var storageService: StorageDataService = { StorageDataService() }()
     private lazy var userService: UserDataService = { UserDataService() }()
+    private lazy var loadingService: LoadingService = { LoadingService() }()
+    private lazy var fileManager: FilesManager = { FilesManager() }()
     
     func resolve<T>(_ type: T.Type) -> T? {
         switch type {
@@ -25,6 +27,10 @@ class ServiceLocator: Locator {
             return storageService as? T
         case is UserDataService.Type:
             return userService as? T
+        case is LoadingService.Type:
+            return loadingService as? T
+        case is FilesManager.Type:
+            return fileManager as? T
         default:
             return nil
         }

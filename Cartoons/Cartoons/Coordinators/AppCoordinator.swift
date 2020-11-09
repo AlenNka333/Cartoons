@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-class RootCoordinator: CoordinatorProtocol {
+class AppCoordinator: Coordinator {
     private let serviceLocator: Locator
     
-    var child: CoordinatorProtocol?
+    var child: Coordinator?
     var root: UIViewController
-    var parent: CoordinatorProtocol?
+    var parent: Coordinator?
     fileprivate var window: UIWindow?
     
     init(window: UIWindow?, serviceLocator: Locator) {
@@ -34,7 +34,7 @@ class RootCoordinator: CoordinatorProtocol {
             : service.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
     }
     
-    func setChild(_ coordinator: CoordinatorProtocol?) {
+    func setChild(_ coordinator: Coordinator?) {
         if child != nil {
             removeChild()
         }
@@ -46,13 +46,12 @@ class RootCoordinator: CoordinatorProtocol {
         guard let child = child else {
             return
         }
-        
         child.removeParent()
         self.child = nil
     }
 }
 
-extension RootCoordinator {
+extension AppCoordinator {
     func showOnboarding() {
         guard let window = window else {
             return
@@ -61,10 +60,11 @@ extension RootCoordinator {
         coordinator.successSessionClosure = { [weak self] in
             AppData.shouldShowOnBoarding = false
             self?.showAuthorizationScreen()
+            self?.removeChild()
         }
-        coordinator.start()
         setChild(coordinator)
-        window.rootViewController = coordinator.root
+        coordinator.start()
+        window.rootViewController = coordinator.rootController
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
     
@@ -75,9 +75,10 @@ extension RootCoordinator {
         let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator(serviceLocator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showMainScreen()
+            self?.removeChild()
         }
-        coordinator.start()
         setChild(coordinator)
+        coordinator.start()
         window.rootViewController = coordinator.rootController
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
@@ -89,9 +90,10 @@ extension RootCoordinator {
         let coordinator = MainScreenAssembly.makeMainScreenCoordinator(serviceLocator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
+            self?.removeChild()
         }
-        coordinator.start()
         setChild(coordinator)
+        coordinator.start()
         window.rootViewController = coordinator.rootController
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }

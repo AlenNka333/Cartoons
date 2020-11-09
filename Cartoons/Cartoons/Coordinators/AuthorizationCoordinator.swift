@@ -8,35 +8,41 @@
 
 import UIKit
 
-class AuthorizationCoordinator: CoordinatorProtocol {
+class AuthorizationCoordinator: Coordinator {
     let serviceLocator: Locator
     
-    var parent: CoordinatorProtocol?
+    var parent: Coordinator?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
     init(serviceLocator: Locator) {
-        self.rootController = UINavigationController()
+        self.rootController = UIViewController()
         self.serviceLocator = serviceLocator
     }
     
     func start() {
-        let view = AuthorizationAssembly.makeAuthorizationController(serviceLocator: serviceLocator) { [weak self] verificationId, number in
-            self?.openVerificationScreen(verificationId: verificationId, number: number)
-        }
-        
-        (rootController as? UINavigationController)?.pushViewController(view, animated: true)
+        let view = AuthorizationAssembly.makeAuthorizationController(serviceLocator: serviceLocator)
+        view.transitionDelegate = self
+        rootController = view
     }
     
-    func openVerificationScreen(verificationId: String, number: String) {
+    func openVerificationScreen(verificationId: String) {
         let view = AuthorizationAssembly.makeVerificationController(serviceLocator: serviceLocator,
-                                                                    verificationId: verificationId,
-                                                                    number: number) { [weak self] in
-            guard let closure = self?.successSessionClosure else {
-                return
-            }
-            closure()
-        }
-        (rootController as? UINavigationController)?.pushViewController(view, animated: true)
+                                                                    verificationId: verificationId)
+        view.transitionDelegate = self
+        view.modalPresentationStyle = .fullScreen
+        rootController.present(view, animated: true, completion: nil)
+    }
+}
+
+extension AuthorizationCoordinator: AuthorizationTransitionDelegate {
+    func transit(_ verificationId: String) {
+        openVerificationScreen(verificationId: verificationId)
+    }
+}
+
+extension AuthorizationCoordinator: VerificationTransitionDelegate {
+    func transit() {
+        successSessionClosure?()
     }
 }

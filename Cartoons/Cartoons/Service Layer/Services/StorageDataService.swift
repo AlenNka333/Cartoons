@@ -13,7 +13,7 @@ import Foundation
 class StorageDataService: StorageDataServiceProtocol {
     private let storageDataManager = StorageDataManager()
     private var folders = [String]()
-    private var cartoons = [Cartoon]()
+    var cartoons = [Cartoon]()
     
     func saveImage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void) {
         storageDataManager.saveImage(imageData: imageData, completion: completion)
@@ -51,9 +51,9 @@ class StorageDataService: StorageDataServiceProtocol {
                         let cartoon = findItemByType(response: response, ".mp4")
                         let thumbnail = findItemByType(response: response, ".png")
                         if let image = thumbnail {
-                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped, thumbnail: image.absoluteURL, link: cartoon))
+                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped, state: .onServer, thumbnail: image.absoluteURL, link: cartoon))
                         } else {
-                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped, link: cartoon))
+                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped, state: .onServer, link: cartoon))
                         }
                         dispatchGroup.leave()
                     }

@@ -9,18 +9,17 @@
 import UIKit
 
 class BaseViewController: UIViewController, BaseViewProtocol {
-    let alertView = CustomAlertViewController()
     let activityIndicator = UIActivityIndicatorView()
     let alertService = AlertService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupNavigationBar()
     }
     
     func setupUI() {
@@ -30,7 +29,7 @@ class BaseViewController: UIViewController, BaseViewProtocol {
     }
     
     func showError(error: Error) {
-        let alertVC = alertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
+        let alertVC = AlertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
             return
         }
         present(alertVC, animated: true)

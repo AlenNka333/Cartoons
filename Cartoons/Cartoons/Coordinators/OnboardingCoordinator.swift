@@ -8,18 +8,24 @@
 
 import UIKit
 
-class OnboardingCoordinator: CoordinatorProtocol {
-    var parent: CoordinatorProtocol?
-    var root: UIViewController
+class OnboardingCoordinator: Coordinator {
+    var parent: Coordinator?
+    var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
     init() {
-        self.root = UIViewController()
+        self.rootController = UIViewController()
     }
     
     func start() {
-        root = OnboardingAssembly.makeOnboardingController { [weak self] in
-            self?.successSessionClosure?()
-        }
+        let view = OnboardingAssembly.makeOnboardingController()
+        view.transitionDelegate = self
+        rootController = view
+    }
+}
+
+extension OnboardingCoordinator: OnboardingTransitionDelegate {
+    func transit() {
+        successSessionClosure?()
     }
 }

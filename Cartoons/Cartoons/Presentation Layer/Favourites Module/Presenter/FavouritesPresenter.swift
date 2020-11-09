@@ -10,9 +10,12 @@ import Foundation
 
 class FavouritesPresenter: FavouritesViewPresenterProtocol {
     let view: FavouritesViewProtocol
+    let serviceProviderFacade: ServiceProviderFacade
     
-    init(view: FavouritesViewProtocol) {
+    init(view: FavouritesViewProtocol, serviceProviderFacade: ServiceProviderFacade) {
         self.view = view
+        self.serviceProviderFacade = serviceProviderFacade
+        serviceProviderFacade.favouritesDataSourceDelegate = self
     }
     
     func showSuccess(success: String) {
@@ -21,5 +24,19 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
     
     func showError(error: Error) {
         view.showError(error: error)
+    }
+    
+    func getData() {
+        serviceProviderFacade.getLocalData()
+    }
+}
+
+extension FavouritesPresenter: FavouritesServiceProviderDelegate {
+    func updateProgress(_ progress: Float) {
+        view.updateProgress(progress)
+    }
+    
+    func updateDataSource(_ data: [Cartoon]?) {
+        view.setData(data: data ?? [Cartoon]())
     }
 }

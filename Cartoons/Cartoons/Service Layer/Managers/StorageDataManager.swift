@@ -76,7 +76,7 @@ class StorageDataManager {
                         completion(.failure(error))
                         return
                     }
-                    folderItems.append(url?.absoluteURL)
+                    folderItems.append(url)
                     dispatchGroup.leave()
                 }
             }
