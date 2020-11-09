@@ -70,4 +70,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     func showError(error: Error) {
         view.showError(error: error)
     }
+    func clearCache() {
+        
+    }
 }

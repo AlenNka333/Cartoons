@@ -143,7 +143,7 @@ extension SettingsViewController {
     }
     
     func applySnapshot(animatingDifferences: Bool = true) {
-        snapshot.deleteAllItems()
+        snapshot = SnapShot()
         snapshot.appendSections([.main])
         snapshot.appendItems(settings)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
@@ -155,6 +155,8 @@ extension SettingsViewController {
             cell.setButtonText(string: self.settings[indexPath.row].title)
             if indexPath.row == 0 {
                 cell.button.addTarget(self, action: #selector(self.buttonTappedToSignOutAction), for: .touchUpInside)
+            } else if indexPath.row == 1 {
+                cell.button.addTarget(self, action: #selector(self.clearCache), for: .touchUpInside)
             }
             return cell
         }
@@ -166,6 +168,13 @@ extension SettingsViewController {
             return
         }
         presenter.signOut()
+    }
+    
+    @objc func clearCache() {
+        guard let presenter = self.presenter else {
+            return
+        }
+        presenter.clearCache()
     }
     
     func didSelect(image: UIImage?) {

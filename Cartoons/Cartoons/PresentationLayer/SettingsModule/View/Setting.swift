@@ -9,7 +9,6 @@
 import Foundation
 
 class Setting: Hashable {
-    
     private var id = UUID()
     var title: String
     
@@ -27,5 +26,5 @@ class Setting: Hashable {
 }
 
 extension Setting {
-    static var allSettings = [Setting(title: "Sign Out"), Setting(title: "Clear Cache"), Setting(title: "Share")]
+    static var allSettings = [Setting(title: "Sign Out"), Setting(title: "Clear Cache")]
 }
