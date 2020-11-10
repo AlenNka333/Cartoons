@@ -28,8 +28,8 @@ class MainScreenCoordinator: Coordinator {
             return
         }
         self.serviceProviderFacade = ServiceProviderFacade(storageService: storageService,
-                                                loadingService: loadingService,
-                                                fileManager: fileManager)
+                                                           loadingService: loadingService,
+                                                           fileManager: fileManager)
         serviceProviderFacade?.errorDelegate = self
     }
     

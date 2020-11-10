@@ -175,7 +175,7 @@ extension SettingsViewController {
     }
     
     func makeDataSource() -> DataSource {
-        let dataSource = DataSource(tableView: tableView ?? UITableView()) { (tableView, indexPath, setting) -> UITableViewCell? in
+        let dataSource = DataSource(tableView: tableView ?? UITableView()) { tableView, indexPath, _ -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingsTableViewCell
             cell?.setButtonText(string: self.settings[indexPath.row].title)
             if indexPath.row == 0 {
