@@ -22,15 +22,16 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
             return
         }
         view.showActivityIndicator()
-        service.verifyUser(number: number) { [weak self] result in
-            self?.view.stopActivityIndicator()
-            switch result {
-            case let .success(verificationId):
-                self?.view.transit(verificationId: verificationId, number: number)
-            case .failure(let error):
-                self?.view.showError(error: error)
-            }
-        }
+        view.transit(verificationId: "verificationId")
+//        service.verifyUser(number: number) { [weak self] result in
+//            self?.view.stopActivityIndicator()
+//            switch result {
+//            case let .success(verificationId):
+//                self?.view.transit(verificationId: verificationId)
+//            case .failure(let error):
+//                self?.view.showError(error: error)
+//            }
+//        }
     }
     
     func showError(error: Error) {

@@ -39,12 +39,12 @@ class FavouritesViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         view.backgroundColor = R.color.main_orange()
+        
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: configureLayout())
         collectionView?.delegate = self
         collectionView?.backgroundColor = R.color.main_orange()
         view.addSubview(UIView(frame: .zero))
         view.addSubview(collectionView ?? UICollectionView())
-        
         collectionView?.register(FavouritesCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
     }
     

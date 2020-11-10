@@ -82,26 +82,32 @@ class VerificationViewController: BaseViewController {
         resendButton.setTitle(R.string.localizable.resend_button_key(), for: .normal)
         resendButton.addTarget(self, action: #selector(resendButtonTappedAction), for: .touchUpInside)
         
+        view.addSubview(verificationLabel)
+        verificationLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(160)
+            $0.leading.trailing.equalToSuperview().inset(50)
+        }
+        view.addSubview(circleImageView)
         circleImageView.snp.makeConstraints {
             $0.size.equalTo(80)
+            $0.top.equalTo(verificationLabel.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
         }
         circleImageView.addSubview(timerLabel)
         timerLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
-        
-        stackView.addArrangedSubview(verificationLabel)
-        stackView.addArrangedSubview(circleImageView)
         stackView.addArrangedSubview(codeTextField)
         stackView.addArrangedSubview(resendButton)
-        
         view.addSubview(stackView)
         stackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(50)
-            $0.centerY.equalToSuperview().offset(-50)
-        }
-        verificationLabel.snp.makeConstraints {
-            $0.width.equalToSuperview()
+            if UIScreen.main.bounds.height > 736 {
+                $0.centerY.equalToSuperview()
+            } else {
+                $0.top.equalTo(circleImageView.snp.bottom).offset(20)
+            }
+            
         }
         codeTextField.snp.makeConstraints {
             $0.height.equalTo(50)

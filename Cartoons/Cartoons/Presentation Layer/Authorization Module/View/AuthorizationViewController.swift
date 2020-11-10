@@ -54,7 +54,7 @@ class AuthorizationViewController: BaseViewController {
             if UIScreen.main.bounds.height > 736 {
                 $0.centerY.equalToSuperview().offset(-60)
             } else {
-                $0.top.equalTo(appLabelView.snp_bottomMargin).offset(60)
+                $0.top.equalTo(appLabelView.snp_bottomMargin).offset(100)
             }
             $0.leading.trailing.equalToSuperview().inset(50)
         }
@@ -85,8 +85,8 @@ class AuthorizationViewController: BaseViewController {
 }
 
 extension AuthorizationViewController: AuthorizationViewProtocol {
-    func transit(verificationId: String, number: String) {
-        transitionDelegate?.transit(verificationId, number)
+    func transit(verificationId: String) {
+        transitionDelegate?.transit(verificationId)
     }
 }
 

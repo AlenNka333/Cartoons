@@ -96,8 +96,8 @@ class ImagePicker: NSObject {
         case .denied, .restricted:
             completion(false)
         case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) {
-                if $0 {
+            AVCaptureDevice.requestAccess(for: .video) { access in
+                if access {
                     DispatchQueue.main.async {
                         completion(true)
                     }

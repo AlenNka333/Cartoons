@@ -21,13 +21,11 @@ class AuthorizationAssembly: Assembly {
     }
     
     static func makeVerificationController(serviceLocator: Locator,
-                                           verificationId: String,
-                                           number: String) -> VerificationViewController {
+                                           verificationId: String) -> VerificationViewController {
         let view = VerificationViewController()
         let presenter = VerificationPresenter(view: view,
                                               serviceLocator: serviceLocator,
-                                              verificationId: verificationId,
-                                              number: number)
+                                              verificationId: verificationId)
         view.presenter = presenter
         return view
     }

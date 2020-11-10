@@ -20,11 +20,15 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     
     var successSessionClosure: (() -> Void)?
     
-    init(view: VerificationViewProtocol, serviceLocator: Locator, verificationId: String, number: String) {
+    init(view: VerificationViewProtocol, serviceLocator: Locator, verificationId: String) {
         self.view = view
         self.serviceLocator = serviceLocator
         self.verificationId = verificationId
-        view.setLabelText(number: number)
+        
+        guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
+            return
+        }
+        view.setLabelText(number: service.phoneNumber.unwrapped)
     }
     
     func startTimer() {
@@ -58,14 +62,15 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
-            switch result {
-            case .success:
-                self?.view.transit()
-            case let .failure(error):
-                self?.view.showError(error: error)
-            }
-        }
+        view.transit()
+//        service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
+//            switch result {
+//            case .success:
+//                self?.view.transit()
+//            case let .failure(error):
+//                self?.view.showError(error: error)
+//            }
+//        }
     }
 }
 

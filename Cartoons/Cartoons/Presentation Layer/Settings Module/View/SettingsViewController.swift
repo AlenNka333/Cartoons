@@ -20,23 +20,12 @@ class SettingsViewController: BaseViewController {
     var imagePicker: ImagePicker?
     var tableView: UITableView?
     var userInfoHeader = UserInfoHeader()
-    
-    var snapshot = SnapShot()
-    var settings = Setting.allSettings
-    
-    private lazy var appearance: UINavigationBarAppearance = {
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = R.color.navigation_bar_color()
-        appearance.largeTitleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                NSAttributedString.Key.font: R.font.aliceRegular(size: 40).unwrapped]
-        appearance.shadowColor = .black
-        return appearance
-    }()
+    var snapshot: SnapShot?
+    var settings = [Setting(title: "Sign Out"), Setting(title: "Clear Cache")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker = ImagePicker(presentationController: self)
-        setupTableView()
         applySnapshot()
     }
     
@@ -48,6 +37,26 @@ class SettingsViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         view.backgroundColor = R.color.main_pink()
+        tableView = UITableView(frame: view.bounds)
+        tableView?.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
+        view.addSubview(tableView ?? UITableView())
+        tableView?.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        tableView?.delegate = self
+        tableView?.separatorStyle = .none
+        tableView?.backgroundColor = R.color.picotee_blue()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
+        userInfoHeader.frame = frame
+        tableView?.tableHeaderView = userInfoHeader
+        userInfoHeader.showActivityIndicator()
+        presenter?.showProfileImage()
+        userInfoHeader.imageAction = { [weak self] in
+            self?.presenter?.editProfileImage()
+        }
     }
     
     override func showError(error: Error) {
@@ -60,21 +69,6 @@ class SettingsViewController: BaseViewController {
 extension SettingsViewController: SettingsViewProtocol {
     func transit() {
         transitionDelegate?.transit()
-    }
-    
-    func showPermissionAlert(message: String) {
-        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
-            switch $0 {
-            case .accept:
-                guard let url = URL(string: UIApplication.openSettingsURLString) else {
-                    return
-                }
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            case .cancel:
-                break
-            }
-        }
-        present(alertVC, animated: true)
     }
     
     func editProfileImage() {
@@ -99,7 +93,24 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func showPhoneLabel(number: String) {
-        userInfoHeader.setPhoneNumber(number: number)
+        userInfoHeader.setPhoneNumber(number: "number")
+    }
+    
+    // MARK: - Alerts
+    
+    func showPermissionAlert(message: String) {
+        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
+            switch $0 {
+            case .accept:
+                guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            case .cancel:
+                break
+            }
+        }
+        present(alertVC, animated: true)
     }
     
     func showSignOutAlert(message: String) {
@@ -132,54 +143,36 @@ extension SettingsViewController: SettingsViewProtocol {
     }
 }
 
-// MARK: - TableViewDiffableDataSource
+// MARK: - TableViewDelegate
 
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 20
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+        return UIView(frame: .zero)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 60
     }
 }
 
 extension SettingsViewController {
-    func setupTableView() {
-        tableView = UITableView(frame: self.view.frame)
-        view.addSubview(tableView ?? UITableView())
-        tableView?.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        tableView?.delegate = self
-        tableView?.backgroundColor = R.color.main_blue()
-        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
-        userInfoHeader.frame = frame
-        tableView?.tableHeaderView = userInfoHeader
-        
-        userInfoHeader.showActivityIndicator()
-        presenter?.showProfileImage()
-        userInfoHeader.imageAction = { [weak self] in
-            self?.presenter?.editProfileImage()
-        }
-    }
-    
     func applySnapshot(animatingDifferences: Bool = true) {
-        snapshot = SnapShot()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(settings)
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        snapshot = dataSource.snapshot()
+        snapshot?.appendSections([.main])
+        snapshot?.appendItems(settings, toSection: .main)
+        dataSource.apply(snapshot ?? SnapShot(), animatingDifferences: animatingDifferences)
     }
     
     func makeDataSource() -> DataSource {
-        let dataSource = DataSource(tableView: tableView ?? UITableView()) { tableView, indexPath, _ -> UITableViewCell? in
+        let dataSource = DataSource(tableView: tableView ?? UITableView()) { tableView, indexPath, setting -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingsTableViewCell
-            cell?.setButtonText(string: self.settings[indexPath.row].title)
+            cell?.setButtonText(string: setting.title)
             if indexPath.row == 0 {
-                cell?.button.addTarget(self, action: #selector(self.buttonTappedToSignOutAction), for: .touchUpInside)
+                cell?.button.addTarget(self, action: #selector(self.signOutAction), for: .touchUpInside)
             } else if indexPath.row == 1 {
                 cell?.button.addTarget(self, action: #selector(self.clearCache), for: .touchUpInside)
             }
@@ -188,7 +181,7 @@ extension SettingsViewController {
         return dataSource
     }
     
-    @objc func buttonTappedToSignOutAction() {
+    @objc func signOutAction() {
         guard let presenter = self.presenter else {
             return
         }

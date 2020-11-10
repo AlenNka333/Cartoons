@@ -9,5 +9,5 @@
 import Foundation
 
 protocol AuthorizationViewProtocol: BaseViewProtocol, AnyObject {
-    func transit(verificationId: String, number: String)
+    func transit(verificationId: String)
 }

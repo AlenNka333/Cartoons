@@ -29,9 +29,10 @@ class AppCoordinator: Coordinator {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        AppData.shouldShowOnBoarding
-            ? showOnboarding()
-            : service.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
+        showAuthorizationScreen()
+//        AppData.shouldShowOnBoarding
+//            ? showOnboarding()
+//            : service.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
     }
     
     func setChild(_ coordinator: Coordinator?) {
@@ -56,12 +57,13 @@ extension AppCoordinator {
         guard let window = window else {
             return
         }
+        removeChild()
         let coordinator = OnboardingAssembly.makeOnboardingCoordinator()
         coordinator.successSessionClosure = { [weak self] in
             AppData.shouldShowOnBoarding = false
             self?.showAuthorizationScreen()
-            self?.removeChild()
         }
+        coordinator.parent = self
         setChild(coordinator)
         coordinator.start()
         window.rootViewController = coordinator.rootController
@@ -72,11 +74,12 @@ extension AppCoordinator {
         guard let window = window else {
             return
         }
+        removeChild()
         let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator(serviceLocator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showMainScreen()
-            self?.removeChild()
         }
+        coordinator.parent = self
         setChild(coordinator)
         coordinator.start()
         window.rootViewController = coordinator.rootController
@@ -87,11 +90,12 @@ extension AppCoordinator {
         guard let window = window else {
             return
         }
+        removeChild()
         let coordinator = MainScreenAssembly.makeMainScreenCoordinator(serviceLocator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
-            self?.removeChild()
         }
+        coordinator.parent = self
         setChild(coordinator)
         coordinator.start()
         window.rootViewController = coordinator.rootController
