@@ -11,24 +11,17 @@ import Foundation
 class CartoonsPresenter: CartoonsViewPresenterProtocol {
     let view: CartoonsViewProtocol
     let serviceLocator: Locator
+    let serviceProviderFacade: Facade
     
-    init(view: CartoonsViewProtocol, serviceLocator: Locator) {
+    init(view: CartoonsViewProtocol, serviceLocator: Locator, serviceProviderFacade: ServiceProviderFacade) {
         self.view = view
         self.serviceLocator = serviceLocator
+        self.serviceProviderFacade = serviceProviderFacade
+        serviceProviderFacade.cartoonsDataSourceDelegate = self
     }
     
     func getData() {
-        guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
-            return
-        }
-        service.checkFoldersExists { [weak self] result in
-            switch result {
-            case .failure(let error):
-                self?.view.showError(error: error)
-            case .success(let array):
-                self?.view.setDataSource(with: array)
-            }
-        }
+        serviceProviderFacade.getServerData()
     }
     
     func showSuccess(success: String) {
@@ -37,5 +30,14 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     
     func showError(error: Error) {
         view.showError(error: error)
+    }
+}
+
+extension CartoonsPresenter: ServiceProviderDelegate {
+    func updateDataSource(_ data: [Cartoon]?) {
+        guard let data = data else {
+            return
+        }
+        view.setDataSource(with: data)
     }
 }

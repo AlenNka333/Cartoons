@@ -21,11 +21,8 @@ class FavouritesViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let collection = collectionView else {
-            return
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         dataSource = makeDataSource()
-        setupUIRefreshControl(with: collection)
         showActivityIndicator()
         presenter?.getData()
     }
@@ -53,29 +50,32 @@ class FavouritesViewController: BaseViewController {
     
     override func showError(error: Error) {
         super.showError(error: error)
+        stopActivityIndicator()
     }
 }
 
 extension FavouritesViewController: FavouritesViewProtocol {
     func showSuccess(success: String) {
-        let alertVC = alertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) { _ in
+        let alertVC = AlertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) { _ in
             return
         }
         present(alertVC, animated: true)
     }
+    
     func setData(data: [Cartoon]) {
         videos = data
         if activityIndicator.isAnimating {
             stopActivityIndicator()
         }
-        guard let control = collectionView?.refreshControl else {
-            return
-        }
-        if control.isRefreshing {
-            collectionView?.refreshControl?.endRefreshing()
-        }
         applySnapshot()
-        collectionView?.refreshControl?.isEnabled = true
+    }
+
+    func updateProgress(_ progress: Float) {
+        if let downloadingCell = collectionView?.cellForItem(at: IndexPath(item: videos.count - 1, section: 0)) as? FavouritesCollectionViewCell {
+            downloadingCell.progress = progress
+            downloadingCell.setNeedsDisplay()
+            downloadingCell.isUserInteractionEnabled = false
+        }
     }
 }
 
@@ -84,7 +84,7 @@ extension FavouritesViewController: UICollectionViewDelegate {
         guard let cartoon = dataSource?.itemIdentifier(for: indexPath) else {
             return
         }
-        guard let link = cartoon.link else {
+        guard let link = cartoon.localPath else {
             print("Invalid link")
             return
         }
@@ -95,19 +95,28 @@ extension FavouritesViewController: UICollectionViewDelegate {
 }
 
 extension FavouritesViewController {
+    @objc func didBecomeActive() {
+        presenter?.getData()
+    }
+    
     func makeDataSource() -> DataSource {
-        let dataSource = DataSource(collectionView: collectionView ?? UICollectionView(),
-                                    cellProvider: { collectionView, indexPath, cartoon -> UICollectionViewCell? in
-                                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
-                                                                                      for: indexPath) as? FavouritesCollectionViewCell
-                                        cell?.video = cartoon
-                                        return cell
-                                    })
+        let dataSource = DataSource(collectionView: collectionView ?? UICollectionView()) { collectionView, indexPath, cartoon -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
+                                                          for: indexPath) as? FavouritesCollectionViewCell
+            if cartoon.state == .inProgress {
+                cell?.setProgressView()
+                cell?.progress = cartoon.progress
+                cell?.video = cartoon
+            } else {
+                cell?.video = cartoon
+            }
+            return cell
+        }
         return dataSource
     }
     
     func applySnapshot(animatingDifferences: Bool = true) {
-        snapshot.deleteAllItems()
+        snapshot = SnapShot()
         snapshot.appendSections([.main])
         snapshot.appendItems(videos, toSection: .main)
         dataSource?.apply(snapshot)
@@ -130,17 +139,5 @@ extension FavouritesViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
-    }
-    
-    func setupUIRefreshControl(with collectionView: UICollectionView) {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        refreshControl.tintColor = .black
-        collectionView.refreshControl = refreshControl
-        collectionView.refreshControl?.isEnabled = false
-    }
-    
-    @objc func handleRefresh() {
-        presenter?.getData()
     }
 }

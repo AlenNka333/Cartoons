@@ -3,7 +3,7 @@
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,14 +20,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="label" translatesAutoresizingMaskIntoConstraints="NO" id="EqM-sn-3lf">
+                                <rect key="frame" x="0.0" y="230" width="414" height="334"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.3050847053527832" green="0.13623711466789246" blue="0.068447284400463104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EqM-sn-3lf" secondAttribute="bottom" constant="298" id="BHl-iK-IVU"/>
                             <constraint firstItem="39D-fI-gTT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Baf-4C-qVl"/>
                             <constraint firstItem="39D-fI-gTT" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="CKR-7p-5T5"/>
                             <constraint firstItem="39D-fI-gTT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OBy-fa-qKz"/>
+                            <constraint firstItem="EqM-sn-3lf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="186" id="ZGh-0o-HxU"/>
+                            <constraint firstItem="EqM-sn-3lf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="aDC-up-2Eq"/>
+                            <constraint firstItem="EqM-sn-3lf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="daE-M4-Jqf"/>
                             <constraint firstAttribute="bottom" secondItem="39D-fI-gTT" secondAttribute="bottom" id="kAk-gt-zck"/>
+                            <constraint firstItem="EqM-sn-3lf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="mux-Y1-9FU"/>
                             <constraint firstItem="39D-fI-gTT" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="oWj-OV-r6I"/>
                             <constraint firstAttribute="trailing" secondItem="39D-fI-gTT" secondAttribute="trailing" id="w0O-Gj-fZS"/>
                         </constraints>
@@ -39,6 +47,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="label" width="1166" height="1084"/>
         <image name="launch_background" width="536" height="933"/>
     </resources>
 </document>

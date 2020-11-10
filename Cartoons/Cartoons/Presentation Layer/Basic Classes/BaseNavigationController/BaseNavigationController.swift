@@ -20,7 +20,8 @@ class BaseNavigationController: UINavigationController {
         static let subtitleSize: CGFloat = 14
         static let bottomOffset: CGFloat = -16
     }
-    private var state: NavigationState = NavigationState.system
+    
+    private var state = NavigationState.system
     var imageAction: (() -> Void)?
     
     private lazy var appearance: UINavigationBarAppearance = {
@@ -55,8 +56,11 @@ class BaseNavigationController: UINavigationController {
     
     func setupUI() {
         delegate = self
+        navigationBar.prefersLargeTitles = true
         navigationBar.tintColor = .white
-        //navigationItem.largeTitleDisplayMode = .never
+        navigationBar.standardAppearance = appearance
+        navigationBar.compactAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
         navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationBar.layer.shadowRadius = 4.0
         navigationBar.layer.shadowOpacity = 1.0
@@ -72,7 +76,7 @@ extension BaseNavigationController: UINavigationControllerDelegate {
         if operation == .push {
             imageView.removeFromSuperview()
             subtitleLabel.removeFromSuperview()
-            navigationBar.isHidden = false
+            setNavigationBarHidden(false, animated: true)
             return nil
         } else if operation == .pop {
             navigationBar.isHidden = false

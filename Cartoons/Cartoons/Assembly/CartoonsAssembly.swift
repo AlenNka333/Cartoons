@@ -9,13 +9,20 @@
 import UIKit
 
 class CartoonsAssembly: Assembly {
-    static func makeCartoonsCoordinator(rootController: UINavigationController, serviceLocator: Locator) -> CartoonsCoordinator {
-        CartoonsCoordinator(rootController: rootController, serviceLocator: serviceLocator)
+    static func makeCartoonsCoordinator(rootController: UINavigationController,
+                                        serviceLocator: Locator,
+                                        serviceProviderFacade: ServiceProviderFacade) -> CartoonsCoordinator {
+        CartoonsCoordinator(rootController: rootController,
+                            serviceLocator: serviceLocator,
+                            serviceProviderFacade: serviceProviderFacade)
     }
     
-    static func makeCartoonsController(serviceLocator: Locator) -> CartoonsViewController {
+    static func makeCartoonsController(serviceLocator: Locator,
+                                       serviceProviderFacade: ServiceProviderFacade) -> CartoonsViewController {
         let view = CartoonsViewController()
-        let presenter = CartoonsPresenter(view: view, serviceLocator: serviceLocator)
+        let presenter = CartoonsPresenter(view: view,
+                                          serviceLocator: serviceLocator,
+                                          serviceProviderFacade: serviceProviderFacade)
         view.presenter = presenter
         return view
     }

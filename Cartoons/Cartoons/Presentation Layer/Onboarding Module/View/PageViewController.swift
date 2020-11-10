@@ -82,9 +82,6 @@ extension PageViewController: UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let presenter = self.presenter else {
-            return nil
-        }
         if let viewControllerIndex = self.pages.firstIndex(of: viewController) {
             if viewControllerIndex < pages.count - 1 {
                 return pages[viewControllerIndex + 1]

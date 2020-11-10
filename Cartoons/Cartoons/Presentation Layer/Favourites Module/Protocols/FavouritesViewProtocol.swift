@@ -10,4 +10,5 @@ import Foundation
 protocol FavouritesViewProtocol: BaseViewProtocol, AnyObject {
     func showSuccess(success: String)
     func setData(data: [Cartoon])
+    func updateProgress(_ progress: Float)
 }

@@ -4,6 +4,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var backgroundSessionCompletionHandler: (() -> Void)?
     
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -15,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
-        debugPrint("handleEventsForBackgroundURLSession: \(identifier)")
-        completionHandler()
+        backgroundSessionCompletionHandler = completionHandler
     }
 }

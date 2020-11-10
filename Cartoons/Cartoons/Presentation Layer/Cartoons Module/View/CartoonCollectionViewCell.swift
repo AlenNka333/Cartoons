@@ -59,6 +59,11 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func setToFavourites() {
+        favouritesIndicatorImage.image = favouritesIndicatorImage.image?.withRenderingMode(.alwaysTemplate)
+        favouritesIndicatorImage.tintColor = UIColor.yellow
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.layer.shadowColor = UIColor.black.cgColor
@@ -88,6 +93,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         thumbnailImageView.image = nil
+        favouritesIndicatorImage.image = R.image.star()
     }
     
     required init?(coder: NSCoder) {

@@ -9,13 +9,14 @@
 import UIKit
 
 class FavouritesAssembly: Assembly {
-    static func makeFavouritesCoordinator(rootController: UINavigationController, serviceLocator: Locator) -> FavouritesCoordinator {
-        FavouritesCoordinator(rootController: rootController, serviceLocator: serviceLocator)
+    static func makeFavouritesCoordinator(rootController: UINavigationController,
+                                          serviceProviderFacade: ServiceProviderFacade) -> FavouritesCoordinator {
+        FavouritesCoordinator(rootController: rootController, serviceProviderFacade: serviceProviderFacade)
     }
     
-    static func makeFavouritesController(serviceLocator: Locator) -> FavouritesViewController {
+    static func makeFavouritesController(serviceProviderFacade: ServiceProviderFacade) -> FavouritesViewController {
         let view = FavouritesViewController()
-        let presenter = FavouritesPresenter(view: view, serviceLocator: serviceLocator)
+        let presenter = FavouritesPresenter(view: view, serviceProviderFacade: serviceProviderFacade)
         view.presenter = presenter
         return view
     }

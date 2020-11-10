@@ -8,7 +8,6 @@
 
 import Foundation
 
-enum Section: Int, CaseIterable {
+enum Section {
     case main
-    case inProgress
 }

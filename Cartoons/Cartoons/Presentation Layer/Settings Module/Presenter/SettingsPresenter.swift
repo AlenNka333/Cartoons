@@ -11,10 +11,12 @@ import Foundation
 class SettingsPresenter: SettingsViewPresenterProtocol {
     let view: SettingsViewProtocol
     let serviceLocator: Locator
+    let serviceProvider: ServiceProviderFacade
     
-    init(view: SettingsViewProtocol, serviceLocator: Locator) {
+    init(view: SettingsViewProtocol, serviceLocator: Locator, serviceProvider: ServiceProviderFacade) {
         self.view = view
         self.serviceLocator = serviceLocator
+        self.serviceProvider = serviceProvider
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
@@ -74,5 +76,11 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     }
     func showError(error: Error) {
         view.showError(error: error)
+    }
+    func askPermission() {
+        view.showClearCachePermissionAlert(message: R.string.localizable.question_to_clear_cache())
+    }
+    func clearCache() {
+        serviceProvider.clearCache()
     }
 }

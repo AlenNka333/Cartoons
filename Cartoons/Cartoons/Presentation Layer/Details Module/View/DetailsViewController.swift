@@ -25,17 +25,21 @@ class DetailsViewController: BaseViewController {
         return button
     }()
     private var mainPoster = CartoonPosterView()
-    private lazy var addToFavouritesButton: CustomButton = {
+    private lazy var downloadFileButton: CustomButton = {
         let button = CustomButton()
         button.backgroundColor = R.color.sky_blue()
         button.setImage(R.image.download_button(), for: .normal)
         return button
     }()
     private lazy var titleLabel: UILabel = {
-        let label = BorderedLabel(with: .init(top: 5, left: 10, bottom: 5, right: 10))
+        let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = .zero
-        label.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 3.0
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowOffset = CGSize(width: 4, height: 4)
+        label.layer.masksToBounds = false
         return label
     }()
     private lazy var stackView: UIStackView = {
@@ -57,7 +61,7 @@ class DetailsViewController: BaseViewController {
         view.isUserInteractionEnabled = true
         
         openPlayerButton.addTarget(self, action: #selector(openPlayer), for: .touchUpInside)
-        addToFavouritesButton.addTarget(self, action: #selector(addToFavourites), for: .touchUpInside)
+        downloadFileButton.addTarget(self, action: #selector(addToFavourites), for: .touchUpInside)
         
         view.addSubview(mainPoster)
         mainPoster.snp.makeConstraints {
@@ -68,18 +72,17 @@ class DetailsViewController: BaseViewController {
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(mainPoster.snp.bottom).offset(40)
-            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(mainPoster.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         view.addSubview(stackView)
         stackView.addArrangedSubview(openPlayerButton)
-        addToFavouritesButton.snp.makeConstraints {
+        downloadFileButton.snp.makeConstraints {
             $0.size.equalTo(50)
         }
-        stackView.addArrangedSubview(addToFavouritesButton)
+        stackView.addArrangedSubview(downloadFileButton)
         stackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(40)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().offset(-60)
         }
@@ -105,23 +108,32 @@ extension DetailsViewController {
     }
     
     @objc func addToFavourites() {
-        guard let link = video?.link else {
-            print("Invalid link")
+        guard let file = video else {
             return
         }
-        presenter?.downloadFile(from: link)
+        presenter?.downloadFile(file)
     }
 }
 
 extension DetailsViewController: DetailsViewProtocol {
+    func setError(_ error: Error) {
+        showError(error: error)
+    }
+    
     func setVideo(video: Cartoon) {
         self.video = video
         guard let url = video.thumbnail else {
             return
         }
         mainPoster.setImage(with: url)
-        titleLabel.attributedText = NSAttributedString(string: video.title,
-                                                       attributes: [.foregroundColor: UIColor.white,
-                                                                    .font: R.font.cinzelDecorativeBold(size: 45).unwrapped])
+        if UIScreen.main.bounds.height > 736 {
+            titleLabel.attributedText = NSAttributedString(string: video.title ?? "",
+                                                           attributes: [.foregroundColor: UIColor.white,
+                                                                        .font: R.font.cinzelDecorativeBold(size: 45).unwrapped])
+        } else {
+            titleLabel.attributedText = NSAttributedString(string: video.title ?? "",
+                                                           attributes: [.foregroundColor: UIColor.white,
+                                                                        .font: R.font.cinzelDecorativeBold(size: 30).unwrapped])
+        }
     }
 }
