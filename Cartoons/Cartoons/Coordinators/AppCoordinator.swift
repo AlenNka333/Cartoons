@@ -56,11 +56,11 @@ extension AppCoordinator {
         guard let window = window else {
             return
         }
+        removeChild()
         let coordinator = OnboardingAssembly.makeOnboardingCoordinator()
         coordinator.successSessionClosure = { [weak self] in
             AppData.shouldShowOnBoarding = false
             self?.showAuthorizationScreen()
-            self?.removeChild()
         }
         setChild(coordinator)
         coordinator.start()
@@ -72,10 +72,10 @@ extension AppCoordinator {
         guard let window = window else {
             return
         }
+        removeChild()
         let coordinator = AuthorizationAssembly.makeAuthorizationCoordinator(serviceLocator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showMainScreen()
-            self?.removeChild()
         }
         setChild(coordinator)
         coordinator.start()
@@ -87,10 +87,10 @@ extension AppCoordinator {
         guard let window = window else {
             return
         }
+        removeChild()
         let coordinator = MainScreenAssembly.makeMainScreenCoordinator(serviceLocator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
-            self?.removeChild()
         }
         setChild(coordinator)
         coordinator.start()
