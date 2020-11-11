@@ -29,10 +29,9 @@ class AppCoordinator: Coordinator {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        showAuthorizationScreen()
-//        AppData.shouldShowOnBoarding
-//            ? showOnboarding()
-//            : service.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
+        AppData.shouldShowOnBoarding
+            ? showOnboarding()
+            : service.shouldAuthorize ? showAuthorizationScreen() : showMainScreen()
     }
     
     func setChild(_ coordinator: Coordinator?) {

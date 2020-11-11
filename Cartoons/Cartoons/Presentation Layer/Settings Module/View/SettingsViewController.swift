@@ -93,7 +93,7 @@ extension SettingsViewController: SettingsViewProtocol {
     }
     
     func showPhoneLabel(number: String) {
-        userInfoHeader.setPhoneNumber(number: "number")
+        userInfoHeader.setPhoneNumber(number: number)
     }
     
     // MARK: - Alerts
