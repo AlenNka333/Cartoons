@@ -33,7 +33,7 @@ class AuthorizationService: AuthorizationServiceProtocol {
         }
     }
     
-    func signIn(verificationId: String, verifyCode: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
+    func signIn(verificationId: String, verifyCode: String, completion: @escaping (Result<Void, Error>) -> Void) {
         authorizationManager.signIn(verificationId: verificationId, verifyCode: verifyCode, completion: completion)
     }
     

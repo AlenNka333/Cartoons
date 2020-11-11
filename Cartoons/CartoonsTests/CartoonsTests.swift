@@ -9,23 +9,67 @@
 import XCTest
 
 class CartoonsTests: XCTestCase {
+    let authorizationService = MockAuthorizationService()
+    
+    let verificationId = "F8BB1C28-BAE8-11D6-9C31-00039315CD46"
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
+    
+    func testVerificationResponse() {
+        let expectation = self.expectation(description: "Verifying user test response")
+        
+        authorizationService.shouldReturnError = false
+        
+        authorizationService.verifyUser(number: "+375298939122") { result in
+            switch result {
+            case .success(let id):
+                XCTAssertEqual(id, self.verificationId)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+    }
+    
+    func testLoginResponse() {
+        let expectation = self.expectation(description: "Login test response")
+        
+        authorizationService.shouldReturnError = false
+        
+        authorizationService.signIn(verificationId: verificationId, verifyCode: "123456") { result in
+            switch result {
+            case .success:
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: 2.0, handler: nil)
+    }
 
+    func testLogoutResponse() {
+        let expectation = self.expectation(description: "Logout test response")
+        
+        authorizationService.shouldReturnError = false
+        
+        authorizationService.signOut { result in
+            switch result {
+            case .success:
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: 2.0, handler: nil)
+    }
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 }

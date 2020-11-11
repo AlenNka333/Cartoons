@@ -24,7 +24,7 @@ class AuthorizationManager {
         }
     }
     
-    func signIn(verificationId: String, verifyCode: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
+    func signIn(verificationId: String, verifyCode: String, completion: @escaping (Result<Void, Error>) -> Void) {
         let credential: PhoneAuthCredential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: verifyCode)
         Auth.auth().signIn(with: credential) { user, error in
             if let error = error {
@@ -35,7 +35,7 @@ class AuthorizationManager {
                 completion(.failure(AuthorizationError.emptyVerificationID))
                 return
             }
-            completion(.success(user))
+            completion(.success(()))
         }
     }
     
