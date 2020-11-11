@@ -16,19 +16,17 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     var view: VerificationViewProtocol
     let serviceLocator: Locator
     let verificationId: String
+    let number: String
     var timer = Constant.totalTime
     
     var successSessionClosure: (() -> Void)?
     
-    init(view: VerificationViewProtocol, serviceLocator: Locator, verificationId: String) {
+    init(view: VerificationViewProtocol, serviceLocator: Locator, verificationId: String, number: String) {
         self.view = view
         self.serviceLocator = serviceLocator
         self.verificationId = verificationId
-        
-        guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
-            return
-        }
-        view.setLabelText(number: service.phoneNumber.unwrapped)
+        self.number = number
+        view.setLabelText(number: number)
     }
     
     func startTimer() {

@@ -26,9 +26,10 @@ class AuthorizationCoordinator: Coordinator {
         rootController = view
     }
     
-    func openVerificationScreen(verificationId: String) {
+    func openVerificationScreen(verificationId: String, number: String) {
         let view = AuthorizationAssembly.makeVerificationController(serviceLocator: serviceLocator,
-                                                                    verificationId: verificationId)
+                                                                    verificationId: verificationId,
+                                                                    number: number)
         view.transitionDelegate = self
         view.modalPresentationStyle = .fullScreen
         rootController.present(view, animated: true, completion: nil)
@@ -36,8 +37,8 @@ class AuthorizationCoordinator: Coordinator {
 }
 
 extension AuthorizationCoordinator: AuthorizationTransitionDelegate {
-    func transit(_ verificationId: String) {
-        openVerificationScreen(verificationId: verificationId)
+    func transit(_ verificationId: String, number: String) {
+        openVerificationScreen(verificationId: verificationId, number: number)
     }
 }
 

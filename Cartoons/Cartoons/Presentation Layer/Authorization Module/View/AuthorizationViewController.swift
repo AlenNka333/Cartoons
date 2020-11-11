@@ -85,8 +85,8 @@ class AuthorizationViewController: BaseViewController {
 }
 
 extension AuthorizationViewController: AuthorizationViewProtocol {
-    func transit(verificationId: String) {
-        transitionDelegate?.transit(verificationId)
+    func transit(verificationId: String, number: String) {
+        transitionDelegate?.transit(verificationId, number: number)
     }
 }
 
