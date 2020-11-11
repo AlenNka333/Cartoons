@@ -16,7 +16,6 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     let serviceLocator: Locator
     let verificationId: String
     let number: String
-    
     var view: VerificationViewProtocol
     var timer = Constant.totalTime
     var successSessionClosure: (() -> Void)?
@@ -60,14 +59,15 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
-            switch result {
-            case .success:
-                self?.view.transit()
-            case let .failure(error):
-                self?.view.showError(error: error)
-            }
-        }
+        view.transit()
+//        service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
+//            switch result {
+//            case .success:
+//                self?.view.transit()
+//            case let .failure(error):
+//                self?.view.showError(error: error)
+//            }
+//        }
     }
 }
 

@@ -28,8 +28,8 @@ class UserInfoHeader: UIView {
         return label
     }()
     private lazy var separatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -48,9 +48,9 @@ class UserInfoHeader: UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(editProfileImage))
         imageView.addGestureRecognizer(tap)
         imageView.snp.makeConstraints {
-            $0.height.width.equalTo(70)
-            $0.leading.equalToSuperview().offset(20)
-            $0.centerY.equalToSuperview()
+            $0.height.width.equalTo(60)
+            $0.center.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(20)
         }
         addSubview(activityIndicator)
         activityIndicator.color = .white
@@ -60,15 +60,10 @@ class UserInfoHeader: UIView {
         }
         addSubview(phoneLabel)
         phoneLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview().offset(-30)
-            $0.centerY.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.centerX.equalToSuperview()
         }
         addSubview(separatorView)
-        separatorView.snp.makeConstraints {
-            $0.height.equalTo(0.5)
-            $0.width.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
     }
     
     func showActivityIndicator() {
