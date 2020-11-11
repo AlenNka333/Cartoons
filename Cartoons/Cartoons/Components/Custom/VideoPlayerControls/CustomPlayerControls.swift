@@ -19,6 +19,8 @@ class CustomPlayerControls: UIView {
     @IBOutlet private weak var goBackwardButton: UIButton!
     @IBOutlet private weak var currentTimeLabel: UILabel!
     @IBOutlet private weak var durationLabel: UILabel!
+    @IBOutlet private weak var fullScreenButton: UIButton!
+    @IBOutlet weak var controlsHeight: NSLayoutConstraint!
     
     var stateChangedClosure: (() -> (PlayerState))?
     var jumpForwardClosure: (() -> Void)?
@@ -27,6 +29,7 @@ class CustomPlayerControls: UIView {
     var needVideoDurationClosure: (() -> (Double))?
     var removeObserverClosure: (() -> Void)?
     var setupObserverClosure: (() -> Void)?
+    var orientationChangedClosure: (() -> (Bool))?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,7 +68,23 @@ class CustomPlayerControls: UIView {
         guard let closure = jumpBackwardClosure else {
             return
         }
-        closure()    }
+        closure()
+    }
+    
+    @IBAction private func fullScreenAction(_ sender: UIButton) {
+        guard let closure = orientationChangedClosure else {
+            return
+        }
+        if closure() {
+            controlsHeight.constant = 100
+            UIApplication.shared.isStatusBarHidden = true
+            fullScreenButton.setImage(R.image.small_screen(), for: .normal)
+        } else {
+            controlsHeight.constant = 200
+            UIApplication.shared.isStatusBarHidden = false
+            fullScreenButton.setImage(R.image.fullscreen(), for: .normal)
+        }
+    }
 }
 
 extension CustomPlayerControls {
