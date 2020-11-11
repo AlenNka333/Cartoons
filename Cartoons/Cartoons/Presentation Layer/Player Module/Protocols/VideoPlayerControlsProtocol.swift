@@ -16,7 +16,8 @@ protocol VideoPlayerControlsProtocol: AnyObject {
     var needVideoDurationClosure: (() -> (Double))? { get set }
     var removeObserverClosure: (() -> Void)? { get set }
     var setupObserverClosure: (() -> Void)? { get set }
-    
+    var orientationChangedClosure: (() -> (Bool))? { get set }
+     
     func updateSlider(with value: Float)
     func updateCurrentTime(with time: String)
     func updateWholeTime(with time: String)

@@ -16,4 +16,5 @@ protocol VideoPlayerViewProtocol: BaseViewProtocol, AnyObject {
     func setVideoTime(value: Double)
     func setupObserver()
     func removeObserver()
+    func rotateScreen() -> Bool
 }
