@@ -26,7 +26,7 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
             self?.view.stopActivityIndicator()
             switch result {
             case let .success(verificationId):
-                self?.view.transit(verificationId: verificationId)
+                self?.view.transit(verificationId: verificationId, number: number)
             case .failure(let error):
                 self?.view.showError(error: error)
             }

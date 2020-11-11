@@ -9,5 +9,5 @@
 import Foundation
 
 protocol AuthorizationTransitionDelegate: AnyObject {
-    func transit(_ verificationId: String)
+    func transit(_ verificationId: String, number: String)
 }

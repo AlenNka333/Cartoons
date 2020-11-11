@@ -26,6 +26,11 @@ class AuthorizationViewController: BaseViewController {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -72,8 +77,8 @@ class AuthorizationViewController: BaseViewController {
 }
 
 extension AuthorizationViewController: AuthorizationViewProtocol {
-    func transit(verificationId: String) {
-        transitionDelegate?.transit(verificationId)
+    func transit(verificationId: String, number: String) {
+        transitionDelegate?.transit(verificationId, number: number)
     }
 }
 
