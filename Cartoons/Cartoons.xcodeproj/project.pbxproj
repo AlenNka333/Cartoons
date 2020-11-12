@@ -16,15 +16,12 @@
 		330F4E0D252F073D008D0FC8 /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E0C252F073D008D0FC8 /* SettingsAssembly.swift */; };
 		330F4E10252F0D9B008D0FC8 /* OnboardingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E0F252F0D9B008D0FC8 /* OnboardingAssembly.swift */; };
 		330F4E16252F0E84008D0FC8 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E15252F0E84008D0FC8 /* OnboardingCoordinator.swift */; };
-		330F4E3425304759008D0FC8 /* AuthorizationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E3325304759008D0FC8 /* AuthorizationServiceProtocol.swift */; };
-		330F4E3825304D72008D0FC8 /* StorageDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E3725304D72008D0FC8 /* StorageDataServiceProtocol.swift */; };
+		330F4E3425304759008D0FC8 /* AuthorizationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E3325304759008D0FC8 /* AuthorizationManagerProtocol.swift */; };
+		330F4E3825304D72008D0FC8 /* StorageDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E3725304D72008D0FC8 /* StorageDataManagerProtocol.swift */; };
 		330F4E4A25309B9C008D0FC8 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E4925309B9C008D0FC8 /* AuthorizationService.swift */; };
 		330F4E4D25309DEB008D0FC8 /* StorageDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E4C25309DEB008D0FC8 /* StorageDataService.swift */; };
 		330F4E642530ED2D008D0FC8 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E632530ED2D008D0FC8 /* AuthorizationManager.swift */; };
 		330F4E672530EE7B008D0FC8 /* StorageDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E662530EE7B008D0FC8 /* StorageDataManager.swift */; };
-		330F4E702530F5D6008D0FC8 /* UserDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E6F2530F5D6008D0FC8 /* UserDataServiceProtocol.swift */; };
-		330F4E752530F65C008D0FC8 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E742530F65C008D0FC8 /* UserDataManager.swift */; };
-		330F4E792530F7BD008D0FC8 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F4E782530F7BD008D0FC8 /* UserDataService.swift */; };
 		33104A6E2535846100A90ED7 /* CartoonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33104A6D2535846100A90ED7 /* CartoonCollectionViewCell.swift */; };
 		33104A752535CF9800A90ED7 /* CartoonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33104A742535CF9800A90ED7 /* CartoonsViewController.swift */; };
 		33127B472534C31300B84FAE /* Cartoon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33127B462534C31300B84FAE /* Cartoon.swift */; };
@@ -64,7 +61,7 @@
 		332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36C2507609C008A8F29 /* VerificationViewProtocol.swift */; };
 		332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BA36F25077D9E008A8F29 /* UserDefault.swift */; };
 		3334A4D12523344F00AD18C7 /* AccessErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A4D02523344F00AD18C7 /* AccessErrors.swift */; };
-		3334A61B2527818A00AD18C7 /* CartoonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A61A2527818A00AD18C7 /* CartoonsTests.swift */; };
+		3334A61B2527818A00AD18C7 /* AuthorizationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334A61A2527818A00AD18C7 /* AuthorizationServiceTests.swift */; };
 		3336F5D125593D9F00375090 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3319125F2542E5F400DB64ED /* Setting.swift */; };
 		334989AB254C8B5F00889FE6 /* FavouritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334989AA254C8B5F00889FE6 /* FavouritesCollectionViewCell.swift */; };
 		334A5133252B4433003BCF59 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A5132252B4433003BCF59 /* AppCoordinator.swift */; };
@@ -103,7 +100,7 @@
 		338B788625593E58005FECC9 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3319125A2542BAF800DB64ED /* SettingsTableViewCell.swift */; };
 		339C312525593EE5005E3187 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 339C312425593EE5005E3187 /* AlertView.xib */; };
 		339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339ECE32251A14DC00168C5B /* BaseNavigationController.swift */; };
-		33A05AD9255C0C6400C4A70B /* MockAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05AD8255C0C6400C4A70B /* MockAuthorizationService.swift */; };
+		33A05AD9255C0C6400C4A70B /* MockAuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */; };
 		33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A17536253769460062EC8C /* CustomPlayerControls.swift */; };
 		33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1753B253769D80062EC8C /* CustomSlider.swift */; };
 		33A1755825376B390062EC8C /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A1755725376B390062EC8C /* PlayerControlsView.xib */; };
@@ -180,15 +177,12 @@
 		330F4E0C252F073D008D0FC8 /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
 		330F4E0F252F0D9B008D0FC8 /* OnboardingAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAssembly.swift; sourceTree = "<group>"; };
 		330F4E15252F0E84008D0FC8 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
-		330F4E3325304759008D0FC8 /* AuthorizationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationServiceProtocol.swift; sourceTree = "<group>"; };
-		330F4E3725304D72008D0FC8 /* StorageDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDataServiceProtocol.swift; sourceTree = "<group>"; };
+		330F4E3325304759008D0FC8 /* AuthorizationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManagerProtocol.swift; sourceTree = "<group>"; };
+		330F4E3725304D72008D0FC8 /* StorageDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDataManagerProtocol.swift; sourceTree = "<group>"; };
 		330F4E4925309B9C008D0FC8 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
 		330F4E4C25309DEB008D0FC8 /* StorageDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDataService.swift; sourceTree = "<group>"; };
 		330F4E632530ED2D008D0FC8 /* AuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		330F4E662530EE7B008D0FC8 /* StorageDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDataManager.swift; sourceTree = "<group>"; };
-		330F4E6F2530F5D6008D0FC8 /* UserDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataServiceProtocol.swift; sourceTree = "<group>"; };
-		330F4E742530F65C008D0FC8 /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
-		330F4E782530F7BD008D0FC8 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		33104A6D2535846100A90ED7 /* CartoonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonCollectionViewCell.swift; sourceTree = "<group>"; };
 		33104A742535CF9800A90ED7 /* CartoonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonsViewController.swift; sourceTree = "<group>"; };
 		33127B462534C31300B84FAE /* Cartoon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartoon.swift; sourceTree = "<group>"; };
@@ -231,7 +225,7 @@
 		332BA36F25077D9E008A8F29 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		3334A4D02523344F00AD18C7 /* AccessErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessErrors.swift; sourceTree = "<group>"; };
 		3334A6182527818A00AD18C7 /* CartoonsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CartoonsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3334A61A2527818A00AD18C7 /* CartoonsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonsTests.swift; sourceTree = "<group>"; };
+		3334A61A2527818A00AD18C7 /* AuthorizationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationServiceTests.swift; sourceTree = "<group>"; };
 		3334A61C2527818A00AD18C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		334989AA254C8B5F00889FE6 /* FavouritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesCollectionViewCell.swift; sourceTree = "<group>"; };
 		334A5132252B4433003BCF59 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -269,7 +263,7 @@
 		338AF04D255408220096EE85 /* ServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceErrors.swift; sourceTree = "<group>"; };
 		339C312425593EE5005E3187 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		339ECE32251A14DC00168C5B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
-		33A05AD8255C0C6400C4A70B /* MockAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthorizationService.swift; sourceTree = "<group>"; };
+		33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthorizationManager.swift; sourceTree = "<group>"; };
 		33A17536253769460062EC8C /* CustomPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControls.swift; sourceTree = "<group>"; };
 		33A1753B253769D80062EC8C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		33A1755725376B390062EC8C /* PlayerControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
@@ -349,9 +343,8 @@
 		330F4E3225304743008D0FC8 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				330F4E3325304759008D0FC8 /* AuthorizationServiceProtocol.swift */,
-				330F4E3725304D72008D0FC8 /* StorageDataServiceProtocol.swift */,
-				330F4E6F2530F5D6008D0FC8 /* UserDataServiceProtocol.swift */,
+				330F4E3325304759008D0FC8 /* AuthorizationManagerProtocol.swift */,
+				330F4E3725304D72008D0FC8 /* StorageDataManagerProtocol.swift */,
 				33A1F7B8254FF5E000407056 /* LoadingServiceProtocol.swift */,
 				33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */,
 			);
@@ -363,7 +356,6 @@
 			children = (
 				330F4E632530ED2D008D0FC8 /* AuthorizationManager.swift */,
 				330F4E662530EE7B008D0FC8 /* StorageDataManager.swift */,
-				330F4E742530F65C008D0FC8 /* UserDataManager.swift */,
 				33A1F7CB2551823A00407056 /* FilesManager.swift */,
 			);
 			path = Managers;
@@ -676,7 +668,7 @@
 			isa = PBXGroup;
 			children = (
 				33A05AD7255C0C2300C4A70B /* Mocks */,
-				3334A61A2527818A00AD18C7 /* CartoonsTests.swift */,
+				3334A61A2527818A00AD18C7 /* AuthorizationServiceTests.swift */,
 				3334A61C2527818A00AD18C7 /* Info.plist */,
 			);
 			path = CartoonsTests;
@@ -772,7 +764,6 @@
 			children = (
 				330F4E4925309B9C008D0FC8 /* AuthorizationService.swift */,
 				330F4E4C25309DEB008D0FC8 /* StorageDataService.swift */,
-				330F4E782530F7BD008D0FC8 /* UserDataService.swift */,
 				33A1F7B5254FF56300407056 /* LoadingService.swift */,
 			);
 			path = Services;
@@ -807,7 +798,7 @@
 		33A05AD7255C0C2300C4A70B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				33A05AD8255C0C6400C4A70B /* MockAuthorizationService.swift */,
+				33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1407,8 +1398,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3334A61B2527818A00AD18C7 /* CartoonsTests.swift in Sources */,
-				33A05AD9255C0C6400C4A70B /* MockAuthorizationService.swift in Sources */,
+				3334A61B2527818A00AD18C7 /* AuthorizationServiceTests.swift in Sources */,
+				33A05AD9255C0C6400C4A70B /* MockAuthorizationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1421,7 +1412,6 @@
 				338614BF2539C01B00A24D4F /* PlayerAssembly.swift in Sources */,
 				334989AB254C8B5F00889FE6 /* FavouritesCollectionViewCell.swift in Sources */,
 				332227C3251896CF00EF56B8 /* FavouritesViewController.swift in Sources */,
-				330F4E752530F65C008D0FC8 /* UserDataManager.swift in Sources */,
 				3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */,
 				330F4E4D25309DEB008D0FC8 /* StorageDataService.swift in Sources */,
 				33B660C725026DBB00CA562E /* AuthorizationPresenter.swift in Sources */,
@@ -1448,26 +1438,24 @@
 				33B660C1250246CF00CA562E /* String+Extension.swift in Sources */,
 				33A1F7B6254FF56300407056 /* LoadingService.swift in Sources */,
 				3318E2D4254ACA7D001838E2 /* CartoonsTransitionDelegate.swift in Sources */,
-				330F4E702530F5D6008D0FC8 /* UserDataServiceProtocol.swift in Sources */,
 				3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */,
 				3319126F2543269900DB64ED /* DetailsAssembly.swift in Sources */,
 				339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */,
 				332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */,
-				330F4E792530F7BD008D0FC8 /* UserDataService.swift in Sources */,
 				33B0AE732549F85200EA71CC /* ServiceLocator.swift in Sources */,
 				330F4E09252F0110008D0FC8 /* FavouritesAssembly.swift in Sources */,
 				3319126B2543217800DB64ED /* CartoonPosterView.swift in Sources */,
 				3355FA8B2540346100C0B192 /* BaseViewProtocol.swift in Sources */,
 				332BA36D2507609C008A8F29 /* VerificationViewProtocol.swift in Sources */,
 				332BA35B25060543008A8F29 /* AuthorizationViewProtocol.swift in Sources */,
-				330F4E3825304D72008D0FC8 /* StorageDataServiceProtocol.swift in Sources */,
+				330F4E3825304D72008D0FC8 /* StorageDataManagerProtocol.swift in Sources */,
 				33B2AEB4250A63910006BE31 /* CartoonsViewPresenterProtocol.swift in Sources */,
 				33B0AE33254859EA00EA71CC /* FavouritesCoordinator.swift in Sources */,
 				330F4E02252EF74D008D0FC8 /* MainScreenCoordinator.swift in Sources */,
 				334A51EB252DBAA2003BCF59 /* RootAssembly.swift in Sources */,
 				330F4E10252F0D9B008D0FC8 /* OnboardingAssembly.swift in Sources */,
 				332227CD25189A1A00EF56B8 /* SettingsPresenter.swift in Sources */,
-				330F4E3425304759008D0FC8 /* AuthorizationServiceProtocol.swift in Sources */,
+				330F4E3425304759008D0FC8 /* AuthorizationManagerProtocol.swift in Sources */,
 				33127B6A2534C53400B84FAE /* VideoPlayerPresenterProtocol.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				330F4E0D252F073D008D0FC8 /* SettingsAssembly.swift in Sources */,

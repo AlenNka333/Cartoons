@@ -5,12 +5,11 @@
 //  Created by Alena Nesterkina on 10/2/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
-
+@testable import Cartoons
 import XCTest
 
-class CartoonsTests: XCTestCase {
-    let authorizationService = MockAuthorizationService()
-    
+class AuthorizationServiceTests: XCTestCase {
+    let sut = AuthorizationService(authorizationManager: MockAuthorizationManager())
     let verificationId = "F8BB1C28-BAE8-11D6-9C31-00039315CD46"
     
     override func setUpWithError() throws {
@@ -20,9 +19,7 @@ class CartoonsTests: XCTestCase {
     func testVerificationResponse() {
         let expectation = self.expectation(description: "Verifying user test response")
         
-        authorizationService.shouldReturnError = false
-        
-        authorizationService.verifyUser(number: "+375298939122") { result in
+        sut.verifyUser(number: "+375298939122") { result in
             switch result {
             case .success(let id):
                 XCTAssertEqual(id, self.verificationId)
@@ -38,9 +35,7 @@ class CartoonsTests: XCTestCase {
     func testLoginResponse() {
         let expectation = self.expectation(description: "Login test response")
         
-        authorizationService.shouldReturnError = false
-        
-        authorizationService.signIn(verificationId: verificationId, verifyCode: "123456") { result in
+        sut.signIn(verificationId: verificationId, verifyCode: "123456") { result in
             switch result {
             case .success:
                 expectation.fulfill()
@@ -55,9 +50,7 @@ class CartoonsTests: XCTestCase {
     func testLogoutResponse() {
         let expectation = self.expectation(description: "Logout test response")
         
-        authorizationService.shouldReturnError = false
-        
-        authorizationService.signOut { result in
+        sut.signOut { result in
             switch result {
             case .success:
                 expectation.fulfill()

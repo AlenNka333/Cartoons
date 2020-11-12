@@ -10,13 +10,13 @@
 import FirebaseAuth
 import Foundation
 
-class MockAuthorizationService {
+class MockAuthorizationManager {
     var verifyUserMethodWasCalled = false
     var signInMethodWasCalled = false
     var signOutMethodWasCalled = false
     var shouldReturnError = false
     
-    enum MockSeviceError: Error {
+    enum MockManagerError: Error {
         case verifying
         case login
         case logout
@@ -42,11 +42,11 @@ class MockAuthorizationService {
     }()
 }
 
-extension MockAuthorizationService: AuthorizationServiceProtocol {
+extension MockAuthorizationManager: AuthorizationManagerProtocol {
     func verifyUser(number: String, completion: @escaping (Result<String, Error>) -> Void) {
         verifyUserMethodWasCalled = true
         if shouldReturnError {
-            completion(.failure(MockSeviceError.verifying))
+            completion(.failure(MockManagerError.verifying))
         } else {
             completion(.success(mockVerifyingRequest))
         }
@@ -55,7 +55,7 @@ extension MockAuthorizationService: AuthorizationServiceProtocol {
     func signIn(verificationId: String, verifyCode: String, completion: @escaping (Result<Void, Error>) -> Void) {
         signInMethodWasCalled = true
         if shouldReturnError {
-            completion(.failure(MockSeviceError.login))
+            completion(.failure(MockManagerError.login))
         } else {
             completion(.success(()))
         }
@@ -64,7 +64,7 @@ extension MockAuthorizationService: AuthorizationServiceProtocol {
     func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
         signOutMethodWasCalled = true
         if shouldReturnError {
-            completion(.failure(MockSeviceError.logout))
+            completion(.failure(MockManagerError.logout))
         } else {
             completion(.success(()))
         }
