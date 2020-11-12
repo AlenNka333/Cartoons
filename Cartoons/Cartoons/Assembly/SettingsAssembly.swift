@@ -20,11 +20,11 @@ class SettingsAssembly: Assembly {
     
     static func makeSettingsController(serviceLocator: Locator,
                                        serviceProvider: ServiceProviderFacade) -> SettingsViewHostingController {
-        let view = SettingsViewHostingController(rootView: ContentView())
-//        let presenter = SettingsPresenter(view: view,
-//                                          serviceLocator: serviceLocator,
-//                                          serviceProvider: serviceProvider)
-//        view.presenter = presenter
+        let view = SettingsViewHostingController()
+        let presenter = SettingsPresenter(view: view,
+                                          serviceLocator: serviceLocator,
+                                          serviceProvider: serviceProvider)
+        view.presenter = presenter
         return view
     }
 }
