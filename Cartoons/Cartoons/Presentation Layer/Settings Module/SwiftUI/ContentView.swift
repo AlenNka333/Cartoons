@@ -10,7 +10,11 @@ import UIKit
 
 class SettingsViewHostingController: UIHostingController<ContentView> {
     weak var transitionDelegate: SettingsTransitionDelegate?
-    var presenter: SettingsViewPresenterProtocol?
+    var presenter: SettingsViewPresenterProtocol? {
+        didSet {
+            presenter?.showProfileImage()
+        }
+    }
     
     init() {
         super.init(rootView: ContentView())
@@ -25,7 +29,6 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
             self?.presenter?.saveProfileImage(imageData: data)
         }
         title = R.string.localizable.settings_screen()
-        presenter?.showProfileImage()
     }
     
     @objc required dynamic init?(coder aDecoder: NSCoder) {
@@ -34,6 +37,9 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
 }
 
 extension SettingsViewHostingController: SettingsViewProtocol {
+    func editProfileImage() {
+    }
+    
     func transit() {
         transitionDelegate?.transit()
     }
@@ -60,20 +66,11 @@ extension SettingsViewHostingController: SettingsViewProtocol {
         present(alertVC, animated: true)
     }
     
-    func editProfileImage() {
-        //        imagePicker?.present { [weak self] result in
-        //            switch result {
-        //            case .success(let image):
-        //                self?.didSelect(image: image)
-        //            case .failure(let error):
-        //                self?.presenter?.showPermissionsAlert(error: error)
-        //            }
-        //        }
-    }
-    
     func showProfileImage(path: URL?) {
-        //        userInfoHeader.stopActivityIndicator()
-        //        userInfoHeader.setProfileImage(path: path)
+        guard let path = path else {
+            return
+        }
+        rootView.imageLoader.load(path)
     }
     
     func showDefaultImage() {
@@ -116,6 +113,8 @@ extension SettingsViewHostingController: SettingsViewProtocol {
 }
 
 struct ContentView: View {
+    @ObservedObject var imageLoader: ImageLoader
+    
     @State private var clearCache: Bool = false
     @State private var signOut: Bool = false
     
@@ -123,7 +122,7 @@ struct ContentView: View {
     @State private var shouldPresentActionSheet = false
     @State private var shouldPresentCamera = false
     @State var phoneNumber = ""
-    @State private var image: Image? = Image(R.image.profile_icon.name)
+    @State var image: Image? = Image(R.image.profile_icon.name)
     
     @State var imageData: Data?
     
@@ -141,6 +140,8 @@ struct ContentView: View {
         UINavigationBar.appearance().compactAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
         UINavigationBar.appearance().tintColor = .white
+        
+        self.imageLoader = ImageLoader()
     }
     
     var body: some View {
@@ -153,6 +154,9 @@ struct ContentView: View {
                     .clipShape(Circle())
                     .shadow(radius: 10)
                     .onTapGesture { self.shouldPresentActionSheet = true }
+                    .onReceive(imageLoader.didChange) { image in
+                        self.image = Image(uiImage: image)
+                    }
                     .sheet(isPresented: $shouldPresentImagePicker) {
                         SwiftUIImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary,
                                            image: self.$image,

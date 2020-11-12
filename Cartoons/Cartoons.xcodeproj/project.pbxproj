@@ -106,6 +106,7 @@
 		33A05B40255DA80800C4A70B /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B3F255DA80800C4A70B /* View + Extension.swift */; };
 		33A05B49255DA87500C4A70B /* NavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B48255DA87500C4A70B /* NavigationModifier.swift */; };
 		33A05B4D255DB50600C4A70B /* Binding + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B4C255DB50600C4A70B /* Binding + Extension.swift */; };
+		33A05B50255DBCEC00C4A70B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B4F255DBCEC00C4A70B /* ImageLoader.swift */; };
 		33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A17536253769460062EC8C /* CustomPlayerControls.swift */; };
 		33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1753B253769D80062EC8C /* CustomSlider.swift */; };
 		33A1755825376B390062EC8C /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A1755725376B390062EC8C /* PlayerControlsView.xib */; };
@@ -274,6 +275,7 @@
 		33A05B3F255DA80800C4A70B /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
 		33A05B48255DA87500C4A70B /* NavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModifier.swift; sourceTree = "<group>"; };
 		33A05B4C255DB50600C4A70B /* Binding + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding + Extension.swift"; sourceTree = "<group>"; };
+		33A05B4F255DBCEC00C4A70B /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		33A17536253769460062EC8C /* CustomPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControls.swift; sourceTree = "<group>"; };
 		33A1753B253769D80062EC8C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		33A1755725376B390062EC8C /* PlayerControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
@@ -819,6 +821,7 @@
 			children = (
 				33A05B34255D5FBB00C4A70B /* ContentView.swift */,
 				33A05B3B255DA04D00C4A70B /* SwiftUIImagePicker.swift */,
+				33A05B4F255DBCEC00C4A70B /* ImageLoader.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -1520,6 +1523,7 @@
 				33104A6E2535846100A90ED7 /* CartoonCollectionViewCell.swift in Sources */,
 				33A1F7B1254FE9CB00407056 /* FavouritesTransitionDelegate.swift in Sources */,
 				337BF2C4254DB6260057D685 /* VideoPlayerViewController.swift in Sources */,
+				33A05B50255DBCEC00C4A70B /* ImageLoader.swift in Sources */,
 				33A05B35255D5FBB00C4A70B /* ContentView.swift in Sources */,
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				33A05B4D255DB50600C4A70B /* Binding + Extension.swift in Sources */,
