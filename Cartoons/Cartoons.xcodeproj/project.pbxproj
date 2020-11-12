@@ -101,6 +101,7 @@
 		339C312525593EE5005E3187 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 339C312425593EE5005E3187 /* AlertView.xib */; };
 		339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339ECE32251A14DC00168C5B /* BaseNavigationController.swift */; };
 		33A05AD9255C0C6400C4A70B /* MockAuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */; };
+		33A05B35255D5FBB00C4A70B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B34255D5FBB00C4A70B /* ContentView.swift */; };
 		33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A17536253769460062EC8C /* CustomPlayerControls.swift */; };
 		33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1753B253769D80062EC8C /* CustomSlider.swift */; };
 		33A1755825376B390062EC8C /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A1755725376B390062EC8C /* PlayerControlsView.xib */; };
@@ -264,6 +265,7 @@
 		339C312425593EE5005E3187 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		339ECE32251A14DC00168C5B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthorizationManager.swift; sourceTree = "<group>"; };
+		33A05B34255D5FBB00C4A70B /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		33A17536253769460062EC8C /* CustomPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControls.swift; sourceTree = "<group>"; };
 		33A1753B253769D80062EC8C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		33A1755725376B390062EC8C /* PlayerControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 		332227BD2518968F00EF56B8 /* Settings Module */ = {
 			isa = PBXGroup;
 			children = (
+				33A05B33255D5E6D00C4A70B /* SwiftUI */,
 				33127B1C25330C2400B84FAE /* Protocols */,
 				332227C1251896B600EF56B8 /* Presenter */,
 				332227C0251896B200EF56B8 /* View */,
@@ -801,6 +804,14 @@
 				33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		33A05B33255D5E6D00C4A70B /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				33A05B34255D5FBB00C4A70B /* ContentView.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		33A3BA29251CE129004EA0D9 /* GeneralErrors */ = {
@@ -1465,6 +1476,7 @@
 				33104A6E2535846100A90ED7 /* CartoonCollectionViewCell.swift in Sources */,
 				33A1F7B1254FE9CB00407056 /* FavouritesTransitionDelegate.swift in Sources */,
 				337BF2C4254DB6260057D685 /* VideoPlayerViewController.swift in Sources */,
+				33A05B35255D5FBB00C4A70B /* ContentView.swift in Sources */,
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
 				3355FA882540343D00C0B192 /* BaseViewController.swift in Sources */,
 				33127B572534C4A700B84FAE /* DetailsViewProtocol.swift in Sources */,

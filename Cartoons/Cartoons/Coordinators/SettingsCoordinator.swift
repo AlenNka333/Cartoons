@@ -25,7 +25,7 @@ class SettingsCoordinator: Coordinator {
     
     func start() {
         let settingsController = SettingsAssembly.makeSettingsController(serviceLocator: serviceLocator, serviceProvider: serviceProvider)
-        settingsController.transitionDelegate = self
+        //settingsController.transitionDelegate = self
         rootController?.pushViewController(settingsController, animated: false)
     }
 }
