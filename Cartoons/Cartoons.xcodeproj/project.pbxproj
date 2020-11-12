@@ -102,6 +102,10 @@
 		339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339ECE32251A14DC00168C5B /* BaseNavigationController.swift */; };
 		33A05AD9255C0C6400C4A70B /* MockAuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */; };
 		33A05B35255D5FBB00C4A70B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B34255D5FBB00C4A70B /* ContentView.swift */; };
+		33A05B3C255DA04D00C4A70B /* SwiftUIImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B3B255DA04D00C4A70B /* SwiftUIImagePicker.swift */; };
+		33A05B40255DA80800C4A70B /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B3F255DA80800C4A70B /* View + Extension.swift */; };
+		33A05B49255DA87500C4A70B /* NavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B48255DA87500C4A70B /* NavigationModifier.swift */; };
+		33A05B4D255DB50600C4A70B /* Binding + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B4C255DB50600C4A70B /* Binding + Extension.swift */; };
 		33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A17536253769460062EC8C /* CustomPlayerControls.swift */; };
 		33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1753B253769D80062EC8C /* CustomSlider.swift */; };
 		33A1755825376B390062EC8C /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A1755725376B390062EC8C /* PlayerControlsView.xib */; };
@@ -266,6 +270,10 @@
 		339ECE32251A14DC00168C5B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthorizationManager.swift; sourceTree = "<group>"; };
 		33A05B34255D5FBB00C4A70B /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		33A05B3B255DA04D00C4A70B /* SwiftUIImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIImagePicker.swift; sourceTree = "<group>"; };
+		33A05B3F255DA80800C4A70B /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
+		33A05B48255DA87500C4A70B /* NavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModifier.swift; sourceTree = "<group>"; };
+		33A05B4C255DB50600C4A70B /* Binding + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding + Extension.swift"; sourceTree = "<group>"; };
 		33A17536253769460062EC8C /* CustomPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControls.swift; sourceTree = "<group>"; };
 		33A1753B253769D80062EC8C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		33A1755725376B390062EC8C /* PlayerControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
@@ -810,6 +818,49 @@
 			isa = PBXGroup;
 			children = (
 				33A05B34255D5FBB00C4A70B /* ContentView.swift */,
+				33A05B3B255DA04D00C4A70B /* SwiftUIImagePicker.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		33A05B3E255DA7F900C4A70B /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				33A05B3F255DA80800C4A70B /* View + Extension.swift */,
+				33A05B4C255DB50600C4A70B /* Binding + Extension.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		33A05B43255DA83900C4A70B /* NavigationModifer */ = {
+			isa = PBXGroup;
+			children = (
+				33A05B48255DA87500C4A70B /* NavigationModifier.swift */,
+			);
+			path = NavigationModifer;
+			sourceTree = "<group>";
+		};
+		33A05B44255DA84900C4A70B /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				33778C0225518DE8002D1F05 /* CircleProgressBar */,
+				331912692543215F00DB64ED /* CartoonPoster */,
+				3355FA792540180E00C0B192 /* BorderedLabel */,
+				33127B4A2534C41C00B84FAE /* VideoPlayerControls */,
+				3319124E2541C03200DB64ED /* UserHeader */,
+				33EAD3B12522094200128EEB /* ImagePicker */,
+				33EE7EB02513609D00EA2BF4 /* AppLabel */,
+				33EE7EAD25135D0A00EA2BF4 /* TextField */,
+				33EE7EA325134D7900EA2BF4 /* Button */,
+				33B2AE972508AC610006BE31 /* Alert */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		33A05B47255DA86000C4A70B /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				33A05B43255DA83900C4A70B /* NavigationModifer */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -892,6 +943,7 @@
 		33B1F08924FFEF0B00DB6BA8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				33A05B3E255DA7F900C4A70B /* SwiftUI */,
 				33B660B92501604000CA562E /* Foundation */,
 				33B660B82501602C00CA562E /* UIKit */,
 			);
@@ -909,16 +961,8 @@
 		33B2AE962508AC590006BE31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				33778C0225518DE8002D1F05 /* CircleProgressBar */,
-				331912692543215F00DB64ED /* CartoonPoster */,
-				3355FA792540180E00C0B192 /* BorderedLabel */,
-				33127B4A2534C41C00B84FAE /* VideoPlayerControls */,
-				3319124E2541C03200DB64ED /* UserHeader */,
-				33EAD3B12522094200128EEB /* ImagePicker */,
-				33EE7EB02513609D00EA2BF4 /* AppLabel */,
-				33EE7EAD25135D0A00EA2BF4 /* TextField */,
-				33EE7EA325134D7900EA2BF4 /* Button */,
-				33B2AE972508AC610006BE31 /* Alert */,
+				33A05B47255DA86000C4A70B /* SwiftUI */,
+				33A05B44255DA84900C4A70B /* UIKit */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -1478,6 +1522,7 @@
 				337BF2C4254DB6260057D685 /* VideoPlayerViewController.swift in Sources */,
 				33A05B35255D5FBB00C4A70B /* ContentView.swift in Sources */,
 				33B2AEA22508B9BA0006BE31 /* AlertType.swift in Sources */,
+				33A05B4D255DB50600C4A70B /* Binding + Extension.swift in Sources */,
 				3355FA882540343D00C0B192 /* BaseViewController.swift in Sources */,
 				33127B572534C4A700B84FAE /* DetailsViewProtocol.swift in Sources */,
 				3318E2DA254ACD14001838E2 /* PlayerTransitionDelegate.swift in Sources */,
@@ -1489,6 +1534,7 @@
 				33A1F7CC2551823B00407056 /* FilesManager.swift in Sources */,
 				33104A752535CF9800A90ED7 /* CartoonsViewController.swift in Sources */,
 				3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */,
+				33A05B3C255DA04D00C4A70B /* SwiftUIImagePicker.swift in Sources */,
 				334A51C9252CAA53003BCF59 /* Coordinator.swift in Sources */,
 				33127B542534C49300B84FAE /* DetailsViewController.swift in Sources */,
 				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
@@ -1498,6 +1544,7 @@
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,
 				33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */,
 				3334A4D12523344F00AD18C7 /* AccessErrors.swift in Sources */,
+				33A05B40255DA80800C4A70B /* View + Extension.swift in Sources */,
 				33A3BA2D251E140F004EA0D9 /* AlertService.swift in Sources */,
 				332BA35925060346008A8F29 /* AuthorizationViewPresenterProtocol.swift in Sources */,
 				330F4E4A25309B9C008D0FC8 /* AuthorizationService.swift in Sources */,
@@ -1512,6 +1559,7 @@
 				334A51DF252CDB34003BCF59 /* PresenterProtocol.swift in Sources */,
 				33EE7EB2251360B000EA2BF4 /* CustomLabelView.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationViewController.swift in Sources */,
+				33A05B49255DA87500C4A70B /* NavigationModifier.swift in Sources */,
 				3318E2C6254AC5AF001838E2 /* AuthorizationTransitionDelegate.swift in Sources */,
 				3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */,
 				33778C0425518E00002D1F05 /* CircleProgressBar.swift in Sources */,

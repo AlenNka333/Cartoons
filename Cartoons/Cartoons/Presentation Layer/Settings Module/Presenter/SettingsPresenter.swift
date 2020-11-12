@@ -30,6 +30,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         service.loadImage(folder: "profile_Images") { [weak self] result in
             switch result {
             case .success(let path):
+                
                 self?.view.showProfileImage(path: path)
             case .failure:
                 self?.view.showDefaultImage()

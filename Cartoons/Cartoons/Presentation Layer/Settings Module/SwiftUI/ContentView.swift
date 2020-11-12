@@ -4,7 +4,7 @@
 //
 //  Created by Alena Nesterkina on 11/12/20.
 //
-
+//swiftlint:disable all
 import SwiftUI
 import UIKit
 
@@ -14,29 +14,22 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
     
     init() {
         super.init(rootView: ContentView())
-        rootView.signOutClosure = signOut
-        rootView.clearCacheClosure = clearCache
+        rootView.signOutClosure = { [weak self] in
+            self?.presenter?.signOut()
+        }
+        rootView.clearCacheClosure = { [weak self] in
+            self?.presenter?.askPermission()
+        }
+        rootView.saveImageClosure = { [weak self] data in
+            print("Save")
+            self?.presenter?.saveProfileImage(imageData: data)
+        }
         title = R.string.localizable.settings_screen()
+        presenter?.showProfileImage()
     }
     
     @objc required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension SettingsViewHostingController {
-    func signOut() {
-        guard let presenter = self.presenter else {
-            return
-        }
-        presenter.signOut()
-    }
-    
-    func clearCache() {
-        guard let presenter = self.presenter else {
-            return
-        }
-        presenter.askPermission()
     }
 }
 
@@ -89,7 +82,7 @@ extension SettingsViewHostingController: SettingsViewProtocol {
     }
     
     func showPhoneLabel(number: String) {
-        //        userInfoHeader.setPhoneNumber(number: number)
+        rootView.phoneNumber = number
     }
     
     func showSignOutAlert(message: String) {
@@ -126,8 +119,17 @@ struct ContentView: View {
     @State private var clearCache: Bool = false
     @State private var signOut: Bool = false
     
+    @State private var shouldPresentImagePicker = false
+    @State private var shouldPresentActionSheet = false
+    @State private var shouldPresentCamera = false
+    @State var phoneNumber = ""
+    @State private var image: Image? = Image(R.image.profile_icon.name)
+    
+    @State var imageData: Data?
+    
     var signOutClosure: (() -> Void)?
     var clearCacheClosure: (() -> Void)?
+    var saveImageClosure: ((Data) -> Void)?
     
     init() {
         let coloredAppearance = UINavigationBarAppearance()
@@ -143,8 +145,44 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            CustomHeader()
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100, alignment: .center)
+            VStack(spacing: 5) {
+                image?
+                    .resizable()
+                    .frame(width: 70, height: 70)
+                    .aspectRatio(contentMode: .fill)
+                    .clipShape(Circle())
+                    .shadow(radius: 10)
+                    .onTapGesture { self.shouldPresentActionSheet = true }
+                    .sheet(isPresented: $shouldPresentImagePicker) {
+                        SwiftUIImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary,
+                                           image: self.$image,
+                                           isPresented: self.$shouldPresentImagePicker,
+                                           imageData: self.$imageData.onUpdate {
+                                            guard let closure = saveImageClosure,
+                                                  let data = imageData else {
+                                                return
+                                            }
+                                            closure(data)
+                                           })
+                    }
+                    .actionSheet(isPresented: $shouldPresentActionSheet) { () -> ActionSheet in
+                        ActionSheet(title: Text("Choose mode"),
+                                    message: Text("Please choose your preferred mode to set your profile image"),
+                                    buttons: [ActionSheet.Button.default(Text("Camera"), action: {
+                                        self.shouldPresentImagePicker = true
+                                        self.shouldPresentCamera = true
+                                    }),
+                                    ActionSheet.Button.default(Text("Photo Library"), action: {
+                                        self.shouldPresentImagePicker = true
+                                        self.shouldPresentCamera = false
+                                    }),
+                                    ActionSheet.Button.cancel()])
+                    }
+                Text("\(phoneNumber)")
+                    .foregroundColor(.white)
+                    .font(Font.custom("Alice-Regular", size: 15))
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100, alignment: .center)
             Button(action: {
                 guard let closure = signOutClosure else {
                     return
@@ -178,56 +216,10 @@ struct ContentView: View {
     }
 }
 
-struct CustomHeader: View {
-    @State var phoneNumber = "+375298939122"
-    var body: some View {
-        VStack(spacing: 5) {
-            Image("profile_icon")
-                .resizable()
-                .frame(width: 70, height: 70)
-                .onTapGesture {
-                    print("Change image")
-                }
-                .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
-            Text("\(phoneNumber)")
-                .foregroundColor(.white)
-                .font(Font.custom("Alice-Regular", size: 15))
-            Spacer()
-        }
-    }
-}
-
-struct NavigationBarModifier: ViewModifier {
-    var backgroundColor: UIColor?
-    
-    init( backgroundColor: UIColor?) {
-        self.backgroundColor = backgroundColor
-    }
-    
-    func body(content: Content) -> some View {
-        ZStack {
-            content
-            VStack {
-                GeometryReader { geometry in
-                    Color(self.backgroundColor ?? .clear)
-                        .frame(height: geometry.safeAreaInsets.top)
-                        .edgesIgnoringSafeArea(.top)
-                        .shadow(color: .black, radius: 3, x: 3, y: 3)
-                    Spacer()
-                }
-            }
-        }
-    }
-}
+//MARK: - Preview
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-    }
-}
-
-extension View {
-    func navigationBarColor(_ backgroundColor: UIColor?) -> some View {
-        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor))
     }
 }
