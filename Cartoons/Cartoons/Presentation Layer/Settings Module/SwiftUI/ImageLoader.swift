@@ -11,18 +11,15 @@ import SwiftUI
 import UIKit
 
 class ImageLoader: ObservableObject {
-    var didChange = PassthroughSubject<UIImage, Never>()
-    var data = UIImage() {
-        didSet {
-            didChange.send(data)
-        }
-    }
+    @Published var image = Image(uiImage: R.image.profile_icon().unwrapped)
     
     func load(_ path: URL) {
-        let task = URLSession.shared.dataTask(with: path) { data, response, error in
-            guard let data = data else { return }
+        let task = URLSession.shared.dataTask(with: path) { data, _, _ in
+            guard let data = data else {
+                return
+            }
             DispatchQueue.main.async {
-                self.data = UIImage(data: data) ?? UIImage()
+                self.image = Image(uiImage: UIImage(data: data) ?? R.image.profile_icon().unwrapped)
             }
         }
         task.resume()

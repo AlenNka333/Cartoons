@@ -11,7 +11,7 @@ import UIKit
 
 struct SwiftUIImagePicker: UIViewControllerRepresentable {
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    @Binding var image: Image?
+    @Binding var image: Image
     @Binding var isPresented: Bool
     @Binding var imageData: Data?
     
@@ -33,11 +33,11 @@ struct SwiftUIImagePicker: UIViewControllerRepresentable {
 }
 
 class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    @Binding var image: Image?
+    @Binding var image: Image
     @Binding var isPresented: Bool
     @Binding var imageData: Data?
     
-    init(image: Binding<Image?>, isPresented: Binding<Bool>, imageData: Binding<Data?>) {
+    init(image: Binding<Image>, isPresented: Binding<Bool>, imageData: Binding<Data?>) {
         self._image = image
         self._isPresented = isPresented
         self._imageData = imageData

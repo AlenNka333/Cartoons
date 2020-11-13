@@ -124,7 +124,7 @@ struct ContentView: View {
     @State private var shouldPresentActionSheet = false
     @State private var shouldPresentCamera = false
     
-    @State var image: Image? = Image(R.image.profile_icon.name)
+    @State var image: Image = Image(uiImage: R.image.profile_icon().unwrapped)
     @State var imageData: Data?
     
     var signOutClosure: (() -> Void)?
@@ -149,21 +149,19 @@ struct ContentView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
             VStack(spacing: 5) {
-                image?
+                imageLoader.image
                     .resizable()
                     .frame(width: 70, height: 70)
                     .aspectRatio(contentMode: .fill)
-                    .clipShape(Circle())
+                    .clipShape(Capsule())
                     .shadow(radius: 10)
                     .onTapGesture { self.shouldPresentActionSheet = true }
-                    .onReceive(imageLoader.didChange) { image in
-                        self.image = Image(uiImage: image)
-                    }
                     .sheet(isPresented: $shouldPresentImagePicker) {
                         SwiftUIImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary,
                                            image: self.$image,
                                            isPresented: self.$shouldPresentImagePicker,
                                            imageData: self.$imageData.onUpdate {
+                                            imageLoader.image = image
                                             guard let closure = saveImageClosure,
                                                   let data = imageData else {
                                                 return
