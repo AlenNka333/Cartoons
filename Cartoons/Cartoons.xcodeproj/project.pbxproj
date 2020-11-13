@@ -72,6 +72,10 @@
 		334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51EE252DC007003BCF59 /* AuthorizationCoordinator.swift */; };
 		334A51F6252DC742003BCF59 /* AuthorizationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51F5252DC742003BCF59 /* AuthorizationAssembly.swift */; };
 		334C4083255EA7C80008E97F /* CacheIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C4082255EA7C80008E97F /* CacheIndicator.swift */; };
+		334C408C255EF8C90008E97F /* OnboardingHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C408B255EF8C90008E97F /* OnboardingHostingController.swift */; };
+		334C4090255EFD1F0008E97F /* Subview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C408F255EFD1E0008E97F /* Subview.swift */; };
+		334C4093255EFD770008E97F /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C4092255EFD770008E97F /* PageControl.swift */; };
+		334C4096255EFF840008E97F /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C4095255EFF840008E97F /* PageController.swift */; };
 		3355FA73254009B100C0B192 /* CinzelDecorative-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3355FA722540098B00C0B192 /* CinzelDecorative-Black.ttf */; };
 		3355FA75254009B400C0B192 /* CinzelDecorative-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3355FA702540098B00C0B192 /* CinzelDecorative-Bold.ttf */; };
 		3355FA76254009B600C0B192 /* CinzelDecorative-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3355FA712540098B00C0B192 /* CinzelDecorative-Regular.ttf */; };
@@ -84,7 +88,7 @@
 		3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */; };
 		3373D94E250F63CA0095F78C /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D94D250F63CA0095F78C /* AppData.swift */; };
 		3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D951250F95100095F78C /* PageControllerPresenter.swift */; };
-		3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */; };
+		3373D954250F95240095F78C /* PageViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D953250F95240095F78C /* PageViewControllerProtocol.swift */; };
 		3373D956250F95460095F78C /* PagePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D955250F95460095F78C /* PagePresenterProtocol.swift */; };
 		33778C0425518E00002D1F05 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C0325518E00002D1F05 /* CircleProgressBar.swift */; };
 		33778C0A2551E695002D1F05 /* LoadingServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */; };
@@ -244,6 +248,10 @@
 		334A51EE252DC007003BCF59 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
 		334A51F5252DC742003BCF59 /* AuthorizationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAssembly.swift; sourceTree = "<group>"; };
 		334C4082255EA7C80008E97F /* CacheIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheIndicator.swift; sourceTree = "<group>"; };
+		334C408B255EF8C90008E97F /* OnboardingHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingHostingController.swift; sourceTree = "<group>"; };
+		334C408F255EFD1E0008E97F /* Subview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subview.swift; sourceTree = "<group>"; };
+		334C4092255EFD770008E97F /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		334C4095255EFF840008E97F /* PageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 		3355FA702540098B00C0B192 /* CinzelDecorative-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Bold.ttf"; sourceTree = "<group>"; };
 		3355FA712540098B00C0B192 /* CinzelDecorative-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Regular.ttf"; sourceTree = "<group>"; };
 		3355FA722540098B00C0B192 /* CinzelDecorative-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Black.ttf"; sourceTree = "<group>"; };
@@ -256,7 +264,7 @@
 		3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineWatchingFeatureViewController.swift; sourceTree = "<group>"; };
 		3373D94D250F63CA0095F78C /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		3373D951250F95100095F78C /* PageControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerPresenter.swift; sourceTree = "<group>"; };
-		3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
+		3373D953250F95240095F78C /* PageViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerProtocol.swift; sourceTree = "<group>"; };
 		3373D955250F95460095F78C /* PagePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagePresenterProtocol.swift; sourceTree = "<group>"; };
 		33778C0325518E00002D1F05 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingServiceDelegate.swift; sourceTree = "<group>"; };
@@ -430,7 +438,7 @@
 		33127B1E25330C5200B84FAE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				3373D953250F95240095F78C /* PageViewControllerPresenterProtocol.swift */,
+				3373D953250F95240095F78C /* PageViewControllerProtocol.swift */,
 				3373D955250F95460095F78C /* PagePresenterProtocol.swift */,
 				3318E2D0254AC9AB001838E2 /* OnboardingTransitionDelegate.swift */,
 			);
@@ -723,6 +731,17 @@
 			path = BasePresenter;
 			sourceTree = "<group>";
 		};
+		334C408A255EF8A10008E97F /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				334C408B255EF8C90008E97F /* OnboardingHostingController.swift */,
+				334C408F255EFD1E0008E97F /* Subview.swift */,
+				334C4092255EFD770008E97F /* PageControl.swift */,
+				334C4095255EFF840008E97F /* PageController.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		3355FA792540180E00C0B192 /* BorderedLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,6 +762,7 @@
 		3373D943250F55E90095F78C /* Onboarding Module */ = {
 			isa = PBXGroup;
 			children = (
+				334C408A255EF8A10008E97F /* SwiftUI */,
 				33127B1E25330C5200B84FAE /* Protocols */,
 				3373D94F250F94CC0095F78C /* Presenter */,
 				3373D950250F94D60095F78C /* View */,
@@ -1497,6 +1517,7 @@
 				33127B5D2534C4C400B84FAE /* DetailsPresenter.swift in Sources */,
 				334A51F6252DC742003BCF59 /* AuthorizationAssembly.swift in Sources */,
 				3318E2D1254AC9AB001838E2 /* OnboardingTransitionDelegate.swift in Sources */,
+				334C408C255EF8C90008E97F /* OnboardingHostingController.swift in Sources */,
 				33B1F08B24FFEFCF00DB6BA8 /* AuthorizationViewController.swift in Sources */,
 				338614CC253A275800A24D4F /* Double + Extension.swift in Sources */,
 				330F4E16252F0E84008D0FC8 /* OnboardingCoordinator.swift in Sources */,
@@ -1544,9 +1565,10 @@
 				33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */,
 				33A1F7CC2551823B00407056 /* FilesManager.swift in Sources */,
 				33104A752535CF9800A90ED7 /* CartoonsViewController.swift in Sources */,
-				3373D954250F95240095F78C /* PageViewControllerPresenterProtocol.swift in Sources */,
+				3373D954250F95240095F78C /* PageViewControllerProtocol.swift in Sources */,
 				33A05B3C255DA04D00C4A70B /* SwiftUIImagePicker.swift in Sources */,
 				334A51C9252CAA53003BCF59 /* Coordinator.swift in Sources */,
+				334C4090255EFD1F0008E97F /* Subview.swift in Sources */,
 				33127B542534C49300B84FAE /* DetailsViewController.swift in Sources */,
 				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
 				33127B632534C4EF00B84FAE /* VideoPlayerPresenter.swift in Sources */,
@@ -1570,6 +1592,7 @@
 				334A51DF252CDB34003BCF59 /* PresenterProtocol.swift in Sources */,
 				33EE7EB2251360B000EA2BF4 /* CustomLabelView.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationViewController.swift in Sources */,
+				334C4096255EFF840008E97F /* PageController.swift in Sources */,
 				33A05B49255DA87500C4A70B /* NavigationModifier.swift in Sources */,
 				3318E2C6254AC5AF001838E2 /* AuthorizationTransitionDelegate.swift in Sources */,
 				3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */,
@@ -1579,6 +1602,7 @@
 				334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */,
 				33A05B53255E744300C4A70B /* Number.swift in Sources */,
 				33B2AEB6250A63A00006BE31 /* CartoonsViewProtocol.swift in Sources */,
+				334C4093255EFD770008E97F /* PageControl.swift in Sources */,
 				33B0AE30254859C500EA71CC /* SettingsCoordinator.swift in Sources */,
 				332227C92518973500EF56B8 /* FavouritesViewProtocol.swift in Sources */,
 				338B788625593E58005FECC9 /* SettingsTableViewCell.swift in Sources */,

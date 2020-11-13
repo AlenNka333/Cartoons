@@ -30,7 +30,6 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
             }
         }
         rootView.saveImageClosure = { [weak self] data in
-            print("Save")
             self?.presenter?.saveProfileImage(imageData: data)
         }
         setupUI()
