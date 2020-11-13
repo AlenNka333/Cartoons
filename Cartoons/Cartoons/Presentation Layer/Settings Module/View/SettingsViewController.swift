@@ -58,6 +58,12 @@ class SettingsViewController: BaseViewController {
 // MARK: - Protocol realisation
 
 extension SettingsViewController: SettingsViewProtocol {
+    func cacheUpdated(_ flag: Bool) {
+        let cell = tableView?.cellForRow(at: IndexPath(item: 1, section: 0)) as? SettingsTableViewCell
+        cell?.button.isEnabled = flag
+        tableView?.reloadData()
+    }
+    
     func transit() {
         transitionDelegate?.transit()
     }
@@ -118,6 +124,9 @@ extension SettingsViewController: SettingsViewProtocol {
         let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
             switch action {
             case .accept:
+                let cell = self?.tableView?.cellForRow(at: IndexPath(item: 1, section: 0)) as? SettingsTableViewCell
+                cell?.button.isEnabled = false
+                self?.tableView?.reloadData()
                 self?.presenter?.clearCache()
             case .cancel:
                 break
@@ -199,7 +208,9 @@ extension SettingsViewController {
         guard let presenter = self.presenter else {
             return
         }
-        presenter.askPermission()
+        if presenter.checkCache() {
+            presenter.askPermission()
+        }
     }
     
     func didSelect(image: UIImage?) {

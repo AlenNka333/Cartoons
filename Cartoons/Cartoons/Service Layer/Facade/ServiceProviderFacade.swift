@@ -11,6 +11,7 @@ import Foundation
 class ServiceProviderFacade: Facade {
     weak var cartoonsDataSourceDelegate: ServiceProviderDelegate?
     weak var favouritesDataSourceDelegate: FavouritesServiceProviderDelegate?
+    weak var settingsDelegate: SettingsServiceProviderDelegate?
     weak var errorDelegate: ErrorPresentable?
     
     private var storageService: StorageDataService
@@ -120,6 +121,7 @@ extension ServiceProviderFacade: LoadingServiceDelegate {
     }
     
     func updateDataSource(_ localPath: URL) {
+        settingsDelegate?.cacheUpdated(true)
         getServerData()
         localData.removeAll { item -> Bool in
             item.state == .inProgress
