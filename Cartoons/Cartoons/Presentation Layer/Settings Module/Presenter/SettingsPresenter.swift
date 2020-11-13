@@ -35,7 +35,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
-        service.loadImage(folder: "profile_Images") { [weak self] result in
+        service.loadImage(folder: "profile_images") { [weak self] result in
             switch result {
             case .success(let path):
                 self?.view.showProfileImage(path: path)

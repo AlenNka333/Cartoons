@@ -33,7 +33,12 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
             print("Save")
             self?.presenter?.saveProfileImage(imageData: data)
         }
+        setupUI()
+    }
+    
+    func setupUI() {
         title = R.string.localizable.settings_screen()
+        view.backgroundColor = R.color.picotee_blue()
     }
     
     @objc required dynamic init?(coder aDecoder: NSCoder) {
@@ -160,9 +165,9 @@ struct ContentView: View {
             VStack(spacing: 5) {
                 imageLoader.image
                     .resizable()
+                    .clipShape(Capsule())
                     .frame(width: 70, height: 70)
                     .aspectRatio(contentMode: .fill)
-                    .clipShape(Capsule())
                     .shadow(radius: 10)
                     .onTapGesture { self.shouldPresentActionSheet = true }
                     .sheet(isPresented: $shouldPresentImagePicker) {
@@ -225,8 +230,9 @@ struct ContentView: View {
             }
             .disabled(cacheIndicator.flag)
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
         .padding(.top, 5)
+        .edgesIgnoringSafeArea(.bottom)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
         .background(Color(R.color.picotee_blue.name))
     }
 }
