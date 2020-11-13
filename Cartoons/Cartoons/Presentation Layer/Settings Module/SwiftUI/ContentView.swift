@@ -15,6 +15,7 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
         didSet {
             presenter?.showProfileImage()
             presenter?.showPhoneNumber()
+            cacheUpdated(presenter?.checkCache() ?? true)
         }
     }
     
@@ -24,7 +25,9 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
             self?.presenter?.signOut()
         }
         rootView.clearCacheClosure = { [weak self] in
-            self?.presenter?.askPermission()
+            if ((self?.presenter?.checkCache()) != nil) {
+                self?.presenter?.askPermission()
+            }
         }
         rootView.saveImageClosure = { [weak self] data in
             print("Save")
@@ -39,6 +42,10 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
 }
 
 extension SettingsViewHostingController: SettingsViewProtocol {
+    func cacheUpdated(_ flag: Bool) {
+        rootView.cacheIndicator.flag = !flag
+    }
+    
     func showPhoneLabel(number: String) {
         rootView.number.number = number
     }
@@ -116,6 +123,7 @@ extension SettingsViewHostingController: SettingsViewProtocol {
 struct ContentView: View {
     @ObservedObject var imageLoader: ImageLoader
     @ObservedObject var number: Number
+    @ObservedObject var cacheIndicator: CacheIndicator
     
     @State private var clearCache: Bool = false
     @State private var signOut: Bool = false
@@ -144,6 +152,7 @@ struct ContentView: View {
         
         self.imageLoader = ImageLoader()
         self.number = Number()
+        self.cacheIndicator = CacheIndicator()
     }
     
     var body: some View {
@@ -207,12 +216,14 @@ struct ContentView: View {
                 closure()
             }) {
                 Text("Clear Cache")
+                    
                     .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 50, alignment: .center)
                     .foregroundColor(Color.white)
                     .font(Font.custom("Alice-Regular", size: 15))
                     .background(Color(R.color.table_cell.name))
                     .cornerRadius(8)
             }
+            .disabled(cacheIndicator.flag)
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
         .padding(.top, 5)

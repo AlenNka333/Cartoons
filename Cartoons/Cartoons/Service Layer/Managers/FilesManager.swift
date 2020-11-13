@@ -52,4 +52,16 @@ class FilesManager {
             print(error)
         }
     }
+    
+    func checkCache() -> Bool {
+        do {
+            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsPath, includingPropertiesForKeys: nil)
+            if directoryContents.isEmpty {
+                return false
+            }
+        } catch {
+            print(error)
+        }
+        return true
+    }
 }

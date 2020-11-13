@@ -18,5 +18,6 @@ protocol SettingsViewPresenterProtocol: PresenterProtocol, AnyObject {
     func showProfileImage()
     func saveProfileImage(imageData: Data)
     func showPhoneNumber()
+    func checkCache() -> Bool
     func clearCache()
 }

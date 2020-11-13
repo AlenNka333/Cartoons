@@ -71,6 +71,7 @@
 		334A51EB252DBAA2003BCF59 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51EA252DBAA2003BCF59 /* RootAssembly.swift */; };
 		334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51EE252DC007003BCF59 /* AuthorizationCoordinator.swift */; };
 		334A51F6252DC742003BCF59 /* AuthorizationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A51F5252DC742003BCF59 /* AuthorizationAssembly.swift */; };
+		334C4083255EA7C80008E97F /* CacheIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334C4082255EA7C80008E97F /* CacheIndicator.swift */; };
 		3355FA73254009B100C0B192 /* CinzelDecorative-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3355FA722540098B00C0B192 /* CinzelDecorative-Black.ttf */; };
 		3355FA75254009B400C0B192 /* CinzelDecorative-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3355FA702540098B00C0B192 /* CinzelDecorative-Bold.ttf */; };
 		3355FA76254009B600C0B192 /* CinzelDecorative-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3355FA712540098B00C0B192 /* CinzelDecorative-Regular.ttf */; };
@@ -242,6 +243,7 @@
 		334A51EA252DBAA2003BCF59 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		334A51EE252DC007003BCF59 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
 		334A51F5252DC742003BCF59 /* AuthorizationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAssembly.swift; sourceTree = "<group>"; };
+		334C4082255EA7C80008E97F /* CacheIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheIndicator.swift; sourceTree = "<group>"; };
 		3355FA702540098B00C0B192 /* CinzelDecorative-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Bold.ttf"; sourceTree = "<group>"; };
 		3355FA712540098B00C0B192 /* CinzelDecorative-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Regular.ttf"; sourceTree = "<group>"; };
 		3355FA722540098B00C0B192 /* CinzelDecorative-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Black.ttf"; sourceTree = "<group>"; };
@@ -825,6 +827,7 @@
 				33A05B3B255DA04D00C4A70B /* SwiftUIImagePicker.swift */,
 				33A05B4F255DBCEC00C4A70B /* ImageLoader.swift */,
 				33A05B52255E744300C4A70B /* Number.swift */,
+				334C4082255EA7C80008E97F /* CacheIndicator.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -1480,6 +1483,7 @@
 				33B2AE9E2508AD860006BE31 /* CustomAlertViewController.swift in Sources */,
 				33A3BA33251E2E86004EA0D9 /* Optional + Extension.swift in Sources */,
 				33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */,
+				334C4083255EA7C80008E97F /* CacheIndicator.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
 				338614B425386B9200A24D4F /* PlayerView.swift in Sources */,
 				3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */,

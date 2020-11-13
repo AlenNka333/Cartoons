@@ -17,6 +17,11 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         self.view = view
         self.serviceLocator = serviceLocator
         self.serviceProvider = serviceProvider
+        serviceProvider.settingsDelegate = self
+        guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
+            return
+        }
+        view.showPhoneLabel(number: service.phoneNumber.unwrapped)
     }
     
     func showPhoneNumber() {
@@ -25,12 +30,12 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         }
         view.showPhoneLabel(number: service.phoneNumber.unwrapped)
     }
-
+    
     func showProfileImage() {
         guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
-        service.loadImage(folder: "profile_images") { [weak self] result in
+        service.loadImage(folder: "profile_Images") { [weak self] result in
             switch result {
             case .success(let path):
                 self?.view.showProfileImage(path: path)
@@ -65,6 +70,12 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
             }
         }
     }
+    func checkCache() -> Bool {
+        guard let service: FilesManager = serviceLocator.resolve(FilesManager.self) else {
+            return true
+        }
+        return service.checkCache()
+    }
     func signOut() {
         view.showSignOutAlert(message: R.string.localizable.question_to_sign_out())
     }
@@ -85,5 +96,11 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
     }
     func clearCache() {
         serviceProvider.clearCache()
+    }
+}
+
+extension SettingsPresenter: SettingsServiceProviderDelegate {
+    func cacheUpdated(_ flag: Bool) {
+        view.cacheUpdated(flag)
     }
 }
