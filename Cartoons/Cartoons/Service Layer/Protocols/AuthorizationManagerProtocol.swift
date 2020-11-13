@@ -9,11 +9,8 @@
 import FirebaseAuth
 import Foundation
 
-protocol AuthorizationServiceProtocol {
-    var phoneNumber: String? { get }
-    var shouldAuthorize: Bool { get }
-    
+protocol AuthorizationManagerProtocol {
     func verifyUser(number: String, completion: @escaping (Result<String, Error>) -> Void)
-    func signIn(verificationId: String, verifyCode: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void)
+    func signIn(verificationId: String, verifyCode: String, completion: @escaping (Result<Void, Error>) -> Void)
     func signOut(completion: @escaping (Result<Void, Error>) -> Void)
 }

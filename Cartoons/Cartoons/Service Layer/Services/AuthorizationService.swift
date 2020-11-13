@@ -9,8 +9,8 @@
 import FirebaseAuth
 import Foundation
 
-class AuthorizationService: AuthorizationServiceProtocol {
-    private let authorizationManager = AuthorizationManager()
+class AuthorizationService {
+    private let authorizationManager: AuthorizationManagerProtocol
     
     var phoneNumber: String? {
         let firebaseUser = Auth.auth().currentUser
@@ -18,6 +18,10 @@ class AuthorizationService: AuthorizationServiceProtocol {
     }
     var shouldAuthorize: Bool {
         return Auth.auth().currentUser == nil
+    }
+    
+    init(authorizationManager: AuthorizationManagerProtocol = AuthorizationManager()) {
+        self.authorizationManager = authorizationManager
     }
     
     func verifyUser(number: String, completion: @escaping (Result<String, Error>) -> Void) {
@@ -33,7 +37,7 @@ class AuthorizationService: AuthorizationServiceProtocol {
         }
     }
     
-    func signIn(verificationId: String, verifyCode: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
+    func signIn(verificationId: String, verifyCode: String, completion: @escaping (Result<Void, Error>) -> Void) {
         authorizationManager.signIn(verificationId: verificationId, verifyCode: verifyCode, completion: completion)
     }
     
