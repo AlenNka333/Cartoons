@@ -11,14 +11,5 @@ import SwiftUI
 import UIKit
 
 class Number: ObservableObject {
-    var didChange = PassthroughSubject<String, Never>()
-    var number = "" {
-        didSet {
-            didChange.send(number)
-        }
-    }
-    
-    func setNumber(_ num: String) {
-        number = num
-    }
+    @Published var number = ""
 }

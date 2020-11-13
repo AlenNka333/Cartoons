@@ -40,7 +40,7 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
 
 extension SettingsViewHostingController: SettingsViewProtocol {
     func showPhoneLabel(number: String) {
-        rootView.number.setNumber(number)
+        rootView.number.number = number
     }
     
     func editProfileImage() {
