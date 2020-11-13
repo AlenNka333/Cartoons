@@ -5,6 +5,7 @@
 //  Created by Alena Nesterkina on 11/12/20.
 //
 //swiftlint:disable all
+
 import SwiftUI
 import UIKit
 
@@ -13,6 +14,7 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
     var presenter: SettingsViewPresenterProtocol? {
         didSet {
             presenter?.showProfileImage()
+            presenter?.showPhoneNumber()
         }
     }
     
@@ -37,6 +39,10 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
 }
 
 extension SettingsViewHostingController: SettingsViewProtocol {
+    func showPhoneLabel(number: String) {
+        rootView.number.setNumber(number)
+    }
+    
     func editProfileImage() {
     }
     
@@ -74,12 +80,7 @@ extension SettingsViewHostingController: SettingsViewProtocol {
     }
     
     func showDefaultImage() {
-        //        userInfoHeader.stopActivityIndicator()
-        //        userInfoHeader.setDefaultImage()
-    }
-    
-    func showPhoneLabel(number: String) {
-        rootView.phoneNumber = number
+        rootView.image = Image(R.image.profile_icon.name)
     }
     
     func showSignOutAlert(message: String) {
@@ -114,6 +115,7 @@ extension SettingsViewHostingController: SettingsViewProtocol {
 
 struct ContentView: View {
     @ObservedObject var imageLoader: ImageLoader
+    @ObservedObject var number: Number
     
     @State private var clearCache: Bool = false
     @State private var signOut: Bool = false
@@ -121,9 +123,8 @@ struct ContentView: View {
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionSheet = false
     @State private var shouldPresentCamera = false
-    @State var phoneNumber = ""
-    @State var image: Image? = Image(R.image.profile_icon.name)
     
+    @State var image: Image? = Image(R.image.profile_icon.name)
     @State var imageData: Data?
     
     var signOutClosure: (() -> Void)?
@@ -134,7 +135,7 @@ struct ContentView: View {
         let coloredAppearance = UINavigationBarAppearance()
         coloredAppearance.configureWithTransparentBackground()
         coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white,
-                                                      .font: R.font.aliceRegular(size: 40)
+                                                      .font: R.font.aliceRegular(size: 40).unwrapped
         ]
         UINavigationBar.appearance().standardAppearance = coloredAppearance
         UINavigationBar.appearance().compactAppearance = coloredAppearance
@@ -142,10 +143,11 @@ struct ContentView: View {
         UINavigationBar.appearance().tintColor = .white
         
         self.imageLoader = ImageLoader()
+        self.number = Number()
     }
     
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .center, spacing: 15) {
             VStack(spacing: 5) {
                 image?
                     .resizable()
@@ -181,10 +183,10 @@ struct ContentView: View {
                                         self.shouldPresentCamera = false
                                     }),
                                     ActionSheet.Button.cancel()])
-                    }
-                Text("\(phoneNumber)")
+                }
+                Text(number.number)
                     .foregroundColor(.white)
-                    .font(Font.custom("Alice-Regular", size: 15))
+                    .font(Font.custom("Alice-Regular", size: 18))
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100, alignment: .center)
             Button(action: {

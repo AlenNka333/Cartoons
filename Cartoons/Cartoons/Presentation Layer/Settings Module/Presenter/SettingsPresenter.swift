@@ -17,6 +17,9 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         self.view = view
         self.serviceLocator = serviceLocator
         self.serviceProvider = serviceProvider
+    }
+    
+    func showPhoneNumber() {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }

@@ -19,7 +19,6 @@ class ImageLoader: ObservableObject {
     }
     
     func load(_ path: URL) {
-        print("Start")
         let task = URLSession.shared.dataTask(with: path) { data, response, error in
             guard let data = data else { return }
             DispatchQueue.main.async {

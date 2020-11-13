@@ -107,6 +107,7 @@
 		33A05B49255DA87500C4A70B /* NavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B48255DA87500C4A70B /* NavigationModifier.swift */; };
 		33A05B4D255DB50600C4A70B /* Binding + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B4C255DB50600C4A70B /* Binding + Extension.swift */; };
 		33A05B50255DBCEC00C4A70B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B4F255DBCEC00C4A70B /* ImageLoader.swift */; };
+		33A05B53255E744300C4A70B /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05B52255E744300C4A70B /* Number.swift */; };
 		33A17537253769460062EC8C /* CustomPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A17536253769460062EC8C /* CustomPlayerControls.swift */; };
 		33A1753C253769D80062EC8C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A1753B253769D80062EC8C /* CustomSlider.swift */; };
 		33A1755825376B390062EC8C /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33A1755725376B390062EC8C /* PlayerControlsView.xib */; };
@@ -276,6 +277,7 @@
 		33A05B48255DA87500C4A70B /* NavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModifier.swift; sourceTree = "<group>"; };
 		33A05B4C255DB50600C4A70B /* Binding + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding + Extension.swift"; sourceTree = "<group>"; };
 		33A05B4F255DBCEC00C4A70B /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		33A05B52255E744300C4A70B /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		33A17536253769460062EC8C /* CustomPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControls.swift; sourceTree = "<group>"; };
 		33A1753B253769D80062EC8C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		33A1755725376B390062EC8C /* PlayerControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
@@ -822,6 +824,7 @@
 				33A05B34255D5FBB00C4A70B /* ContentView.swift */,
 				33A05B3B255DA04D00C4A70B /* SwiftUIImagePicker.swift */,
 				33A05B4F255DBCEC00C4A70B /* ImageLoader.swift */,
+				33A05B52255E744300C4A70B /* Number.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -1570,6 +1573,7 @@
 				33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */,
 				33778C162553321A002D1F05 /* ServiceProviderDelegate.swift in Sources */,
 				334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */,
+				33A05B53255E744300C4A70B /* Number.swift in Sources */,
 				33B2AEB6250A63A00006BE31 /* CartoonsViewProtocol.swift in Sources */,
 				33B0AE30254859C500EA71CC /* SettingsCoordinator.swift in Sources */,
 				332227C92518973500EF56B8 /* FavouritesViewProtocol.swift in Sources */,
