@@ -164,7 +164,8 @@ struct ContentView: View {
             VStack(spacing: 5) {
                 imageLoader.image
                     .resizable()
-                    .clipShape(Capsule())
+                    .clipShape(Circle())
+                    .scaledToFill()
                     .frame(width: 70, height: 70)
                     .aspectRatio(contentMode: .fill)
                     .shadow(radius: 10)
