@@ -70,7 +70,7 @@ class AuthorizationServiceTests: XCTestCase {
         }
         self.waitForExpectations(timeout: 2.0, handler: nil)
     }
-
+    
     func testLogoutResponse() {
         let expectation = self.expectation(description: "Logout test response")
         
@@ -87,6 +87,5 @@ class AuthorizationServiceTests: XCTestCase {
     }
     
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 }
