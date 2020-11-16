@@ -10,10 +10,14 @@ import Firebase
 import Foundation
 // swiftlint:disable all
 
-class StorageDataService: StorageDataServiceProtocol {
-    private let storageDataManager = StorageDataManager()
+class StorageDataService {
+    private let storageDataManager: StorageDataManagerProtocol
     private var folders = [String]()
     var cartoons = [Cartoon]()
+    
+    init(storageDataManager: StorageDataManagerProtocol = StorageDataManager()) {
+        self.storageDataManager = storageDataManager
+    }
     
     func saveImage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void) {
         storageDataManager.saveImage(imageData: imageData, completion: completion)

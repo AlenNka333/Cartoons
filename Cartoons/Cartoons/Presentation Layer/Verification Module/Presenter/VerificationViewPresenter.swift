@@ -12,13 +12,13 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     enum Constant {
         static let totalTime = 60
     }
-
-    var view: VerificationViewProtocol
+    
     let serviceLocator: Locator
     let verificationId: String
     let number: String
-    var timer = Constant.totalTime
     
+    var view: VerificationViewProtocol
+    var timer = Constant.totalTime
     var successSessionClosure: (() -> Void)?
     
     init(view: VerificationViewProtocol, serviceLocator: Locator, verificationId: String, number: String) {
@@ -46,7 +46,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        service.verifyUser(number: service.phoneNumber.unwrapped) { [weak self] result in
+        service.verifyUser(number: number) { [weak self] result in
             switch result {
             case .success:
                 break
@@ -60,15 +60,14 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        view.transit()
-//        service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
-//            switch result {
-//            case .success:
-//                self?.view.transit()
-//            case let .failure(error):
-//                self?.view.showError(error: error)
-//            }
-//        }
+        service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
+            switch result {
+            case .success:
+                self?.view.transit()
+            case let .failure(error):
+                self?.view.showError(error: error)
+            }
+        }
     }
 }
 
