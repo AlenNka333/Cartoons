@@ -17,7 +17,7 @@ enum GeneralError: Error {
 }
 
 extension GeneralError: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .emptyPhoneNumber:
             return NSLocalizedString("Sorry, something wrong on server. Try to authorize again", comment: "Description of empty phone number")

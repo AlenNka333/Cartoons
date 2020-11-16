@@ -14,7 +14,7 @@ enum ServiceErrors: Error {
 }
 
 extension ServiceErrors: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .operationQueueOverflow:
             return NSLocalizedString("Please, wait until current operation will be finished", comment: "Description of operation queue overflow")

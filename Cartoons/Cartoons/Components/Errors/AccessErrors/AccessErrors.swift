@@ -16,7 +16,7 @@ enum AccessErrors: Error {
 }
 
 extension AccessErrors: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .cameraNotAvailable:
             return NSLocalizedString("Camera is not available to use", comment: "Description of camera failure usage")
