@@ -25,7 +25,10 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
             self?.presenter?.signOut()
         }
         rootView.clearCacheClosure = { [weak self] in
-            if ((self?.presenter?.checkCache()) != nil) {
+            guard let presenter = self?.presenter else {
+                return
+            }
+            if presenter.checkCache() {
                 self?.presenter?.askPermission()
             }
         }
