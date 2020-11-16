@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseStorage
 import Foundation
 
-class StorageDataManager {
+class StorageDataManager: StorageDataManagerProtocol {
     private let storageRef = Storage.storage().reference(forURL: "gs://cartoons-845b3.appspot.com/")
     private let metadata = StorageMetadata()
     

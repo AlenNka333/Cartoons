@@ -15,7 +15,6 @@ protocol Locator {
 class ServiceLocator: Locator {
     private lazy var authorizationService: AuthorizationService = { AuthorizationService() }()
     private lazy var storageService: StorageDataService = { StorageDataService() }()
-    private lazy var userService: UserDataService = { UserDataService() }()
     private lazy var loadingService: LoadingService = { LoadingService() }()
     private lazy var fileManager: FilesManager = { FilesManager() }()
     
@@ -25,8 +24,6 @@ class ServiceLocator: Locator {
             return authorizationService as? T
         case is StorageDataService.Type:
             return storageService as? T
-        case is UserDataService.Type:
-            return userService as? T
         case is LoadingService.Type:
             return loadingService as? T
         case is FilesManager.Type:

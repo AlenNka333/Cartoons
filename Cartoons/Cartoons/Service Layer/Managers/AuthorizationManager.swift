@@ -9,7 +9,7 @@
 import FirebaseAuth
 import Foundation
 
-class AuthorizationManager {
+class AuthorizationManager: AuthorizationManagerProtocol {
     func verifyUser(number: String, completion: @escaping (Result<String, Error>) -> Void) {
         PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { verificationID, error in
             if let error = error {
@@ -31,7 +31,7 @@ class AuthorizationManager {
                 completion(.failure(error))
                 return
             }
-            guard let user = user else {
+            if user == nil {
                 completion(.failure(AuthorizationError.emptyVerificationID))
                 return
             }

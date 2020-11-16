@@ -353,7 +353,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 33 images.
+  /// This `R.image` struct is generated, and contains static references to 32 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -373,8 +373,6 @@ struct R: Rswift.Validatable {
     static let frozen_onBoarding = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen_onBoarding")
     /// Image `frozen`.
     static let frozen = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen")
-    /// Image `fullscreen`.
-    static let fullscreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "fullscreen")
     /// Image `go_backward`.
     static let go_backward = Rswift.ImageResource(bundle: R.hostingBundle, name: "go_backward")
     /// Image `go_forward`.
@@ -391,6 +389,8 @@ struct R: Rswift.Validatable {
     static let main_screen_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_screen_background")
     /// Image `navigation_label`.
     static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
+    /// Image `onb_one`.
+    static let onb_one = Rswift.ImageResource(bundle: R.hostingBundle, name: "onb_one")
     /// Image `pause`.
     static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
     /// Image `play`.
@@ -407,8 +407,6 @@ struct R: Rswift.Validatable {
     static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
     /// Image `slider_progress`.
     static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
-    /// Image `small_screen`.
-    static let small_screen = Rswift.ImageResource(bundle: R.hostingBundle, name: "small_screen")
     /// Image `star_yellow`.
     static let star_yellow = Rswift.ImageResource(bundle: R.hostingBundle, name: "star_yellow")
     /// Image `star`.
@@ -486,13 +484,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "fullscreen", bundle: ..., traitCollection: ...)`
-    static func fullscreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.fullscreen, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "go_backward", bundle: ..., traitCollection: ...)`
     static func go_backward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.go_backward, compatibleWith: traitCollection)
@@ -549,6 +540,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "onb_one", bundle: ..., traitCollection: ...)`
+    static func onb_one(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onb_one, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "pause", bundle: ..., traitCollection: ...)`
     static func pause(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.pause, compatibleWith: traitCollection)
@@ -601,13 +599,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "slider_progress", bundle: ..., traitCollection: ...)`
     static func slider_progress(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.slider_progress, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "small_screen", bundle: ..., traitCollection: ...)`
-    static func small_screen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.small_screen, compatibleWith: traitCollection)
     }
     #endif
 
@@ -706,7 +697,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 25 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -764,14 +755,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let get_code_button_key = Rswift.StringResource(key: "get_code_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
-      /// en translation: Here will be your cartoons stored in cache
-      ///
-      /// Locales: en
-      static let favourites_collection_background = Rswift.StringResource(key: "favourites_collection_background", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
-      /// en translation: Here will be your cartoons stored in firebase
-      ///
-      /// Locales: en
-      static let cartoons_collection_background = Rswift.StringResource(key: "cartoons_collection_background", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: OTP Code
       ///
       /// Locales: en
@@ -808,10 +791,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let success = Rswift.StringResource(key: "success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
-      /// en translation: Such file already exists in local folder
-      ///
-      /// Locales: en
-      static let existing_file = Rswift.StringResource(key: "existing_file", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Take a photo
       ///
       /// Locales: en
@@ -1031,36 +1010,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("get_code_button_key", bundle: bundle, comment: "")
       }
 
-      /// en translation: Here will be your cartoons stored in cache
-      ///
-      /// Locales: en
-      static func favourites_collection_background(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("favourites_collection_background", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "favourites_collection_background"
-        }
-
-        return NSLocalizedString("favourites_collection_background", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Here will be your cartoons stored in firebase
-      ///
-      /// Locales: en
-      static func cartoons_collection_background(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("cartoons_collection_background", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "cartoons_collection_background"
-        }
-
-        return NSLocalizedString("cartoons_collection_background", bundle: bundle, comment: "")
-      }
-
       /// en translation: OTP Code
       ///
       /// Locales: en
@@ -1196,21 +1145,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("success", bundle: bundle, comment: "")
       }
 
-      /// en translation: Such file already exists in local folder
-      ///
-      /// Locales: en
-      static func existing_file(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("existing_file", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "existing_file"
-        }
-
-        return NSLocalizedString("existing_file", bundle: bundle, comment: "")
-      }
-
       /// en translation: Take a photo
       ///
       /// Locales: en
@@ -1321,7 +1255,6 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
-        if UIKit.UIImage(named: "fullscreen", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'fullscreen' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "go_backward", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'go_backward' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "go_forward", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'go_forward' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "stop", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'stop' is used in nib 'PlayerControlsView', but couldn't be loaded.") }

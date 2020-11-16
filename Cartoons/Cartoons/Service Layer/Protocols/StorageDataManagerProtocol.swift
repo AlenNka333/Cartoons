@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol StorageDataServiceProtocol {
+protocol StorageDataManagerProtocol {
     func saveImage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void)
     func loadImage(folder: String, completion: @escaping (Result<URL?, Error>) -> Void)
-    func checkFoldersExists(completion: @escaping (Result<[Cartoon], Error>) -> Void)
-    func getData(completion: @escaping (Result<[Cartoon], Error>) -> Void)
+    func getReferenceList(completion: @escaping (Result<[String], Error>) -> Void)
+    func loadData(folder: String, completion: @escaping (Result<[URL?], Error>) -> Void)
 }
