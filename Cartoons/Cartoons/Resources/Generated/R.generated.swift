@@ -353,7 +353,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 33 images.
+  /// This `R.image` struct is generated, and contains static references to 34 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -391,6 +391,8 @@ struct R: Rswift.Validatable {
     static let main_screen_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_screen_background")
     /// Image `navigation_label`.
     static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
+    /// Image `onb_one`.
+    static let onb_one = Rswift.ImageResource(bundle: R.hostingBundle, name: "onb_one")
     /// Image `pause`.
     static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
     /// Image `play`.
@@ -545,6 +547,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "navigation_label", bundle: ..., traitCollection: ...)`
     static func navigation_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.navigation_label, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "onb_one", bundle: ..., traitCollection: ...)`
+    static func onb_one(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onb_one, compatibleWith: traitCollection)
     }
     #endif
 
