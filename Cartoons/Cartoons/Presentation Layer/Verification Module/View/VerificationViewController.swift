@@ -112,7 +112,6 @@ class VerificationViewController: BaseViewController {
             } else {
                 $0.top.equalTo(circleImageView.snp.bottom).offset(20)
             }
-            
         }
         codeTextField.snp.makeConstraints {
             $0.height.equalTo(50)
@@ -168,6 +167,7 @@ extension VerificationViewController: VerificationViewProtocol {
         resendButton.isEnabled = true
         resendButton.backgroundColor = R.color.enabled_button_color()
         countdownTimer?.invalidate()
+        timerLabel.text = "0"
     }
     
     func updateTime(timer: Int) {

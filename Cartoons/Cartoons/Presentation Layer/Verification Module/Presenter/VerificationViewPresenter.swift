@@ -65,12 +65,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
                 self?.view.transit()
             case let .failure(error):
                 self?.view.showError(error: error)
-                self?.view.startTimer(timer: Timer.scheduledTimer(timeInterval: 1,
-                                                                  target: self,
-                                                                  selector: #selector(self?.updateTime),
-                                                                  userInfo: nil,
-                                                                  repeats: true),
-                                      time: self?.timer ?? Constant.totalTime)
+                self?.view.endTimer()
             }
         }
     }
