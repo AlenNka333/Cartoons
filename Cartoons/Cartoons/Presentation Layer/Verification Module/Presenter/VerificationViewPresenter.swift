@@ -59,15 +59,20 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        view.transit()
-//        service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
-//            switch result {
-//            case .success:
-//                self?.view.transit()
-//            case let .failure(error):
-//                self?.view.showError(error: error)
-//            }
-//        }
+        service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
+            switch result {
+            case .success:
+                self?.view.transit()
+            case let .failure(error):
+                self?.view.showError(error: error)
+                self?.view.startTimer(timer: Timer.scheduledTimer(timeInterval: 1,
+                                                                  target: self,
+                                                                  selector: #selector(self?.updateTime),
+                                                                  userInfo: nil,
+                                                                  repeats: true),
+                                      time: self?.timer ?? Constant.totalTime)
+            }
+        }
     }
 }
 
