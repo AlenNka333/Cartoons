@@ -116,7 +116,7 @@ extension VideoPlayerViewController {
     func setupAVPlayer() {
         let url = presenter?.setupVideoLink()
         guard let link = url else {
-            presenter?.showError(error: GeneralError.invalidLink)
+            presenter?.showError(error: GeneralError.invalidUrl)
             return
         }
         playerView.player = AVPlayer(url: link)

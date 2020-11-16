@@ -22,6 +22,20 @@ choice_alert_title = "Wait...";
 
 //Errors
 error = "Error";
+finish_operation = "Please, wait until current operation will be finished";
+existing_file = "Such file already exists in local folder";
+camera_not_available = "Camera is not available to use";
+library_not_available = "Library is not available to use";
+no_camera_permissions = "Camera access required for capturing photos";
+no_library_permission = "Library access required for capturing photos";
+empty_phone_number = "Please, fill phone number text field";
+invalid_url = "Invalid url. Try to restart the app";
+invalid_path = "We can't find such path to file";
+empty_storage = "No files in fireStore";
+invalid_number = "Incorrect phone number. Please, check your input";
+failed_verification = "Failed reCaptcha verification. Please, try again";
+invalid_verificationId = "Server error. Please, try again";
+invalid_user = "Server error. Please, try again";
 
 //Buttons
 get_code_button_key = "Get verification code";

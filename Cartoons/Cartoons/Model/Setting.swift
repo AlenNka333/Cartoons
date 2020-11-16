@@ -24,7 +24,3 @@ class Setting: Hashable {
         lhs.id == rhs.id
     }
 }
-
-extension Setting {
-    static var allSettings = [Setting(title: "Sign Out"), Setting(title: "Clear Cache")]
-}

@@ -17,10 +17,17 @@ class VerificationViewController: BaseViewController {
     weak var transitionDelegate: VerificationTransitionDelegate?
     var presenter: VerificationViewPresenterProtocol?
     var countdownTimer: Timer?
-    
-    private lazy var otpCodeTextField = CustomTextField()
+    private lazy var stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .center
+        stack.distribution = .fillProportionally
+        stack.axis = .vertical
+        stack.spacing = 20
+        return stack
+    }()
+    private lazy var codeTextField = CustomTextField()
     private lazy var resendButton = CustomButton()
-    private lazy var circleImage: UIImageView = {
+    private lazy var circleImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: R.image.ellipse.name)
         return image
@@ -41,11 +48,6 @@ class VerificationViewController: BaseViewController {
         label.font = R.font.aliceRegular(size: 30)
         label.textColor = .white
         return label
-    }()
-    private lazy var customView: UIView = {
-        view = UIView()
-        view.backgroundColor = UIColor(patternImage: R.image.main_background().unwrapped)
-        return view
     }()
     
     override func viewDidLoad() {
@@ -74,47 +76,51 @@ class VerificationViewController: BaseViewController {
     
     override func setupUI() {
         super.setupUI()
-        view.addSubview(verificationLabel)
-        verificationLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(100)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-        }
-        view.addSubview(circleImage)
-        circleImage.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(verificationLabel.snp_bottomMargin).offset(50)
-            $0.width.height.equalTo(80)
-        }
-        view.addSubview(timerLabel)
-        timerLabel.snp.makeConstraints {
-            $0.center.equalTo(circleImage)
-        }
-        view.addSubview(otpCodeTextField)
-        otpCodeTextField.attributedPlaceholder =
+        codeTextField.attributedPlaceholder =
             NSAttributedString(string: R.string.localizable.otp_code_key(),
                                attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48),
                                             NSAttributedString.Key.font: R.font.aliceRegular(size: 15).unwrapped])
-        otpCodeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        otpCodeTextField.snp.makeConstraints {
-            $0.width.equalTo(30)
-            if UIScreen.main.bounds.height > 736 {
-                $0.centerY.equalToSuperview().offset(-60)
-            } else {
-                $0.top.equalTo(timerLabel.snp_bottomMargin).offset(60)
-            }
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
-        }
-        view.addSubview(resendButton)
+        codeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
         resendButton.isEnabled = false
         resendButton.backgroundColor = R.color.disabled_button_color()
         resendButton.setTitle(R.string.localizable.resend_button_key(), for: .normal)
         resendButton.addTarget(self, action: #selector(resendButtonTappedAction), for: .touchUpInside)
+        
+        view.addSubview(verificationLabel)
+        verificationLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(160)
+            $0.leading.trailing.equalToSuperview().inset(50)
+        }
+        view.addSubview(circleImageView)
+        circleImageView.snp.makeConstraints {
+            $0.size.equalTo(80)
+            $0.top.equalTo(verificationLabel.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        circleImageView.addSubview(timerLabel)
+        timerLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        stackView.addArrangedSubview(codeTextField)
+        stackView.addArrangedSubview(resendButton)
+        view.addSubview(stackView)
+        stackView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(50)
+            if UIScreen.main.bounds.height > 736 {
+                $0.centerY.equalToSuperview()
+            } else {
+                $0.top.equalTo(circleImageView.snp.bottom).offset(20)
+            }
+            
+        }
+        codeTextField.snp.makeConstraints {
+            $0.height.equalTo(50)
+            $0.width.equalToSuperview()
+        }
         resendButton.snp.makeConstraints {
-            $0.top.equalTo(otpCodeTextField.snp_bottomMargin).offset(20)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.height.equalTo(50)
+            $0.width.equalToSuperview()
         }
     }
     
@@ -128,7 +134,7 @@ extension VerificationViewController {
         guard let presenter = self.presenter else {
             return
         }
-        guard let text = otpCodeTextField.text else {
+        guard let text = codeTextField.text else {
             return
         }
         if text.count == Constant.otpCodeCount {

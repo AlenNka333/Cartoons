@@ -20,15 +20,15 @@ extension AuthorizationError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .emptyPhoneNumber:
-            return NSLocalizedString("Phone number field is empty", comment: "Description of empty phone number")
+            return R.string.localizable.empty_phone_number()
         case .invalidPhoneNumber:
-            return NSLocalizedString("Incorrect phone number. Please, check your input", comment: "Description of invalid phone number")
+            return R.string.localizable.invalid_number()
         case .failedReCaptchaVerification:
-            return NSLocalizedString("Failed reCaptcha verification. Please, try again", comment: "Description of failed reCaptcha verification")
+            return R.string.localizable.failed_verification()
         case .emptyVerificationID:
-            return NSLocalizedString("Server error. Please, try again", comment: "Description of empty response from firebase")
-            case .emptyUser:
-            return NSLocalizedString( "Server error. Please, try again", comment: "Description of empty response from firebase")
+            return R.string.localizable.invalid_verificationId()
+        case .emptyUser:
+            return R.string.localizable.invalid_user()
         }
     }
 }

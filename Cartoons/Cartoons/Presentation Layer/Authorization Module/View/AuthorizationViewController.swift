@@ -7,6 +7,14 @@ class AuthorizationViewController: BaseViewController {
     private lazy var appLabelView = CustomLabelView()
     private lazy var phoneNumberTextField = CustomTextField()
     private lazy var getCodeButton: UIButton = CustomButton()
+    private lazy var stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .center
+        stack.distribution = .fillEqually
+        stack.axis = .vertical
+        stack.spacing = 10
+        return stack
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,24 +47,29 @@ class AuthorizationViewController: BaseViewController {
         view.addSubview(appLabelView)
         appLabelView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(160)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.trailing.equalToSuperview().inset(50)
         }
-        view.addSubview(phoneNumberTextField)
         phoneNumberTextField.delegate = self
-        phoneNumberTextField.snp.makeConstraints {
-            $0.width.equalTo(30)
-            $0.centerY.equalToSuperview().offset(-60)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
-        }
-        view.addSubview(getCodeButton)
         getCodeButton.setTitle(R.string.localizable.get_code_button_key(), for: .normal)
         getCodeButton.addTarget(self, action: #selector(buttonTappedToSendCodeAction), for: .touchUpInside)
+        stackView.addArrangedSubview(phoneNumberTextField)
+        stackView.addArrangedSubview(getCodeButton)
+        view.addSubview(stackView)
+        stackView.snp.makeConstraints {
+            if UIScreen.main.bounds.height > 736 {
+                $0.centerY.equalToSuperview().offset(-60)
+            } else {
+                $0.top.equalTo(appLabelView.snp_bottomMargin).offset(100)
+            }
+            $0.leading.trailing.equalToSuperview().inset(50)
+        }
+        phoneNumberTextField.snp.makeConstraints {
+            $0.height.equalTo(50)
+            $0.width.equalToSuperview()
+        }
         getCodeButton.snp.makeConstraints {
-            $0.top.equalTo(phoneNumberTextField.snp_bottomMargin).offset(20)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.height.equalTo(50)
+            $0.width.equalToSuperview()
         }
     }
     

@@ -62,6 +62,7 @@ extension AppCoordinator {
             AppData.shouldShowOnBoarding = false
             self?.showAuthorizationScreen()
         }
+        coordinator.parent = self
         setChild(coordinator)
         coordinator.start()
         window.rootViewController = coordinator.rootController
@@ -77,6 +78,7 @@ extension AppCoordinator {
         coordinator.successSessionClosure = { [weak self] in
             self?.showMainScreen()
         }
+        coordinator.parent = self
         setChild(coordinator)
         coordinator.start()
         window.rootViewController = coordinator.rootController
@@ -92,6 +94,7 @@ extension AppCoordinator {
         coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
         }
+        coordinator.parent = self
         setChild(coordinator)
         coordinator.start()
         window.rootViewController = coordinator.rootController
