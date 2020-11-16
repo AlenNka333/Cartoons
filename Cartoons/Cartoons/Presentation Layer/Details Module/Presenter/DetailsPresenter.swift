@@ -19,16 +19,22 @@ class DetailsPresenter: DetailsViewPresenterProtocol {
     }
     
     func downloadFile(_ file: Cartoon) {
-        guard let loadingService: LoadingService = serviceLocator.resolve(LoadingService.self) else {
+        guard let loadingService: LoadingService = serviceLocator.resolve(LoadingService.self),
+              let filesManager: FilesManager = serviceLocator.resolve(FilesManager.self),
+              let link = file.link else {
             return
         }
-        loadingService.downloadFile(file) { [weak self] result in
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                self?.view.setError(error)
+        if !filesManager.checkExitingFile(with: link) {
+            loadingService.downloadFile(file) { [weak self] result in
+                switch result {
+                case .success:
+                    break
+                case .failure(let error):
+                    self?.view.setError(error)
+                }
             }
+        } else {
+            view.setMessage(R.string.localizable.existing_file())
         }
     }
 }

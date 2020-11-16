@@ -22,6 +22,7 @@ choice_alert_title = "Wait...";
 
 //Errors
 error = "Error";
+existing_file = "Such file already exists in local folder";
 
 //Placeholder text
 favourites_collection_background = "Here will be your cartoons stored in cache";

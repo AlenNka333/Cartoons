@@ -59,7 +59,6 @@ class FavouritesViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         view.backgroundColor = R.color.main_orange()
-        
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: configureLayout())
         collectionView?.delegate = self
         collectionView?.backgroundColor = R.color.main_orange()

@@ -50,20 +50,16 @@ class LoadingService: NSObject {
             print("Invalid link")
             return
         }
-        if !fileManager.checkExitingFile(with: link) {
-            checkOperationQueue { [weak self] operationsCount in
-                if operationsCount != 0 {
-                    completion(.failure(ServiceErrors.operationQueueOverflow))
-                    return
-                }
-                self?.loadingServiceDelegate?.setOperation(with: link)
-                self?.loadingQueue.addOperation { [weak self] in
-                    let task = self?.session.downloadTask(with: link)
-                    task?.resume()
-                }
+        checkOperationQueue { [weak self] operationsCount in
+            if operationsCount != 0 {
+                completion(.failure(ServiceErrors.operationQueueOverflow))
+                return
             }
-        } else {
-            completion(.failure(ServiceErrors.fileExists))
+            self?.loadingServiceDelegate?.setOperation(with: link)
+            self?.loadingQueue.addOperation { [weak self] in
+                let task = self?.session.downloadTask(with: link)
+                task?.resume()
+            }
         }
     }
     

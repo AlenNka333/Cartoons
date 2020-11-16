@@ -116,6 +116,13 @@ extension DetailsViewController {
 }
 
 extension DetailsViewController: DetailsViewProtocol {
+    func setMessage(_ message: String) {
+        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .success) { _ in
+            return
+        }
+        present(alertVC, animated: true)
+    }
+    
     func setError(_ error: Error) {
         showError(error: error)
     }
