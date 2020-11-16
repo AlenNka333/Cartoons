@@ -353,7 +353,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 32 images.
+  /// This `R.image` struct is generated, and contains static references to 34 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -373,6 +373,8 @@ struct R: Rswift.Validatable {
     static let frozen_onBoarding = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen_onBoarding")
     /// Image `frozen`.
     static let frozen = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen")
+    /// Image `fullscreen`.
+    static let fullscreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "fullscreen")
     /// Image `go_backward`.
     static let go_backward = Rswift.ImageResource(bundle: R.hostingBundle, name: "go_backward")
     /// Image `go_forward`.
@@ -407,6 +409,8 @@ struct R: Rswift.Validatable {
     static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
     /// Image `slider_progress`.
     static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
+    /// Image `small_screen`.
+    static let small_screen = Rswift.ImageResource(bundle: R.hostingBundle, name: "small_screen")
     /// Image `star_yellow`.
     static let star_yellow = Rswift.ImageResource(bundle: R.hostingBundle, name: "star_yellow")
     /// Image `star`.
@@ -480,6 +484,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "frozen_onBoarding", bundle: ..., traitCollection: ...)`
     static func frozen_onBoarding(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.frozen_onBoarding, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "fullscreen", bundle: ..., traitCollection: ...)`
+    static func fullscreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.fullscreen, compatibleWith: traitCollection)
     }
     #endif
 
@@ -599,6 +610,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "slider_progress", bundle: ..., traitCollection: ...)`
     static func slider_progress(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.slider_progress, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "small_screen", bundle: ..., traitCollection: ...)`
+    static func small_screen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.small_screen, compatibleWith: traitCollection)
     }
     #endif
 
@@ -1255,6 +1273,7 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
+        if UIKit.UIImage(named: "fullscreen", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'fullscreen' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "go_backward", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'go_backward' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "go_forward", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'go_forward' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "stop", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'stop' is used in nib 'PlayerControlsView', but couldn't be loaded.") }

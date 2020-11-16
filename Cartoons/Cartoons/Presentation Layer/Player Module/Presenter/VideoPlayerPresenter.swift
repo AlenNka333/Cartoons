@@ -49,6 +49,9 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
         controls.setupObserverClosure = { [weak self] in
             self?.view.setupObserver()
         }
+        controls.orientationChangedClosure = { [weak self] in
+            (self?.view.rotateScreen() ?? false)
+        }
     }
     
     func setupVideoLink() -> URL? {
