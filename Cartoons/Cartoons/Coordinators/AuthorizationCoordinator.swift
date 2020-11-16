@@ -21,10 +21,9 @@ class AuthorizationCoordinator: Coordinator {
     }
     
     func start() {
-//        let view = AuthorizationAssembly.makeAuthorizationController(serviceLocator: serviceLocator)
-//        view.transitionDelegate = self
-//        rootController.pushViewController(view, animated: true)
-        openVerificationScreen(verificationId: "65667", number: "768687")
+        let view = AuthorizationAssembly.makeAuthorizationController(serviceLocator: serviceLocator)
+        view.transitionDelegate = self
+        rootController.pushViewController(view, animated: true)
     }
     
     func openVerificationScreen(verificationId: String, number: String) {
