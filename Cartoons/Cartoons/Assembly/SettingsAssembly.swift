@@ -6,6 +6,7 @@
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 
 class SettingsAssembly: Assembly {
@@ -18,8 +19,8 @@ class SettingsAssembly: Assembly {
     }
     
     static func makeSettingsController(serviceLocator: Locator,
-                                       serviceProvider: ServiceProviderFacade) -> SettingsViewController {
-        let view = SettingsViewController()
+                                       serviceProvider: ServiceProviderFacade) -> SettingsViewHostingController {
+        let view = SettingsViewHostingController()
         let presenter = SettingsPresenter(view: view,
                                           serviceLocator: serviceLocator,
                                           serviceProvider: serviceProvider)
