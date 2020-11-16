@@ -123,9 +123,10 @@ struct OnboardingView: View {
 }
 
 // MARK: - Preview
-
+#if DEBUG
 struct Content_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()
     }
 }
+#endif
