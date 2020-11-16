@@ -22,7 +22,19 @@ class VideoPlayerViewController: BaseViewController {
     weak var transitionDelegate: PlayerTransitionDelegate?
     var controlsView: CustomPlayerControls?
     var presenter: VideoPlayerPresenterProtocol?
-    var playerState: PlayerState?
+    var playerState: PlayerState? {
+        didSet {
+            switch playerState {
+            case .playing:
+                player?.play()
+            case .stopped:
+                player?.pause()
+            default:
+                break
+            }
+        }
+    }
+    var isRotated: Bool = false
     var timeObserver: Any?
     private lazy var closeButton: UIButton = {
         var button = UIButton()
@@ -33,11 +45,12 @@ class VideoPlayerViewController: BaseViewController {
     }()
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .slide }
-    override var prefersStatusBarHidden: Bool { controlsView?.isHidden == true }
+    override var prefersStatusBarHidden: Bool { true }
     override var prefersHomeIndicatorAutoHidden: Bool { true }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
         setupAVPlayer()
     }
     
@@ -133,7 +146,7 @@ extension VideoPlayerViewController {
     
     override func observeValue(forKeyPath keyPath: String?,
                                of object: Any?,
-                               change: [ NSKeyValueChangeKey : Any ]?,
+                               change: [NSKeyValueChangeKey : Any]?,
                                context: UnsafeMutableRawPointer?) {
         if keyPath == "currentItem.loadedTimeRanges" {
             playerState = .playing
@@ -178,11 +191,28 @@ extension VideoPlayerViewController: VideoPlayerViewProtocol {
         guard let player = playerView.player else {
             return nil
         }
-        player.isPlaying ? (player.pause(), playerState = .stopped) : (player.play(), playerState = .playing)
+        playerState = player.isPlaying ? .stopped : .playing
         return playerState
     }
     
+    func rotateScreen() -> Bool {
+        UIView.animate(withDuration: 0.3) {
+            let affineTransform = CGAffineTransform(rotationAngle: self.isRotated ? 0 : .pi / 2)
+            self.playerView.layer.setAffineTransform(affineTransform)
+            self.updateConstraints()
+        }
+        self.isRotated.toggle()
+        return isRotated
+    }
+    
+    func updateConstraints() {
+        playerView.playerLayer.frame = CGRect(x: 0, y: 0, width: view.frame.height, height: view.frame.width)
+    }
+    
     func removeObserver() {
+        guard let timeObserver = timeObserver else {
+            return
+        }
         player?.removeTimeObserver(timeObserver)
     }
     
