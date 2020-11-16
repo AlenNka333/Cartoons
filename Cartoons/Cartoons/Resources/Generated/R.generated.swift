@@ -715,7 +715,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 25 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 39 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -749,6 +749,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let back = Rswift.StringResource(key: "back", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Camera access required for capturing photos
+      ///
+      /// Locales: en
+      static let no_camera_permissions = Rswift.StringResource(key: "no_camera_permissions", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Camera is not available to use
+      ///
+      /// Locales: en
+      static let camera_not_available = Rswift.StringResource(key: "camera_not_available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Cancel
       ///
       /// Locales: en
@@ -765,6 +773,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let error = Rswift.StringResource(key: "error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Failed reCaptcha verification. Please, try again
+      ///
+      /// Locales: en
+      static let failed_verification = Rswift.StringResource(key: "failed_verification", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Favourites
       ///
       /// Locales: en
@@ -773,6 +785,26 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let get_code_button_key = Rswift.StringResource(key: "get_code_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Incorrect phone number. Please, check your input
+      ///
+      /// Locales: en
+      static let invalid_number = Rswift.StringResource(key: "invalid_number", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Invalid url. Try to restart the app
+      ///
+      /// Locales: en
+      static let invalid_url = Rswift.StringResource(key: "invalid_url", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Library access required for capturing photos
+      ///
+      /// Locales: en
+      static let no_library_permission = Rswift.StringResource(key: "no_library_permission", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Library is not available to use
+      ///
+      /// Locales: en
+      static let library_not_available = Rswift.StringResource(key: "library_not_available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: No files in fireStore
+      ///
+      /// Locales: en
+      static let empty_storage = Rswift.StringResource(key: "empty_storage", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: OTP Code
       ///
       /// Locales: en
@@ -781,10 +813,26 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let phone_label_key = Rswift.StringResource(key: "phone_label_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please, fill phone number text field
+      ///
+      /// Locales: en
+      static let empty_phone_number = Rswift.StringResource(key: "empty_phone_number", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please, wait until current operation will be finished
+      ///
+      /// Locales: en
+      static let finish_operation = Rswift.StringResource(key: "finish_operation", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Resend
       ///
       /// Locales: en
       static let resend_button_key = Rswift.StringResource(key: "resend_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Server error. Please, try again
+      ///
+      /// Locales: en
+      static let invalid_user = Rswift.StringResource(key: "invalid_user", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Server error. Please, try again
+      ///
+      /// Locales: en
+      static let invalid_verificationId = Rswift.StringResource(key: "invalid_verificationId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Settings
       ///
       /// Locales: en
@@ -809,6 +857,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let success = Rswift.StringResource(key: "success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Such file already exists in local folder
+      ///
+      /// Locales: en
+      static let existing_file = Rswift.StringResource(key: "existing_file", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Take a photo
       ///
       /// Locales: en
@@ -817,6 +869,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let choice_alert_title = Rswift.StringResource(key: "choice_alert_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: We can't find such path to file
+      ///
+      /// Locales: en
+      static let invalid_path = Rswift.StringResource(key: "invalid_path", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
 
       /// en translation: ...offline watching is available
       ///
@@ -938,6 +994,36 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("back", bundle: bundle, comment: "")
       }
 
+      /// en translation: Camera access required for capturing photos
+      ///
+      /// Locales: en
+      static func no_camera_permissions(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("no_camera_permissions", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "no_camera_permissions"
+        }
+
+        return NSLocalizedString("no_camera_permissions", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Camera is not available to use
+      ///
+      /// Locales: en
+      static func camera_not_available(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("camera_not_available", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "camera_not_available"
+        }
+
+        return NSLocalizedString("camera_not_available", bundle: bundle, comment: "")
+      }
+
       /// en translation: Cancel
       ///
       /// Locales: en
@@ -998,6 +1084,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("error", bundle: bundle, comment: "")
       }
 
+      /// en translation: Failed reCaptcha verification. Please, try again
+      ///
+      /// Locales: en
+      static func failed_verification(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("failed_verification", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "failed_verification"
+        }
+
+        return NSLocalizedString("failed_verification", bundle: bundle, comment: "")
+      }
+
       /// en translation: Favourites
       ///
       /// Locales: en
@@ -1026,6 +1127,81 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("get_code_button_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Incorrect phone number. Please, check your input
+      ///
+      /// Locales: en
+      static func invalid_number(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_number", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_number"
+        }
+
+        return NSLocalizedString("invalid_number", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Invalid url. Try to restart the app
+      ///
+      /// Locales: en
+      static func invalid_url(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_url", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_url"
+        }
+
+        return NSLocalizedString("invalid_url", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Library access required for capturing photos
+      ///
+      /// Locales: en
+      static func no_library_permission(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("no_library_permission", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "no_library_permission"
+        }
+
+        return NSLocalizedString("no_library_permission", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Library is not available to use
+      ///
+      /// Locales: en
+      static func library_not_available(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("library_not_available", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "library_not_available"
+        }
+
+        return NSLocalizedString("library_not_available", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No files in fireStore
+      ///
+      /// Locales: en
+      static func empty_storage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("empty_storage", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "empty_storage"
+        }
+
+        return NSLocalizedString("empty_storage", bundle: bundle, comment: "")
       }
 
       /// en translation: OTP Code
@@ -1058,6 +1234,36 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("phone_label_key", bundle: bundle, comment: "")
       }
 
+      /// en translation: Please, fill phone number text field
+      ///
+      /// Locales: en
+      static func empty_phone_number(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("empty_phone_number", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "empty_phone_number"
+        }
+
+        return NSLocalizedString("empty_phone_number", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please, wait until current operation will be finished
+      ///
+      /// Locales: en
+      static func finish_operation(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("finish_operation", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "finish_operation"
+        }
+
+        return NSLocalizedString("finish_operation", bundle: bundle, comment: "")
+      }
+
       /// en translation: Resend
       ///
       /// Locales: en
@@ -1071,6 +1277,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("resend_button_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Server error. Please, try again
+      ///
+      /// Locales: en
+      static func invalid_user(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_user", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_user"
+        }
+
+        return NSLocalizedString("invalid_user", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Server error. Please, try again
+      ///
+      /// Locales: en
+      static func invalid_verificationId(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_verificationId", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_verificationId"
+        }
+
+        return NSLocalizedString("invalid_verificationId", bundle: bundle, comment: "")
       }
 
       /// en translation: Settings
@@ -1163,6 +1399,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("success", bundle: bundle, comment: "")
       }
 
+      /// en translation: Such file already exists in local folder
+      ///
+      /// Locales: en
+      static func existing_file(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("existing_file", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "existing_file"
+        }
+
+        return NSLocalizedString("existing_file", bundle: bundle, comment: "")
+      }
+
       /// en translation: Take a photo
       ///
       /// Locales: en
@@ -1191,6 +1442,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("choice_alert_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: We can't find such path to file
+      ///
+      /// Locales: en
+      static func invalid_path(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_path", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_path"
+        }
+
+        return NSLocalizedString("invalid_path", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}
