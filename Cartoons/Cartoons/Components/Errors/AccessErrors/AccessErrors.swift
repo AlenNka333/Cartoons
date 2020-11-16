@@ -19,13 +19,13 @@ extension AccessErrors: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .cameraNotAvailable:
-            return NSLocalizedString("Camera is not available to use", comment: "Description of camera failure usage")
+            return R.string.localizable.camera_not_available()
         case .libraryNotAvailable:
-            return NSLocalizedString("Library is not available to use", comment: "Description of library failure usage")
+            return R.string.localizable.library_not_available()
         case .noCameraPermission:
-            return NSLocalizedString("Camera access required for capturing photos", comment: "Description of camera permission error")
+            return R.string.localizable.no_camera_permissions()
         case .noLibraryPermission:
-            return NSLocalizedString("Library access required for capturing photos", comment: "Description of library permission error")
+            return R.string.localizable.no_library_permission()
         }
     }
 }

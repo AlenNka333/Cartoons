@@ -17,9 +17,9 @@ extension ServiceErrors: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .operationQueueOverflow:
-            return NSLocalizedString("Please, wait until current operation will be finished", comment: "Description of operation queue overflow")
+            return R.string.localizable.finish_operation()
         case .fileExists:
-            return NSLocalizedString("Such file already exists in local folder", comment: "Description of double loading file")
+            return R.string.localizable.existing_file()
         }
     }
 }
