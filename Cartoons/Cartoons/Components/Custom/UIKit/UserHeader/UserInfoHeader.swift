@@ -15,7 +15,6 @@ class UserInfoHeader: UIView {
     private let activityIndicator = UIActivityIndicatorView()
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage())
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
