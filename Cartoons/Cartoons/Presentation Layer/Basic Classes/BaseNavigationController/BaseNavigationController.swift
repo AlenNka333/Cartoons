@@ -27,8 +27,8 @@ class BaseNavigationController: UINavigationController {
     private lazy var appearance: UINavigationBarAppearance = {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = R.color.navigation_bar_color()
-        appearance.largeTitleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                NSAttributedString.Key.font: R.font.aliceRegular(size: Const.titleSize).unwrapped]
+        appearance.largeTitleTextAttributes = [ .foregroundColor: UIColor.white,
+                                                .font: R.font.aliceRegular(size: Const.titleSize).unwrapped]
         appearance.shadowColor = .black
         return appearance
     }()
@@ -92,8 +92,8 @@ extension BaseNavigationController {
     func setupCustomizedUI(image: UIImage, subtitle: String, isUserInteractionEnabled: Bool) {
         updateUI()
         subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.48),
-                                                                       NSAttributedString.Key.font: R.font.aliceRegular(size: 14).unwrapped])
+                                                          attributes: [ .foregroundColor: UIColor.white.withAlphaComponent(0.48),
+                                                                        .font: R.font.aliceRegular(size: 14).unwrapped])
         imageView.image = image
         imageView.isUserInteractionEnabled = isUserInteractionEnabled
         state = NavigationState.custom

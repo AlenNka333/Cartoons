@@ -706,7 +706,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 25 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 27 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -764,6 +764,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let get_code_button_key = Rswift.StringResource(key: "get_code_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Here will be your cartoons stored in cache
+      ///
+      /// Locales: en
+      static let favourites_collection_background = Rswift.StringResource(key: "favourites_collection_background", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Here will be your cartoons stored in firebase
+      ///
+      /// Locales: en
+      static let cartoons_collection_background = Rswift.StringResource(key: "cartoons_collection_background", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: OTP Code
       ///
       /// Locales: en
@@ -1017,6 +1025,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("get_code_button_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Here will be your cartoons stored in cache
+      ///
+      /// Locales: en
+      static func favourites_collection_background(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("favourites_collection_background", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "favourites_collection_background"
+        }
+
+        return NSLocalizedString("favourites_collection_background", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Here will be your cartoons stored in firebase
+      ///
+      /// Locales: en
+      static func cartoons_collection_background(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cartoons_collection_background", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "cartoons_collection_background"
+        }
+
+        return NSLocalizedString("cartoons_collection_background", bundle: bundle, comment: "")
       }
 
       /// en translation: OTP Code

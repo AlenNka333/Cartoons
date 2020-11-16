@@ -14,10 +14,30 @@ class CartoonsViewController: BaseViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Cartoon>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, Cartoon>
     
+    private lazy var backgroundView: UIView = {
+        var view = UIView()
+        var text = UILabel()
+        text.attributedText = NSAttributedString(string: R.string.localizable.cartoons_collection_background(),
+                                                 attributes: [ .foregroundColor: UIColor.darkGray,
+                                                               .font: R.font.aliceRegular(size: 17).unwrapped])
+        text.numberOfLines = .zero
+        text.textAlignment = .center
+        view.addSubview(text)
+        view.backgroundColor = R.color.main_orange()
+        text.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(50)
+        }
+        return view
+    }()
     private var collectionView: UICollectionView?
     private lazy var dataSource = makeDataSource()
     weak var transitionDelegate: CartoonsTransitionDelegate?
-    var videos = [Cartoon]()
+    var videos = [Cartoon]() {
+        didSet {
+            videos.isEmpty ? (backgroundView.isHidden = false) : (backgroundView.isHidden = true)
+        }
+    }
     var snapshot = SnapShot()
     var presenter: CartoonsViewPresenterProtocol?
     
@@ -54,6 +74,7 @@ class CartoonsViewController: BaseViewController {
         collectionView?.backgroundColor = R.color.main_orange()
         view.addSubview(UIView(frame: .zero))
         view.addSubview(collectionView ?? UICollectionView())
+        collectionView?.backgroundView = backgroundView
         collectionView?.register(CartoonCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
     }
     
