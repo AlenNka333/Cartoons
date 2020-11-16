@@ -185,7 +185,9 @@ struct ContentView: View {
                                             }
                                             closure(data)
                                            })
+                            .edgesIgnoringSafeArea(.all)
                     }
+                    
                     .actionSheet(isPresented: $shouldPresentActionSheet) { () -> ActionSheet in
                         ActionSheet(title: Text("Choose mode"),
                                     message: Text("Please choose your preferred mode to set your profile image"),
@@ -198,6 +200,7 @@ struct ContentView: View {
                                         self.shouldPresentCamera = false
                                     }),
                                     ActionSheet.Button.cancel()])
+                            
                 }
                 Text(number.number)
                     .foregroundColor(.white)
@@ -241,9 +244,10 @@ struct ContentView: View {
 }
 
 //MARK: - Preview
-
-struct ContentView_Previews: PreviewProvider {
+#if DEBUG
+struct ContentViewPreviews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+#endif

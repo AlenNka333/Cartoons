@@ -12,11 +12,31 @@ class FavouritesViewController: BaseViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Cartoon>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, Cartoon>
     
+    private lazy var backgroundView: UIView = {
+        var view = UIView()
+        var text = UILabel()
+        text.attributedText = NSAttributedString(string: R.string.localizable.favourites_collection_background(),
+                                                 attributes: [ .foregroundColor: UIColor.darkGray,
+                                                               .font: R.font.aliceRegular(size: 17).unwrapped])
+        text.numberOfLines = .zero
+        text.textAlignment = .center
+        view.addSubview(text)
+        view.backgroundColor = R.color.main_orange()
+        text.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(50)
+        }
+        return view
+    }()
     private var collectionView: UICollectionView?
     private var dataSource: DataSource?
     weak var transitionDelegate: FavouritesTransitionDelegate?
     var presenter: FavouritesViewPresenterProtocol?
-    var videos = [Cartoon]()
+    var videos = [Cartoon]() {
+        didSet {
+            videos.isEmpty ? (backgroundView.isHidden = false) : (backgroundView.isHidden = true)
+        }
+    }
     var snapshot = SnapShot()
     
     override func viewDidLoad() {
@@ -39,12 +59,12 @@ class FavouritesViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         view.backgroundColor = R.color.main_orange()
-        
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: configureLayout())
         collectionView?.delegate = self
         collectionView?.backgroundColor = R.color.main_orange()
         view.addSubview(UIView(frame: .zero))
         view.addSubview(collectionView ?? UICollectionView())
+        collectionView?.backgroundView = backgroundView
         collectionView?.register(FavouritesCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
     }
     

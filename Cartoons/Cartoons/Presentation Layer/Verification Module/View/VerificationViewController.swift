@@ -126,6 +126,7 @@ class VerificationViewController: BaseViewController {
     
     override func showError(error: Error) {
         super.showError(error: error)
+        codeTextField.text?.removeAll()
     }
 }
 
@@ -158,6 +159,7 @@ extension VerificationViewController: VerificationViewProtocol {
     }
     
     func startTimer(timer: Timer, time: Int) {
+        countdownTimer?.invalidate()
         countdownTimer = timer
         timerLabel.text = "\(time)"
     }
@@ -170,6 +172,10 @@ extension VerificationViewController: VerificationViewProtocol {
     
     func updateTime(timer: Int) {
         timerLabel.text = "\(timer)"
+    }
+    
+    func stopTimer() {
+        countdownTimer?.invalidate()
     }
     
     func transit() {

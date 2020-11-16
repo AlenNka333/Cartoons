@@ -14,7 +14,7 @@ enum ServiceErrors: Error {
 }
 
 extension ServiceErrors: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .operationQueueOverflow:
             return R.string.localizable.finish_operation()

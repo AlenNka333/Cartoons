@@ -17,7 +17,7 @@ enum AuthorizationError: Error {
 }
 
 extension AuthorizationError: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .emptyPhoneNumber:
             return R.string.localizable.empty_phone_number()

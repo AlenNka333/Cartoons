@@ -16,7 +16,7 @@ enum AccessErrors: Error {
 }
 
 extension AccessErrors: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .cameraNotAvailable:
             return R.string.localizable.camera_not_available()

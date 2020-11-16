@@ -105,8 +105,8 @@ extension SettingsViewController: SettingsViewProtocol {
     // MARK: - Alerts
     
     func showPermissionAlert(message: String) {
-        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
-            switch $0 {
+        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) { buttonType in
+            switch buttonType {
             case .accept:
                 guard let url = URL(string: UIApplication.openSettingsURLString) else {
                     return

@@ -15,7 +15,7 @@ enum GeneralError: Error {
 }
 
 extension GeneralError: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .invalidUrl:
             return R.string.localizable.invalid_url()
