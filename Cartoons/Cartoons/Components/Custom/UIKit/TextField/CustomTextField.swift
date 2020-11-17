@@ -34,8 +34,8 @@ class CustomTextField: UITextField {
         backgroundColor = .white
         attributedPlaceholder =
             NSAttributedString(string: R.string.localizable.phone_label_key(),
-                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48),
-                                            NSAttributedString.Key.font: R.font.aliceRegular(size: 15).unwrapped])
+                               attributes: [.foregroundColor: UIColor.black.withAlphaComponent(0.48),
+                                            .font: R.font.aliceRegular(size: 15).unwrapped])
         setLeftPaddingPoints(10)
     }
 }

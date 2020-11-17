@@ -95,7 +95,6 @@ struct OnboardingView: View {
                     .padding(.trailing)
                 }
             }
-            
         }.onAppear {
             self.isAnimated = true
         }

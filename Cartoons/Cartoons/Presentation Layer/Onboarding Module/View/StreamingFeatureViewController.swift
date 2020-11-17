@@ -34,8 +34,8 @@ class StreamingFeatureViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.attributedText = NSAttributedString(string: R.string.localizable.onBoarding_first_logo_key(),
-                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                               NSAttributedString.Key.font: UIFont(name: "Alice-Regular", size: 24).unwrapped])
+                                                  attributes: [.foregroundColor: UIColor.white,
+                                                               .font: R.font.aliceRegular(size: 24)])
         label.numberOfLines = 0
         return label
     }()

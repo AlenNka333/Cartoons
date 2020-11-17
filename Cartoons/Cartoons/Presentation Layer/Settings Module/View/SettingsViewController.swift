@@ -21,7 +21,7 @@ class SettingsViewController: BaseViewController {
     var tableView: UITableView?
     var userInfoHeader = UserInfoHeader()
     var snapshot: SnapShot?
-    var settings = [Setting(title: "Sign Out"), Setting(title: "Clear Cache")]
+    var settings = [Setting(title: R.string.localizable.sign_out_button()), Setting(title: R.string.localizable.clear_cache())]
     
     override func viewDidLoad() {
         super.viewDidLoad()

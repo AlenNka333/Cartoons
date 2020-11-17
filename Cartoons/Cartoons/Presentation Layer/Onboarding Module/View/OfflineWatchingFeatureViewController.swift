@@ -18,8 +18,8 @@ class OfflineWatchingFeatureViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.attributedText = NSAttributedString(string: R.string.localizable.onBoarding_second_logo_key(),
-                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                               NSAttributedString.Key.font: UIFont(name: "Alice-Regular", size: 24).unwrapped])
+                                                  attributes: [.foregroundColor: UIColor.white,
+                                                               .font: UIFont(name: R.font.aliceRegular.fontName, size: 24).unwrapped])
         label.numberOfLines = 0
         return label
     }()

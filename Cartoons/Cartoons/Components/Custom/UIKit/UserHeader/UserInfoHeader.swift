@@ -92,8 +92,8 @@ class UserInfoHeader: UIView {
     
     func setPhoneNumber(number: String) {
         phoneLabel.attributedText = NSAttributedString(string: number,
-                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                                    NSAttributedString.Key.font: R.font.aliceRegular(size: 15).unwrapped])
+                                                       attributes: [.foregroundColor: UIColor.white,
+                                                                    .font: R.font.aliceRegular(size: 15).unwrapped])
     }
     
     @objc func editProfileImage() {
