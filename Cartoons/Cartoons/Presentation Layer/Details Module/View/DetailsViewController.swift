@@ -111,8 +111,11 @@ extension DetailsViewController {
         guard let file = video else {
             return
         }
-        downloadFileButton.setImage(R.image.star(), for: .normal)
-        downloadFileButton.backgroundColor = .gray
+        if video?.state == .loaded {
+            downloadFileButton.setImage(R.image.star_yellow(), for: .normal)
+        } else {
+            downloadFileButton.setImage(R.image.star(), for: .normal)
+        }
         presenter?.downloadFile(file)
     }
 }
@@ -145,7 +148,7 @@ extension DetailsViewController: DetailsViewProtocol {
                                                                         .font: R.font.cinzelDecorativeBold(size: 30).unwrapped])
         }
         if video.state == .loaded {
-            downloadFileButton.setImage(R.image.star(), for: .normal)
+            downloadFileButton.setImage(R.image.star_yellow(), for: .normal)
         }
     }
 }
