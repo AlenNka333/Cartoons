@@ -72,6 +72,7 @@ class VideoPlayerViewController: BaseViewController {
     }
     
     override func setupNavigationBar() {
+        navigationController?.hidesBarsOnSwipe = false
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.setNavigationBarHidden(true, animated: true)
     }

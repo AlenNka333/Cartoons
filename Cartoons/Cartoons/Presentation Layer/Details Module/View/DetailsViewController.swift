@@ -50,6 +50,7 @@ class DetailsViewController: BaseViewController {
     }()
     
     override func viewDidLoad() {
+        navigationController?.hidesBarsOnSwipe = false
         super.viewDidLoad()
     }
     
