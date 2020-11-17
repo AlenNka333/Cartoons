@@ -53,6 +53,7 @@ class ServiceProviderFacade: Facade {
             item.state != .inProgress
         }
         favouritesDataSourceDelegate?.updateDataSource(localData)
+        getServerData()
     }
     
     func getLocalData() {

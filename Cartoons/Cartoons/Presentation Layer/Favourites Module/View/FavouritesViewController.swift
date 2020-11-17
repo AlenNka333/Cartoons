@@ -49,6 +49,7 @@ class FavouritesViewController: BaseViewController {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
+        (navigationController as? BaseNavigationController)?.navigationBar.isHidden = false
         navigationController?.hidesBarsOnSwipe = true
         title = R.string.localizable.favourites_screen()
         (navigationController as? BaseNavigationController)?.setupCustomizedUI(image: R.image.favourites().unwrapped,

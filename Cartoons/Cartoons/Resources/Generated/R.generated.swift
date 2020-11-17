@@ -357,6 +357,8 @@ struct R: Rswift.Validatable {
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
+    /// Image `back_label`.
+    static let back_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "back_label")
     /// Image `clapperboard`.
     static let clapperboard = Rswift.ImageResource(bundle: R.hostingBundle, name: "clapperboard")
     /// Image `crown`.
@@ -411,8 +413,6 @@ struct R: Rswift.Validatable {
     static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
     /// Image `small_screen`.
     static let small_screen = Rswift.ImageResource(bundle: R.hostingBundle, name: "small_screen")
-    /// Image `star_yellow`.
-    static let star_yellow = Rswift.ImageResource(bundle: R.hostingBundle, name: "star_yellow")
     /// Image `star`.
     static let star = Rswift.ImageResource(bundle: R.hostingBundle, name: "star")
     /// Image `stop`.
@@ -428,6 +428,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Ellipse", bundle: ..., traitCollection: ...)`
     static func ellipse(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ellipse, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "back_label", bundle: ..., traitCollection: ...)`
+    static func back_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.back_label, compatibleWith: traitCollection)
     }
     #endif
 
@@ -628,13 +635,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "star_yellow", bundle: ..., traitCollection: ...)`
-    static func star_yellow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.star_yellow, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "stop", bundle: ..., traitCollection: ...)`
     static func stop(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.stop, compatibleWith: traitCollection)
@@ -715,7 +715,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 41 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 46 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -749,6 +749,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let back = Rswift.StringResource(key: "back", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Camera
+      ///
+      /// Locales: en
+      static let camera = Rswift.StringResource(key: "camera", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Camera access required for capturing photos
       ///
       /// Locales: en
@@ -769,6 +773,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let choose_from_library = Rswift.StringResource(key: "choose_from_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Choose mode
+      ///
+      /// Locales: en
+      static let choose_mode = Rswift.StringResource(key: "choose_mode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Clear Cache
+      ///
+      /// Locales: en
+      static let clear_cache = Rswift.StringResource(key: "clear_cache", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Error
       ///
       /// Locales: en
@@ -821,6 +833,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let phone_label_key = Rswift.StringResource(key: "phone_label_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Photo Library
+      ///
+      /// Locales: en
+      static let photo_library = Rswift.StringResource(key: "photo_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please choose your preferred mode to set your profile image
+      ///
+      /// Locales: en
+      static let choose_mode_message = Rswift.StringResource(key: "choose_mode_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Please, fill phone number text field
       ///
       /// Locales: en
@@ -1002,6 +1022,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("back", bundle: bundle, comment: "")
       }
 
+      /// en translation: Camera
+      ///
+      /// Locales: en
+      static func camera(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("camera", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "camera"
+        }
+
+        return NSLocalizedString("camera", bundle: bundle, comment: "")
+      }
+
       /// en translation: Camera access required for capturing photos
       ///
       /// Locales: en
@@ -1075,6 +1110,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("choose_from_library", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Choose mode
+      ///
+      /// Locales: en
+      static func choose_mode(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("choose_mode", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "choose_mode"
+        }
+
+        return NSLocalizedString("choose_mode", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Clear Cache
+      ///
+      /// Locales: en
+      static func clear_cache(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("clear_cache", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "clear_cache"
+        }
+
+        return NSLocalizedString("clear_cache", bundle: bundle, comment: "")
       }
 
       /// en translation: Error
@@ -1270,6 +1335,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("phone_label_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Photo Library
+      ///
+      /// Locales: en
+      static func photo_library(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("photo_library", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "photo_library"
+        }
+
+        return NSLocalizedString("photo_library", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please choose your preferred mode to set your profile image
+      ///
+      /// Locales: en
+      static func choose_mode_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("choose_mode_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "choose_mode_message"
+        }
+
+        return NSLocalizedString("choose_mode_message", bundle: bundle, comment: "")
       }
 
       /// en translation: Please, fill phone number text field

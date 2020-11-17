@@ -24,9 +24,9 @@ class TabBarViewController: UITabBarController {
     }
     
     func setupUI() {
-        tabBar.unselectedItemTintColor = .white
-        tabBar.tintColor = R.color.wisteria()
-        tabBar.backgroundColor = R.color.navigation_bar_color()?.withAlphaComponent(0.7)
+        tabBar.unselectedItemTintColor = .lightGray
+        tabBar.tintColor = .white
+        tabBar.backgroundColor = R.color.navigation_bar_color()
         tabBar.backgroundImage = UIImage()
     }
 }

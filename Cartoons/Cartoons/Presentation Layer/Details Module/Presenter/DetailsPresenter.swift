@@ -29,8 +29,8 @@ class DetailsPresenter: DetailsViewPresenterProtocol {
                 switch result {
                 case .success:
                     break
-                case .failure(let error):
-                    self?.view.setError(error)
+                case .failure(_):
+                    self?.view.setMessage(R.string.localizable.existing_file())
                 }
             }
         } else {

@@ -55,7 +55,6 @@ class DetailsViewController: BaseViewController {
     
     override func setupUI() {
         super.setupUI()
-        
         tabBarItem.isEnabled = false
         view.backgroundColor = R.color.navigation_bar_color()
         view.isUserInteractionEnabled = true
@@ -95,6 +94,7 @@ class DetailsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.navigationBar.isHidden = false
     }
 }
 
@@ -111,6 +111,8 @@ extension DetailsViewController {
         guard let file = video else {
             return
         }
+        downloadFileButton.setImage(R.image.star(), for: .normal)
+        downloadFileButton.backgroundColor = .gray
         presenter?.downloadFile(file)
     }
 }
@@ -141,6 +143,9 @@ extension DetailsViewController: DetailsViewProtocol {
             titleLabel.attributedText = NSAttributedString(string: video.title ?? "",
                                                            attributes: [.foregroundColor: UIColor.white,
                                                                         .font: R.font.cinzelDecorativeBold(size: 30).unwrapped])
+        }
+        if video.state == .loaded {
+            downloadFileButton.setImage(R.image.star(), for: .normal)
         }
     }
 }

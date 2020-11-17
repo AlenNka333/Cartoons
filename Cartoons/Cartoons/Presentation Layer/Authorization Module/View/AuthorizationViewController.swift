@@ -6,7 +6,7 @@ class AuthorizationViewController: BaseViewController {
     
     private lazy var appLabelView = CustomLabelView()
     private lazy var phoneNumberTextField = CustomTextField()
-    private lazy var getCodeButton: UIButton = CustomButton()
+    private lazy var getCodeButton = CustomButton()
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .center
@@ -29,7 +29,7 @@ class AuthorizationViewController: BaseViewController {
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
         view.insertSubview(backgroundImage, at: 0)
         getCodeButton.isEnabled = true
-        getCodeButton.backgroundColor = R.color.enabled_button_color()
+        getCodeButton.backgroundColor = R.color.navigation_bar_color()
     }
     
     override func setupNavigationBar() {
@@ -74,18 +74,17 @@ class AuthorizationViewController: BaseViewController {
     }
     
     override func showActivityIndicator() {
-        super.showActivityIndicator()
-        activityIndicator.center = view.center
+        getCodeButton.isInProgress = true
     }
     
     override func stopActivityIndicator() {
-        super.stopActivityIndicator()
+        getCodeButton.isInProgress = false
     }
     
     override func showError(error: Error) {
         super.showError(error: error)
         getCodeButton.isEnabled = true
-        getCodeButton.backgroundColor = R.color.enabled_button_color()
+        getCodeButton.backgroundColor = R.color.navigation_bar_color()
     }
 }
 

@@ -62,6 +62,11 @@ favourites_screen_subtitle = "...offline watching is available";
 
 //Settings flow
 settings_screen = "Settings";
+clear_cache = "Clear Cache";
+choose_mode = "Choose mode";
+choose_mode_message = "Please choose your preferred mode to set your profile image";
+camera = "Camera";
+photo_library = "Photo Library";
 
 //Details flow
 start_watching = "Start watching";

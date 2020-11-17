@@ -40,7 +40,7 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
     
     func setupUI() {
         title = R.string.localizable.settings_screen()
-        view.backgroundColor = R.color.picotee_blue()
+        view.backgroundColor = .black
     }
     
     @objc required dynamic init?(coder aDecoder: NSCoder) {
@@ -189,13 +189,13 @@ struct ContentView: View {
                     }
                     
                     .actionSheet(isPresented: $shouldPresentActionSheet) { () -> ActionSheet in
-                        ActionSheet(title: Text("Choose mode"),
-                                    message: Text("Please choose your preferred mode to set your profile image"),
-                                    buttons: [ActionSheet.Button.default(Text("Camera"), action: {
+                        ActionSheet(title: Text(R.string.localizable.choose_mode()),
+                                    message: Text(R.string.localizable.choose_mode_message()),
+                                    buttons: [ActionSheet.Button.default(Text(R.string.localizable.camera()), action: {
                                         self.shouldPresentImagePicker = true
                                         self.shouldPresentCamera = true
                                     }),
-                                    ActionSheet.Button.default(Text("Photo Library"), action: {
+                                    ActionSheet.Button.default(Text(R.string.localizable.photo_library()), action: {
                                         self.shouldPresentImagePicker = true
                                         self.shouldPresentCamera = false
                                     }),
@@ -204,7 +204,7 @@ struct ContentView: View {
                 }
                 Text(number.number)
                     .foregroundColor(.white)
-                    .font(Font.custom("Alice-Regular", size: 18))
+                    .font(Font.custom(R.font.aliceRegular.fontName, size: 18))
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100, alignment: .center)
             Button(action: {
@@ -213,11 +213,11 @@ struct ContentView: View {
                 }
                 closure()
             }) {
-                Text("Sign Out")
+                Text(R.string.localizable.sign_out_button())
                     .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 50, alignment: .center)
                     .foregroundColor(Color.white)
-                    .font(Font.custom("Alice-Regular", size: 15))
-                    .background(Color(R.color.table_cell.name))
+                    .font(Font.custom(R.font.aliceRegular.fontName, size: 15))
+                    .background(Color(R.color.navigation_bar_color.name))
                     .cornerRadius(8)
             }
             Button(action: {
@@ -226,20 +226,25 @@ struct ContentView: View {
                 }
                 closure()
             }) {
-                Text("Clear Cache")
-                    
+                Text(R.string.localizable.clear_cache())
                     .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 50, alignment: .center)
                     .foregroundColor(Color.white)
-                    .font(Font.custom("Alice-Regular", size: 15))
-                    .background(Color(R.color.table_cell.name))
+                    .font(Font.custom(R.font.aliceRegular.fontName, size: 15))
+                    .background(Color(R.color.navigation_bar_color.name))
                     .cornerRadius(8)
             }
             .disabled(cacheIndicator.flag)
+            Image(uiImage: R.image.back_label().unwrapped)
+                .resizable()
+                .foregroundColor(Color.white)
+                .scaledToFit()
+                .frame(width: 150, height: 150, alignment: .center)
+                .padding(.top, 30)
         }
         .padding(.top, 5)
         .edgesIgnoringSafeArea(.bottom)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
-        .background(Color(R.color.picotee_blue.name))
+        .background(Color(R.color.main_orange.name))
     }
 }
 

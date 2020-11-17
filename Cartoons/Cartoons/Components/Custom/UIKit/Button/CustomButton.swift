@@ -9,8 +9,27 @@
 import Foundation
 import UIKit
 
-class CustomButton: UIButton {
+class CustomButton: UIButton {    
+    private lazy var activityIndicator = UIActivityIndicatorView()
+    
+    var isInProgress: Bool {
+        didSet {
+            if isInProgress {
+                activityIndicator.color = .white
+                addSubview(activityIndicator)
+                activityIndicator.snp.makeConstraints {
+                    $0.leading.equalToSuperview().offset(30)
+                    $0.centerY.equalToSuperview()
+                }
+                activityIndicator.startAnimating()
+            } else {
+                activityIndicator.removeFromSuperview()
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
+        self.isInProgress = false
         super.init(frame: frame)
         setupButton()
     }
@@ -28,6 +47,6 @@ class CustomButton: UIButton {
         titleLabel?.layer.masksToBounds = false
         layer.cornerRadius = 20
         layer.borderColor = .none
-        backgroundColor = R.color.enabled_button_color()
+        backgroundColor = R.color.navigation_bar_color()
     }
 }

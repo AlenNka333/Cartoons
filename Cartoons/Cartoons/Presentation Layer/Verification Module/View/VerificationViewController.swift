@@ -78,8 +78,8 @@ class VerificationViewController: BaseViewController {
         super.setupUI()
         codeTextField.attributedPlaceholder =
             NSAttributedString(string: R.string.localizable.otp_code_key(),
-                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.48),
-                                            NSAttributedString.Key.font: R.font.aliceRegular(size: 15).unwrapped])
+                               attributes: [.foregroundColor: UIColor.black.withAlphaComponent(0.48),
+                                            .font: R.font.aliceRegular(size: 15).unwrapped])
         codeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         
         resendButton.isEnabled = false
@@ -165,7 +165,7 @@ extension VerificationViewController: VerificationViewProtocol {
     
     func endTimer() {
         resendButton.isEnabled = true
-        resendButton.backgroundColor = R.color.enabled_button_color()
+        resendButton.backgroundColor = R.color.navigation_bar_color()
         countdownTimer?.invalidate()
         timerLabel.text = "0"
     }

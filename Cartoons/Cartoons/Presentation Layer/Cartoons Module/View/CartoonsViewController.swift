@@ -59,6 +59,7 @@ class CartoonsViewController: BaseViewController {
     
     override func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
+        (navigationController as? BaseNavigationController)?.navigationBar.isHidden = false
         (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
         title = R.string.localizable.cartoons_screen()
         (navigationController as? BaseNavigationController)?.setupCustomizedUI(image: R.image.navigation_label().unwrapped,

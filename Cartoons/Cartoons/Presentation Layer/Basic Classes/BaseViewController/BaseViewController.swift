@@ -12,6 +12,7 @@ class BaseViewController: UIViewController, BaseViewProtocol {
     let activityIndicator = UIActivityIndicatorView()
     let alertService = AlertService()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()

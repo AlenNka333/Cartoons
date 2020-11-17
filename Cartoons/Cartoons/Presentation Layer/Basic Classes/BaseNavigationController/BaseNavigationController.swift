@@ -49,6 +49,8 @@ class BaseNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = nil
+        interactivePopGestureRecognizer?.isEnabled = true
         delegate = self
         setupUI()
     }
@@ -99,6 +101,8 @@ extension BaseNavigationController {
     }
     
     func updateUI() {
+        interactivePopGestureRecognizer?.delegate = nil
+        interactivePopGestureRecognizer?.isEnabled = true
         navigationBar.tintColor = .white
         navigationBar.prefersLargeTitles = true
         navigationBar.standardAppearance = appearance
