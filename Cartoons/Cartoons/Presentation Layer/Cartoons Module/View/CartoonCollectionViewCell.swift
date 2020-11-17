@@ -38,15 +38,15 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     }()
     
     var video: Cartoon? {
-      didSet {
-        if let title = video?.title, let thumbnail = video?.thumbnail {
-            thumbnailImageView.kf.setImage(with: thumbnail)
-            titleLabel.text = title
-        } else if let title = video?.title, let link = video?.link {
-            generateThumbnail(with: link)
-            titleLabel.text = title
+        didSet {
+            if let title = video?.title, let thumbnail = video?.thumbnail {
+                thumbnailImageView.kf.setImage(with: thumbnail)
+                titleLabel.text = title
+            } else if let title = video?.title, let link = video?.link {
+                generateThumbnail(with: link)
+                titleLabel.text = title
+            }
         }
-      }
     }
     
     func generateThumbnail(with url: URL) {
@@ -70,7 +70,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOffset = CGSize(width: 3, height: 8)
         contentView.layer.shadowOpacity = 0.6
         contentView.layer.shadowRadius = 10
-
+        
         contentView.addSubview(thumbnailImageView)
         thumbnailImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -98,5 +98,41 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        animate(isHighlighted: true)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        animate(isHighlighted: false)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        animate(isHighlighted: false)
+    }
+    
+    private func animate(isHighlighted: Bool, completion: ((Bool) -> Void)?=nil) {
+        isHighlighted ? (UIView.animate(withDuration: 0.5,
+                                        delay: 0,
+                                        usingSpringWithDamping: 1,
+                                        initialSpringVelocity: 0,
+                                        options: [.allowUserInteraction],
+                                        animations: {
+                                            self.transform = .init(scaleX: 0.96, y: 0.96)
+                                        },
+                                        completion: completion))
+            : (UIView.animate(withDuration: 0.5,
+                              delay: 0,
+                              usingSpringWithDamping: 1,
+                              initialSpringVelocity: 0,
+                              options: [.allowUserInteraction],
+                              animations: {
+                                self.transform = .identity
+                              },
+                              completion: completion))
     }
 }

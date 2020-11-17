@@ -6,8 +6,8 @@
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
 
-import SwiftUI
 import Foundation
+import SwiftUI
 
 extension Binding {
     func onUpdate(_ closure: @escaping () -> Void) -> Binding<Value> {

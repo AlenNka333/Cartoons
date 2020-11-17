@@ -23,7 +23,7 @@ class AuthorizationServiceTests: XCTestCase {
         
         sut.verifyUser(number: successPhoneNumber) { result in
             switch result {
-            case .success(_):
+            case .success:
                 expectation.fulfill()
             case .failure(let error):
                 XCTFail(error.localizedDescription)
@@ -34,7 +34,7 @@ class AuthorizationServiceTests: XCTestCase {
         
         sut.verifyUser(number: emptyPhoneNumber) { result in
             switch result {
-            case .success(_):
+            case .success:
                 expectation.fulfill()
             case .failure(let error):
                 XCTFail(error.localizedDescription)
@@ -45,7 +45,7 @@ class AuthorizationServiceTests: XCTestCase {
         
         sut.verifyUser(number: wrongPhoneNumber) { result in
             switch result {
-            case .success(_):
+            case .success:
                 expectation.fulfill()
             case .failure(let error):
                 XCTFail(error.localizedDescription)

@@ -12,6 +12,8 @@ class FavouritesViewController: BaseViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Cartoon>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, Cartoon>
     
+    let generator = UISelectionFeedbackGenerator()
+    
     private lazy var backgroundView: UIView = {
         var view = UIView()
         var text = UILabel()
@@ -61,6 +63,7 @@ class FavouritesViewController: BaseViewController {
         super.setupUI()
         view.backgroundColor = R.color.main_orange()
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: configureLayout())
+        collectionView?.delaysContentTouches = false
         collectionView?.delegate = self
         collectionView?.backgroundColor = R.color.main_orange()
         view.addSubview(UIView(frame: .zero))
@@ -109,6 +112,7 @@ extension FavouritesViewController: UICollectionViewDelegate {
             print("Invalid link")
             return
         }
+        generator.selectionChanged()
         hidesBottomBarWhenPushed = true
         transitionDelegate?.transit(link: link)
         hidesBottomBarWhenPushed = false
@@ -154,7 +158,7 @@ extension FavouritesViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                               heightDimension: .fractionalWidth(0.5))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5.0, leading: 5.0, bottom: 5.0, trailing: 5.0)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 10.0, bottom: 10.0, trailing: 10.0)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalWidth(0.5))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])

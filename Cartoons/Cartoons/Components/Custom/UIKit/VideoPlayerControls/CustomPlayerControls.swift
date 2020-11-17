@@ -20,7 +20,7 @@ class CustomPlayerControls: UIView {
     @IBOutlet private weak var currentTimeLabel: UILabel!
     @IBOutlet private weak var durationLabel: UILabel!
     @IBOutlet private weak var fullScreenButton: UIButton!
-    @IBOutlet weak var controlsHeight: NSLayoutConstraint!
+    @IBOutlet private weak var controlsHeight: NSLayoutConstraint!
     
     var stateChangedClosure: (() -> (PlayerState))?
     var jumpForwardClosure: (() -> Void)?

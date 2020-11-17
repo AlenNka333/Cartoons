@@ -14,6 +14,8 @@ class CartoonsViewController: BaseViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Cartoon>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, Cartoon>
     
+    let generator = UISelectionFeedbackGenerator()
+    
     private lazy var backgroundView: UIView = {
         var view = UIView()
         var text = UILabel()
@@ -76,6 +78,7 @@ class CartoonsViewController: BaseViewController {
         view.addSubview(UIView(frame: .zero))
         view.addSubview(collectionView ?? UICollectionView())
         collectionView?.backgroundView = backgroundView
+        collectionView?.delaysContentTouches = false
         collectionView?.register(CartoonCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
     }
     
@@ -117,6 +120,7 @@ extension CartoonsViewController: UICollectionViewDelegate {
         guard let cartoon = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
+        generator.selectionChanged()
         hidesBottomBarWhenPushed = true
         transitionDelegate?.transit(cartoon: cartoon)
         hidesBottomBarWhenPushed = false
@@ -148,7 +152,7 @@ extension CartoonsViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 20.0, bottom: 20.0, trailing: 20.0)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 20.0, leading: 25.0, bottom: 20.0, trailing: 25.0)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(0.4))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
