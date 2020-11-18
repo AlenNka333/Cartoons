@@ -74,6 +74,7 @@ class CartoonsViewController: BaseViewController {
         view.addSubview(activityIndicator)
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: configureLayout())
         collectionView?.delegate = self
+        collectionView?.showsVerticalScrollIndicator = false
         collectionView?.backgroundColor = R.color.main_orange()
         view.addSubview(UIView(frame: .zero))
         view.addSubview(collectionView ?? UICollectionView())
