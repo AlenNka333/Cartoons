@@ -353,10 +353,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 35 images.
+  /// This `R.image` struct is generated, and contains static references to 32 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
+    /// Image `back_color_label`.
+    static let back_color_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "back_color_label")
     /// Image `back_label`.
     static let back_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "back_label")
     /// Image `clapperboard`.
@@ -389,8 +391,6 @@ struct R: Rswift.Validatable {
     static let launch_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "launch_background")
     /// Image `main_background`.
     static let main_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_background")
-    /// Image `main_screen_background`.
-    static let main_screen_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_screen_background")
     /// Image `navigation_label`.
     static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
     /// Image `onb_one`.
@@ -399,16 +399,10 @@ struct R: Rswift.Validatable {
     static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
     /// Image `play`.
     static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
-    /// Image `princess_ariel`.
-    static let princess_ariel = Rswift.ImageResource(bundle: R.hostingBundle, name: "princess_ariel")
-    /// Image `princess_cinderella`.
-    static let princess_cinderella = Rswift.ImageResource(bundle: R.hostingBundle, name: "princess_cinderella")
     /// Image `profile_icon`.
     static let profile_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_icon")
     /// Image `profile_image`.
     static let profile_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_image")
-    /// Image `settings_background`.
-    static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
     /// Image `slider_progress`.
     static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
     /// Image `small_screen`.
@@ -430,6 +424,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Ellipse", bundle: ..., traitCollection: ...)`
     static func ellipse(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ellipse, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "back_color_label", bundle: ..., traitCollection: ...)`
+    static func back_color_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.back_color_label, compatibleWith: traitCollection)
     }
     #endif
 
@@ -546,13 +547,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "main_screen_background", bundle: ..., traitCollection: ...)`
-    static func main_screen_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.main_screen_background, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "navigation_label", bundle: ..., traitCollection: ...)`
     static func navigation_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.navigation_label, compatibleWith: traitCollection)
@@ -581,20 +575,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "princess_ariel", bundle: ..., traitCollection: ...)`
-    static func princess_ariel(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.princess_ariel, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "princess_cinderella", bundle: ..., traitCollection: ...)`
-    static func princess_cinderella(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.princess_cinderella, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "profile_icon", bundle: ..., traitCollection: ...)`
     static func profile_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_icon, compatibleWith: traitCollection)
@@ -605,13 +585,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "profile_image", bundle: ..., traitCollection: ...)`
     static func profile_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_image, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "settings_background", bundle: ..., traitCollection: ...)`
-    static func settings_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.settings_background, compatibleWith: traitCollection)
     }
     #endif
 

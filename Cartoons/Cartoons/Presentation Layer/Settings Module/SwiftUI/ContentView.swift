@@ -138,6 +138,8 @@ struct ContentView: View {
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionSheet = false
     @State private var shouldPresentCamera = false
+    @State private var fadeOut = false
+    @State private var logoImage = ImageEnum.img1
     
     @State var image: Image = Image(uiImage: R.image.profile_icon().unwrapped)
     @State var imageData: Data?
@@ -167,12 +169,15 @@ struct ContentView: View {
             VStack(spacing: 5) {
                 imageLoader.image
                     .resizable()
+                    .padding(.top, 10)
                     .clipShape(Circle())
                     .scaledToFill()
                     .frame(width: 70, height: 70)
                     .aspectRatio(contentMode: .fill)
                     .shadow(radius: 10)
-                    .onTapGesture { self.shouldPresentActionSheet = true }
+                    .onTapGesture {
+                        self.shouldPresentActionSheet = true
+                    }
                     .sheet(isPresented: $shouldPresentImagePicker) {
                         SwiftUIImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary,
                                            image: self.$image,
@@ -200,8 +205,8 @@ struct ContentView: View {
                                         self.shouldPresentCamera = false
                                     }),
                                     ActionSheet.Button.cancel()])
-                            
-                }
+                        
+                    }
                 Text(number.number)
                     .foregroundColor(.white)
                     .font(Font.custom(R.font.aliceRegular.fontName, size: 18))
@@ -234,17 +239,48 @@ struct ContentView: View {
                     .cornerRadius(8)
             }
             .disabled(cacheIndicator.flag)
-            Image(uiImage: R.image.back_label().unwrapped)
+            Image(logoImage.localizedText)
                 .resizable()
-                .foregroundColor(Color.white)
                 .scaledToFit()
+                .foregroundColor(Color.white)
                 .frame(width: 150, height: 150, alignment: .center)
-                .padding(.top, 30)
+                .padding(.top, 40)
+                .opacity(fadeOut ? 0 : 1)
+                .animation(.easeInOut(duration: 0.25))
+                .onTapGesture {
+                    self.fadeOut.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        withAnimation {
+                            self.logoImage = self.logoImage.next()
+                            self.fadeOut.toggle()
+                        }
+                    }
+                }
+            
         }
         .padding(.top, 5)
         .edgesIgnoringSafeArea(.bottom)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
         .background(Color(R.color.main_orange.name))
+    }
+}
+
+enum ImageEnum: String {
+    case img1
+    case img2
+    
+    var localizedText: String {
+        switch self {
+        case .img1: return R.image.back_label.name
+        case .img2: return R.image.back_color_label.name
+        }
+    }
+    
+    func next() -> ImageEnum {
+        switch self {
+        case .img1: return .img2
+        case .img2: return .img1
+        }
     }
 }
 

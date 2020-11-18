@@ -82,9 +82,6 @@
 		3355FA882540343D00C0B192 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355FA872540343D00C0B192 /* BaseViewController.swift */; };
 		3355FA8B2540346100C0B192 /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355FA8A2540346100C0B192 /* BaseViewProtocol.swift */; };
 		3359C1FE256293A100DACCCA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359C1FD256293A100DACCCA /* R.generated.swift */; };
-		3373D945250F588A0095F78C /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D944250F588A0095F78C /* PageViewController.swift */; };
-		3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */; };
-		3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */; };
 		3373D94E250F63CA0095F78C /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D94D250F63CA0095F78C /* AppData.swift */; };
 		3373D952250F95100095F78C /* PageControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D951250F95100095F78C /* PageControllerPresenter.swift */; };
 		3373D954250F95240095F78C /* PageViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D953250F95240095F78C /* PageViewControllerProtocol.swift */; };
@@ -257,9 +254,6 @@
 		3355FA872540343D00C0B192 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3355FA8A2540346100C0B192 /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
 		3359C1FD256293A100DACCCA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
-		3373D944250F588A0095F78C /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingFeatureViewController.swift; sourceTree = "<group>"; };
-		3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineWatchingFeatureViewController.swift; sourceTree = "<group>"; };
 		3373D94D250F63CA0095F78C /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		3373D951250F95100095F78C /* PageControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerPresenter.swift; sourceTree = "<group>"; };
 		3373D953250F95240095F78C /* PageViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerProtocol.swift; sourceTree = "<group>"; };
@@ -765,7 +759,6 @@
 				334C408A255EF8A10008E97F /* SwiftUI */,
 				33127B1E25330C5200B84FAE /* Protocols */,
 				3373D94F250F94CC0095F78C /* Presenter */,
-				3373D950250F94D60095F78C /* View */,
 			);
 			path = "Onboarding Module";
 			sourceTree = "<group>";
@@ -776,16 +769,6 @@
 				3373D951250F95100095F78C /* PageControllerPresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		3373D950250F94D60095F78C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3373D944250F588A0095F78C /* PageViewController.swift */,
-				3373D947250F60B00095F78C /* StreamingFeatureViewController.swift */,
-				3373D949250F61020095F78C /* OfflineWatchingFeatureViewController.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		33778C0225518DE8002D1F05 /* CircleProgressBar */ = {
@@ -1506,7 +1489,6 @@
 				334C4083255EA7C80008E97F /* CacheIndicator.swift in Sources */,
 				332BA36125060746008A8F29 /* AuthorizationErrors.swift in Sources */,
 				338614B425386B9200A24D4F /* PlayerView.swift in Sources */,
-				3373D94A250F61020095F78C /* OfflineWatchingFeatureViewController.swift in Sources */,
 				33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */,
 				33778C1B255352C1002D1F05 /* Facade.swift in Sources */,
 				332227CF25189D0A00EF56B8 /* SettingsViewPresenterProtocol.swift in Sources */,
@@ -1546,7 +1528,6 @@
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				330F4E0D252F073D008D0FC8 /* SettingsAssembly.swift in Sources */,
 				338614B125385F9D00A24D4F /* AVPlayer + Extension.swift in Sources */,
-				3373D945250F588A0095F78C /* PageViewController.swift in Sources */,
 				33B2AEBB250A702D0006BE31 /* TabBarViewController.swift in Sources */,
 				33104A6E2535846100A90ED7 /* CartoonCollectionViewCell.swift in Sources */,
 				33A1F7B1254FE9CB00407056 /* FavouritesTransitionDelegate.swift in Sources */,
@@ -1595,7 +1576,6 @@
 				334C4096255EFF840008E97F /* PageController.swift in Sources */,
 				33A05B49255DA87500C4A70B /* NavigationModifier.swift in Sources */,
 				3318E2C6254AC5AF001838E2 /* AuthorizationTransitionDelegate.swift in Sources */,
-				3373D948250F60B00095F78C /* StreamingFeatureViewController.swift in Sources */,
 				33778C0425518E00002D1F05 /* CircleProgressBar.swift in Sources */,
 				33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */,
 				33778C162553321A002D1F05 /* ServiceProviderDelegate.swift in Sources */,
