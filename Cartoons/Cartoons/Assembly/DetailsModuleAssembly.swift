@@ -12,6 +12,7 @@ import UIKit
 class DetailsModuleAssembly: Assembly {
     static func makeDetailsController(with video: Cartoon, serviceLocator: Locator) -> DetailsViewController {
         let view = DetailsViewController()
+        view.hidesBottomBarWhenPushed = true
         let presenter = DetailsPresenter(view: view, video: video, serviceLocator: serviceLocator)
         view.presenter = presenter
         return view

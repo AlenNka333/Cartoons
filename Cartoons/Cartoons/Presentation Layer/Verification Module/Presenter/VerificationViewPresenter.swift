@@ -8,7 +8,7 @@
 
 import Foundation
 
-class VerificationPresenter: VerificationViewPresenterProtocol {
+class VerificationPresenter {
     enum Constant {
         static let totalTime = 60
     }
@@ -75,7 +75,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     }
 }
 
-extension VerificationPresenter {
+extension VerificationPresenter: VerificationViewPresenterProtocol {
     @objc func updateTime() {
         view.updateTimerLabel(time: time)
         if time != 0 {

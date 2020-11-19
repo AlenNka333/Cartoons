@@ -44,7 +44,6 @@ class CustomButton: UIButton {
         titleLabel?.layer.shadowColor = UIColor.black.cgColor
         titleLabel?.layer.shadowOffset = CGSize(width: 2.0, height: 1.0)
         titleLabel?.font = R.font.aliceRegular(size: 15)
-        titleLabel?.layer.masksToBounds = false
         layer.cornerRadius = 20
         layer.borderColor = .none
         backgroundColor = R.color.navigation_bar_color()

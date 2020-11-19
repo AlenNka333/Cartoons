@@ -30,11 +30,15 @@ class DetailsPresenter: DetailsViewPresenterProtocol {
                 case .success:
                     break
                 case .failure(let error):
-                    self?.view.setError(error)
+                    self?.view.showError(error: error)
                 }
             }
         } else {
             view.setMessage(R.string.localizable.existing_file())
         }
+    }
+    
+    func transit(with link: URL) {
+        view.transit(with: link)
     }
 }

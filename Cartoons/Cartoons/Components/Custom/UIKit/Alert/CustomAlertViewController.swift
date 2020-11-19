@@ -46,7 +46,6 @@ class CustomAlertViewController: UIViewController {
         agreeButton.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         agreeButton.layer.shadowRadius = 5.0
         agreeButton.layer.shadowOpacity = 0.3
-        agreeButton.layer.masksToBounds = false
         
         titleLabel.textColor = .black
         titleLabel.text = alertTitle

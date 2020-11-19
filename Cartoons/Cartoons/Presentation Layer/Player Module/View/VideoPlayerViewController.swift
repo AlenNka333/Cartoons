@@ -17,14 +17,12 @@ enum PlayerState {
 }
 
 class VideoPlayerViewController: BaseViewController {
-    private var playerView = PlayerView()
-    private var player: AVPlayer? { playerView.player }
     weak var transitionDelegate: PlayerTransitionDelegate?
     var controlsView: CustomPlayerControls?
     var presenter: VideoPlayerPresenterProtocol?
-    var playerState: PlayerState? {
+    var videoPlayingState: PlayerState? {
         didSet {
-            switch playerState {
+            switch videoPlayingState {
             case .playing:
                 player?.play()
             case .stopped:
@@ -34,8 +32,10 @@ class VideoPlayerViewController: BaseViewController {
             }
         }
     }
-    var isRotated: Bool = false
-    var timeObserver: Any?
+    private var playerView = PlayerView()
+    private var player: AVPlayer? { playerView.player }
+    private var isRotated: Bool = false
+    private var timeObserver: Any?
     private lazy var closeButton: UIButton = {
         var button = UIButton()
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
@@ -64,13 +64,6 @@ class VideoPlayerViewController: BaseViewController {
         playerView.player = nil
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate { _ in
-            self.playerView.frame.size = size
-        }
-    }
-    
     override func setupNavigationBar() {
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
@@ -79,9 +72,9 @@ class VideoPlayerViewController: BaseViewController {
     
     override func setupUI() {
         super.setupUI()
-        tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .black
         view.isUserInteractionEnabled = true
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
         view.addGestureRecognizer(tap)
         
@@ -100,24 +93,36 @@ class VideoPlayerViewController: BaseViewController {
             $0.leading.equalToSuperview().offset(20)
         }
     }
-    
-    @objc func goBack() {
-        transitionDelegate?.transit()
-    }
-    
+
     override func showError(error: Error) {
         super.showError(error: error)
     }
     
-    @objc func viewDidTap() {
-        controlsView?.isHidden.toggle()
-        closeButton.isHidden.toggle()
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                               context: UnsafeMutableRawPointer?) {
+        if keyPath == "currentItem.loadedTimeRanges" {
+            videoPlayingState = .playing
+            let seconds = player?.currentItem?.asset.duration.seconds
+            let time = (seconds?.asString()).unwrapped
+            presenter?.showVideoDuration(value: time)
+        }
     }
 }
 
 extension VideoPlayerViewController {
+    @objc func viewDidTap() {
+        controlsView?.isHidden.toggle()
+        closeButton.isHidden.toggle()
+    }
+    
+    @objc func goBack() {
+        presenter?.transit()
+    }
+    
     func setupAVPlayer() {
-        let url = presenter?.setupVideoLink()
+        let url = presenter?.setVideoURL()
         guard let link = url else {
             presenter?.showError(error: GeneralError.invalidUrl)
             return
@@ -135,39 +140,30 @@ extension VideoPlayerViewController {
             if self.player?.currentItem?.status == .readyToPlay {
                 let currentTimeInSeconds = CMTimeGetSeconds(elapsedTime)
                 let time = elapsedTime.seconds.asString()
-                self.presenter?.updateProgressValue(value: time)
+                self.presenter?.updateCurrentVideoTimeLabel(value: time)
                 if let currentItem = self.player?.currentItem {
                     let duration = currentItem.duration
                     if CMTIME_IS_INVALID(duration) {
                         return
                     }
-                    self.presenter?.updateProgress(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
+                    self.presenter?.updateCurrentVideoTimeSlider(value: Float(currentTimeInSeconds / CMTimeGetSeconds(duration)))
                 }
             }
-        }
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?,
-                               of object: Any?,
-                               change: [NSKeyValueChangeKey : Any]?,
-                               context: UnsafeMutableRawPointer?) {
-        if keyPath == "currentItem.loadedTimeRanges" {
-            playerState = .playing
-            
-            let seconds = player?.currentItem?.asset.duration.seconds
-            let time = (seconds?.asString()).unwrapped
-            presenter?.setDuration(value: time)
         }
     }
 }
 
 extension VideoPlayerViewController: VideoPlayerViewProtocol {
-    func getDuration() -> Double {
+    func transit() {
+        transitionDelegate?.transit()
+    }
+    
+    func getVideoDuration() -> Double {
         let seconds = player?.currentItem?.asset.duration.seconds
         return seconds.unwrapped
     }
     
-    func setVideoTime(value: Double) {
+    func moveVideoToTime(value: Double) {
         let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
         player?.seek(to: seekTime)
     }
@@ -190,12 +186,12 @@ extension VideoPlayerViewController: VideoPlayerViewProtocol {
         player.seek(to: seekTime)
     }
     
-    func updateStatus() -> PlayerState? {
+    func setVideoPlayingStatus() -> PlayerState? {
         guard let player = playerView.player else {
             return nil
         }
-        playerState = player.isPlaying ? .stopped : .playing
-        return playerState
+        videoPlayingState = player.isPlaying ? .stopped : .playing
+        return videoPlayingState
     }
     
     func rotateScreen() -> Bool {

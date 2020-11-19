@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol VideoPlayerViewProtocol: BaseViewControllerProtocol, AnyObject {
-    func updateStatus() -> PlayerState?
+protocol VideoPlayerViewProtocol: BaseViewControllerProtocol, PlayerTransitionDelegate {
+    func setVideoPlayingStatus() -> PlayerState?
     func jumpForward()
     func jumpBackward()
-    func getDuration() -> Double
-    func setVideoTime(value: Double)
+    func getVideoDuration() -> Double
+    func moveVideoToTime(value: Double)
     func setupObserver()
     func removeObserver()
     func rotateScreen() -> Bool

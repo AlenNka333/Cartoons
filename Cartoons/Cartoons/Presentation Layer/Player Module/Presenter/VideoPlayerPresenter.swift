@@ -9,10 +9,11 @@
 import Foundation
 
 class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
+    let videoURL: URL?
+    
     var view: VideoPlayerViewProtocol
     var controls: VideoPlayerControlsProtocol
     var playerState: PlayerState
-    let videoURL: URL?
     
     init(view: VideoPlayerViewProtocol, controls: VideoPlayerControlsProtocol, videoURL: URL?) {
         self.view = view
@@ -25,7 +26,7 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
     
     func setupClosures() {
         controls.stateChangedClosure = { [weak self] in
-            if let state = self?.view.updateStatus() {
+            if let state = self?.view.setVideoPlayingStatus() {
                 self?.playerState = state
                 return state
             }
@@ -38,10 +39,10 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
             self?.view.jumpBackward()
         }
         controls.needVideoDurationClosure = { [weak self] in
-            return (self?.view.getDuration()).unwrapped
+            return (self?.view.getVideoDuration()).unwrapped
         }
         controls.sendTimeClosure = { [weak self] time in
-            self?.view.setVideoTime(value: time)
+            self?.view.moveVideoToTime(value: time)
         }
         controls.removeObserverClosure = { [weak self] in
             self?.view.removeObserver()
@@ -54,19 +55,23 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
         }
     }
     
-    func setupVideoLink() -> URL? {
+    func transit() {
+        view.transit()
+    }
+    
+    func setVideoURL() -> URL? {
         return videoURL
     }
     
-    func setDuration(value: String) {
+    func showVideoDuration(value: String) {
         controls.updateWholeTime(with: value)
     }
     
-    func updateProgress(value: Float) {
+    func updateCurrentVideoTimeSlider(value: Float) {
         controls.updateSlider(with: value)
     }
     
-    func updateProgressValue(value: String) {
+    func updateCurrentVideoTimeLabel(value: String) {
         controls.updateCurrentTime(with: value)
     }
     

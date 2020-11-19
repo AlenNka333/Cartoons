@@ -8,8 +8,7 @@
 
 import Foundation
 
-protocol DetailsViewProtocol: AnyObject {
+protocol DetailsViewProtocol: BaseViewControllerProtocol, DetailsTransitionDelegate {
     func setVideo(video: Cartoon)
-    func setError(_ error: Error)
     func setMessage(_ message: String)
 }

@@ -9,9 +9,10 @@
 import Foundation
 
 protocol VideoPlayerPresenterProtocol: AnyObject {
-    func setupVideoLink() -> URL?
+    func transit()
+    func setVideoURL() -> URL?
     func showError(error: Error)
-    func setDuration(value: String)
-    func updateProgress(value: Float)
-    func updateProgressValue(value: String)
+    func showVideoDuration(value: String)
+    func updateCurrentVideoTimeSlider(value: Float)
+    func updateCurrentVideoTimeLabel(value: String)
 }
