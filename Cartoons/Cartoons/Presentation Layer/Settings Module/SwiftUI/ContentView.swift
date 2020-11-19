@@ -13,14 +13,15 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
     weak var transitionDelegate: SettingsTransitionDelegate?
     var presenter: SettingsViewPresenterProtocol? {
         didSet {
-            presenter?.showProfileImage()
-            presenter?.showPhoneNumber()
-            cacheUpdated(presenter?.checkCache() ?? true)
+            presenter?.getUserProfileImage()
+            presenter?.showUserPhoneNumber()
+            cacheSizeChanged(presenter?.checkCacheIsEmpty() ?? true)
         }
     }
     
     init() {
         super.init(rootView: ContentView())
+        setupUI()
         rootView.signOutClosure = { [weak self] in
             self?.presenter?.signOut()
         }
@@ -28,14 +29,13 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
             guard let presenter = self?.presenter else {
                 return
             }
-            if presenter.checkCache() {
-                self?.presenter?.askPermission()
+            if presenter.checkCacheIsEmpty() {
+                self?.presenter?.clearCache()
             }
         }
         rootView.saveImageClosure = { [weak self] data in
-            self?.presenter?.saveProfileImage(imageData: data)
+            self?.presenter?.saveUserProfileImage(imageData: data)
         }
-        setupUI()
     }
     
     func setupUI() {
@@ -49,15 +49,12 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
 }
 
 extension SettingsViewHostingController: SettingsViewProtocol {
-    func cacheUpdated(_ flag: Bool) {
+    func cacheSizeChanged(_ flag: Bool) {
         rootView.cacheIndicator.flag = !flag
     }
     
-    func showPhoneLabel(number: String) {
-        rootView.number.number = number
-    }
-    
-    func editProfileImage() {
+    func showUserPhoneNumber(phoneNumber: String) {
+        rootView.number.number = phoneNumber
     }
     
     func transit() {
@@ -71,16 +68,13 @@ extension SettingsViewHostingController: SettingsViewProtocol {
         present(alertVC, animated: true)
     }
     
-    func showPermissionAlert(message: String) {
+    func showPermissionAlert(message: String, completion: @escaping ((Bool) -> Void)) {
         let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .permission) {
             switch $0 {
             case .accept:
-                guard let url = URL(string: UIApplication.openSettingsURLString) else {
-                    return
-                }
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                completion(true)
             case .cancel:
-                break
+                completion(false)
             }
         }
         present(alertVC, animated: true)
@@ -95,35 +89,6 @@ extension SettingsViewHostingController: SettingsViewProtocol {
     
     func showDefaultImage() {
         rootView.image = Image(R.image.profile_icon.name)
-    }
-    
-    func showSignOutAlert(message: String) {
-        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
-            switch action {
-            case .accept:
-                self?.presenter?.agreeButtonTapped()
-            case .cancel:
-                break
-            }
-        }
-        present(alertVC, animated: true)
-    }
-    
-    func showClearCachePermissionAlert(message: String) {
-        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .question) { [weak self] action in
-            switch action {
-            case .accept:
-                self?.presenter?.clearCache()
-            case .cancel:
-                break
-            }
-        }
-        present(alertVC, animated: true)
-    }
-    
-    func showSuccess(success: String) {
-        let alertVC = AlertService.alert(title: R.string.localizable.success(), body: success, alertType: .success)
-        present(alertVC, animated: true)
     }
 }
 

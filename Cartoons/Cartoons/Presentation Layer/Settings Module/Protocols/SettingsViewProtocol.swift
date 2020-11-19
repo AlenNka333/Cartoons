@@ -8,16 +8,11 @@
 
 import Foundation
 
-protocol SettingsViewProtocol: AnyObject {
-    func showPhoneLabel(number: String)
-    func showSuccess(success: String)
-    func showError(error: Error)
-    func showSignOutAlert(message: String)
-    func showClearCachePermissionAlert(message: String)
-    func showPermissionAlert(message: String)
+protocol SettingsViewProtocol: SettingsTransitionDelegate {
+    func showUserPhoneNumber(phoneNumber: String)
+    func showPermissionAlert(message: String, completion: @escaping((Bool) -> Void))
     func showProfileImage(path: URL?)
     func showDefaultImage()
-    func editProfileImage()
-    func cacheUpdated(_ flag: Bool)
-    func transit()
+    func showError(error: Error)
+    func cacheSizeChanged(_ flag: Bool)
 }

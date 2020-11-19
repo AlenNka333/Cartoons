@@ -17,21 +17,22 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         self.view = view
         self.serviceLocator = serviceLocator
         self.serviceProvider = serviceProvider
+        
         serviceProvider.settingsDelegate = self
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        view.showPhoneLabel(number: service.phoneNumber.unwrapped)
+        view.showUserPhoneNumber(phoneNumber: service.phoneNumber.unwrapped)
     }
     
-    func showPhoneNumber() {
+    func showUserPhoneNumber() {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        view.showPhoneLabel(number: service.phoneNumber.unwrapped)
+        view.showUserPhoneNumber(phoneNumber: service.phoneNumber.unwrapped)
     }
     
-    func showProfileImage() {
+    func getUserProfileImage() {
         guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
@@ -44,7 +45,8 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
             }
         }
     }
-    func saveProfileImage(imageData: Data) {
+    
+    func saveUserProfileImage(imageData: Data) {
         guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
@@ -57,50 +59,43 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
             }
         }
     }
-    func agreeButtonTapped() {
+    
+    func signOut() {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        service.signOut { [weak self] result in
-            switch result {
-            case .success:
-                self?.view.transit()
-            case .failure(let error):
-                self?.view.showError(error: error)
+        view.showPermissionAlert(message: R.string.localizable.question_to_sign_out()) { result in
+            service.signOut { [weak self] result in
+                switch result {
+                case .success:
+                    self?.view.transit()
+                case let .failure(error):
+                    self?.view.showError(error: error)
+                }
             }
         }
     }
-    func checkCache() -> Bool {
+    
+    func checkCacheIsEmpty() -> Bool {
         guard let service: FilesManager = serviceLocator.resolve(FilesManager.self) else {
             return true
         }
-        return service.checkCache()
+        return service.checkCacheIsEmpty()
     }
-    func signOut() {
-        view.showSignOutAlert(message: R.string.localizable.question_to_sign_out())
-    }
-    func editProfileImage() {
-        view.editProfileImage()
-    }
-    func showPermissionsAlert(error: Error) {
-        view.showPermissionAlert(message: error.localizedDescription)
-    }
-    func showSuccess(success: String) {
-        view.showSuccess(success: success)
-    }
-    func showError(error: Error) {
+    
+   func showError(error: Error) {
         view.showError(error: error)
     }
-    func askPermission() {
-        view.showClearCachePermissionAlert(message: R.string.localizable.question_to_clear_cache())
-    }
+    
     func clearCache() {
-        serviceProvider.clearCache()
+        view.showPermissionAlert(message: R.string.localizable.question_to_clear_cache()) { [weak self] result in
+            self?.serviceProvider.clearCache()
+        }
     }
 }
 
 extension SettingsPresenter: SettingsServiceProviderDelegate {
     func cacheUpdated(_ flag: Bool) {
-        view.cacheUpdated(flag)
+        view.cacheSizeChanged(flag)
     }
 }

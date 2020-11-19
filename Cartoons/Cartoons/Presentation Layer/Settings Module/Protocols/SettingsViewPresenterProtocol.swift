@@ -9,15 +9,10 @@
 import Foundation
 protocol SettingsViewPresenterProtocol: AnyObject {
     func signOut()
-    func askPermission()
-    func showError(error: Error)
-    func showSuccess(success: String)
-    func showPermissionsAlert(error: Error)
-    func agreeButtonTapped()
-    func editProfileImage()
-    func showProfileImage()
-    func saveProfileImage(imageData: Data)
-    func showPhoneNumber()
-    func checkCache() -> Bool
     func clearCache()
+    func getUserProfileImage()
+    func showUserPhoneNumber()
+    func checkCacheIsEmpty() -> Bool
+    func showError(error: Error)
+    func saveUserProfileImage(imageData: Data)
 }

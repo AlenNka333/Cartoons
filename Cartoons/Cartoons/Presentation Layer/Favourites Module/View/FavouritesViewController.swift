@@ -66,6 +66,7 @@ class FavouritesViewController: BaseViewController {
         collectionView?.showsVerticalScrollIndicator = false
         collectionView?.backgroundColor = R.color.main_orange()
         collectionView?.backgroundView = backgroundView
+        
         view.addSubview(UIView(frame: .zero))
         view.addSubview(collectionView ?? UICollectionView())
         collectionView?.register(FavouritesCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
@@ -84,18 +85,11 @@ extension FavouritesViewController: FavouritesViewProtocol {
         hidesBottomBarWhenPushed = false
     }
     
-    func showSuccess(success: String) {
-        let alertVC = AlertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) { _ in
-            return
-        }
-        present(alertVC, animated: true)
-    }
-    
     func updateDataList(data: [Cartoon]) {
-        cartoonsList = data
         if activityIndicator.isAnimating {
             stopActivityIndicator()
         }
+        cartoonsList = data
         applySnapshot()
     }
     
