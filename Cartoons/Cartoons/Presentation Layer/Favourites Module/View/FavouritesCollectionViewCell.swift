@@ -46,7 +46,7 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 15
-        contentView.backgroundColor = R.color.main_blue()
+        contentView.backgroundColor = R.color.downriver()
         
         contentView.addSubview(titleLabel)
         titleLabel.sizeToFit()

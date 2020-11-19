@@ -106,34 +106,26 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 14 colors.
+  /// This `R.color` struct is generated, and contains static references to 10 colors.
   struct color {
     /// Color `cinnabar`.
     static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
-    /// Color `coconut_cream`.
-    static let coconut_cream = Rswift.ColorResource(bundle: R.hostingBundle, name: "coconut_cream")
-    /// Color `disabled_button_color`.
-    static let disabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "disabled_button_color")
-    /// Color `enabled_button_color`.
-    static let enabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "enabled_button_color")
-    /// Color `main_blue`.
-    static let main_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_blue")
-    /// Color `main_orange`.
-    static let main_orange = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_orange")
-    /// Color `main_pink`.
-    static let main_pink = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_pink")
-    /// Color `navigation_bar_color`.
-    static let navigation_bar_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "navigation_bar_color")
-    /// Color `picotee_blue`.
-    static let picotee_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picotee_blue")
-    /// Color `sea_blue`.
-    static let sea_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "sea_blue")
-    /// Color `sky_blue`.
-    static let sky_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "sky_blue")
-    /// Color `tab_bar_color`.
-    static let tab_bar_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "tab_bar_color")
-    /// Color `table_cell`.
-    static let table_cell = Rswift.ColorResource(bundle: R.hostingBundle, name: "table_cell")
+    /// Color `dodger_blue`.
+    static let dodger_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "dodger_blue")
+    /// Color `downriver`.
+    static let downriver = Rswift.ColorResource(bundle: R.hostingBundle, name: "downriver")
+    /// Color `kimberly`.
+    static let kimberly = Rswift.ColorResource(bundle: R.hostingBundle, name: "kimberly")
+    /// Color `picton_blue`.
+    static let picton_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picton_blue")
+    /// Color `pigment_indigo`.
+    static let pigment_indigo = Rswift.ColorResource(bundle: R.hostingBundle, name: "pigment_indigo")
+    /// Color `regent_st_blue`.
+    static let regent_st_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "regent_st_blue")
+    /// Color `rolling_stone`.
+    static let rolling_stone = Rswift.ColorResource(bundle: R.hostingBundle, name: "rolling_stone")
+    /// Color `terracotta`.
+    static let terracotta = Rswift.ColorResource(bundle: R.hostingBundle, name: "terracotta")
     /// Color `wisteria`.
     static let wisteria = Rswift.ColorResource(bundle: R.hostingBundle, name: "wisteria")
 
@@ -147,110 +139,74 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "coconut_cream", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "dodger_blue", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func coconut_cream(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.coconut_cream, compatibleWith: traitCollection)
+    static func dodger_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.dodger_blue, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "disabled_button_color", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "downriver", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func disabled_button_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.disabled_button_color, compatibleWith: traitCollection)
+    static func downriver(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.downriver, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "enabled_button_color", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "kimberly", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func enabled_button_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.enabled_button_color, compatibleWith: traitCollection)
+    static func kimberly(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.kimberly, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "main_blue", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "picton_blue", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func main_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.main_blue, compatibleWith: traitCollection)
+    static func picton_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.picton_blue, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "main_orange", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "pigment_indigo", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func main_orange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.main_orange, compatibleWith: traitCollection)
+    static func pigment_indigo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.pigment_indigo, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "main_pink", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "regent_st_blue", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func main_pink(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.main_pink, compatibleWith: traitCollection)
+    static func regent_st_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.regent_st_blue, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "navigation_bar_color", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "rolling_stone", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func navigation_bar_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.navigation_bar_color, compatibleWith: traitCollection)
+    static func rolling_stone(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.rolling_stone, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "picotee_blue", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "terracotta", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func picotee_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.picotee_blue, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "sea_blue", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func sea_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.sea_blue, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "sky_blue", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func sky_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.sky_blue, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "tab_bar_color", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func tab_bar_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.tab_bar_color, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "table_cell", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func table_cell(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.table_cell, compatibleWith: traitCollection)
+    static func terracotta(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.terracotta, compatibleWith: traitCollection)
     }
     #endif
 

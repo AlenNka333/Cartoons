@@ -59,16 +59,16 @@ class CustomAlertViewController: UIViewController {
         switch type {
             case .success:
                 agreeButton.isHidden = true
-                cancelButton.backgroundColor = R.color.enabled_button_color()
+                cancelButton.backgroundColor = R.color.picton_blue()
             case .error:
                 agreeButton.isHidden = true
                 cancelButton.backgroundColor = R.color.cinnabar()
             case .question:
-                agreeButton.backgroundColor = R.color.enabled_button_color()
+                agreeButton.backgroundColor = R.color.picton_blue()
                 cancelButton.backgroundColor = R.color.cinnabar()
             case .permission:
                 agreeButton.setTitle(R.string.localizable.allow(), for: .normal)
-                agreeButton.backgroundColor = R.color.enabled_button_color()
+                agreeButton.backgroundColor = R.color.picton_blue()
                 cancelButton.backgroundColor = R.color.cinnabar()
         }
     }

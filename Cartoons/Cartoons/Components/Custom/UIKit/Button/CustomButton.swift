@@ -46,6 +46,6 @@ class CustomButton: UIButton {
         titleLabel?.font = R.font.aliceRegular(size: 15)
         layer.cornerRadius = 20
         layer.borderColor = .none
-        backgroundColor = R.color.navigation_bar_color()
+        backgroundColor = R.color.downriver()
     }
 }

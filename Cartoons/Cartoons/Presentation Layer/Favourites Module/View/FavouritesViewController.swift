@@ -64,7 +64,7 @@ class FavouritesViewController: BaseViewController {
         collectionView?.delaysContentTouches = false
         collectionView?.delegate = self
         collectionView?.showsVerticalScrollIndicator = false
-        collectionView?.backgroundColor = R.color.main_orange()
+        collectionView?.backgroundColor = R.color.terracotta()
         collectionView?.backgroundView = backgroundView
         
         view.addSubview(UIView(frame: .zero))

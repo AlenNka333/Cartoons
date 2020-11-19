@@ -84,7 +84,7 @@ class VerificationViewController: BaseViewController {
         codeTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         
         resendButton.isEnabled = false
-        resendButton.backgroundColor = R.color.disabled_button_color()
+        resendButton.backgroundColor = R.color.rolling_stone()
         resendButton.setTitle(R.string.localizable.resend_button_key(), for: .normal)
         resendButton.addTarget(self, action: #selector(resendButtonTappedAction), for: .touchUpInside)
         
@@ -147,7 +147,7 @@ extension VerificationViewController {
     
     @objc func resendButtonTappedAction() {
         resendButton.isEnabled = false
-        resendButton.backgroundColor = R.color.disabled_button_color()
+        resendButton.backgroundColor = R.color.rolling_stone()
         
         presenter?.startTimer()
         presenter?.resendVerificationCode()
@@ -170,7 +170,7 @@ extension VerificationViewController: VerificationViewProtocol {
         timerLabel.text = "0"
         
         resendButton.isEnabled = true
-        resendButton.backgroundColor = R.color.navigation_bar_color()
+        resendButton.backgroundColor = R.color.downriver()
     }
     
     func updateTimerLabel(time: Int) {

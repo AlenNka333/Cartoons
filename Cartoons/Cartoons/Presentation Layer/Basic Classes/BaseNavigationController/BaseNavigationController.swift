@@ -33,7 +33,7 @@ class BaseNavigationController: UINavigationController {
     private var navigationBarStyle = NavigationBarStyle.system
     private lazy var navigationBarAppearance: UINavigationBarAppearance = {
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = R.color.navigation_bar_color()
+        appearance.backgroundColor = R.color.downriver()
         appearance.largeTitleTextAttributes = [ .foregroundColor: UIColor.white,
                                                 .font: R.font.aliceRegular(size: Const.titleSize).unwrapped]
         appearance.shadowColor = .black

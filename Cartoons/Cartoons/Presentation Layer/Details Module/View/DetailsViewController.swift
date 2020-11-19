@@ -17,7 +17,7 @@ class DetailsViewController: BaseViewController {
     private var mainPoster = CartoonPosterView()
     private lazy var openPlayerButton: CustomButton = {
         let button = CustomButton()
-        button.backgroundColor = R.color.sea_blue()
+        button.backgroundColor = R.color.regent_st_blue()
         button.setAttributedTitle(NSAttributedString(string: R.string.localizable.start_watching(),
                                                      attributes: [.foregroundColor: UIColor.white,
                                                                   .font: R.font.aliceRegular(size: 20).unwrapped]),
@@ -26,7 +26,7 @@ class DetailsViewController: BaseViewController {
     }()
     private lazy var downloadButton: CustomButton = {
         let button = CustomButton()
-        button.backgroundColor = R.color.sky_blue()
+        button.backgroundColor = R.color.dodger_blue()
         button.setImage(R.image.download_button(), for: .normal)
         return button
     }()
@@ -54,7 +54,7 @@ class DetailsViewController: BaseViewController {
     
     override func setupUI() {
         super.setupUI()
-        view.backgroundColor = R.color.navigation_bar_color()
+        view.backgroundColor = R.color.downriver()
         view.isUserInteractionEnabled = true
         
         openPlayerButton.addTarget(self, action: #selector(openPlayer), for: .touchUpInside)

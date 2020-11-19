@@ -66,7 +66,7 @@ class CartoonsViewController: BaseViewController {
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: configureLayout())
         collectionView?.delegate = self
         collectionView?.showsVerticalScrollIndicator = false
-        collectionView?.backgroundColor = R.color.main_orange()
+        collectionView?.backgroundColor = R.color.terracotta()
         collectionView?.backgroundView = backgroundView
         collectionView?.delaysContentTouches = false
         

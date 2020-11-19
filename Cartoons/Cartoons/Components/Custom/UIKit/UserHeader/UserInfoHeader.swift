@@ -43,7 +43,7 @@ class UserInfoHeader: UIView {
     
     func setupUI() {
         addSubview(imageView)
-        backgroundColor = R.color.picotee_blue()
+        backgroundColor = R.color.kimberly()
         let tap = UITapGestureRecognizer(target: self, action: #selector(editProfileImage))
         imageView.addGestureRecognizer(tap)
         imageView.snp.makeConstraints {

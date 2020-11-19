@@ -187,7 +187,7 @@ struct ContentView: View {
                     .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 50, alignment: .center)
                     .foregroundColor(Color.white)
                     .font(Font.custom(R.font.aliceRegular.fontName, size: 15))
-                    .background(Color(R.color.navigation_bar_color.name))
+                    .background(Color(R.color.downriver.name))
                     .cornerRadius(8)
             }
             Button(action: {
@@ -200,7 +200,7 @@ struct ContentView: View {
                     .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 50, alignment: .center)
                     .foregroundColor(Color.white)
                     .font(Font.custom(R.font.aliceRegular.fontName, size: 15))
-                    .background(Color(R.color.navigation_bar_color.name))
+                    .background(Color(R.color.downriver.name))
                     .cornerRadius(8)
             }
             .disabled(cacheIndicator.flag)
@@ -226,7 +226,7 @@ struct ContentView: View {
         .padding(.top, 5)
         .edgesIgnoringSafeArea(.bottom)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
-        .background(Color(R.color.main_orange.name))
+        .background(Color( R.color.terracotta.name))
     }
 }
 

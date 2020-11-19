@@ -69,7 +69,7 @@ class AuthorizationViewController: BaseViewController {
         
         signInButton.setTitle(R.string.localizable.get_code_button_key(), for: .normal)
         signInButton.isEnabled = true
-        signInButton.backgroundColor = R.color.navigation_bar_color()
+        signInButton.backgroundColor = R.color.downriver()
         signInButton.addTarget(self, action: #selector(buttonTappedToSendCodeAction), for: .touchUpInside)
         signInButton.snp.makeConstraints {
             $0.height.equalTo(50)
@@ -88,7 +88,7 @@ class AuthorizationViewController: BaseViewController {
     override func showError(error: Error) {
         super.showError(error: error)
         signInButton.isEnabled = true
-        signInButton.backgroundColor = R.color.navigation_bar_color()
+        signInButton.backgroundColor = R.color.downriver()
     }
 }
 
@@ -108,7 +108,7 @@ extension AuthorizationViewController {
             return
         }
         signInButton.isEnabled = false
-        signInButton.backgroundColor = R.color.disabled_button_color()
+        signInButton.backgroundColor = R.color.rolling_stone()
         presenter.sendRequest(with: phoneNumber)
     }
 }

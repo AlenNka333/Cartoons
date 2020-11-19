@@ -17,7 +17,7 @@ class OnboardingHostingController: UIHostingController<OnboardingView> {
         rootView.transitionClosure = {
             self.transitionDelegate?.transit()
         }
-        view.backgroundColor = R.color.picotee_blue()
+        view.backgroundColor = R.color.kimberly()
     }
     
     @objc required dynamic init?(coder aDecoder: NSCoder) {
@@ -49,14 +49,14 @@ struct OnboardingView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
             getSinWave(interval: universalSize.width, amplitude: 200, baseline: 150 + universalSize.height / 2)
-                .foregroundColor(Color(R.color.main_orange.name).opacity(0.6))
+                .foregroundColor(Color(R.color.terracotta.name).opacity(0.6))
                 .offset(x: isAnimated ? -1 * universalSize.width : 0)
                 .animation(
                     Animation.linear(duration: 2)
                         .repeatForever(autoreverses: false)
                 )
             getSinWave(interval: universalSize.width * 1.2, amplitude: 150, baseline: 200 + universalSize.height / 2)
-                .foregroundColor(Color(R.color.navigation_bar_color.name).opacity(0.6))
+                .foregroundColor(Color(R.color.downriver.name).opacity(0.6))
                 .offset(x: isAnimated ? -1 * (universalSize.width * 1.2) : 0)
                 .animation(
                     Animation.linear(duration: 5)
