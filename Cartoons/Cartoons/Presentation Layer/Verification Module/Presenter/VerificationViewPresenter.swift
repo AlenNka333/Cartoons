@@ -15,22 +15,25 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
     
     let serviceLocator: Locator
     let verificationId: String
-    let number: String
+    let phoneNumber: String
+    
     var view: VerificationViewProtocol
-    var timer = Constant.totalTime
+    var time = Constant.totalTime
     var successSessionClosure: (() -> Void)?
     
-    init(view: VerificationViewProtocol, serviceLocator: Locator, verificationId: String, number: String) {
+    init(view: VerificationViewProtocol, serviceLocator: Locator, verificationId: String, phoneNumber: String) {
         self.view = view
         self.serviceLocator = serviceLocator
         self.verificationId = verificationId
-        self.number = number
-        view.setLabelText(number: number)
+        self.phoneNumber = phoneNumber
+        
+        view.appendPhoneNumber(phoneNumber: phoneNumber)
     }
     
     func startTimer() {
-        timer = Constant.totalTime
-        view.startTimer(timer: Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true), time: timer)
+        time = Constant.totalTime
+        view.startTimer(timer: Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true),
+                        time: time)
     }
     
     func endTimer() {
@@ -45,7 +48,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        service.verifyUser(number: number) { [weak self] result in
+        service.verifyUser(phoneNumber: phoneNumber) { [weak self] result in
             switch result {
             case .success:
                 break
@@ -59,6 +62,7 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
+        
         service.signIn(verificationId: verificationId, verifyCode: verificationCode) { [weak self] result in
             switch result {
             case .success:
@@ -73,9 +77,9 @@ class VerificationPresenter: VerificationViewPresenterProtocol {
 
 extension VerificationPresenter {
     @objc func updateTime() {
-        view.updateTime(timer: timer)
-        if timer != 0 {
-            timer -= 1
+        view.updateTimerLabel(time: time)
+        if time != 0 {
+            time -= 1
         } else {
             view.endTimer()
         }

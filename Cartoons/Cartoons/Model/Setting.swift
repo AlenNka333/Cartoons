@@ -10,10 +10,10 @@ import Foundation
 
 class Setting: Hashable {
     private var id = UUID()
-    var title: String
+    var settingName: String
     
-    init(title: String) {
-        self.title = title
+    init(settingName: String) {
+        self.settingName = settingName
     }
     
     func hash(into hasher: inout Hasher) {

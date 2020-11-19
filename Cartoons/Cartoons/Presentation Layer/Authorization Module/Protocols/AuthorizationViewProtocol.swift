@@ -8,6 +8,5 @@
 
 import Foundation
 
-protocol AuthorizationViewProtocol: BaseViewProtocol, AnyObject {
-    func transit(verificationId: String, number: String)
+protocol AuthorizationViewProtocol: BaseViewControllerProtocol, AuthorizationTransitionProtocol {
 }

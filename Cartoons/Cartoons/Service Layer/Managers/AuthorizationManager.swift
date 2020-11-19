@@ -10,8 +10,8 @@ import FirebaseAuth
 import Foundation
 
 class AuthorizationManager: AuthorizationManagerProtocol {
-    func verifyUser(number: String, completion: @escaping (Result<String, Error>) -> Void) {
-        PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { verificationID, error in
+    func verifyUser(phoneNumber: String, completion: @escaping (Result<String, Error>) -> Void) {
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
             if let error = error {
                 completion(.failure(error))
                 return

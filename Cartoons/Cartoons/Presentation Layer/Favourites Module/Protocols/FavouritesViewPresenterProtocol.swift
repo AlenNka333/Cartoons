@@ -7,7 +7,8 @@
 //
 
 import Foundation
-protocol FavouritesViewPresenterProtocol: PresenterProtocol, AnyObject {
+protocol FavouritesViewPresenterProtocol: AnyObject {
     func showSuccess(success: String)
+    func showError(error: Error)
     func getData()
 }

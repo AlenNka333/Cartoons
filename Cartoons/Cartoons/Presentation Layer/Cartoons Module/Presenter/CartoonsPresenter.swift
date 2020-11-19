@@ -17,15 +17,16 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
         self.view = view
         self.serviceLocator = serviceLocator
         self.serviceProviderFacade = serviceProviderFacade
+        
         serviceProviderFacade.cartoonsDataSourceDelegate = self
     }
     
-    func getData() {
+    func getDataList() {
         serviceProviderFacade.getServerData()
     }
     
-    func showSuccess(success: String) {
-        view.showSuccess(success: success)
+    func transit(with cartoon: Cartoon) {
+        view.transit(cartoon: cartoon)
     }
     
     func showError(error: Error) {
@@ -34,10 +35,10 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
 }
 
 extension CartoonsPresenter: ServiceProviderDelegate {
-    func updateDataSource(_ data: [Cartoon]?) {
+    func updateDataList(_ data: [Cartoon]?) {
         guard let data = data else {
             return
         }
-        view.setDataSource(with: data)
+        view.updateDataList(with: data)
     }
 }

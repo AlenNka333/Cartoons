@@ -8,7 +8,8 @@
 
 import Foundation
 
-protocol CartoonsViewPresenterProtocol: PresenterProtocol, AnyObject {
-    func getData()
-    func showSuccess(success: String)
+protocol CartoonsViewPresenterProtocol: AnyObject {
+    func getDataList()
+    func transit(with cartoon: Cartoon)
+    func showError(error: Error)
 }

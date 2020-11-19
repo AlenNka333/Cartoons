@@ -11,7 +11,7 @@ import UIKit
 class AuthorizationCoordinator: Coordinator {
     let serviceLocator: Locator
     
-    var parent: Coordinator?
+    var parentCoordinator: Coordinator?
     var rootController: UINavigationController
     var successSessionClosure: (() -> Void)?
     
@@ -26,19 +26,19 @@ class AuthorizationCoordinator: Coordinator {
         rootController.pushViewController(view, animated: true)
     }
     
-    func openVerificationScreen(verificationId: String, number: String) {
+    func openVerificationScreen(verificationId: String, phoneNumber: String) {
         let view = AuthorizationAssembly.makeVerificationController(serviceLocator: serviceLocator,
                                                                     verificationId: verificationId,
-                                                                    number: number)
+                                                                    phoneNumber: phoneNumber)
         view.transitionDelegate = self
         view.modalPresentationStyle = .fullScreen
         rootController.pushViewController(view, animated: true)
     }
 }
 
-extension AuthorizationCoordinator: AuthorizationTransitionDelegate {
-    func transit(_ verificationId: String, number: String) {
-        openVerificationScreen(verificationId: verificationId, number: number)
+extension AuthorizationCoordinator: AuthorizationTransitionProtocol {
+    func transit(_ verificationId: String, _ phoneNumber: String) {
+        openVerificationScreen(verificationId: verificationId, phoneNumber: phoneNumber)
     }
 }
 

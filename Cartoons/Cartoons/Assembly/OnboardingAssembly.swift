@@ -19,8 +19,6 @@ class OnboardingAssembly: Assembly {
     
     static func makeOnboardingController() -> OnboardingHostingController {
         let view = OnboardingHostingController()
-        let presenter = PageControllerPresenter(view: view)
-        view.presenter = presenter
         return view
     }
 }

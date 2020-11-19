@@ -8,40 +8,40 @@
 import UIKit
 
 enum FileState {
-    case onServer
+    case inStorage
     case inProgress
-    case loaded
+    case downloaded
 }
 
 class Cartoon: Hashable {
     var id = UUID()
     var title: String?
-    var state: FileState
-    var thumbnail: URL?
-    var link: URL?
-    var localPath: URL?
-    var progress: Float
+    var loadingState: FileState
+    var thumbnailImageURL: URL?
+    var globalCartoonLink: URL?
+    var localCartoonLink: URL?
+    var loadedBytesCount: Float
     
     init(title: String? = nil,
-         state: FileState = .onServer,
-         thumbnail: URL? = nil,
-         link: URL? = nil,
-         localPath: URL? = nil,
-         progress: Float = 0.0) {
+         loadingState: FileState = .inStorage,
+         thumbnailImageURL: URL? = nil,
+         globalCartoonLink: URL? = nil,
+         localCartoonLink: URL? = nil,
+         loadedBytesCount: Float = 0.0) {
         self.title = title
-        self.thumbnail = thumbnail
-        self.link = link
-        self.localPath = localPath
-        self.state = state
-        self.progress = progress
+        self.loadingState = loadingState
+        self.thumbnailImageURL = thumbnailImageURL
+        self.globalCartoonLink = globalCartoonLink
+        self.localCartoonLink = localCartoonLink
+        self.loadedBytesCount = loadedBytesCount
     }
     
-    func setState(_ state: FileState) {
-        self.state = state
+    func setState(_ loadingState: FileState) {
+        self.loadingState = loadingState
     }
     
-    func setProgress(_ progress: Float) {
-        self.progress = progress
+    func setProgress(_ loadedBytesCount: Float) {
+        self.loadedBytesCount = loadedBytesCount
     }
     
     func hash(into hasher: inout Hasher) {

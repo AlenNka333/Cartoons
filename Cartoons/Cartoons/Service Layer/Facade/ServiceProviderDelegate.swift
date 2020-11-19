@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ServiceProviderDelegate: AnyObject {
-    func updateDataSource(_ data: [Cartoon]?)
+    func updateDataList(_ data: [Cartoon]?)
 }
 
 protocol FavouritesServiceProviderDelegate: ServiceProviderDelegate {

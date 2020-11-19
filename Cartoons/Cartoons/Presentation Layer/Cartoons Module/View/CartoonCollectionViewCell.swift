@@ -19,19 +19,19 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 15
         return imageView
     }()
-    var titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = BorderedLabel(with: .init(top: 5, left: 10, bottom: 10, right: 5))
         label.textColor = .white
         label.clipsToBounds = true
-        label.font = UIFont(name: R.font.cinzelDecorativeBold.fontName, size: 25)
-        label.backgroundColor = R.color.navigation_bar_color()?.withAlphaComponent(0.6)
         label.layer.cornerRadius = 15
-        label.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         label.numberOfLines = .zero
         label.textAlignment = .center
+        label.font = UIFont(name: R.font.cinzelDecorativeBold.fontName, size: 25)
+        label.backgroundColor = R.color.navigation_bar_color()?.withAlphaComponent(0.6)
+        label.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         return label
     }()
-    private var favouritesIndicatorImage: UIImageView = {
+    private var loadingIndicatorImageView: UIImageView = {
         let view = UIImageView()
         view.image = R.image.star()
         return view
@@ -39,29 +39,14 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     
     var video: Cartoon? {
         didSet {
-            if let title = video?.title, let thumbnail = video?.thumbnail {
+            if let title = video?.title, let thumbnail = video?.thumbnailImageURL {
                 thumbnailImageView.kf.setImage(with: thumbnail)
                 titleLabel.text = title
-            } else if let title = video?.title, let link = video?.link {
-                generateThumbnail(with: link)
+            } else if let title = video?.title, let link = video?.globalCartoonLink {
+                generateThumbnailImage(with: link)
                 titleLabel.text = title
             }
         }
-    }
-    
-    func generateThumbnail(with url: URL) {
-        let avAsset = AVURLAsset(url: url)
-        DispatchQueue.global(qos: .userInteractive).async {
-            let image = UIImage.generateThumbnail(asset: avAsset)
-            DispatchQueue.main.async {
-                self.thumbnailImageView.image = image
-            }
-        }
-    }
-    
-    func setToFavourites() {
-        favouritesIndicatorImage.image = favouritesIndicatorImage.image?.withRenderingMode(.alwaysTemplate)
-        favouritesIndicatorImage.tintColor = UIColor.yellow
     }
     
     override init(frame: CGRect) {
@@ -82,8 +67,8 @@ class CartoonCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview()
             $0.width.equalTo(contentView.frame.width * 0.7)
         }
-        contentView.addSubview(favouritesIndicatorImage)
-        favouritesIndicatorImage.snp.makeConstraints {
+        contentView.addSubview(loadingIndicatorImageView)
+        loadingIndicatorImageView.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-10)
             $0.top.equalToSuperview().offset(10)
             $0.size.equalTo(40)
@@ -93,7 +78,7 @@ class CartoonCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         thumbnailImageView.image = nil
-        favouritesIndicatorImage.image = R.image.star()
+        loadingIndicatorImageView.image = R.image.star()
     }
     
     required init?(coder: NSCoder) {
@@ -114,8 +99,10 @@ class CartoonCollectionViewCell: UICollectionViewCell {
         super.touchesCancelled(touches, with: event)
         animate(isHighlighted: false)
     }
-    
-    private func animate(isHighlighted: Bool, completion: ((Bool) -> Void)?=nil) {
+}
+
+extension CartoonCollectionViewCell {
+    private func animate(isHighlighted: Bool, completion: ((Bool) -> Void)? = nil) {
         isHighlighted ? (UIView.animate(withDuration: 0.5,
                                         delay: 0,
                                         usingSpringWithDamping: 1,
@@ -134,5 +121,20 @@ class CartoonCollectionViewCell: UICollectionViewCell {
                                 self.transform = .identity
                               },
                               completion: completion))
+    }
+    
+    func generateThumbnailImage(with url: URL) {
+        let avAsset = AVURLAsset(url: url)
+        DispatchQueue.global(qos: .userInteractive).async {
+            let image = UIImage.generateThumbnail(asset: avAsset)
+            DispatchQueue.main.async {
+                self.thumbnailImageView.image = image
+            }
+        }
+    }
+    
+    func highlightIndicator() {
+        loadingIndicatorImageView.image = loadingIndicatorImageView.image?.withRenderingMode(.alwaysTemplate)
+        loadingIndicatorImageView.tintColor = UIColor.yellow
     }
 }

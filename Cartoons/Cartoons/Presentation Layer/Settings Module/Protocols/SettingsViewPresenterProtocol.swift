@@ -7,7 +7,7 @@
 //
 
 import Foundation
-protocol SettingsViewPresenterProtocol: PresenterProtocol, AnyObject {
+protocol SettingsViewPresenterProtocol: AnyObject {
     func signOut()
     func askPermission()
     func showError(error: Error)

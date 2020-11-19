@@ -8,11 +8,12 @@
 
 import Foundation
 
-protocol VerificationViewPresenterProtocol: PresenterProtocol, AnyObject {
+protocol VerificationViewPresenterProtocol: AnyObject {
     var successSessionClosure: (() -> Void)? { get set }
     
     func startTimer()
     func endTimer()
     func verifyUser(verificationCode: String)
     func resendVerificationCode()
+    func showError(error: Error)
 }

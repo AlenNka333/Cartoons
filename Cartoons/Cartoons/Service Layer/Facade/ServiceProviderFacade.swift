@@ -29,7 +29,7 @@ class ServiceProviderFacade: Facade {
             case .success(let cartoons):
                 self?.serverData = cartoons
                 self?.findInLocalFolder()
-                self?.cartoonsDataSourceDelegate?.updateDataSource(self?.serverData)
+                self?.cartoonsDataSourceDelegate?.updateDataList(self?.serverData)
             case .failure(let error):
                 self?.errorDelegate?.show(error: error)
             }
@@ -38,11 +38,11 @@ class ServiceProviderFacade: Facade {
     
     func findInLocalFolder() {
         serverData.forEach { item in
-            guard let url = item.link else {
+            guard let url = item.globalCartoonLink else {
                 return
             }
             if fileManager.checkExitingFile(with: url) {
-                item.state = .loaded
+                item.loadingState = .downloaded
             }
         }
     }
@@ -50,9 +50,9 @@ class ServiceProviderFacade: Facade {
     func clearCache() {
         fileManager.clearCache()
         localData.removeAll { item -> Bool in
-            item.state != .inProgress
+            item.loadingState != .inProgress
         }
-        favouritesDataSourceDelegate?.updateDataSource(localData)
+        favouritesDataSourceDelegate?.updateDataList(localData)
         getServerData()
     }
     
@@ -62,7 +62,7 @@ class ServiceProviderFacade: Facade {
             case .success(let data):
                 self?.makeDataSource(data)
                 self?.checkBackgroundOperation()
-                self?.favouritesDataSourceDelegate?.updateDataSource(self?.localData)
+                self?.favouritesDataSourceDelegate?.updateDataList(self?.localData)
             case .failure(let error):
                 self?.errorDelegate?.show(error: error)
             }
@@ -72,7 +72,7 @@ class ServiceProviderFacade: Facade {
     func makeDataSource(_ data: [URL]) {
         if localData.isEmpty {
             data.forEach { item in
-                localData.append(Cartoon(title: item.deletingPathExtension().lastPathComponent, state: .loaded, localPath: item))
+                localData.append(Cartoon(title: item.deletingPathExtension().lastPathComponent, loadingState: .downloaded, localCartoonLink: item))
             }
         } else {
             data.forEach { item in
@@ -80,7 +80,7 @@ class ServiceProviderFacade: Facade {
                     cartoon.title == item.deletingPathExtension().lastPathComponent
                 }
                 if index == nil {
-                    localData.append(Cartoon(title: item.deletingPathExtension().lastPathComponent, state: .loaded, localPath: item))
+                    localData.append(Cartoon(title: item.deletingPathExtension().lastPathComponent, loadingState: .downloaded, localCartoonLink: item))
                 }
             }
         }
@@ -91,12 +91,12 @@ class ServiceProviderFacade: Facade {
     
     func checkBackgroundOperation() {
         let index = localData.firstIndex { element -> Bool in
-            element.state == .inProgress
+            element.loadingState == .inProgress
         }
         if index == nil {
             loadingService.checkOperationQueue { [weak self] operationCount in
                 if operationCount != 0 {
-                    self?.localData.append(Cartoon(state: .inProgress))
+                    self?.localData.append(Cartoon(loadingState: .inProgress))
                 }
             }
         }
@@ -105,8 +105,8 @@ class ServiceProviderFacade: Facade {
 
 extension ServiceProviderFacade: LoadingServiceDelegate {
     func setOperation(with link: URL) {
-        localData.append(Cartoon(title: link.deletingPathExtension().lastPathComponent, state: .inProgress))
-        favouritesDataSourceDelegate?.updateDataSource(localData)
+        localData.append(Cartoon(title: link.deletingPathExtension().lastPathComponent, loadingState: .inProgress))
+        favouritesDataSourceDelegate?.updateDataList(localData)
     }
     
     func updateProgress(_ progress: Float) {
@@ -117,13 +117,13 @@ extension ServiceProviderFacade: LoadingServiceDelegate {
         settingsDelegate?.cacheUpdated(true)
         getServerData()
         localData.removeAll { item -> Bool in
-            item.state == .inProgress
+            item.loadingState == .inProgress
         }
         fileManager.getLocalData { [weak self] result in
             switch result {
             case .success(let data):
                 self?.makeDataSource(data)
-                self?.favouritesDataSourceDelegate?.updateDataSource(self?.localData)
+                self?.favouritesDataSourceDelegate?.updateDataList(self?.localData)
             case .failure(let error):
                 self?.errorDelegate?.show(error: error)
             }

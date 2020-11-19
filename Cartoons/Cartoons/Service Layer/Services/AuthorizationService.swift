@@ -24,11 +24,11 @@ class AuthorizationService {
         self.authorizationManager = authorizationManager
     }
     
-    func verifyUser(number: String, completion: @escaping (Result<String, Error>) -> Void) {
-        let formattedNumber = String(number.filter { !" -".contains($0) })
-        if PhoneNumberValidationHelper.checkValidation(number: formattedNumber, type: NumberFormat.bel) {
+    func verifyUser(phoneNumber: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let formattedNumber = String(phoneNumber.filter { !" -".contains($0) })
+        if PhoneNumberValidationHelper.checkValidation(phoneNumber: formattedNumber, type: NumberFormat.bel) {
             if !formattedNumber.isEmpty {
-                authorizationManager.verifyUser(number: number, completion: completion)
+                authorizationManager.verifyUser(phoneNumber: phoneNumber, completion: completion)
             } else {
                 completion(.failure(AuthorizationError.emptyPhoneNumber))
             }

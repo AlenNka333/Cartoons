@@ -36,7 +36,7 @@ extension FavouritesPresenter: FavouritesServiceProviderDelegate {
         view.updateProgress(progress)
     }
     
-    func updateDataSource(_ data: [Cartoon]?) {
+    func updateDataList(_ data: [Cartoon]?) {
         view.setData(data: data ?? [Cartoon]())
     }
 }

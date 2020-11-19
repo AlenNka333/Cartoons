@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol AuthorizationTransitionDelegate: AnyObject {
-    func transit(_ verificationId: String, number: String)
+protocol AuthorizationTransitionProtocol: AnyObject {
+    func transit(_ verificationId: String, _ phoneNumber: String)
 }

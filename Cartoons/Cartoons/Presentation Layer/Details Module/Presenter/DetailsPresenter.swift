@@ -21,7 +21,7 @@ class DetailsPresenter: DetailsViewPresenterProtocol {
     func downloadFile(_ file: Cartoon) {
         guard let loadingService: LoadingService = serviceLocator.resolve(LoadingService.self),
               let filesManager: FilesManager = serviceLocator.resolve(FilesManager.self),
-              let link = file.link else {
+              let link = file.globalCartoonLink else {
             return
         }
         if !filesManager.checkExitingFile(with: link) {

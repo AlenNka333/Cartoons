@@ -12,7 +12,7 @@ import UIKit
 class FavouritesCoordinator: Coordinator {
     let serviceProviderFacade: ServiceProviderFacade
     
-    var parent: Coordinator?
+    var parentCoordinator: Coordinator?
     var rootController: UINavigationController?
     
     init(rootController: UINavigationController, serviceProviderFacade: ServiceProviderFacade) {
@@ -21,7 +21,7 @@ class FavouritesCoordinator: Coordinator {
     }
     
     func start() {
-        let favouritesController = FavouritesAssembly.makeFavouritesController(serviceProviderFacade: serviceProviderFacade)
+        let favouritesController = FavouritesModuleAssembly.makeFavouritesController(serviceProviderFacade: serviceProviderFacade)
         favouritesController.transitionDelegate = self
         rootController?.pushViewController(favouritesController, animated: false)
     }
@@ -29,7 +29,7 @@ class FavouritesCoordinator: Coordinator {
 
 extension FavouritesCoordinator {
     func openVideoPlayer(with link: URL?) {
-        let player = PlayerAssembly.makePlayerController(with: link)
+        let player = PlayerModuleAssembly.makePlayerController(with: link)
         player.transitionDelegate = self
         rootController?.pushViewController(player, animated: true)
     }

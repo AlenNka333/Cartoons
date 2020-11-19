@@ -46,7 +46,7 @@ class LoadingService: NSObject {
     }
     
     func downloadFile(_ file: Cartoon, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let link = file.link else {
+        guard let link = file.globalCartoonLink else {
             print("Invalid link")
             return
         }

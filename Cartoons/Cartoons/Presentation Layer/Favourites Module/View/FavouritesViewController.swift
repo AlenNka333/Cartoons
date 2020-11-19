@@ -109,7 +109,7 @@ extension FavouritesViewController: UICollectionViewDelegate {
         guard let cartoon = dataSource?.itemIdentifier(for: indexPath) else {
             return
         }
-        guard let link = cartoon.localPath else {
+        guard let link = cartoon.localCartoonLink else {
             print("Invalid link")
             return
         }
@@ -129,9 +129,9 @@ extension FavouritesViewController {
         let dataSource = DataSource(collectionView: collectionView ?? UICollectionView()) { collectionView, indexPath, cartoon -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
                                                           for: indexPath) as? FavouritesCollectionViewCell
-            if cartoon.state == .inProgress {
+            if cartoon.loadingState == .inProgress {
                 cell?.setProgressView()
-                cell?.progress = cartoon.progress
+                cell?.progress = cartoon.loadedBytesCount
                 cell?.video = cartoon
             } else {
                 cell?.video = cartoon

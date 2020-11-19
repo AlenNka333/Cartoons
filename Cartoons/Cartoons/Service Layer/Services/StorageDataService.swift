@@ -55,9 +55,14 @@ class StorageDataService {
                         let cartoon = findItemByType(response: response, ".mp4")
                         let thumbnail = findItemByType(response: response, ".png")
                         if let image = thumbnail {
-                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped, state: .onServer, thumbnail: image.absoluteURL, link: cartoon))
+                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped,
+                                                          loadingState: .inStorage,
+                                                          thumbnailImageURL: image.absoluteURL,
+                                                          globalCartoonLink: cartoon))
                         } else {
-                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped, state: .onServer, link: cartoon))
+                            self?.cartoons.append(Cartoon(title: getTitleFromUrl(url: cartoon).unwrapped,
+                                                          loadingState: .inStorage,
+                                                          globalCartoonLink: cartoon))
                         }
                         dispatchGroup.leave()
                     }

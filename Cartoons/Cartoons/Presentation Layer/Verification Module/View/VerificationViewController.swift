@@ -17,6 +17,9 @@ class VerificationViewController: BaseViewController {
     weak var transitionDelegate: VerificationTransitionDelegate?
     var presenter: VerificationViewPresenterProtocol?
     var countdownTimer: Timer?
+   
+    private lazy var codeTextField = CustomTextField()
+    private lazy var resendButton = CustomButton()
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .center
@@ -25,14 +28,12 @@ class VerificationViewController: BaseViewController {
         stack.spacing = 20
         return stack
     }()
-    private lazy var codeTextField = CustomTextField()
-    private lazy var resendButton = CustomButton()
     private lazy var circleImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: R.image.ellipse.name)
         return image
     }()
-    private lazy var verificationLabel: UILabel = {
+    private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.text = R.string.localizable.verification_message_key()
         label.numberOfLines = 0
@@ -87,15 +88,15 @@ class VerificationViewController: BaseViewController {
         resendButton.setTitle(R.string.localizable.resend_button_key(), for: .normal)
         resendButton.addTarget(self, action: #selector(resendButtonTappedAction), for: .touchUpInside)
         
-        view.addSubview(verificationLabel)
-        verificationLabel.snp.makeConstraints {
+        view.addSubview(messageLabel)
+        messageLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(160)
             $0.leading.trailing.equalToSuperview().inset(50)
         }
         view.addSubview(circleImageView)
         circleImageView.snp.makeConstraints {
             $0.size.equalTo(80)
-            $0.top.equalTo(verificationLabel.snp.bottom).offset(20)
+            $0.top.equalTo(messageLabel.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
         }
         circleImageView.addSubview(timerLabel)
@@ -147,14 +148,15 @@ extension VerificationViewController {
     @objc func resendButtonTappedAction() {
         resendButton.isEnabled = false
         resendButton.backgroundColor = R.color.disabled_button_color()
+        
         presenter?.startTimer()
         presenter?.resendVerificationCode()
     }
 }
 
 extension VerificationViewController: VerificationViewProtocol {
-    func setLabelText(number: String) {
-        verificationLabel.text?.append("\n\(number)")
+    func appendPhoneNumber(phoneNumber: String) {
+        messageLabel.text?.append("\n\(phoneNumber)")
     }
     
     func startTimer(timer: Timer, time: Int) {
@@ -164,14 +166,15 @@ extension VerificationViewController: VerificationViewProtocol {
     }
     
     func endTimer() {
-        resendButton.isEnabled = true
-        resendButton.backgroundColor = R.color.navigation_bar_color()
         countdownTimer?.invalidate()
         timerLabel.text = "0"
+        
+        resendButton.isEnabled = true
+        resendButton.backgroundColor = R.color.navigation_bar_color()
     }
     
-    func updateTime(timer: Int) {
-        timerLabel.text = "\(timer)"
+    func updateTimerLabel(time: Int) {
+        timerLabel.text = "\(time)"
     }
     
     func stopTimer() {

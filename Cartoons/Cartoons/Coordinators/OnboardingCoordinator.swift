@@ -9,7 +9,7 @@
 import UIKit
 
 class OnboardingCoordinator: Coordinator {
-    var parent: Coordinator?
+    var parentCoordinator: Coordinator?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     

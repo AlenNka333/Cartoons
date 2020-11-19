@@ -12,16 +12,16 @@ import UIKit
 class AppCoordinator: Coordinator {
     private let serviceLocator: Locator
     
-    var child: Coordinator?
-    var root: UIViewController
-    var parent: Coordinator?
+    var childCoordinator: Coordinator?
+    var rootController: UIViewController
+    var parentCoordinator: Coordinator?
     fileprivate var window: UIWindow?
     
     init(window: UIWindow?, serviceLocator: Locator) {
         self.window = window
         self.serviceLocator = serviceLocator
-        self.root = UINavigationController()
-        window?.rootViewController = root
+        self.rootController = UINavigationController()
+        window?.rootViewController = rootController
         window?.makeKeyAndVisible()
     }
     
@@ -35,19 +35,19 @@ class AppCoordinator: Coordinator {
     }
     
     func setChild(_ coordinator: Coordinator?) {
-        if child != nil {
+        if childCoordinator != nil {
             removeChild()
         }
-        coordinator?.parent = self
-        child = coordinator
+        coordinator?.parentCoordinator = self
+        childCoordinator = coordinator
     }
     
     func removeChild() {
-        guard let child = child else {
+        guard let child = childCoordinator else {
             return
         }
         child.removeParent()
-        self.child = nil
+        self.childCoordinator = nil
     }
 }
 
@@ -62,7 +62,7 @@ extension AppCoordinator {
             AppData.shouldShowOnBoarding = false
             self?.showAuthorizationScreen()
         }
-        coordinator.parent = self
+        coordinator.parentCoordinator = self
         setChild(coordinator)
         coordinator.start()
         window.rootViewController = coordinator.rootController
@@ -78,7 +78,7 @@ extension AppCoordinator {
         coordinator.successSessionClosure = { [weak self] in
             self?.showMainScreen()
         }
-        coordinator.parent = self
+        coordinator.parentCoordinator = self
         setChild(coordinator)
         coordinator.start()
         window.rootViewController = coordinator.rootController
@@ -90,11 +90,11 @@ extension AppCoordinator {
             return
         }
         removeChild()
-        let coordinator = MainScreenAssembly.makeMainScreenCoordinator(serviceLocator: serviceLocator)
+        let coordinator = MainModuleAssembly.makeMainFlowCoordinator(serviceLocator: serviceLocator)
         coordinator.successSessionClosure = { [weak self] in
             self?.showAuthorizationScreen()
         }
-        coordinator.parent = self
+        coordinator.parentCoordinator = self
         setChild(coordinator)
         coordinator.start()
         window.rootViewController = coordinator.rootController

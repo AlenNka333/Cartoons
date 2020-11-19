@@ -12,13 +12,13 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
     var view: VideoPlayerViewProtocol
     var controls: VideoPlayerControlsProtocol
     var playerState: PlayerState
-    let link: URL?
+    let videoURL: URL?
     
-    init(view: VideoPlayerViewProtocol, controls: VideoPlayerControlsProtocol, link: URL?) {
+    init(view: VideoPlayerViewProtocol, controls: VideoPlayerControlsProtocol, videoURL: URL?) {
         self.view = view
         self.controls = controls
         self.playerState = .playing
-        self.link = link
+        self.videoURL = videoURL
         
         setupClosures()
     }
@@ -55,7 +55,7 @@ class VideoPlayerPresenter: VideoPlayerPresenterProtocol {
     }
     
     func setupVideoLink() -> URL? {
-        return link
+        return videoURL
     }
     
     func setDuration(value: String) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BaseViewProtocol {
+protocol BaseViewControllerProtocol {
     func viewDidLoad()
     func viewWillAppear(_ animated: Bool)
     func setupUI()

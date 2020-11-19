@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootAssembly: Assembly {
+class AppCoordinatorAssembly: Assembly {
     static func makeRootCoordinator(window: UIWindow?, serviceLocator: Locator) -> AppCoordinator {
         return AppCoordinator(window: window, serviceLocator: serviceLocator)
     }

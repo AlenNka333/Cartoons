@@ -17,16 +17,17 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
         self.serviceLocator = serviceLocator
     }
     
-    func sendPhoneNumberAction(number: String) {
+    func sendRequest(with phoneNumber: String) {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
+        
         view.showActivityIndicator()
-        service.verifyUser(number: number) { [weak self] result in
+        service.verifyUser(phoneNumber: phoneNumber) { [weak self] result in
             self?.view.stopActivityIndicator()
             switch result {
             case let .success(verificationId):
-                self?.view.transit(verificationId: verificationId, number: number)
+                self?.view.transit(verificationId, phoneNumber)
             case .failure(let error):
                 self?.view.showError(error: error)
             }

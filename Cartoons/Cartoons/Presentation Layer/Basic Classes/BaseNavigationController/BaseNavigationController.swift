@@ -10,7 +10,7 @@ import Kingfisher
 import UIKit
 
 class BaseNavigationController: UINavigationController {
-    private enum NavigationState {
+    private enum NavigationBarStyle {
         case system
         case custom
     }
@@ -21,10 +21,17 @@ class BaseNavigationController: UINavigationController {
         static let bottomOffset: CGFloat = -16
     }
     
-    private var state = NavigationState.system
-    var imageAction: (() -> Void)?
+    private let activityIndicator = UIActivityIndicatorView()
+    private let subtitleLabel = UILabel()
+    private let profileImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage())
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
     
-    private lazy var appearance: UINavigationBarAppearance = {
+    private var navigationBarStyle = NavigationBarStyle.system
+    private lazy var navigationBarAppearance: UINavigationBarAppearance = {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = R.color.navigation_bar_color()
         appearance.largeTitleTextAttributes = [ .foregroundColor: UIColor.white,
@@ -33,19 +40,7 @@ class BaseNavigationController: UINavigationController {
         return appearance
     }()
     
-    private let imageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage())
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    
-    private let subtitleLabel: UILabel = {
-        let subtitle = UILabel()
-        return subtitle
-    }()
-    
-    private let activityIndicator = UIActivityIndicatorView()
+    var changeProfileIconClosure: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,16 +51,18 @@ class BaseNavigationController: UINavigationController {
     }
     
     func setupUI() {
-        delegate = self
         navigationBar.prefersLargeTitles = true
         navigationBar.tintColor = .white
-        navigationBar.standardAppearance = appearance
-        navigationBar.compactAppearance = appearance
-        navigationBar.scrollEdgeAppearance = appearance
+        
+        navigationBarStyle = NavigationBarStyle.system
+        
         navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         navigationBar.layer.shadowRadius = 4.0
         navigationBar.layer.shadowOpacity = 1.0
-        state = NavigationState.system
+        
+        navigationBar.standardAppearance = navigationBarAppearance
+        navigationBar.compactAppearance = navigationBarAppearance
+        navigationBar.scrollEdgeAppearance = navigationBarAppearance
     }
 }
 
@@ -75,7 +72,7 @@ extension BaseNavigationController: UINavigationControllerDelegate {
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
-            imageView.removeFromSuperview()
+            profileImageView.removeFromSuperview()
             subtitleLabel.removeFromSuperview()
             setNavigationBarHidden(false, animated: false)
             return nil
@@ -91,40 +88,46 @@ extension BaseNavigationController: UINavigationControllerDelegate {
 
 extension BaseNavigationController {
     func setupCustomizedUI(image: UIImage, subtitle: String, isUserInteractionEnabled: Bool) {
-        updateUI()
+        interactivePopGestureRecognizer?.delegate = nil
+        interactivePopGestureRecognizer?.isEnabled = true
         subtitleLabel.attributedText = NSAttributedString(string: subtitle,
                                                           attributes: [ .foregroundColor: UIColor.white.withAlphaComponent(0.48),
                                                                         .font: R.font.aliceRegular(size: 14).unwrapped])
-        imageView.image = image
-        imageView.isUserInteractionEnabled = isUserInteractionEnabled
-        state = NavigationState.custom
+        profileImageView.image = image
+        profileImageView.isUserInteractionEnabled = isUserInteractionEnabled
+        
+        updateUI()
     }
     
     func updateUI() {
-        interactivePopGestureRecognizer?.delegate = nil
-        interactivePopGestureRecognizer?.isEnabled = true
+        navigationBarStyle = NavigationBarStyle.custom
+        
         navigationBar.tintColor = .white
         navigationBar.prefersLargeTitles = true
-        navigationBar.standardAppearance = appearance
-        navigationBar.compactAppearance = appearance
-        navigationBar.scrollEdgeAppearance = appearance
+        
+        navigationBar.standardAppearance = navigationBarAppearance
+        navigationBar.compactAppearance = navigationBarAppearance
+        navigationBar.scrollEdgeAppearance = navigationBarAppearance
+        
         navigationBar.addSubview(subtitleLabel)
         subtitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(25)
             $0.leading.equalToSuperview().offset(20)
         }
-        navigationBar.addSubview(imageView)
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(editProfileImage))
-        imageView.addGestureRecognizer(tap)
-        imageView.snp.makeConstraints {
+        profileImageView.addGestureRecognizer(tap)
+        navigationBar.addSubview(profileImageView)
+        profileImageView.snp.makeConstraints {
             $0.height.width.equalTo(70)
             $0.trailing.equalToSuperview().offset(-20)
             $0.bottom.equalToSuperview().offset(Const.bottomOffset)
         }
+        
         navigationBar.addSubview(activityIndicator)
         activityIndicator.color = .white
         activityIndicator.snp.makeConstraints {
-            $0.center.equalTo(imageView)
+            $0.center.equalTo(profileImageView)
         }
     }
    
@@ -137,23 +140,23 @@ extension BaseNavigationController {
     }
     
     func setProfileImage(image: UIImage?) {
-        imageView.isUserInteractionEnabled = true
-        imageView.layer.cornerRadius = imageView.frame.height / 2
-        imageView.image = image
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
+        profileImageView.image = image
     }
     
     func setProfileImage(path: URL?) {
-        imageView.isUserInteractionEnabled = true
-        imageView.layer.cornerRadius = imageView.frame.height / 2
-        imageView.kf.setImage(with: path)
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
+        profileImageView.kf.setImage(with: path)
     }
     
     func setDefaultImage() {
-        imageView.isUserInteractionEnabled = true
-        imageView.image = R.image.profile_icon()
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.image = R.image.profile_icon()
     }
     
     @objc func editProfileImage() {
-        imageAction?()
+        changeProfileIconClosure?()
     }
 }

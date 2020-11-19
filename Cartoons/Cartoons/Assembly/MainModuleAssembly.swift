@@ -13,8 +13,8 @@ enum Action {
     case successSession
 }
 
-class MainScreenAssembly: Assembly {
-    static func makeMainScreenCoordinator(serviceLocator: Locator) -> MainScreenCoordinator {
-        return MainScreenCoordinator(serviceLocator: serviceLocator)
+class MainModuleAssembly: Assembly {
+    static func makeMainFlowCoordinator(serviceLocator: Locator) -> MainFlowCoordinator {
+        return MainFlowCoordinator(serviceLocator: serviceLocator)
     }
 }

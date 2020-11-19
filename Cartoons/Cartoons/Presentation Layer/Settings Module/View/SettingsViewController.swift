@@ -21,7 +21,7 @@ class SettingsViewController: BaseViewController {
     var tableView: UITableView?
     var userInfoHeader = UserInfoHeader()
     var snapshot: SnapShot?
-    var settings = [Setting(title: R.string.localizable.sign_out_button()), Setting(title: R.string.localizable.clear_cache())]
+    var settings = [Setting(settingName: R.string.localizable.sign_out_button()), Setting(settingName: R.string.localizable.clear_cache())]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -179,7 +179,7 @@ extension SettingsViewController {
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(tableView: tableView ?? UITableView()) { tableView, indexPath, setting -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingsTableViewCell
-            cell?.setButtonText(string: setting.title)
+            cell?.setButtonText(string: setting.settingName)
             if indexPath.row == 0 {
                 cell?.button.addTarget(self, action: #selector(self.signOutAction), for: .touchUpInside)
             } else if indexPath.row == 1 {

@@ -8,12 +8,12 @@
 
 import UIKit
 
-class MainScreenCoordinator: Coordinator {
+class MainFlowCoordinator: Coordinator {
     let serviceLocator: Locator
     
     var serviceProviderFacade: ServiceProviderFacade?
     var childCoordinators: [Coordinator?]
-    var parent: Coordinator?
+    var parentCoordinator: Coordinator?
     var rootController: UIViewController
     var successSessionClosure: (() -> Void)?
     
@@ -34,7 +34,7 @@ class MainScreenCoordinator: Coordinator {
     }
     
     func addChild(_ coordinator: Coordinator?) {
-        coordinator?.parent = self
+        coordinator?.parentCoordinator = self
         childCoordinators.append(coordinator)
     }
     
@@ -54,14 +54,14 @@ class MainScreenCoordinator: Coordinator {
         guard let serviceProviderFacade = serviceProviderFacade else {
             return
         }
-        let cartoonsCoordinator = CartoonsAssembly.makeCartoonsCoordinator(rootController: cartoons,
+        let cartoonsCoordinator = CartoonsModuleAssembly.makeCartoonsCoordinator(rootController: cartoons,
                                                                            serviceLocator: serviceLocator,
                                                                            serviceProviderFacade: serviceProviderFacade)
         addChild(cartoonsCoordinator)
-        let favouritesCoordinator = FavouritesAssembly.makeFavouritesCoordinator(rootController: favourites,
+        let favouritesCoordinator = FavouritesModuleAssembly.makeFavouritesCoordinator(rootController: favourites,
                                                                                  serviceProviderFacade: serviceProviderFacade)
         addChild(favouritesCoordinator)
-        let settingsCoordinator = SettingsAssembly.makeSettingsCoordinator(rootController: settings,
+        let settingsCoordinator = SettingsModuleAssembly.makeSettingsCoordinator(rootController: settings,
                                                                            serviceLocator: serviceLocator,
                                                                            serviceProvider: serviceProviderFacade)
         addChild(settingsCoordinator)
@@ -73,15 +73,15 @@ class MainScreenCoordinator: Coordinator {
     }
 }
 
-extension MainScreenCoordinator: TransitionDelegate {
+extension MainFlowCoordinator: TransitionDelegate {
     func transit() {
         successSessionClosure?()
-        childCoordinators.forEach { $0?.parent = nil }
+        childCoordinators.forEach { $0?.parentCoordinator = nil }
         childCoordinators.removeAll()
     }
 }
 
-extension MainScreenCoordinator: ErrorPresentable {
+extension MainFlowCoordinator: ErrorPresentable {
     func show(error: Error) {
         let alert = AlertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) { _ in
             return

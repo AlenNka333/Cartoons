@@ -11,7 +11,6 @@ import UIKit
 
 class OnboardingHostingController: UIHostingController<OnboardingView> {
     weak var transitionDelegate: OnboardingTransitionDelegate?
-    var presenter: PagePresenterProtocol?
     
     init() {
         super.init(rootView: OnboardingView())
@@ -24,9 +23,6 @@ class OnboardingHostingController: UIHostingController<OnboardingView> {
     @objc required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-extension OnboardingHostingController: PageViewControllerProtocol {
 }
 
 struct OnboardingView: View {

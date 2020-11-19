@@ -13,7 +13,7 @@ class CartoonsCoordinator: Coordinator {
     let serviceLocator: Locator
     let serviceProviderFacade: ServiceProviderFacade
     
-    var parent: Coordinator?
+    var parentCoordinator: Coordinator?
     var rootController: UINavigationController?
     
     init(rootController: UINavigationController, serviceLocator: Locator, serviceProviderFacade: ServiceProviderFacade) {
@@ -23,7 +23,7 @@ class CartoonsCoordinator: Coordinator {
     }
     
     func start() {
-        let cartoonsController = CartoonsAssembly.makeCartoonsController(serviceLocator: serviceLocator,
+        let cartoonsController = CartoonsModuleAssembly.makeCartoonsController(serviceLocator: serviceLocator,
                                                                          serviceProviderFacade: serviceProviderFacade)
         cartoonsController.transitionDelegate = self
         rootController?.pushViewController(cartoonsController, animated: false)
@@ -35,13 +35,13 @@ extension CartoonsCoordinator {
         guard let cartoon = video else {
             return
         }
-        let detailsController = DetailsAssembly.makeDetailsController(with: cartoon, serviceLocator: serviceLocator)
+        let detailsController = DetailsModuleAssembly.makeDetailsController(with: cartoon, serviceLocator: serviceLocator)
         detailsController.transitionDelegate = self
         rootController?.pushViewController(detailsController, animated: true)
     }
     
     func openVideoPlayer(with link: URL?) {
-        let player = PlayerAssembly.makePlayerController(with: link)
+        let player = PlayerModuleAssembly.makePlayerController(with: link)
         player.transitionDelegate = self
         rootController?.pushViewController(player, animated: true)
     }

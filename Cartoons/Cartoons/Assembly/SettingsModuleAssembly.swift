@@ -9,7 +9,7 @@
 import SwiftUI
 import UIKit
 
-class SettingsAssembly: Assembly {
+class SettingsModuleAssembly: Assembly {
     static func makeSettingsCoordinator(rootController: UINavigationController,
                                         serviceLocator: Locator,
                                         serviceProvider: ServiceProviderFacade) -> SettingsCoordinator {

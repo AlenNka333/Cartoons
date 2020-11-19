@@ -8,7 +8,6 @@
 
 import Foundation
 
-protocol CartoonsViewProtocol: BaseViewProtocol, AnyObject {
-    func showSuccess(success: String)
-    func setDataSource(with array: [Cartoon])
+protocol CartoonsViewProtocol: BaseViewControllerProtocol, CartoonsTransitionDelegate {
+    func updateDataList(with array: [Cartoon])
 }

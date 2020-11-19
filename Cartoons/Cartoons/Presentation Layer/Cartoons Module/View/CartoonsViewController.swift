@@ -14,56 +14,48 @@ class CartoonsViewController: BaseViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Cartoon>
     typealias SnapShot = NSDiffableDataSourceSnapshot<Section, Cartoon>
     
-    let generator = UISelectionFeedbackGenerator()
+    private let generator = UISelectionFeedbackGenerator()
     
+    weak var transitionDelegate: CartoonsTransitionDelegate?
+    var presenter: CartoonsViewPresenterProtocol?
+    private var collectionView: UICollectionView?
+    private var dataSource: DataSource?
+    private var snapshot: SnapShot?
+    private var cartoonsList = [Cartoon]() {
+        didSet {
+            cartoonsList.isEmpty ? (backgroundView.isHidden = false) : (backgroundView.isHidden = true)
+        }
+    }
     private lazy var backgroundView: UIView = {
         var view = UIView()
-        var text = UILabel()
-        text.attributedText = NSAttributedString(string: R.string.localizable.cartoons_collection_background(),
-                                                 attributes: [ .foregroundColor: UIColor.darkGray,
-                                                               .font: R.font.aliceRegular(size: 17).unwrapped])
-        text.numberOfLines = .zero
-        text.textAlignment = .center
-        view.addSubview(text)
         view.backgroundColor = R.color.main_orange()
-        text.snp.makeConstraints {
+        let textLabel = UILabel()
+        textLabel.attributedText = NSAttributedString(string: R.string.localizable.cartoons_collection_background(),
+                                                      attributes: [ .foregroundColor: UIColor.darkGray,
+                                                                    .font: R.font.aliceRegular(size: 17).unwrapped])
+        textLabel.numberOfLines = .zero
+        textLabel.textAlignment = .center
+        view.addSubview(textLabel)
+        textLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(50)
         }
         return view
     }()
-    private var collectionView: UICollectionView?
-    private lazy var dataSource = makeDataSource()
-    weak var transitionDelegate: CartoonsTransitionDelegate?
-    var videos = [Cartoon]() {
-        didSet {
-            videos.isEmpty ? (backgroundView.isHidden = false) : (backgroundView.isHidden = true)
-        }
-    }
-    var snapshot = SnapShot()
-    var presenter: CartoonsViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeDataSource()
         applySnapshot(animatingDifferences: true)
-        guard let collection = collectionView else {
-            return
-        }
-        setupUIRefreshControl(with: collection)
+        
         showActivityIndicator()
-        presenter?.getData()
+        presenter?.getDataList()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = false
-    }
-    
-    override func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+     override func setupNavigationBar() {
+        title = R.string.localizable.cartoons_screen()
         (navigationController as? BaseNavigationController)?.navigationBar.isHidden = false
         (navigationController as? BaseNavigationController)?.hidesBarsOnSwipe = true
-        title = R.string.localizable.cartoons_screen()
         (navigationController as? BaseNavigationController)?.setupCustomizedUI(image: R.image.navigation_label().unwrapped,
                                                                                subtitle: R.string.localizable.cartoons_screen_subtitle(),
                                                                                isUserInteractionEnabled: false)
@@ -76,11 +68,17 @@ class CartoonsViewController: BaseViewController {
         collectionView?.delegate = self
         collectionView?.showsVerticalScrollIndicator = false
         collectionView?.backgroundColor = R.color.main_orange()
-        view.addSubview(UIView(frame: .zero))
-        view.addSubview(collectionView ?? UICollectionView())
         collectionView?.backgroundView = backgroundView
         collectionView?.delaysContentTouches = false
+        
+        view.addSubview(UIView(frame: .zero))
+        view.addSubview(collectionView ?? UICollectionView())
         collectionView?.register(CartoonCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+        
+        guard let collection = collectionView else {
+            return
+        }
+        setupUIRefreshControl(collection)
     }
     
     override func showError(error: Error) {
@@ -91,55 +89,53 @@ class CartoonsViewController: BaseViewController {
 // MARK: - Protocol realisation
 
 extension CartoonsViewController: CartoonsViewProtocol {
-    func showSuccess(success: String) {
-        let alertVC = AlertService.alert(title: R.string.localizable.success(), body: success, alertType: .success) { _ in
-            return
-        }
-        present(alertVC, animated: true)
+    func transit(cartoon: Cartoon) {
+        transitionDelegate?.transit(cartoon: cartoon)
     }
     
-    func setDataSource(with array: [Cartoon]) {
-        videos = array
-        if activityIndicator.isAnimating {
-            stopActivityIndicator()
-        }
+    func updateDataList(with array: [Cartoon]) {
         guard let control = collectionView?.refreshControl else {
             return
+        }
+        if activityIndicator.isAnimating {
+            stopActivityIndicator()
         }
         if control.isRefreshing {
             collectionView?.refreshControl?.endRefreshing()
         }
+        cartoonsList = array
         applySnapshot()
         collectionView?.refreshControl?.isEnabled = true
     }
 }
 
-// MARK: - CollectionViewDiffableDataSource
+// MARK: - CollectionViewDelegate
 
 extension CartoonsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cartoon = dataSource.itemIdentifier(for: indexPath) else {
+        guard let cartoon = dataSource?.itemIdentifier(for: indexPath) else {
             return
         }
         generator.selectionChanged()
         hidesBottomBarWhenPushed = true
-        transitionDelegate?.transit(cartoon: cartoon)
+        presenter?.transit(with: cartoon)
         hidesBottomBarWhenPushed = false
     }
 }
 
+// MARK: - CollectionViewDiffableDataSource
+
 extension CartoonsViewController {
-    func makeDataSource() -> DataSource {
-        let dataSource = DataSource(collectionView: collectionView ?? UICollectionView()) { collectionView, indexPath, cartoon -> UICollectionViewCell? in
+    func makeDataSource() {
+         dataSource = DataSource(collectionView: collectionView ?? UICollectionView()) { collectionView, indexPath, cartoon -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
                                                           for: indexPath) as? CartoonCollectionViewCell
             cell?.video = cartoon
-            if cartoon.state == .loaded {
-                cell?.setToFavourites()
+            if cartoon.loadingState == .downloaded {
+                cell?.highlightIndicator()
             }
             return cell
-        }
-        return dataSource
+         }
     }
     
     func configureLayout() -> UICollectionViewLayout {
@@ -162,7 +158,7 @@ extension CartoonsViewController {
         return section
     }
     
-    func setupUIRefreshControl(with collectionView: UICollectionView) {
+    func setupUIRefreshControl(_ collectionView: UICollectionView) {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         refreshControl.tintColor = .white
@@ -171,13 +167,13 @@ extension CartoonsViewController {
     }
     
     @objc func handleRefresh() {
-        presenter?.getData()
+        presenter?.getDataList()
     }
     
     func applySnapshot(animatingDifferences: Bool = true) {
         snapshot = SnapShot()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(videos, toSection: .main)
-        dataSource.apply(snapshot)
+        snapshot?.appendSections([.main])
+        snapshot?.appendItems(cartoonsList, toSection: .main)
+        dataSource?.apply(snapshot ?? SnapShot())
     }
 }

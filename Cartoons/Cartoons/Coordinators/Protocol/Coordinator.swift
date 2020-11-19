@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol Coordinator: AnyObject {
-    var parent: Coordinator? { get set }
+    var parentCoordinator: Coordinator? { get set }
     
     func start()
     func removeParent()
@@ -18,6 +18,6 @@ protocol Coordinator: AnyObject {
 
 extension Coordinator {
     func removeParent() {
-        parent = nil
+        parentCoordinator = nil
     }
 }

@@ -101,7 +101,7 @@ class DetailsViewController: BaseViewController {
 
 extension DetailsViewController {
     @objc func openPlayer() {
-        guard let link = video?.link else {
+        guard let link = video?.globalCartoonLink else {
             print("Invalid link")
             return
         }
@@ -112,7 +112,7 @@ extension DetailsViewController {
         guard let file = video else {
             return
         }
-        if video?.state == .loaded {
+        if video?.loadingState == .downloaded {
             downloadFileButton.setImage(R.image.star_yellow(), for: .normal)
         } else {
             downloadFileButton.setImage(R.image.star(), for: .normal)
@@ -135,7 +135,7 @@ extension DetailsViewController: DetailsViewProtocol {
     
     func setVideo(video: Cartoon) {
         self.video = video
-        guard let url = video.thumbnail else {
+        guard let url = video.thumbnailImageURL else {
             return
         }
         mainPoster.setImage(with: url)
@@ -148,7 +148,7 @@ extension DetailsViewController: DetailsViewProtocol {
                                                            attributes: [.foregroundColor: UIColor.white,
                                                                         .font: R.font.cinzelDecorativeBold(size: 30).unwrapped])
         }
-        if video.state == .loaded {
+        if video.loadingState == .downloaded {
             downloadFileButton.setImage(R.image.star_yellow(), for: .normal)
         }
     }

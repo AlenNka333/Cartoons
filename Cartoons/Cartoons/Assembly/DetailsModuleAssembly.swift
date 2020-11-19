@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DetailsAssembly: Assembly {
+class DetailsModuleAssembly: Assembly {
     static func makeDetailsController(with video: Cartoon, serviceLocator: Locator) -> DetailsViewController {
         let view = DetailsViewController()
         let presenter = DetailsPresenter(view: view, video: video, serviceLocator: serviceLocator)

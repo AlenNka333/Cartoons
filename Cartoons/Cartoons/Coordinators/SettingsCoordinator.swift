@@ -14,7 +14,7 @@ class SettingsCoordinator: Coordinator {
     let serviceProvider: ServiceProviderFacade
     
     weak var transitionDelegate: TransitionDelegate?
-    var parent: Coordinator?
+    var parentCoordinator: Coordinator?
     var rootController: UINavigationController?
     
     init(rootController: UINavigationController, serviceLocator: Locator, serviceProvider: ServiceProviderFacade) {
@@ -24,7 +24,7 @@ class SettingsCoordinator: Coordinator {
     }
     
     func start() {
-        let settingsController = SettingsAssembly.makeSettingsController(serviceLocator: serviceLocator, serviceProvider: serviceProvider)
+        let settingsController = SettingsModuleAssembly.makeSettingsController(serviceLocator: serviceLocator, serviceProvider: serviceProvider)
         settingsController.transitionDelegate = self
         rootController?.pushViewController(settingsController, animated: false)
     }
