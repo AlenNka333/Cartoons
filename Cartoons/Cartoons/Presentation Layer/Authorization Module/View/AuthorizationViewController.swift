@@ -4,7 +4,7 @@ class AuthorizationViewController: BaseViewController {
     weak var transitionDelegate: AuthorizationTransitionProtocol?
     var presenter: AuthorizationViewPresenterProtocol?
     
-    private lazy var appLabelView = CustomLabelView()
+    private lazy var appLabelView = AppNameView()
     private lazy var phoneNumberTextField = CustomTextField()
     private lazy var signInButton = CustomButton()
     private lazy var stackView: UIStackView = {

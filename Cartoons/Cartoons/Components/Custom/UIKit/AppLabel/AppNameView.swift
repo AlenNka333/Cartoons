@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CustomLabelView: UIView {
+class AppNameView: UIView {
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var image: UIImageView!
     

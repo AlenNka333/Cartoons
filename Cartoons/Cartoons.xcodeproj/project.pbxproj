@@ -81,7 +81,6 @@
 		3355FA8B2540346100C0B192 /* BaseViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355FA8A2540346100C0B192 /* BaseViewControllerProtocol.swift */; };
 		3359C1FE256293A100DACCCA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359C1FD256293A100DACCCA /* R.generated.swift */; };
 		3373D94E250F63CA0095F78C /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373D94D250F63CA0095F78C /* AppData.swift */; };
-		33778C0425518E00002D1F05 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C0325518E00002D1F05 /* CircleProgressBar.swift */; };
 		33778C0A2551E695002D1F05 /* LoadingServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */; };
 		33778C0F2552A48E002D1F05 /* ServiceProviderFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C0E2552A48E002D1F05 /* ServiceProviderFacade.swift */; };
 		33778C162553321A002D1F05 /* ServiceProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33778C152553321A002D1F05 /* ServiceProviderDelegate.swift */; };
@@ -133,11 +132,10 @@
 		33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */; };
 		33B660D12502E8A700CA562E /* VerificationViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B660D02502E8A700CA562E /* VerificationViewPresenter.swift */; };
 		33B873CF253F3C69008B45B2 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B873CE253F3C68008B45B2 /* UIImage + Extension.swift */; };
-		33EAD3AF2522093000128EEB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EAD3AE2522093000128EEB /* ImagePicker.swift */; };
 		33EE7EA92513569100EA2BF4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EA82513569100EA2BF4 /* CustomButton.swift */; };
 		33EE7EAC25135ADB00EA2BF4 /* Alice-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */; };
 		33EE7EAF25135D3100EA2BF4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EAE25135D3100EA2BF4 /* CustomTextField.swift */; };
-		33EE7EB2251360B000EA2BF4 /* CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EB1251360B000EA2BF4 /* CustomLabelView.swift */; };
+		33EE7EB2251360B000EA2BF4 /* AppNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE7EB1251360B000EA2BF4 /* AppNameView.swift */; };
 		33EE7EB4251361D000EA2BF4 /* LabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33EE7EB3251361D000EA2BF4 /* LabelView.xib */; };
 		33EE7EB62513765500EA2BF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33EE7EB52513765500EA2BF4 /* Assets.xcassets */; };
 		33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF60BA24FA45F40077D109 /* AppDelegate.swift */; };
@@ -246,7 +244,6 @@
 		3355FA8A2540346100C0B192 /* BaseViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerProtocol.swift; sourceTree = "<group>"; };
 		3359C1FD256293A100DACCCA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		3373D94D250F63CA0095F78C /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
-		33778C0325518E00002D1F05 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		33778C092551E695002D1F05 /* LoadingServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingServiceDelegate.swift; sourceTree = "<group>"; };
 		33778C0E2552A48E002D1F05 /* ServiceProviderFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderFacade.swift; sourceTree = "<group>"; };
 		33778C152553321A002D1F05 /* ServiceProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderDelegate.swift; sourceTree = "<group>"; };
@@ -298,11 +295,10 @@
 		33B660CB2502D6E600CA562E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		33B660D02502E8A700CA562E /* VerificationViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewPresenter.swift; sourceTree = "<group>"; };
 		33B873CE253F3C68008B45B2 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
-		33EAD3AE2522093000128EEB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		33EE7EA82513569100EA2BF4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		33EE7EAB25135ABA00EA2BF4 /* Alice-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alice-Regular.ttf"; sourceTree = "<group>"; };
 		33EE7EAE25135D3100EA2BF4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		33EE7EB1251360B000EA2BF4 /* CustomLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelView.swift; sourceTree = "<group>"; };
+		33EE7EB1251360B000EA2BF4 /* AppNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNameView.swift; sourceTree = "<group>"; };
 		33EE7EB3251361D000EA2BF4 /* LabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelView.xib; sourceTree = "<group>"; };
 		33EE7EB52513765500EA2BF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33FF60B724FA45F40077D109 /* Cartoons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartoons.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -438,7 +434,6 @@
 		33127B4A2534C41C00B84FAE /* VideoPlayerControls */ = {
 			isa = PBXGroup;
 			children = (
-				33A17536253769460062EC8C /* CustomPlayerControls.swift */,
 				33A1753B253769D80062EC8C /* CustomSlider.swift */,
 				33A1755725376B390062EC8C /* PlayerControlsView.xib */,
 			);
@@ -484,6 +479,7 @@
 		33127B4F2534C45500B84FAE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				33A17536253769460062EC8C /* CustomPlayerControls.swift */,
 				338614B325386B9200A24D4F /* PlayerView.swift */,
 				337BF2C3254DB6260057D685 /* VideoPlayerViewController.swift */,
 			);
@@ -730,14 +726,6 @@
 			path = "Onboarding Module";
 			sourceTree = "<group>";
 		};
-		33778C0225518DE8002D1F05 /* CircleProgressBar */ = {
-			isa = PBXGroup;
-			children = (
-				33778C0325518E00002D1F05 /* CircleProgressBar.swift */,
-			);
-			path = CircleProgressBar;
-			sourceTree = "<group>";
-		};
 		33778C0C2552A469002D1F05 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -814,12 +802,10 @@
 		33A05B44255DA84900C4A70B /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				33778C0225518DE8002D1F05 /* CircleProgressBar */,
 				331912692543215F00DB64ED /* CartoonPoster */,
 				3355FA792540180E00C0B192 /* BorderedLabel */,
 				33127B4A2534C41C00B84FAE /* VideoPlayerControls */,
 				3319124E2541C03200DB64ED /* UserHeader */,
-				33EAD3B12522094200128EEB /* ImagePicker */,
 				33EE7EB02513609D00EA2BF4 /* AppLabel */,
 				33EE7EAD25135D0A00EA2BF4 /* TextField */,
 				33EE7EA325134D7900EA2BF4 /* Button */,
@@ -1069,14 +1055,6 @@
 			path = "Service Layer";
 			sourceTree = "<group>";
 		};
-		33EAD3B12522094200128EEB /* ImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				33EAD3AE2522093000128EEB /* ImagePicker.swift */,
-			);
-			path = ImagePicker;
-			sourceTree = "<group>";
-		};
 		33EE7EA325134D7900EA2BF4 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -1107,7 +1085,7 @@
 		33EE7EB02513609D00EA2BF4 /* AppLabel */ = {
 			isa = PBXGroup;
 			children = (
-				33EE7EB1251360B000EA2BF4 /* CustomLabelView.swift */,
+				33EE7EB1251360B000EA2BF4 /* AppNameView.swift */,
 				33EE7EB3251361D000EA2BF4 /* LabelView.xib */,
 			);
 			path = AppLabel;
@@ -1525,12 +1503,11 @@
 				3318E2C3254AC414001838E2 /* TransitionDelegateProtocol.swift in Sources */,
 				332227C52518970900EF56B8 /* FavouritesPresenter.swift in Sources */,
 				3359C1FE256293A100DACCCA /* R.generated.swift in Sources */,
-				33EE7EB2251360B000EA2BF4 /* CustomLabelView.swift in Sources */,
+				33EE7EB2251360B000EA2BF4 /* AppNameView.swift in Sources */,
 				33B660BB250166C200CA562E /* VerificationViewController.swift in Sources */,
 				334C4096255EFF840008E97F /* PageController.swift in Sources */,
 				33A05B49255DA87500C4A70B /* NavigationModifier.swift in Sources */,
 				3318E2C6254AC5AF001838E2 /* AuthorizationTransitionProtocol.swift in Sources */,
-				33778C0425518E00002D1F05 /* CircleProgressBar.swift in Sources */,
 				33B2AEB2250A63790006BE31 /* CartoonsPresenter.swift in Sources */,
 				33778C162553321A002D1F05 /* ServiceProviderDelegate.swift in Sources */,
 				334A51EF252DC008003BCF59 /* AuthorizationCoordinator.swift in Sources */,
@@ -1552,7 +1529,6 @@
 				332BA36925069D38008A8F29 /* AppEnvironment.swift in Sources */,
 				3318E2C9254AC6C5001838E2 /* VerificationTransitionDelegate.swift in Sources */,
 				3373D94E250F63CA0095F78C /* AppData.swift in Sources */,
-				33EAD3AF2522093000128EEB /* ImagePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
