@@ -24,12 +24,12 @@ class FilesManager {
         }
     }
     
-    func checkExitingFile(with path: URL) -> Bool {
+    func checkIfFileExists(with path: URL) -> Bool {
         let localPath = documentsPath.appendingPathComponent(path.lastPathComponent).path
         return FileManager.default.fileExists(atPath: localPath)
     }
     
-    func getLocalData(completion: @escaping ((Result<[URL], Error>) -> Void)) {
+    func getLocalDataList(completion: @escaping ((Result<[URL], Error>) -> Void)) {
         do {
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsPath, includingPropertiesForKeys: nil)
             var videoFiles = directoryContents.filter { $0.pathExtension == "mp4" }

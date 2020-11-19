@@ -17,5 +17,5 @@ protocol FavouritesServiceProviderDelegate: ServiceProviderDelegate {
 }
 
 protocol SettingsServiceProviderDelegate: AnyObject {
-    func cacheUpdated(_ flag: Bool)
+    func cacheIsEmpty(_ flag: Bool)
 }

@@ -24,7 +24,7 @@ class AuthorizationService {
         self.authorizationManager = authorizationManager
     }
     
-    func verifyUser(phoneNumber: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func verifyPhoneNumber(phoneNumber: String, completion: @escaping (Result<String, Error>) -> Void) {
         let formattedNumber = String(phoneNumber.filter { !" -".contains($0) })
         if PhoneNumberValidationHelper.checkValidation(phoneNumber: formattedNumber, type: NumberFormat.bel) {
             if !formattedNumber.isEmpty {

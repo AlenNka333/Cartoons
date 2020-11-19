@@ -23,8 +23,8 @@ class ServiceProviderFacade: Facade {
         loadingService.loadingServiceDelegate = self
     }
     
-    func getServerData() {
-        storageService.checkFoldersExists { [weak self] result in
+    func getServerDataList() {
+        storageService.getStorageDataList { [weak self] result in
             switch result {
             case .success(let cartoons):
                 self?.serverData = cartoons
@@ -41,7 +41,7 @@ class ServiceProviderFacade: Facade {
             guard let url = item.globalCartoonLink else {
                 return
             }
-            if fileManager.checkExitingFile(with: url) {
+            if fileManager.checkIfFileExists(with: url) {
                 item.loadingState = .downloaded
             }
         }
@@ -53,11 +53,11 @@ class ServiceProviderFacade: Facade {
             item.loadingState != .inProgress
         }
         favouritesDataSourceDelegate?.updateDataList(localData)
-        getServerData()
+        getServerDataList()
     }
     
-    func getLocalData() {
-        fileManager.getLocalData { [weak self] result in
+    func getLocalDataList() {
+        fileManager.getLocalDataList { [weak self] result in
             switch result {
             case .success(let data):
                 self?.makeDataSource(data)
@@ -114,12 +114,12 @@ extension ServiceProviderFacade: LoadingServiceDelegate {
     }
     
     func updateDataSource(_ localPath: URL) {
-        settingsDelegate?.cacheUpdated(true)
-        getServerData()
+        settingsDelegate?.cacheIsEmpty(true)
+        getServerDataList()
         localData.removeAll { item -> Bool in
             item.loadingState == .inProgress
         }
-        fileManager.getLocalData { [weak self] result in
+        fileManager.getLocalDataList { [weak self] result in
             switch result {
             case .success(let data):
                 self?.makeDataSource(data)

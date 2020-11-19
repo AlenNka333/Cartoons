@@ -24,7 +24,7 @@ class DetailsPresenter: DetailsViewPresenterProtocol {
               let link = file.globalCartoonLink else {
             return
         }
-        if !filesManager.checkExitingFile(with: link) {
+        if !filesManager.checkIfFileExists(with: link) {
             loadingService.downloadFile(file) { [weak self] result in
                 switch result {
                 case .success:

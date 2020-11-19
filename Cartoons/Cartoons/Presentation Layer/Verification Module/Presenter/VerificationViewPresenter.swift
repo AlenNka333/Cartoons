@@ -48,7 +48,7 @@ class VerificationPresenter {
         guard let service: AuthorizationService = serviceLocator.resolve(AuthorizationService.self) else {
             return
         }
-        service.verifyUser(phoneNumber: phoneNumber) { [weak self] result in
+        service.verifyPhoneNumber(phoneNumber: phoneNumber) { [weak self] result in
             switch result {
             case .success:
                 break

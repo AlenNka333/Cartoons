@@ -46,7 +46,7 @@ class StorageDataManager: StorageDataManagerProtocol {
         }
     }
     
-    func getReferenceList(completion: @escaping (Result<[String], Error>) -> Void) {
+    func getListOfFolders(completion: @escaping (Result<[String], Error>) -> Void) {
         var references = [String]()
         storageRef.child(AppEnvironment.Firebase.moviesParam).listAll { result, error in
             if let error = error {

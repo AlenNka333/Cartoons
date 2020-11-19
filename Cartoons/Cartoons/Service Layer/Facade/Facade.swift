@@ -9,6 +9,6 @@
 import Foundation
 
 protocol Facade: AnyObject {
-    func getServerData()
-    func getLocalData()
+    func getServerDataList()
+    func getLocalDataList()
 }

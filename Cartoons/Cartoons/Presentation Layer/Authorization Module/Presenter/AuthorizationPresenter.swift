@@ -23,7 +23,7 @@ class AuthorizationPresenter: AuthorizationViewPresenterProtocol {
         }
         
         view.showActivityIndicator()
-        service.verifyUser(phoneNumber: phoneNumber) { [weak self] result in
+        service.verifyPhoneNumber(phoneNumber: phoneNumber) { [weak self] result in
             self?.view.stopActivityIndicator()
             switch result {
             case let .success(verificationId):

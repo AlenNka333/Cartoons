@@ -19,29 +19,29 @@ class StorageDataService {
         self.storageDataManager = storageDataManager
     }
     
-    func saveImage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void) {
+    func saveImageInStorage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void) {
         storageDataManager.saveImage(imageData: imageData, completion: completion)
     }
     
-    func loadImage(folder: String, completion: @escaping (Result<URL?, Error>) -> Void) {
+    func loadImageFromStorage(folder: String, completion: @escaping (Result<URL?, Error>) -> Void) {
         storageDataManager.loadImage(folder: folder, completion: completion)
     }
     
-    func checkFoldersExists(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
+    func getStorageDataList(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
         folders = [String]()
         cartoons = [Cartoon]()
-        self.storageDataManager.getReferenceList { [weak self] result in
+        self.storageDataManager.getListOfFolders { [weak self] result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let list):
                 self?.folders = list
-                self?.getData(completion: completion)
+                self?.getDataList(completion: completion)
             }
         }
     }
     
-    func getData(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
+    func getDataList(completion: @escaping (Result<[Cartoon], Error>) -> Void) {
         let dispatchQueue = DispatchQueue(label: "get-movies")
         let dispatchGroup = DispatchGroup()
         self.folders.forEach { folderName in

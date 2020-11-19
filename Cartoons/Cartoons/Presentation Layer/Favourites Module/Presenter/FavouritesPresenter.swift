@@ -24,7 +24,7 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
     }
     
     func getDataList() {
-        serviceProviderFacade.getLocalData()
+        serviceProviderFacade.getLocalDataList()
     }
     
     func transit(with videoUrl: URL) {

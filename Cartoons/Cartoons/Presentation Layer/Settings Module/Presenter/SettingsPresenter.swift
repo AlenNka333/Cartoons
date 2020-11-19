@@ -36,7 +36,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
-        service.loadImage(folder: "profile_images") { [weak self] result in
+        service.loadImageFromStorage(folder: "profile_images") { [weak self] result in
             switch result {
             case .success(let path):
                 self?.view.showProfileImage(path: path)
@@ -50,7 +50,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         guard let service: StorageDataService = serviceLocator.resolve(StorageDataService.self) else {
             return
         }
-        service.saveImage(imageData: imageData) { [weak self] result in
+        service.saveImageInStorage(imageData: imageData) { [weak self] result in
             switch result {
             case .success:
                 break
@@ -95,7 +95,7 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
 }
 
 extension SettingsPresenter: SettingsServiceProviderDelegate {
-    func cacheUpdated(_ flag: Bool) {
+    func cacheIsEmpty(_ flag: Bool) {
         view.cacheSizeChanged(flag)
     }
 }

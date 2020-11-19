@@ -22,7 +22,7 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     }
     
     func getDataList() {
-        serviceProviderFacade.getServerData()
+        serviceProviderFacade.getServerDataList()
     }
     
     func transit(with cartoon: Cartoon) {
