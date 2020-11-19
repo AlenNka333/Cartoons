@@ -9,5 +9,5 @@
 import Foundation
 
 protocol FavouritesTransitionDelegate: AnyObject {
-    func transit(link: URL)
+    func transit(with videoUrl: URL)
 }

@@ -13,7 +13,7 @@ protocol ServiceProviderDelegate: AnyObject {
 }
 
 protocol FavouritesServiceProviderDelegate: ServiceProviderDelegate {
-    func updateProgress(_ progress: Float)
+    func setBytesLoadedPercentage(_ progress: Float)
 }
 
 protocol SettingsServiceProviderDelegate: AnyObject {

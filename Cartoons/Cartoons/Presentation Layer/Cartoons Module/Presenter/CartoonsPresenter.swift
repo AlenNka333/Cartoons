@@ -26,7 +26,7 @@ class CartoonsPresenter: CartoonsViewPresenterProtocol {
     }
     
     func transit(with cartoon: Cartoon) {
-        view.transit(cartoon: cartoon)
+        view.transit(with: cartoon)
     }
     
     func showError(error: Error) {

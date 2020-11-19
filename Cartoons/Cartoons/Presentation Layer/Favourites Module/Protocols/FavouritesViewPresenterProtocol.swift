@@ -8,7 +8,7 @@
 
 import Foundation
 protocol FavouritesViewPresenterProtocol: AnyObject {
-    func showSuccess(success: String)
     func showError(error: Error)
-    func getData()
+    func getDataList()
+    func transit(with videoUrl: URL)
 }

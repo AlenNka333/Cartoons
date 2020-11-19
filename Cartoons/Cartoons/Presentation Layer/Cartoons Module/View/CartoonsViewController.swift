@@ -28,7 +28,6 @@ class CartoonsViewController: BaseViewController {
     }
     private lazy var backgroundView: UIView = {
         var view = UIView()
-        view.backgroundColor = R.color.main_orange()
         let textLabel = UILabel()
         textLabel.attributedText = NSAttributedString(string: R.string.localizable.cartoons_collection_background(),
                                                       attributes: [ .foregroundColor: UIColor.darkGray,
@@ -89,8 +88,10 @@ class CartoonsViewController: BaseViewController {
 // MARK: - Protocol realisation
 
 extension CartoonsViewController: CartoonsViewProtocol {
-    func transit(cartoon: Cartoon) {
-        transitionDelegate?.transit(cartoon: cartoon)
+    func transit(with cartoon: Cartoon) {
+        hidesBottomBarWhenPushed = true
+        transitionDelegate?.transit(with: cartoon)
+        hidesBottomBarWhenPushed = false
     }
     
     func updateDataList(with array: [Cartoon]) {
@@ -117,9 +118,7 @@ extension CartoonsViewController: UICollectionViewDelegate {
             return
         }
         generator.selectionChanged()
-        hidesBottomBarWhenPushed = true
         presenter?.transit(with: cartoon)
-        hidesBottomBarWhenPushed = false
     }
 }
 

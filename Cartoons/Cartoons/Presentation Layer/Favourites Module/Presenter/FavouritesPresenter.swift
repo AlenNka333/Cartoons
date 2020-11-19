@@ -15,28 +15,29 @@ class FavouritesPresenter: FavouritesViewPresenterProtocol {
     init(view: FavouritesViewProtocol, serviceProviderFacade: ServiceProviderFacade) {
         self.view = view
         self.serviceProviderFacade = serviceProviderFacade
+        
         serviceProviderFacade.favouritesDataSourceDelegate = self
-    }
-    
-    func showSuccess(success: String) {
-        view.showSuccess(success: success)
     }
     
     func showError(error: Error) {
         view.showError(error: error)
     }
     
-    func getData() {
+    func getDataList() {
         serviceProviderFacade.getLocalData()
+    }
+    
+    func transit(with videoUrl: URL) {
+        view.transit(with: videoUrl)
     }
 }
 
 extension FavouritesPresenter: FavouritesServiceProviderDelegate {
-    func updateProgress(_ progress: Float) {
-        view.updateProgress(progress)
+    func setBytesLoadedPercentage(_ percent: Float) {
+        view.setBytesLoadedPercentage(percent)
     }
     
     func updateDataList(_ data: [Cartoon]?) {
-        view.setData(data: data ?? [Cartoon]())
+        view.updateDataList(data: data ?? [Cartoon]())
     }
 }

@@ -110,7 +110,7 @@ extension ServiceProviderFacade: LoadingServiceDelegate {
     }
     
     func updateProgress(_ progress: Float) {
-        favouritesDataSourceDelegate?.updateProgress(progress)
+        favouritesDataSourceDelegate?.setBytesLoadedPercentage(progress)
     }
     
     func updateDataSource(_ localPath: URL) {

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol CartoonsTransitionDelegate: AnyObject {
-    func transit(cartoon: Cartoon)
+    func transit(with cartoon: Cartoon)
 }

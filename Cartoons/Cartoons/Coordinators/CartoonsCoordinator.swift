@@ -48,7 +48,7 @@ extension CartoonsCoordinator {
 }
 
 extension CartoonsCoordinator: CartoonsTransitionDelegate {
-    func transit(cartoon: Cartoon) {
+    func transit(with cartoon: Cartoon) {
         openDetailsScreen(with: cartoon)
     }
 }

@@ -36,8 +36,8 @@ extension FavouritesCoordinator {
 }
 
 extension FavouritesCoordinator: FavouritesTransitionDelegate {
-    func transit(link: URL) {
-        openVideoPlayer(with: link)
+    func transit(with videoUrl: URL) {
+        openVideoPlayer(with: videoUrl)
     }
 }
 

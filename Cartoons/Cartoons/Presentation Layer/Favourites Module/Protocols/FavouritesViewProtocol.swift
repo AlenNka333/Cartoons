@@ -7,8 +7,7 @@
 //
 
 import Foundation
-protocol FavouritesViewProtocol: BaseViewControllerProtocol, AnyObject {
-    func showSuccess(success: String)
-    func setData(data: [Cartoon])
-    func updateProgress(_ progress: Float)
+protocol FavouritesViewProtocol: BaseViewControllerProtocol, FavouritesTransitionDelegate {
+    func updateDataList(data: [Cartoon])
+    func setBytesLoadedPercentage(_ percent: Float)
 }

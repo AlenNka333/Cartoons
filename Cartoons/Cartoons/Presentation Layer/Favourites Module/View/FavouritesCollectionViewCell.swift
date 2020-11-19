@@ -18,28 +18,23 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
         progress.clipsToBounds = true
         return progress
     }()
-    private lazy var downloadButton: UIButton = {
-        let button = UIButton()
-        button.setImage(R.image.download_button(), for: .normal)
-        return button
-    }()
     private var titleLabel: UILabel = {
         let label = BorderedLabel(with: .init(top: 10, left: 5, bottom: 10, right: 5))
         label.textColor = .white
         label.clipsToBounds = true
-        label.font = UIFont(name: R.font.cinzelDecorativeBold.fontName, size: 20)
-        label.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
         label.numberOfLines = .zero
         label.textAlignment = .center
+        label.font = UIFont(name: R.font.cinzelDecorativeBold.fontName, size: 20)
+        label.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
         return label
     }()
     
     var video: Cartoon? {
-      didSet {
-        if let title = video?.title {
-            titleLabel.text = title
+        didSet {
+            if let title = video?.title {
+                titleLabel.text = title
+            }
         }
-      }
     }
     var progress: Float? {
         willSet(newValue) {
@@ -52,6 +47,7 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 15
         contentView.backgroundColor = R.color.main_blue()
+        
         contentView.addSubview(titleLabel)
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints {
@@ -78,7 +74,9 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
         super.touchesCancelled(touches, with: event)
         animate(isHighlighted: false)
     }
-    
+}
+
+extension FavouritesCollectionViewCell {
     private func animate(isHighlighted: Bool, completion: ((Bool) -> Void)?=nil) {
         isHighlighted ? (UIView.animate(withDuration: 0.5,
                                         delay: 0,
@@ -99,9 +97,7 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
                               },
                               completion: completion))
     }
-}
-
-extension FavouritesCollectionViewCell {
+    
     func setProgressView() {
         let darkView = UIView()
         darkView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
@@ -111,6 +107,7 @@ extension FavouritesCollectionViewCell {
             $0.leading.trailing.equalToSuperview().inset(10)
             $0.bottom.equalToSuperview().offset(-40)
         }
+        
         contentView.addSubview(darkView)
         darkView.snp.makeConstraints {
             $0.edges.equalToSuperview()
