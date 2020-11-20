@@ -33,6 +33,8 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
             }
             if presenter.checkCacheIsEmpty() {
                 self?.presenter?.clearCache()
+            } else {
+                self?.presenter?.showMessage(message: R.string.localizable.empty_cache())
             }
         }
         rootView.saveImageClosure = { [weak self] data in
@@ -65,6 +67,15 @@ extension SettingsViewHostingController: SettingsViewProtocol {
     
     func showError(error: Error) {
         let alertVC = AlertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
+            return
+        }
+        alertVC.transitioningDelegate = transitioningManager
+        alertVC.modalPresentationStyle = .custom
+        present(alertVC, animated: true)
+    }
+    
+    func showMessage(message: String) {
+        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .success) { _ in
             return
         }
         alertVC.transitioningDelegate = transitioningManager

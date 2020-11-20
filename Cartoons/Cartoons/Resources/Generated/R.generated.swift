@@ -597,7 +597,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 47 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 48 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -631,6 +631,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let back = Rswift.StringResource(key: "back", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Cache folder is already empty
+      ///
+      /// Locales: en
+      static let empty_cache = Rswift.StringResource(key: "empty_cache", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Camera
       ///
       /// Locales: en
@@ -906,6 +910,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("back", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Cache folder is already empty
+      ///
+      /// Locales: en
+      static func empty_cache(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("empty_cache", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "empty_cache"
+        }
+
+        return NSLocalizedString("empty_cache", bundle: bundle, comment: "")
       }
 
       /// en translation: Camera

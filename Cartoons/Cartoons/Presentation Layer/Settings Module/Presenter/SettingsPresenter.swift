@@ -92,6 +92,10 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         view.showError(error: error)
     }
     
+    func showMessage(message: String) {
+        view.showMessage(message: message)
+    }
+    
     func clearCache() {
         view.showPermissionAlert(message: R.string.localizable.question_to_clear_cache()) { [weak self] result in
             switch result {
