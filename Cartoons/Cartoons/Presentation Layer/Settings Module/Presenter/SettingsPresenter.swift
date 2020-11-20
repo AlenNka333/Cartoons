@@ -65,13 +65,18 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
             return
         }
         view.showPermissionAlert(message: R.string.localizable.question_to_sign_out()) { result in
-            service.signOut { [weak self] result in
-                switch result {
-                case .success:
-                    self?.view.transit()
-                case let .failure(error):
-                    self?.view.showError(error: error)
+            switch result {
+            case true:
+                service.signOut { [weak self] result in
+                    switch result {
+                    case .success:
+                        self?.view.transit()
+                    case let .failure(error):
+                        self?.view.showError(error: error)
+                    }
                 }
+            case false:
+                break
             }
         }
     }
@@ -83,13 +88,18 @@ class SettingsPresenter: SettingsViewPresenterProtocol {
         return service.checkCacheIsEmpty()
     }
     
-   func showError(error: Error) {
+    func showError(error: Error) {
         view.showError(error: error)
     }
     
     func clearCache() {
         view.showPermissionAlert(message: R.string.localizable.question_to_clear_cache()) { [weak self] result in
-            self?.serviceProvider.clearCache()
+            switch result {
+            case true:
+                self?.serviceProvider.clearCache()
+            case false:
+                break
+            }
         }
     }
 }

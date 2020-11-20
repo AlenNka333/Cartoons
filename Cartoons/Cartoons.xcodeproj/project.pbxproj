@@ -92,6 +92,10 @@
 		338614BF2539C01B00A24D4F /* PlayerModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338614BE2539C01B00A24D4F /* PlayerModuleAssembly.swift */; };
 		338614CC253A275800A24D4F /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338614CB253A275800A24D4F /* Double + Extension.swift */; };
 		338AF04E255408220096EE85 /* ServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338AF04D255408220096EE85 /* ServiceErrors.swift */; };
+		338B7D0D2566F92A00E2433C /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7D0C2566F92A00E2433C /* PresentationController.swift */; };
+		338B7D102567013900E2433C /* PresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7D0F2567013900E2433C /* PresentationAnimator.swift */; };
+		338B7D132567049300E2433C /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7D122567049300E2433C /* PresentationManager.swift */; };
+		338B7D162567ACEE00E2433C /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7D152567ACEE00E2433C /* DismissAnimator.swift */; };
 		339C312525593EE5005E3187 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 339C312425593EE5005E3187 /* AlertView.xib */; };
 		339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339ECE32251A14DC00168C5B /* BaseNavigationController.swift */; };
 		33A05AD9255C0C6400C4A70B /* MockAuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */; };
@@ -255,6 +259,10 @@
 		338614BE2539C01B00A24D4F /* PlayerModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModuleAssembly.swift; sourceTree = "<group>"; };
 		338614CB253A275800A24D4F /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
 		338AF04D255408220096EE85 /* ServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceErrors.swift; sourceTree = "<group>"; };
+		338B7D0C2566F92A00E2433C /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		338B7D0F2567013900E2433C /* PresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAnimator.swift; sourceTree = "<group>"; };
+		338B7D122567049300E2433C /* PresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
+		338B7D152567ACEE00E2433C /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		339C312425593EE5005E3187 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		339ECE32251A14DC00168C5B /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		33A05AD8255C0C6400C4A70B /* MockAuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthorizationManager.swift; sourceTree = "<group>"; };
@@ -754,6 +762,17 @@
 			path = ServiceErrors;
 			sourceTree = "<group>";
 		};
+		338B7CFE2566F29300E2433C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				338B7D0C2566F92A00E2433C /* PresentationController.swift */,
+				338B7D0F2567013900E2433C /* PresentationAnimator.swift */,
+				338B7D122567049300E2433C /* PresentationManager.swift */,
+				338B7D152567ACEE00E2433C /* DismissAnimator.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		339ECE31251A14BF00168C5B /* BaseNavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +821,7 @@
 		33A05B44255DA84900C4A70B /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				338B7CFE2566F29300E2433C /* Presentation */,
 				331912692543215F00DB64ED /* CartoonPoster */,
 				3355FA792540180E00C0B192 /* BorderedLabel */,
 				33127B4A2534C41C00B84FAE /* VideoPlayerControls */,
@@ -1444,6 +1464,7 @@
 				3319126F2543269900DB64ED /* DetailsModuleAssembly.swift in Sources */,
 				339ECE33251A14DC00168C5B /* BaseNavigationController.swift in Sources */,
 				332BA37025077D9E008A8F29 /* UserDefault.swift in Sources */,
+				338B7D162567ACEE00E2433C /* DismissAnimator.swift in Sources */,
 				33B0AE732549F85200EA71CC /* ServiceLocator.swift in Sources */,
 				330F4E09252F0110008D0FC8 /* FavouritesModuleAssembly.swift in Sources */,
 				3319126B2543217800DB64ED /* CartoonPosterView.swift in Sources */,
@@ -1458,6 +1479,7 @@
 				330F4E10252F0D9B008D0FC8 /* OnboardingAssembly.swift in Sources */,
 				332227CD25189A1A00EF56B8 /* SettingsPresenter.swift in Sources */,
 				330F4E3425304759008D0FC8 /* AuthorizationManagerProtocol.swift in Sources */,
+				338B7D102567013900E2433C /* PresentationAnimator.swift in Sources */,
 				33127B6A2534C53400B84FAE /* VideoPlayerPresenterProtocol.swift in Sources */,
 				33FF60BB24FA45F40077D109 /* AppDelegate.swift in Sources */,
 				330F4E0D252F073D008D0FC8 /* SettingsModuleAssembly.swift in Sources */,
@@ -1486,6 +1508,7 @@
 				33127B542534C49300B84FAE /* DetailsViewController.swift in Sources */,
 				332227D125189D2D00EF56B8 /* SettingsViewProtocol.swift in Sources */,
 				33127B632534C4EF00B84FAE /* VideoPlayerPresenter.swift in Sources */,
+				338B7D132567049300E2433C /* PresentationManager.swift in Sources */,
 				33A1F7B9254FF5E000407056 /* LoadingServiceProtocol.swift in Sources */,
 				33B873CF253F3C69008B45B2 /* UIImage + Extension.swift in Sources */,
 				33B660CC2502D6E600CA562E /* UIViewController+Extension.swift in Sources */,
@@ -1529,6 +1552,7 @@
 				332BA36925069D38008A8F29 /* AppEnvironment.swift in Sources */,
 				3318E2C9254AC6C5001838E2 /* VerificationTransitionDelegate.swift in Sources */,
 				3373D94E250F63CA0095F78C /* AppData.swift in Sources */,
+				338B7D0D2566F92A00E2433C /* PresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

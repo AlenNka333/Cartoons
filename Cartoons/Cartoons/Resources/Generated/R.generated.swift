@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 10 colors.
+  /// This `R.color` struct is generated, and contains static references to 9 colors.
   struct color {
     /// Color `cinnabar`.
     static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
@@ -118,8 +118,6 @@ struct R: Rswift.Validatable {
     static let kimberly = Rswift.ColorResource(bundle: R.hostingBundle, name: "kimberly")
     /// Color `picton_blue`.
     static let picton_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picton_blue")
-    /// Color `pigment_indigo`.
-    static let pigment_indigo = Rswift.ColorResource(bundle: R.hostingBundle, name: "pigment_indigo")
     /// Color `regent_st_blue`.
     static let regent_st_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "regent_st_blue")
     /// Color `rolling_stone`.
@@ -171,15 +169,6 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func picton_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.picton_blue, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "pigment_indigo", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func pigment_indigo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.pigment_indigo, compatibleWith: traitCollection)
     }
     #endif
 
@@ -309,7 +298,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 32 images.
+  /// This `R.image` struct is generated, and contains static references to 27 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
@@ -321,18 +310,12 @@ struct R: Rswift.Validatable {
     static let clapperboard = Rswift.ImageResource(bundle: R.hostingBundle, name: "clapperboard")
     /// Image `crown`.
     static let crown = Rswift.ImageResource(bundle: R.hostingBundle, name: "crown")
-    /// Image `done`.
-    static let done = Rswift.ImageResource(bundle: R.hostingBundle, name: "done")
     /// Image `download_button`.
     static let download_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "download_button")
     /// Image `favourites`.
     static let favourites = Rswift.ImageResource(bundle: R.hostingBundle, name: "favourites")
     /// Image `flower`.
     static let flower = Rswift.ImageResource(bundle: R.hostingBundle, name: "flower")
-    /// Image `frozen_onBoarding`.
-    static let frozen_onBoarding = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen_onBoarding")
-    /// Image `frozen`.
-    static let frozen = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen")
     /// Image `fullscreen`.
     static let fullscreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "fullscreen")
     /// Image `go_backward`.
@@ -351,14 +334,10 @@ struct R: Rswift.Validatable {
     static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
     /// Image `onb_one`.
     static let onb_one = Rswift.ImageResource(bundle: R.hostingBundle, name: "onb_one")
-    /// Image `pause`.
-    static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
     /// Image `play`.
     static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
     /// Image `profile_icon`.
     static let profile_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_icon")
-    /// Image `profile_image`.
-    static let profile_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_image")
     /// Image `slider_progress`.
     static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
     /// Image `small_screen`.
@@ -412,13 +391,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "done", bundle: ..., traitCollection: ...)`
-    static func done(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.done, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "download_button", bundle: ..., traitCollection: ...)`
     static func download_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.download_button, compatibleWith: traitCollection)
@@ -436,20 +408,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "flower", bundle: ..., traitCollection: ...)`
     static func flower(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.flower, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "frozen", bundle: ..., traitCollection: ...)`
-    static func frozen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.frozen, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "frozen_onBoarding", bundle: ..., traitCollection: ...)`
-    static func frozen_onBoarding(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.frozen_onBoarding, compatibleWith: traitCollection)
     }
     #endif
 
@@ -517,13 +475,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "pause", bundle: ..., traitCollection: ...)`
-    static func pause(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.pause, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "play", bundle: ..., traitCollection: ...)`
     static func play(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.play, compatibleWith: traitCollection)
@@ -534,13 +485,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "profile_icon", bundle: ..., traitCollection: ...)`
     static func profile_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_icon, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "profile_image", bundle: ..., traitCollection: ...)`
-    static func profile_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.profile_image, compatibleWith: traitCollection)
     }
     #endif
 
@@ -653,7 +597,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 46 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 47 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -767,6 +711,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let otp_code_key = Rswift.StringResource(key: "otp_code_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: One of the required views are nil
+      ///
+      /// Locales: en
+      static let nil_view = Rswift.StringResource(key: "nil_view", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Phone number
       ///
       /// Locales: en
@@ -1258,6 +1206,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("otp_code_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: One of the required views are nil
+      ///
+      /// Locales: en
+      static func nil_view(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("nil_view", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "nil_view"
+        }
+
+        return NSLocalizedString("nil_view", bundle: bundle, comment: "")
       }
 
       /// en translation: Phone number

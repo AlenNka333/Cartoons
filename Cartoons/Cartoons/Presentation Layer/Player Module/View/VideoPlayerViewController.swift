@@ -60,14 +60,14 @@ class VideoPlayerViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: false)
         playerView.player = nil
     }
     
     override func setupNavigationBar() {
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func setupUI() {
