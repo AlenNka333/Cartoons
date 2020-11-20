@@ -24,7 +24,7 @@ class CartoonsCoordinator: Coordinator {
     
     func start() {
         let cartoonsController = CartoonsModuleAssembly.makeCartoonsController(serviceLocator: serviceLocator,
-                                                                         serviceProviderFacade: serviceProviderFacade)
+                                                                               serviceProviderFacade: serviceProviderFacade)
         cartoonsController.transitionDelegate = self
         rootController?.pushViewController(cartoonsController, animated: false)
     }

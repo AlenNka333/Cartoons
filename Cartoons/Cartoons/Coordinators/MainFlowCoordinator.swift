@@ -55,15 +55,15 @@ class MainFlowCoordinator: Coordinator {
             return
         }
         let cartoonsCoordinator = CartoonsModuleAssembly.makeCartoonsCoordinator(rootController: cartoons,
-                                                                           serviceLocator: serviceLocator,
-                                                                           serviceProviderFacade: serviceProviderFacade)
+                                                                                 serviceLocator: serviceLocator,
+                                                                                 serviceProviderFacade: serviceProviderFacade)
         addChild(cartoonsCoordinator)
         let favouritesCoordinator = FavouritesModuleAssembly.makeFavouritesCoordinator(rootController: favourites,
-                                                                                 serviceProviderFacade: serviceProviderFacade)
+                                                                                       serviceProviderFacade: serviceProviderFacade)
         addChild(favouritesCoordinator)
         let settingsCoordinator = SettingsModuleAssembly.makeSettingsCoordinator(rootController: settings,
-                                                                           serviceLocator: serviceLocator,
-                                                                           serviceProvider: serviceProviderFacade)
+                                                                                 serviceLocator: serviceLocator,
+                                                                                 serviceProvider: serviceProviderFacade)
         addChild(settingsCoordinator)
         settingsCoordinator.transitionDelegate = self
         
