@@ -18,13 +18,13 @@ target 'Cartoons' do
     pod 'SwiftFormat/CLI'
     pod 'Firebase/Auth'
     pod 'Firebase/Storage'
+    pod 'Kingfisher'
 end
 
 target 'CartoonsTests' do
   use_frameworks!
   inhibit_all_warnings!
-  
-    pod 'Firebase/Auth'
-    pod 'Firebase/Storage'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
 end
 

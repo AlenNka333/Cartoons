@@ -17,11 +17,8 @@ class OnboardingAssembly: Assembly {
         return OnboardingCoordinator()
     }
     
-    static func makeOnboardingController() -> PageViewController {
-        var pages = [UIViewController]()
-        pages.append(StreamingFeatureViewController())
-        pages.append(OfflineWatchingFeatureViewController())
-        let view = PageViewController(pages: pages)
+    static func makeOnboardingController() -> OnboardingHostingController {
+        let view = OnboardingHostingController()
         return view
     }
 }

@@ -1,0 +1,19 @@
+//
+//  BaseViewProtocol.swift
+//  Cartoons
+//
+//  Created by Alena Nesterkina on 10/21/20.
+//  Copyright © 2020 AlenaNesterkina. All rights reserved.
+//
+
+import Foundation
+
+protocol BaseViewControllerProtocol: AnyObject {
+    func viewDidLoad()
+    func viewWillAppear(_ animated: Bool)
+    func setupUI()
+    func setupNavigationBar()
+    func showError(error: Error)
+    func showActivityIndicator()
+    func stopActivityIndicator()
+}

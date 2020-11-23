@@ -106,28 +106,24 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 11 colors.
+  /// This `R.color` struct is generated, and contains static references to 9 colors.
   struct color {
     /// Color `cinnabar`.
     static let cinnabar = Rswift.ColorResource(bundle: R.hostingBundle, name: "cinnabar")
-    /// Color `coconut_cream`.
-    static let coconut_cream = Rswift.ColorResource(bundle: R.hostingBundle, name: "coconut_cream")
-    /// Color `disabled_button_color`.
-    static let disabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "disabled_button_color")
-    /// Color `enabled_button_color`.
-    static let enabled_button_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "enabled_button_color")
-    /// Color `main_blue`.
-    static let main_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_blue")
-    /// Color `main_orange`.
-    static let main_orange = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_orange")
-    /// Color `main_pink`.
-    static let main_pink = Rswift.ColorResource(bundle: R.hostingBundle, name: "main_pink")
-    /// Color `navigation_bar_color`.
-    static let navigation_bar_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "navigation_bar_color")
-    /// Color `picotee_blue`.
-    static let picotee_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picotee_blue")
-    /// Color `tab_bar_color`.
-    static let tab_bar_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "tab_bar_color")
+    /// Color `dodger_blue`.
+    static let dodger_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "dodger_blue")
+    /// Color `downriver`.
+    static let downriver = Rswift.ColorResource(bundle: R.hostingBundle, name: "downriver")
+    /// Color `kimberly`.
+    static let kimberly = Rswift.ColorResource(bundle: R.hostingBundle, name: "kimberly")
+    /// Color `picton_blue`.
+    static let picton_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "picton_blue")
+    /// Color `regent_st_blue`.
+    static let regent_st_blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "regent_st_blue")
+    /// Color `rolling_stone`.
+    static let rolling_stone = Rswift.ColorResource(bundle: R.hostingBundle, name: "rolling_stone")
+    /// Color `terracotta`.
+    static let terracotta = Rswift.ColorResource(bundle: R.hostingBundle, name: "terracotta")
     /// Color `wisteria`.
     static let wisteria = Rswift.ColorResource(bundle: R.hostingBundle, name: "wisteria")
 
@@ -141,83 +137,65 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "coconut_cream", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "dodger_blue", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func coconut_cream(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.coconut_cream, compatibleWith: traitCollection)
+    static func dodger_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.dodger_blue, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "disabled_button_color", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "downriver", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func disabled_button_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.disabled_button_color, compatibleWith: traitCollection)
+    static func downriver(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.downriver, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "enabled_button_color", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "kimberly", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func enabled_button_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.enabled_button_color, compatibleWith: traitCollection)
+    static func kimberly(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.kimberly, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "main_blue", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "picton_blue", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func main_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.main_blue, compatibleWith: traitCollection)
+    static func picton_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.picton_blue, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "main_orange", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "regent_st_blue", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func main_orange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.main_orange, compatibleWith: traitCollection)
+    static func regent_st_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.regent_st_blue, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "main_pink", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "rolling_stone", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func main_pink(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.main_pink, compatibleWith: traitCollection)
+    static func rolling_stone(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.rolling_stone, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "navigation_bar_color", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "terracotta", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func navigation_bar_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.navigation_bar_color, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "picotee_blue", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func picotee_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.picotee_blue, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "tab_bar_color", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func tab_bar_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.tab_bar_color, compatibleWith: traitCollection)
+    static func terracotta(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.terracotta, compatibleWith: traitCollection)
     }
     #endif
 
@@ -233,16 +211,40 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
     /// Resource file `Alice-Regular.ttf`.
     static let aliceRegularTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "Alice-Regular", pathExtension: "ttf")
+    /// Resource file `CinzelDecorative-Black.ttf`.
+    static let cinzelDecorativeBlackTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "CinzelDecorative-Black", pathExtension: "ttf")
+    /// Resource file `CinzelDecorative-Bold.ttf`.
+    static let cinzelDecorativeBoldTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "CinzelDecorative-Bold", pathExtension: "ttf")
+    /// Resource file `CinzelDecorative-Regular.ttf`.
+    static let cinzelDecorativeRegularTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "CinzelDecorative-Regular", pathExtension: "ttf")
     /// Resource file `GoogleService-Info.plist`.
     static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
 
     /// `bundle.url(forResource: "Alice-Regular", withExtension: "ttf")`
     static func aliceRegularTtf(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.aliceRegularTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "CinzelDecorative-Black", withExtension: "ttf")`
+    static func cinzelDecorativeBlackTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.cinzelDecorativeBlackTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "CinzelDecorative-Bold", withExtension: "ttf")`
+    static func cinzelDecorativeBoldTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.cinzelDecorativeBoldTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "CinzelDecorative-Regular", withExtension: "ttf")`
+    static func cinzelDecorativeRegularTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.cinzelDecorativeRegularTtf
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -255,67 +257,95 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.font` struct is generated, and contains static references to 1 fonts.
+  /// This `R.font` struct is generated, and contains static references to 4 fonts.
   struct font: Rswift.Validatable {
     /// Font `Alice-Regular`.
     static let aliceRegular = Rswift.FontResource(fontName: "Alice-Regular")
+    /// Font `CinzelDecorative-Black`.
+    static let cinzelDecorativeBlack = Rswift.FontResource(fontName: "CinzelDecorative-Black")
+    /// Font `CinzelDecorative-Bold`.
+    static let cinzelDecorativeBold = Rswift.FontResource(fontName: "CinzelDecorative-Bold")
+    /// Font `CinzelDecorative-Regular`.
+    static let cinzelDecorativeRegular = Rswift.FontResource(fontName: "CinzelDecorative-Regular")
 
     /// `UIFont(name: "Alice-Regular", size: ...)`
     static func aliceRegular(size: CGFloat) -> UIKit.UIFont? {
       return UIKit.UIFont(resource: aliceRegular, size: size)
     }
 
+    /// `UIFont(name: "CinzelDecorative-Black", size: ...)`
+    static func cinzelDecorativeBlack(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: cinzelDecorativeBlack, size: size)
+    }
+
+    /// `UIFont(name: "CinzelDecorative-Bold", size: ...)`
+    static func cinzelDecorativeBold(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: cinzelDecorativeBold, size: size)
+    }
+
+    /// `UIFont(name: "CinzelDecorative-Regular", size: ...)`
+    static func cinzelDecorativeRegular(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: cinzelDecorativeRegular, size: size)
+    }
+
     static func validate() throws {
       if R.font.aliceRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'Alice-Regular' could not be loaded, is 'Alice-Regular.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.cinzelDecorativeBlack(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'CinzelDecorative-Black' could not be loaded, is 'CinzelDecorative-Black.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.cinzelDecorativeBold(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'CinzelDecorative-Bold' could not be loaded, is 'CinzelDecorative-Bold.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.cinzelDecorativeRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'CinzelDecorative-Regular' could not be loaded, is 'CinzelDecorative-Regular.ttf' added to the UIAppFonts array in this targets Info.plist?") }
     }
 
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 25 images.
+  /// This `R.image` struct is generated, and contains static references to 27 images.
   struct image {
     /// Image `Ellipse`.
     static let ellipse = Rswift.ImageResource(bundle: R.hostingBundle, name: "Ellipse")
+    /// Image `back_color_label`.
+    static let back_color_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "back_color_label")
+    /// Image `back_label`.
+    static let back_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "back_label")
     /// Image `clapperboard`.
     static let clapperboard = Rswift.ImageResource(bundle: R.hostingBundle, name: "clapperboard")
     /// Image `crown`.
     static let crown = Rswift.ImageResource(bundle: R.hostingBundle, name: "crown")
+    /// Image `download_button`.
+    static let download_button = Rswift.ImageResource(bundle: R.hostingBundle, name: "download_button")
     /// Image `favourites`.
     static let favourites = Rswift.ImageResource(bundle: R.hostingBundle, name: "favourites")
     /// Image `flower`.
     static let flower = Rswift.ImageResource(bundle: R.hostingBundle, name: "flower")
-    /// Image `frozen_onBoarding`.
-    static let frozen_onBoarding = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen_onBoarding")
-    /// Image `frozen`.
-    static let frozen = Rswift.ImageResource(bundle: R.hostingBundle, name: "frozen")
+    /// Image `fullscreen`.
+    static let fullscreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "fullscreen")
     /// Image `go_backward`.
     static let go_backward = Rswift.ImageResource(bundle: R.hostingBundle, name: "go_backward")
     /// Image `go_forward`.
     static let go_forward = Rswift.ImageResource(bundle: R.hostingBundle, name: "go_forward")
+    /// Image `gradient_borders`.
+    static let gradient_borders = Rswift.ImageResource(bundle: R.hostingBundle, name: "gradient_borders")
     /// Image `label`.
     static let label = Rswift.ImageResource(bundle: R.hostingBundle, name: "label")
     /// Image `launch_background`.
     static let launch_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "launch_background")
     /// Image `main_background`.
     static let main_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_background")
-    /// Image `main_screen_background`.
-    static let main_screen_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "main_screen_background")
     /// Image `navigation_label`.
     static let navigation_label = Rswift.ImageResource(bundle: R.hostingBundle, name: "navigation_label")
+    /// Image `onb_one`.
+    static let onb_one = Rswift.ImageResource(bundle: R.hostingBundle, name: "onb_one")
     /// Image `play`.
     static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
-    /// Image `princess_ariel`.
-    static let princess_ariel = Rswift.ImageResource(bundle: R.hostingBundle, name: "princess_ariel")
-    /// Image `princess_cinderella`.
-    static let princess_cinderella = Rswift.ImageResource(bundle: R.hostingBundle, name: "princess_cinderella")
     /// Image `profile_icon`.
     static let profile_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_icon")
-    /// Image `profile_image`.
-    static let profile_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "profile_image")
-    /// Image `settings_background`.
-    static let settings_background = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings_background")
     /// Image `slider_progress`.
     static let slider_progress = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_progress")
+    /// Image `small_screen`.
+    static let small_screen = Rswift.ImageResource(bundle: R.hostingBundle, name: "small_screen")
+    /// Image `star_yellow`.
+    static let star_yellow = Rswift.ImageResource(bundle: R.hostingBundle, name: "star_yellow")
+    /// Image `star`.
+    static let star = Rswift.ImageResource(bundle: R.hostingBundle, name: "star")
     /// Image `stop`.
     static let stop = Rswift.ImageResource(bundle: R.hostingBundle, name: "stop")
     /// Image `thumb_slider_image`.
@@ -329,6 +359,20 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Ellipse", bundle: ..., traitCollection: ...)`
     static func ellipse(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ellipse, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "back_color_label", bundle: ..., traitCollection: ...)`
+    static func back_color_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.back_color_label, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "back_label", bundle: ..., traitCollection: ...)`
+    static func back_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.back_label, compatibleWith: traitCollection)
     }
     #endif
 
@@ -347,6 +391,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "download_button", bundle: ..., traitCollection: ...)`
+    static func download_button(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.download_button, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "favourites", bundle: ..., traitCollection: ...)`
     static func favourites(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.favourites, compatibleWith: traitCollection)
@@ -361,16 +412,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "frozen", bundle: ..., traitCollection: ...)`
-    static func frozen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.frozen, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "frozen_onBoarding", bundle: ..., traitCollection: ...)`
-    static func frozen_onBoarding(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.frozen_onBoarding, compatibleWith: traitCollection)
+    /// `UIImage(named: "fullscreen", bundle: ..., traitCollection: ...)`
+    static func fullscreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.fullscreen, compatibleWith: traitCollection)
     }
     #endif
 
@@ -385,6 +429,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "go_forward", bundle: ..., traitCollection: ...)`
     static func go_forward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.go_forward, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "gradient_borders", bundle: ..., traitCollection: ...)`
+    static func gradient_borders(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.gradient_borders, compatibleWith: traitCollection)
     }
     #endif
 
@@ -410,16 +461,16 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "main_screen_background", bundle: ..., traitCollection: ...)`
-    static func main_screen_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.main_screen_background, compatibleWith: traitCollection)
+    /// `UIImage(named: "navigation_label", bundle: ..., traitCollection: ...)`
+    static func navigation_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.navigation_label, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "navigation_label", bundle: ..., traitCollection: ...)`
-    static func navigation_label(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.navigation_label, compatibleWith: traitCollection)
+    /// `UIImage(named: "onb_one", bundle: ..., traitCollection: ...)`
+    static func onb_one(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onb_one, compatibleWith: traitCollection)
     }
     #endif
 
@@ -431,20 +482,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "princess_ariel", bundle: ..., traitCollection: ...)`
-    static func princess_ariel(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.princess_ariel, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "princess_cinderella", bundle: ..., traitCollection: ...)`
-    static func princess_cinderella(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.princess_cinderella, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "profile_icon", bundle: ..., traitCollection: ...)`
     static func profile_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.profile_icon, compatibleWith: traitCollection)
@@ -452,23 +489,30 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "profile_image", bundle: ..., traitCollection: ...)`
-    static func profile_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.profile_image, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "settings_background", bundle: ..., traitCollection: ...)`
-    static func settings_background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.settings_background, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "slider_progress", bundle: ..., traitCollection: ...)`
     static func slider_progress(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.slider_progress, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "small_screen", bundle: ..., traitCollection: ...)`
+    static func small_screen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.small_screen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "star", bundle: ..., traitCollection: ...)`
+    static func star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.star, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "star_yellow", bundle: ..., traitCollection: ...)`
+    static func star_yellow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.star_yellow, compatibleWith: traitCollection)
     }
     #endif
 
@@ -503,12 +547,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `AlertView`.
     static let alertView = _R.nib._AlertView()
     /// Nib `LabelView`.
     static let labelView = _R.nib._LabelView()
+    /// Nib `PlayerControlsView`.
+    static let playerControlsView = _R.nib._PlayerControlsView()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "AlertView", in: bundle)`
@@ -526,6 +572,14 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "PlayerControlsView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.playerControlsView) instead")
+    static func playerControlsView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.playerControlsView)
+    }
+    #endif
+
     static func alertView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.alertView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
@@ -534,12 +588,16 @@ struct R: Rswift.Validatable {
       return R.nib.labelView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
+    static func playerControlsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CustomPlayerControls? {
+      return R.nib.playerControlsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CustomPlayerControls
+    }
+
     fileprivate init() {}
   }
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 22 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 48 localization keys.
     struct localizable {
       /// en translation: ...offline watching is available
       ///
@@ -561,10 +619,34 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let allow = Rswift.StringResource(key: "allow", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Are you sure to clear cache folder?
+      ///
+      /// Locales: en
+      static let question_to_clear_cache = Rswift.StringResource(key: "question_to_clear_cache", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Are you sure to sign out?
       ///
       /// Locales: en
       static let question_to_sign_out = Rswift.StringResource(key: "question_to_sign_out", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Back
+      ///
+      /// Locales: en
+      static let back = Rswift.StringResource(key: "back", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Cache folder is already empty
+      ///
+      /// Locales: en
+      static let empty_cache = Rswift.StringResource(key: "empty_cache", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Camera
+      ///
+      /// Locales: en
+      static let camera = Rswift.StringResource(key: "camera", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Camera access required for capturing photos
+      ///
+      /// Locales: en
+      static let no_camera_permissions = Rswift.StringResource(key: "no_camera_permissions", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Camera is not available to use
+      ///
+      /// Locales: en
+      static let camera_not_available = Rswift.StringResource(key: "camera_not_available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Cancel
       ///
       /// Locales: en
@@ -577,10 +659,22 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let choose_from_library = Rswift.StringResource(key: "choose_from_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Choose mode
+      ///
+      /// Locales: en
+      static let choose_mode = Rswift.StringResource(key: "choose_mode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Clear Cache
+      ///
+      /// Locales: en
+      static let clear_cache = Rswift.StringResource(key: "clear_cache", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Error
       ///
       /// Locales: en
       static let error = Rswift.StringResource(key: "error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Failed reCaptcha verification. Please, try again
+      ///
+      /// Locales: en
+      static let failed_verification = Rswift.StringResource(key: "failed_verification", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Favourites
       ///
       /// Locales: en
@@ -589,18 +683,74 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let get_code_button_key = Rswift.StringResource(key: "get_code_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Here will be your cartoons stored in cache
+      ///
+      /// Locales: en
+      static let favourites_collection_background = Rswift.StringResource(key: "favourites_collection_background", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Here will be your cartoons stored in firebase
+      ///
+      /// Locales: en
+      static let cartoons_collection_background = Rswift.StringResource(key: "cartoons_collection_background", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Incorrect phone number. Please, check your input
+      ///
+      /// Locales: en
+      static let invalid_number = Rswift.StringResource(key: "invalid_number", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Invalid url. Try to restart the app
+      ///
+      /// Locales: en
+      static let invalid_url = Rswift.StringResource(key: "invalid_url", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Library access required for capturing photos
+      ///
+      /// Locales: en
+      static let no_library_permission = Rswift.StringResource(key: "no_library_permission", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Library is not available to use
+      ///
+      /// Locales: en
+      static let library_not_available = Rswift.StringResource(key: "library_not_available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: No files in fireStore
+      ///
+      /// Locales: en
+      static let empty_storage = Rswift.StringResource(key: "empty_storage", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: OTP Code
       ///
       /// Locales: en
       static let otp_code_key = Rswift.StringResource(key: "otp_code_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: One of the required views are nil
+      ///
+      /// Locales: en
+      static let nil_view = Rswift.StringResource(key: "nil_view", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Phone number
       ///
       /// Locales: en
       static let phone_label_key = Rswift.StringResource(key: "phone_label_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Photo Library
+      ///
+      /// Locales: en
+      static let photo_library = Rswift.StringResource(key: "photo_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please choose your preferred mode to set your profile image
+      ///
+      /// Locales: en
+      static let choose_mode_message = Rswift.StringResource(key: "choose_mode_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please, fill phone number text field
+      ///
+      /// Locales: en
+      static let empty_phone_number = Rswift.StringResource(key: "empty_phone_number", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please, wait until current operation will be finished
+      ///
+      /// Locales: en
+      static let finish_operation = Rswift.StringResource(key: "finish_operation", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Resend
       ///
       /// Locales: en
       static let resend_button_key = Rswift.StringResource(key: "resend_button_key", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Server error. Please, try again
+      ///
+      /// Locales: en
+      static let invalid_user = Rswift.StringResource(key: "invalid_user", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Server error. Please, try again
+      ///
+      /// Locales: en
+      static let invalid_verificationId = Rswift.StringResource(key: "invalid_verificationId", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Settings
       ///
       /// Locales: en
@@ -617,10 +767,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let skip = Rswift.StringResource(key: "skip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Start watching
+      ///
+      /// Locales: en
+      static let start_watching = Rswift.StringResource(key: "start_watching", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Success
       ///
       /// Locales: en
       static let success = Rswift.StringResource(key: "success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Such file already exists in local folder
+      ///
+      /// Locales: en
+      static let existing_file = Rswift.StringResource(key: "existing_file", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Take a photo
       ///
       /// Locales: en
@@ -629,6 +787,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let choice_alert_title = Rswift.StringResource(key: "choice_alert_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: We can't find such path to file
+      ///
+      /// Locales: en
+      static let invalid_path = Rswift.StringResource(key: "invalid_path", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
 
       /// en translation: ...offline watching is available
       ///
@@ -705,6 +867,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("allow", bundle: bundle, comment: "")
       }
 
+      /// en translation: Are you sure to clear cache folder?
+      ///
+      /// Locales: en
+      static func question_to_clear_cache(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("question_to_clear_cache", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "question_to_clear_cache"
+        }
+
+        return NSLocalizedString("question_to_clear_cache", bundle: bundle, comment: "")
+      }
+
       /// en translation: Are you sure to sign out?
       ///
       /// Locales: en
@@ -718,6 +895,81 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("question_to_sign_out", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Back
+      ///
+      /// Locales: en
+      static func back(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("back", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "back"
+        }
+
+        return NSLocalizedString("back", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Cache folder is already empty
+      ///
+      /// Locales: en
+      static func empty_cache(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("empty_cache", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "empty_cache"
+        }
+
+        return NSLocalizedString("empty_cache", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Camera
+      ///
+      /// Locales: en
+      static func camera(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("camera", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "camera"
+        }
+
+        return NSLocalizedString("camera", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Camera access required for capturing photos
+      ///
+      /// Locales: en
+      static func no_camera_permissions(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("no_camera_permissions", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "no_camera_permissions"
+        }
+
+        return NSLocalizedString("no_camera_permissions", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Camera is not available to use
+      ///
+      /// Locales: en
+      static func camera_not_available(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("camera_not_available", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "camera_not_available"
+        }
+
+        return NSLocalizedString("camera_not_available", bundle: bundle, comment: "")
       }
 
       /// en translation: Cancel
@@ -765,6 +1017,36 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("choose_from_library", bundle: bundle, comment: "")
       }
 
+      /// en translation: Choose mode
+      ///
+      /// Locales: en
+      static func choose_mode(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("choose_mode", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "choose_mode"
+        }
+
+        return NSLocalizedString("choose_mode", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Clear Cache
+      ///
+      /// Locales: en
+      static func clear_cache(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("clear_cache", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "clear_cache"
+        }
+
+        return NSLocalizedString("clear_cache", bundle: bundle, comment: "")
+      }
+
       /// en translation: Error
       ///
       /// Locales: en
@@ -778,6 +1060,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Failed reCaptcha verification. Please, try again
+      ///
+      /// Locales: en
+      static func failed_verification(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("failed_verification", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "failed_verification"
+        }
+
+        return NSLocalizedString("failed_verification", bundle: bundle, comment: "")
       }
 
       /// en translation: Favourites
@@ -810,6 +1107,111 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("get_code_button_key", bundle: bundle, comment: "")
       }
 
+      /// en translation: Here will be your cartoons stored in cache
+      ///
+      /// Locales: en
+      static func favourites_collection_background(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("favourites_collection_background", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "favourites_collection_background"
+        }
+
+        return NSLocalizedString("favourites_collection_background", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Here will be your cartoons stored in firebase
+      ///
+      /// Locales: en
+      static func cartoons_collection_background(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cartoons_collection_background", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "cartoons_collection_background"
+        }
+
+        return NSLocalizedString("cartoons_collection_background", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Incorrect phone number. Please, check your input
+      ///
+      /// Locales: en
+      static func invalid_number(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_number", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_number"
+        }
+
+        return NSLocalizedString("invalid_number", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Invalid url. Try to restart the app
+      ///
+      /// Locales: en
+      static func invalid_url(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_url", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_url"
+        }
+
+        return NSLocalizedString("invalid_url", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Library access required for capturing photos
+      ///
+      /// Locales: en
+      static func no_library_permission(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("no_library_permission", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "no_library_permission"
+        }
+
+        return NSLocalizedString("no_library_permission", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Library is not available to use
+      ///
+      /// Locales: en
+      static func library_not_available(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("library_not_available", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "library_not_available"
+        }
+
+        return NSLocalizedString("library_not_available", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No files in fireStore
+      ///
+      /// Locales: en
+      static func empty_storage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("empty_storage", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "empty_storage"
+        }
+
+        return NSLocalizedString("empty_storage", bundle: bundle, comment: "")
+      }
+
       /// en translation: OTP Code
       ///
       /// Locales: en
@@ -823,6 +1225,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("otp_code_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: One of the required views are nil
+      ///
+      /// Locales: en
+      static func nil_view(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("nil_view", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "nil_view"
+        }
+
+        return NSLocalizedString("nil_view", bundle: bundle, comment: "")
       }
 
       /// en translation: Phone number
@@ -840,6 +1257,66 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("phone_label_key", bundle: bundle, comment: "")
       }
 
+      /// en translation: Photo Library
+      ///
+      /// Locales: en
+      static func photo_library(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("photo_library", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "photo_library"
+        }
+
+        return NSLocalizedString("photo_library", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please choose your preferred mode to set your profile image
+      ///
+      /// Locales: en
+      static func choose_mode_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("choose_mode_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "choose_mode_message"
+        }
+
+        return NSLocalizedString("choose_mode_message", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please, fill phone number text field
+      ///
+      /// Locales: en
+      static func empty_phone_number(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("empty_phone_number", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "empty_phone_number"
+        }
+
+        return NSLocalizedString("empty_phone_number", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please, wait until current operation will be finished
+      ///
+      /// Locales: en
+      static func finish_operation(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("finish_operation", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "finish_operation"
+        }
+
+        return NSLocalizedString("finish_operation", bundle: bundle, comment: "")
+      }
+
       /// en translation: Resend
       ///
       /// Locales: en
@@ -853,6 +1330,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("resend_button_key", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Server error. Please, try again
+      ///
+      /// Locales: en
+      static func invalid_user(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_user", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_user"
+        }
+
+        return NSLocalizedString("invalid_user", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Server error. Please, try again
+      ///
+      /// Locales: en
+      static func invalid_verificationId(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_verificationId", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_verificationId"
+        }
+
+        return NSLocalizedString("invalid_verificationId", bundle: bundle, comment: "")
       }
 
       /// en translation: Settings
@@ -915,6 +1422,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("skip", bundle: bundle, comment: "")
       }
 
+      /// en translation: Start watching
+      ///
+      /// Locales: en
+      static func start_watching(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("start_watching", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "start_watching"
+        }
+
+        return NSLocalizedString("start_watching", bundle: bundle, comment: "")
+      }
+
       /// en translation: Success
       ///
       /// Locales: en
@@ -928,6 +1450,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("success", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Such file already exists in local folder
+      ///
+      /// Locales: en
+      static func existing_file(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("existing_file", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "existing_file"
+        }
+
+        return NSLocalizedString("existing_file", bundle: bundle, comment: "")
       }
 
       /// en translation: Take a photo
@@ -958,6 +1495,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("choice_alert_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: We can't find such path to file
+      ///
+      /// Locales: en
+      static func invalid_path(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("invalid_path", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "invalid_path"
+        }
+
+        return NSLocalizedString("invalid_path", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}
@@ -994,6 +1546,7 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try _AlertView.validate()
       try _LabelView.validate()
+      try _PlayerControlsView.validate()
     }
 
     struct _AlertView: Rswift.NibResourceType, Rswift.Validatable {
@@ -1030,6 +1583,26 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
+    struct _PlayerControlsView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "PlayerControlsView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CustomPlayerControls? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CustomPlayerControls
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "fullscreen", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'fullscreen' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "go_backward", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'go_backward' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "go_forward", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'go_forward' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "stop", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'stop' is used in nib 'PlayerControlsView', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+
     fileprivate init() {}
   }
   #endif
@@ -1050,6 +1623,7 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
 
       static func validate() throws {
+        if UIKit.UIImage(named: "label", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'label' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if UIKit.UIImage(named: "launch_background", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'launch_background' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
