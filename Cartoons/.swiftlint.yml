@@ -6,6 +6,11 @@ disabled_rules:
   - switch_case_alignment
   - nslocalizedstring_key
   - duplicate_enum_cases
+  - multiline_arguments
+  - multiline_parameters
+  - block_based_kvo
+  - colon
+  - multiple_closures_with_trailing_closure
 
 # Включение опциональных правил
 opt_in_rules:
@@ -39,12 +44,9 @@ opt_in_rules:
   - joined_default_parameter
   - last_where
   - legacy_random
-  - let_var_whitespace
   - literal_expression_end_indentation
   # - lower_acl_than_parent # рефакторинг
   # - missing_docs # включить после покрытия
-  - multiline_arguments
-  - multiline_parameters
   - nimble_operator
   - no_extension_access_modifier
   # - no_grouping_extension # обсудить

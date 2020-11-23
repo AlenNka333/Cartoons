@@ -24,6 +24,6 @@ class PresentationManager: NSObject, UIViewControllerTransitioningDelegate {
                                 presenting: UIViewController?,
                                 source: UIViewController) -> UIPresentationController? {
         return PresentationController(presentedViewController: presented,
-                                                 presenting: presenting)
+                                      presenting: presenting)
     }
 }
