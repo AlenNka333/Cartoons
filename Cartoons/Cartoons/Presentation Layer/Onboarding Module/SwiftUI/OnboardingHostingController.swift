@@ -5,6 +5,7 @@
 //  Created by Alena Nesterkina on 11/13/20.
 //  Copyright © 2020 AlenaNesterkina. All rights reserved.
 //
+//swiftlint:disable all
 
 import SwiftUI
 import UIKit

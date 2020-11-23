@@ -8,7 +8,6 @@
 
 import Firebase
 import Foundation
-// swiftlint:disable all
 
 class StorageDataService {
     private let storageDataManager: StorageDataManagerProtocol
