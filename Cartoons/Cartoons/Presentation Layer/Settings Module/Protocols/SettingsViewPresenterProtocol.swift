@@ -14,5 +14,6 @@ protocol SettingsViewPresenterProtocol: AnyObject {
     func showUserPhoneNumber()
     func checkCacheIsEmpty() -> Bool
     func showError(error: Error)
+    func showMessage(message: String)
     func saveUserProfileImage(imageData: Data)
 }

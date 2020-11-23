@@ -11,7 +11,8 @@ import UIKit
 class BaseViewController: UIViewController, BaseViewControllerProtocol {
     let activityIndicator = UIActivityIndicatorView()
     let alertService = AlertService()
-        
+    let transitioningManager = PresentationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -32,6 +33,8 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol {
         let alertVC = AlertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
             return
         }
+        alertVC.transitioningDelegate = transitioningManager
+        alertVC.modalPresentationStyle = .custom
         present(alertVC, animated: true)
     }
     
