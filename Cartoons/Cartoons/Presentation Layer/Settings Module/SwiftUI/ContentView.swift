@@ -10,6 +10,8 @@ import SwiftUI
 import UIKit
 
 class SettingsViewHostingController: UIHostingController<ContentView> {
+    let transitioningManager = PresentationManager()
+    
     weak var transitionDelegate: SettingsTransitionDelegate?
     var presenter: SettingsViewPresenterProtocol? {
         didSet {
@@ -31,6 +33,8 @@ class SettingsViewHostingController: UIHostingController<ContentView> {
             }
             if presenter.checkCacheIsEmpty() {
                 self?.presenter?.clearCache()
+            } else {
+                self?.presenter?.showMessage(message: R.string.localizable.empty_cache())
             }
         }
         rootView.saveImageClosure = { [weak self] data in
@@ -65,6 +69,17 @@ extension SettingsViewHostingController: SettingsViewProtocol {
         let alertVC = AlertService.alert(title: R.string.localizable.error(), body: error.localizedDescription, alertType: .error) {_ in
             return
         }
+        alertVC.transitioningDelegate = transitioningManager
+        alertVC.modalPresentationStyle = .custom
+        present(alertVC, animated: true)
+    }
+    
+    func showMessage(message: String) {
+        let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .success) { _ in
+            return
+        }
+        alertVC.transitioningDelegate = transitioningManager
+        alertVC.modalPresentationStyle = .custom
         present(alertVC, animated: true)
     }
     
@@ -77,6 +92,8 @@ extension SettingsViewHostingController: SettingsViewProtocol {
                 completion(false)
             }
         }
+        alertVC.transitioningDelegate = transitioningManager
+        alertVC.modalPresentationStyle = .custom
         present(alertVC, animated: true)
     }
     
@@ -203,13 +220,12 @@ struct ContentView: View {
                     .background(Color(R.color.downriver.name))
                     .cornerRadius(8)
             }
-            .disabled(cacheIndicator.flag)
             Image(logoImage.localizedText)
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(Color.white)
                 .frame(width: 150, height: 150, alignment: .center)
-                .padding(.top, 40)
+                .padding(.top, 60)
                 .opacity(fadeOut ? 0 : 1)
                 .animation(.easeInOut(duration: 0.25))
                 .onTapGesture {

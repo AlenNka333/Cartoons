@@ -14,5 +14,6 @@ protocol SettingsViewProtocol: SettingsTransitionDelegate {
     func showProfileImage(path: URL?)
     func showDefaultImage()
     func showError(error: Error)
+    func showMessage(message: String)
     func cacheSizeChanged(_ flag: Bool)
 }

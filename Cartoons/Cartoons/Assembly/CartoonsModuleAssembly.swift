@@ -20,7 +20,6 @@ class CartoonsModuleAssembly: Assembly {
     static func makeCartoonsController(serviceLocator: Locator,
                                        serviceProviderFacade: ServiceProviderFacade) -> CartoonsViewController {
         let view = CartoonsViewController()
-        view.hidesBottomBarWhenPushed = true
         let presenter = CartoonsPresenter(view: view,
                                           serviceLocator: serviceLocator,
                                           serviceProviderFacade: serviceProviderFacade)

@@ -84,7 +84,7 @@ class DetailsViewController: BaseViewController {
             $0.bottom.equalToSuperview().offset(-60)
         }
     }
-
+    
     override func showError(error: Error) {
         super.showError(error: error)
     }
@@ -124,6 +124,8 @@ extension DetailsViewController: DetailsViewProtocol {
         let alertVC = AlertService.alert(title: R.string.localizable.choice_alert_title(), body: message, alertType: .success) { _ in
             return
         }
+        alertVC.transitioningDelegate = transitioningManager
+        alertVC.modalPresentationStyle = .custom
         present(alertVC, animated: true)
     }
     
