@@ -20,18 +20,7 @@ class VideoPlayerViewController: BaseViewController {
     weak var transitionDelegate: PlayerTransitionDelegate?
     var controlsView: CustomPlayerControls?
     var presenter: VideoPlayerPresenterProtocol?
-    var videoPlayingState: PlayerState? {
-        didSet {
-            switch videoPlayingState {
-            case .playing:
-                player?.play()
-            case .stopped:
-                player?.pause()
-            default:
-                break
-            }
-        }
-    }
+    var videoPlayingState: PlayerState?
     private var playerView = PlayerView()
     private var player: AVPlayer? { playerView.player }
     private var isRotated: Bool = false
@@ -190,7 +179,8 @@ extension VideoPlayerViewController: VideoPlayerViewProtocol {
         guard let player = playerView.player else {
             return nil
         }
-        videoPlayingState = player.isPlaying ? .stopped : .playing
+        player.isPlaying ? (player.pause(), videoPlayingState = .stopped)
+            : (player.play(), videoPlayingState = .playing)
         return videoPlayingState
     }
     
