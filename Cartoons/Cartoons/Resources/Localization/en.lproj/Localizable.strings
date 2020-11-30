@@ -1,0 +1,75 @@
+/* 
+  Localizable.strings
+  Cartoons
+
+  Created by Alena Nesterkina on 9/1/20.
+  Copyright © 2020 AlenaNesterkina. All rights reserved.
+*/
+
+//Authorization flow
+phone_label_key = "Phone number";
+otp_code_key = "OTP Code";
+verification_message_key = "Six-digit security code was send to number:";
+
+//Alert
+success = "Success";
+sign_out_button = "Sign out";
+question_to_sign_out = "Are you sure to sign out?";
+question_to_clear_cache = "Are you sure to clear cache folder?";
+take_a_photo = "Take a photo";
+choose_from_library = "Choose from library";
+choice_alert_title = "Wait...";
+
+//Errors
+error = "Error";
+finish_operation = "Please, wait until current operation will be finished";
+existing_file = "Such file already exists in local folder";
+camera_not_available = "Camera is not available to use";
+library_not_available = "Library is not available to use";
+no_camera_permissions = "Camera access required for capturing photos";
+no_library_permission = "Library access required for capturing photos";
+empty_phone_number = "Please, fill phone number text field";
+invalid_url = "Invalid url. Try to restart the app";
+invalid_path = "We can't find such path to file";
+empty_storage = "No files in fireStore";
+invalid_number = "Incorrect phone number. Please, check your input";
+failed_verification = "Failed reCaptcha verification. Please, try again";
+invalid_verificationId = "Server error. Please, try again";
+invalid_user = "Server error. Please, try again";
+nil_view = "One of the required views are nil";
+empty_cache = "Cache folder is already empty";
+
+//Placeholder text
+favourites_collection_background = "Here will be your cartoons stored in cache";
+cartoons_collection_background = "Here will be your cartoons stored in firebase";
+
+//Buttons
+get_code_button_key = "Get verification code";
+skip = "Skip";
+resend_button_key = "Resend";
+cancel = "Cancel";
+allow = "Allow";
+
+//OnBoarding
+onBoarding_first_logo_key = "All your favourite cartoons in one app";
+onBoarding_second_logo_key = "Add to favourites and enjoy offline watching";
+
+//Cartoons flow
+cartoons_screen = "Cartoons";
+cartoons_screen_subtitle = "...plunge into a fairy tale";
+
+//Favourites flow
+favourites_screen = "Favourites";
+favourites_screen_subtitle = "...offline watching is available";
+
+//Settings flow
+settings_screen = "Settings";
+clear_cache = "Clear Cache";
+choose_mode = "Choose mode";
+choose_mode_message = "Please choose your preferred mode to set your profile image";
+camera = "Camera";
+photo_library = "Photo Library";
+
+//Details flow
+start_watching = "Start watching";
+back = "Back";

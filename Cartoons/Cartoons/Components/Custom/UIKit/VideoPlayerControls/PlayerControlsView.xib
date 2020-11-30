@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Alice-Regular.ttf">
+            <string>Alice-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomPlayerControls" customModule="Cartoons" customModuleProvider="target">
+            <connections>
+                <outlet property="controlView" destination="iN0-l3-epB" id="KmK-Wg-18Q"/>
+                <outlet property="controlsHeight" destination="GvE-d9-BF9" id="5b1-Qc-iK6"/>
+                <outlet property="currentTimeLabel" destination="69m-bc-Y6s" id="7fs-4H-uLa"/>
+                <outlet property="durationLabel" destination="aN3-57-dPw" id="poc-tZ-z30"/>
+                <outlet property="fullScreenButton" destination="XKd-i0-oTP" id="yce-eb-YJe"/>
+                <outlet property="goBackwardButton" destination="H4G-XC-Io3" id="7uL-0r-er9"/>
+                <outlet property="goForwardButton" destination="An7-B4-Zl6" id="Gz1-iH-2eZ"/>
+                <outlet property="playButton" destination="bXF-7N-M9K" id="ngD-UQ-NF2"/>
+                <outlet property="slider" destination="VOl-UV-NLp" id="OvA-RJ-TPX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomPlayerControls" customModule="Cartoons" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppD-Or-N6i">
+                    <rect key="frame" x="20" y="692" width="388" height="200"/>
+                    <subviews>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VOl-UV-NLp" customClass="CustomSlider" customModule="Cartoons" customModuleProvider="target">
+                            <rect key="frame" x="3" y="0.0" width="349" height="32"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="thumbHeight">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </slider>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="sdq-5F-w02">
+                            <rect key="frame" x="78" y="78" width="232" height="44"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4G-XC-Io3">
+                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="KEV-To-cav"/>
+                                        <constraint firstAttribute="width" constant="44" id="ehn-Uo-ngn"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" image="go_backward"/>
+                                    <connections>
+                                        <action selector="goBackwardButtonClicked:" destination="-1" eventType="touchUpInside" id="Czc-0T-doQ"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXF-7N-M9K">
+                                    <rect key="frame" x="94" y="0.0" width="44" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="N2T-vv-ssK"/>
+                                        <constraint firstAttribute="width" constant="44" id="cEV-ye-kp6"/>
+                                    </constraints>
+                                    <state key="normal" image="stop"/>
+                                    <connections>
+                                        <action selector="playPauseButtonClicked:" destination="-1" eventType="touchUpInside" id="9r6-DV-S59"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An7-B4-Zl6">
+                                    <rect key="frame" x="188" y="0.0" width="44" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="Kp5-EM-N1U"/>
+                                        <constraint firstAttribute="height" constant="44" id="jWK-Cf-2eR"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" image="go_forward"/>
+                                    <connections>
+                                        <action selector="goForwardButtonClicked:" destination="-1" eventType="touchUpInside" id="reA-py-xWl"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69m-bc-Y6s">
+                            <rect key="frame" x="5" y="28" width="40.333333333333336" height="18.666666666666671"/>
+                            <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN3-57-dPw">
+                            <rect key="frame" x="347.66666666666669" y="28" width="40.333333333333314" height="18.666666666666671"/>
+                            <fontDescription key="fontDescription" name="Alice-Regular" family="Alice" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKd-i0-oTP">
+                            <rect key="frame" x="368" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Rel-gS-zgL"/>
+                                <constraint firstAttribute="width" constant="20" id="tIY-bg-8q0"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="fullscreen"/>
+                            <connections>
+                                <action selector="fullScreenAction:" destination="-1" eventType="touchUpInside" id="dH6-n1-JWf"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="XKd-i0-oTP" firstAttribute="top" secondItem="ppD-Or-N6i" secondAttribute="top" id="DEb-4Q-X4k"/>
+                        <constraint firstAttribute="height" constant="200" id="GvE-d9-BF9"/>
+                        <constraint firstItem="sdq-5F-w02" firstAttribute="centerY" secondItem="ppD-Or-N6i" secondAttribute="centerY" id="LoO-sa-bJr"/>
+                        <constraint firstAttribute="height" constant="100" id="Rk9-Yq-S0l"/>
+                        <constraint firstAttribute="trailing" secondItem="VOl-UV-NLp" secondAttribute="trailing" constant="38" id="TL6-ah-I4r"/>
+                        <constraint firstItem="sdq-5F-w02" firstAttribute="centerX" secondItem="ppD-Or-N6i" secondAttribute="centerX" id="a8K-Vx-aLW"/>
+                        <constraint firstItem="aN3-57-dPw" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" constant="-3" id="iCK-ML-Hvi"/>
+                        <constraint firstAttribute="height" constant="100" id="px3-3C-0jQ"/>
+                        <constraint firstAttribute="trailing" secondItem="XKd-i0-oTP" secondAttribute="trailing" id="py2-Ne-Ob1"/>
+                        <constraint firstItem="69m-bc-Y6s" firstAttribute="leading" secondItem="VOl-UV-NLp" secondAttribute="leading" id="qPt-qH-mgr"/>
+                        <constraint firstItem="69m-bc-Y6s" firstAttribute="top" secondItem="VOl-UV-NLp" secondAttribute="bottom" constant="-3" id="zHy-Wa-qe2"/>
+                        <constraint firstItem="aN3-57-dPw" firstAttribute="trailing" secondItem="VOl-UV-NLp" secondAttribute="trailing" constant="38" id="zU3-TD-cO6"/>
+                        <constraint firstItem="VOl-UV-NLp" firstAttribute="leading" secondItem="ppD-Or-N6i" secondAttribute="leading" constant="5" id="zgd-2y-xe8"/>
+                        <constraint firstItem="VOl-UV-NLp" firstAttribute="top" secondItem="ppD-Or-N6i" secondAttribute="top" id="znm-Wc-t7L"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="GvE-d9-BF9"/>
+                            <exclude reference="Rk9-Yq-S0l"/>
+                            <exclude reference="px3-3C-0jQ"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="Rk9-Yq-S0l"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="px3-3C-0jQ"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="GvE-d9-BF9"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ppD-Or-N6i" secondAttribute="trailing" constant="20" id="Y8m-bu-X1e"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ppD-Or-N6i" secondAttribute="bottom" id="fvy-fD-ip8"/>
+                <constraint firstItem="ppD-Or-N6i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="gYx-a8-P4s"/>
+            </constraints>
+            <point key="canvasLocation" x="100" y="76.108374384236456"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="VOl-UV-NLp">
+            <size key="intrinsicContentSize" width="643" height="31"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="fullscreen" width="30" height="30"/>
+        <image name="go_backward" width="33" height="38"/>
+        <image name="go_forward" width="33" height="38"/>
+        <image name="stop" width="50" height="50"/>
+    </resources>
+</document>
